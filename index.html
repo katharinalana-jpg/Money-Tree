@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Money Tree. Values aligned investing for women. Pre register for early access." />
+  <title>Money Tree. Invest in what you believe in.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════ NAV ══════════════════════════════ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top">
+      <img src="img/logo_tree.png" alt="" class="nav__logo" />
+      Money Tree
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#intro" data-nav>Intro</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#platform" data-nav>Platform</a>
+      <a href="#collabs" data-nav>Collabs</a>
+      <a class="nav__cta" href="#signup">Sign Up</a>
+    </nav>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="#intro">Intro</a>
+      <a href="#about">About</a>
+      <a href="#platform">Platform</a>
+      <a href="#collabs">Collabs</a>
+      <a class="nav__cta" href="#signup">Sign Up</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ════════════════════════════ HERO ════════════════════════════ -->
+    <section class="hero" id="intro">
+      <div class="container hero__inner">
+        <p class="eyebrow reveal">Pre Launch. Early Access.</p>
+        <h1 class="h-display reveal">Invest in what<br/>you support.</h1>
+        <p class="hero__sub reveal">
+          Money Tree is a values aligned investment platform built for women,
+          by women. We make investment easy, accessible, and designed to make
+          your money speak for what matters to you.
+        </p>
+
+        <form class="hero__form reveal" data-signup>
+          <label class="sr-only" for="heroEmail">Email address</label>
+          <input id="heroEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <button type="submit" class="btn btn--primary">Get Early Access</button>
+          <p class="form__success" hidden>You are on the list. Welcome to the movement.</p>
+        </form>
+      </div>
+
+      <a class="hero__scroll" href="#flow" aria-label="Scroll to learn more">
+        <span>Discover how it works</span>
+        <i></i>
+      </a>
+    </section>
+
+    <!-- ════════════════════════════ FLOW ════════════════════════════ -->
+    <section class="section flow" id="flow">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">The core experience</p>
+          <h2 class="h-section">Start investing according to your values in only five steps.</h2>
+          <p class="section__lede">
+            The Money Tree Robo Advisor guides you from your very first steps
+            to your real portfolio.
+          </p>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Take the quiz</h3>
+            <p>Answer a few questions about your investing style, your goals, and the causes you care about.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Find your archetype</h3>
+            <p>Get a clear overview and a feeling for what your values aligned portfolio can look like.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Explore</h3>
+            <p>Browse ETFs and stocks ranked by a sustainability score and a gender score to make impact investing and gender lens investing easy.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">04</span>
+            <h3 class="step__title">Fill your basket</h3>
+            <p>Drag and drop to build your portfolio. Investing will feel like online shopping.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">05</span>
+            <h3 class="step__title">Execute</h3>
+            <p>Open your first depot or let a trusted wealth manager do it for you.</p>
+          </li>
+        </ol>
+
+        <div class="flow__cta reveal">
+          <a href="#signup" class="btn btn--ghost">Join the Early Access List</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ PROBLEM ═════════════════════════ -->
+    <section class="section problem">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Why we exist</p>
+          <h2 class="h-section">At Money Tree, it is our mission to fight:</h2>
+        </header>
+
+        <div class="problem__grid">
+          <article class="problem__card reveal">
+            <div class="problem__stat">25<small>%</small></div>
+            <h3>EU gender pension gap</h3>
+            <p>Women aged 65 and older receive one quarter less in retirement income than men.</p>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__stat">29<small>%</small></div>
+            <h3>Less invested monthly</h3>
+            <p>European women invest 29% less of their monthly income than men on average.</p>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__stat">€100<small>k</small></div>
+            <h3>Lifetime wealth deficit</h3>
+            <p>Women accumulate an estimated €100,000 less in wealth over their lifetime.</p>
+          </article>
+        </div>
+
+        <p class="problem__bridge reveal">
+          These gaps do not close on their own. They close when women are
+          enabled to confidently take control of their finances and invest in
+          what they believe in.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ═════════════════════════ MISSION ═════════════════════════ -->
+    <section class="section mission" id="about">
+      <div class="container">
+        <blockquote class="mission__quote">
+          <p class="mission__text">
+            <span class="mission__word">Money </span>
+            <span class="mission__word">Tree </span>
+            <span class="mission__word">exists </span>
+            <span class="mission__word">to </span>
+            <span class="mission__word">close </span>
+            <span class="mission__word">the </span>
+            <span class="mission__word">financial </span>
+            <span class="mission__word">gender </span>
+            <span class="mission__word">gap. </span>
+            <span class="mission__word">Because </span>
+            <span class="mission__word">every </span>
+            <span class="mission__word">investment </span>
+            <span class="mission__word">is </span>
+            <span class="mission__word">a </span>
+            <span class="mission__word">vote. </span>
+            <span class="mission__word">We </span>
+            <span class="mission__word">build </span>
+            <span class="mission__word">a </span>
+            <span class="mission__word">platform </span>
+            <span class="mission__word">that </span>
+            <span class="mission__word">lets </span>
+            <span class="mission__word">you </span>
+            <span class="mission__word">align </span>
+            <span class="mission__word">your </span>
+            <span class="mission__word">values, </span>
+            <span class="mission__word">makes </span>
+            <span class="mission__word">investment </span>
+            <span class="mission__word">easy, </span>
+            <span class="mission__word">and </span>
+            <span class="mission__word">is </span>
+            <span class="mission__word">designed </span>
+            <span class="mission__word">from </span>
+            <span class="mission__word">the </span>
+            <span class="mission__word">ground </span>
+            <span class="mission__word">up </span>
+            <span class="mission__word">so </span>
+            <span class="mission__word">everyone </span>
+            <span class="mission__word">can </span>
+            <span class="mission__word">make </span>
+            <span class="mission__word">their </span>
+            <span class="mission__word">money </span>
+            <span class="mission__word">speak </span>
+            <span class="mission__word">and </span>
+            <span class="mission__word">secure </span>
+            <span class="mission__word">their </span>
+            <span class="mission__word">future.&#8221;</span>
+          </p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ FOUR CAPITALS ═══════════════════════ -->
+    <section class="section capitals">
+      <!-- Logo as subtle background element -->
+      <div class="capitals__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="capitals__content">
+          <header class="section__header reveal">
+            <p class="eyebrow">A new definition of growth</p>
+            <h2 class="h-section">A new era of investing.</h2>
+          </header>
+
+          <div class="capitals__body reveal">
+            <p>
+              At Money Tree, we believe that growth must be measured across
+              four dimensions. Every company relies on
+              <span class="capital-word" data-color="gold">financial capital</span>,
+              <span class="capital-word" data-color="green">environmental capital</span>,
+              <span class="capital-word" data-color="rose">social capital</span>, and
+              <span class="capital-word" data-color="lavender">network capital</span>.
+              For decades, only the growth of financial capital has counted as
+              success. We believe that must change.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ PLATFORM ═════════════════════════ -->
+    <section class="section platform" id="platform">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Phase 2. The ecosystem.</p>
+          <h2 class="h-section">All in One Platform</h2>
+          <p class="section__lede">
+            Beyond the Robo-Advisor, Money Tree grows into a full ecosystem
+            where learning about Finances, Investing and Community live in
+            one place.
+          </p>
+        </header>
+
+        <div class="platform__mockups reveal">
+          <!-- MacBook mockup -->
+          <div class="macbook" aria-label="MacBook preview of the Money Tree dashboard">
+            <div class="macbook__lid">
+              <div class="macbook__bezel">
+                <div class="macbook__notch"></div>
+                <div class="macbook__screen">
+                  <div class="mock__topbar">
+                    <span></span><span></span><span></span>
+                    <span class="mock__url">moneytree.com/dashboard</span>
+                  </div>
+                  <div class="mock__dash">
+                    <div class="mock__side">
+                      <span class="mock__logo">Money Tree</span>
+                      <span class="mock__item mock__item--active">Dashboard</span>
+                      <span class="mock__item">Advisor</span>
+                      <span class="mock__item">Academy</span>
+                      <span class="mock__item">Community</span>
+                      <span class="mock__item">Barometer</span>
+                      <span class="mock__item">Shop</span>
+                    </div>
+                    <div class="mock__main">
+                      <div class="mock__card mock__card--hero">
+                        <span class="mock__label">Your portfolio</span>
+                        <span class="mock__val">€ 12,480</span>
+                        <span class="mock__delta">+ 4.2% this month</span>
+                      </div>
+                      <div class="mock__row">
+                        <div class="mock__card"><span>Gender score</span><strong>A+</strong></div>
+                        <div class="mock__card"><span>Sustainability</span><strong>92</strong></div>
+                        <div class="mock__card"><span>Impact</span><strong>High</strong></div>
+                      </div>
+                      <div class="mock__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="macbook__hinge"></div>
+            <div class="macbook__base">
+              <div class="macbook__slot"></div>
+            </div>
+          </div>
+
+          <!-- iPhone mockup -->
+          <div class="iphone" aria-label="iPhone preview of the Money Tree app">
+            <div class="iphone__side iphone__side--left"></div>
+            <div class="iphone__side iphone__side--right"></div>
+            <div class="iphone__frame">
+              <div class="iphone__screen">
+                <div class="iphone__island"></div>
+                <div class="iphone__status">
+                  <span>9:41</span>
+                  <span class="iphone__status-right">
+                    <i class="ios-signal"></i>
+                    <i class="ios-wifi"></i>
+                    <i class="ios-bat"></i>
+                  </span>
+                </div>
+                <p class="mock__phone-eyebrow">Today</p>
+                <p class="mock__phone-title">Good morning,<br/>Amélie.</p>
+                <div class="mock__phone-card">
+                  <span>Balance</span>
+                  <strong>€ 12,480</strong>
+                  <em>+ €53 today</em>
+                </div>
+                <div class="mock__phone-list">
+                  <span>Academy. Lesson 04</span>
+                  <span>Community. New thread</span>
+                  <span>Barometer. Weekly</span>
+                </div>
+                <div class="iphone__home"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="platform__pills reveal">
+          <li><span>Gender Lens and Sustainability Robo Advisor</span></li>
+          <li><span>Financial Literacy Academy</span></li>
+          <li><span>Community Forum</span></li>
+          <li><span>Investment Barometer</span></li>
+          <li><span>Shop</span></li>
+        </ul>
+
+        <div class="flow__cta reveal" style="margin-top:3rem">
+          <a href="#signup" class="btn btn--ghost">Join the Early Access List</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═════════════════════ NEWS AND COLLABS ═════════════════════ -->
+    <section class="section news" id="collabs">
+      <div class="container news__grid">
+        <article class="news__card reveal">
+          <p class="eyebrow">News</p>
+          <h3>We are building in the open.</h3>
+          <p>Follow our journey from prototype to launch. Early supporters
+             receive monthly product letters and invitations to private demos.</p>
+          <a class="link-arrow" href="#signup">Join the list →</a>
+        </article>
+        <article class="news__card reveal">
+          <p class="eyebrow">Collabs</p>
+          <h3>Partner with Money Tree.</h3>
+          <p>We collaborate with wealth managers, sustainability researchers,
+             creators, and community builders who share our values.</p>
+          <a class="link-arrow" href="mailto:hello@moneytree.com">Reach out →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═════════════════════ FINAL SIGN UP ═════════════════════ -->
+    <section class="section signup" id="signup">
+      <div class="container signup__inner reveal">
+        <p class="eyebrow">Pre register</p>
+        <h2 class="h-section">Register Now</h2>
+        <p class="signup__lede">Be the first one who is part of the movement.</p>
+
+        <form class="signup__form" data-signup>
+          <label class="sr-only" for="finalEmail">Email address</label>
+          <input id="finalEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <button type="submit" class="btn btn--primary">Reserve my place</button>
+        </form>
+        <p class="signup__micro">
+          Private beta. Your email is only used for Money Tree updates.
+          Unsubscribe anytime.
+        </p>
+
+        <div class="form__success signup__success" hidden>
+          <h3>Welcome to Money Tree.</h3>
+          <p>You are officially on the early access list. We will be in touch
+             soon with your first product letter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand">Money Tree</span>
+      <span class="footer__copy">© <span id="year"></span> Money Tree. Built with care for the women who come next.</span>
+      <nav class="footer__links">
+        <a href="#intro">Intro</a>
+        <a href="#platform">Platform</a>
+        <a href="#signup">Sign Up</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
