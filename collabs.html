@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Money Tree. News and collaborations." />
+  <title>Money Tree. Collabs.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html#top">
+      <img src="img/logo_tree.png" alt="" class="nav__logo" />
+      Money Tree
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#intro">Intro</a>
+      <a href="index.html#platform">Platform</a>
+      <a href="mission.html">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+    </nav>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="index.html#intro">Intro</a>
+      <a href="index.html#platform">Platform</a>
+      <a href="mission.html">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- TABS -->
+    <section class="section collabs-page" style="padding-top: calc(var(--nav-h) + 5rem);">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Get involved</p>
+          <h2 class="h-section">Join us on the journey.</h2>
+        </header>
+
+        <div class="collabs-tabs">
+          <div class="collabs-tabs__nav">
+            <button class="collabs-tabs__btn is-active" data-tab="news">We are building in the open</button>
+            <button class="collabs-tabs__btn" data-tab="partner">Partner with Money Tree</button>
+          </div>
+
+          <div class="collabs-tabs__panel is-active" id="tab-news">
+            <div class="collabs-tabs__content reveal">
+              <h3>We are building in the open.</h3>
+              <p>Follow our journey from prototype to launch. Early supporters
+                 receive monthly product letters and invitations to private demos.</p>
+              <a class="btn btn--ghost" href="index.html#signup">Join the Access List</a>
+            </div>
+          </div>
+
+          <div class="collabs-tabs__panel" id="tab-partner">
+            <div class="collabs-tabs__content reveal">
+              <h3>Partner with Money Tree.</h3>
+              <p>We collaborate with wealth managers, sustainability researchers,
+                 creators, and community builders who share our values.</p>
+              <a class="btn btn--ghost" href="mailto:hello@moneytree.com">Reach out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand">Money Tree</span>
+      <span class="footer__copy">&copy; <span id="year"></span> Money Tree. Built with care for the women who come next.</span>
+      <nav class="footer__links">
+        <a href="index.html#intro">Intro</a>
+        <a href="index.html#platform">Platform</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="index.html#signup">Sign Up</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
