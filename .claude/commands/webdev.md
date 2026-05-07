@@ -26,8 +26,9 @@ Use a clear, kebab-case branch name that describes the feature (e.g., `feature/q
 - Confirm brand consistency (colors, fonts, pill buttons, card styles)
 
 ### 4. Merge to main
-Once the feature is verified and complete:
+Once the feature is verified and complete, run these commands from the **main working directory** (`C:/Work/Money-Tree`), not from inside a worktree — git does not allow checking out `main` in two places at once:
 ```
+cd C:/Work/Money-Tree
 git checkout main
 git pull origin main
 git merge feature/<branch-name>
