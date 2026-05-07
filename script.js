@@ -215,7 +215,7 @@
   });
 
   /* ───────────────────── INTERACTIVE HOVER TILT ───────────────────── */
-  $$(".step, .problem__card, .news__card").forEach((card) => {
+  $$(".step:not(.step--interactive), .problem__card, .news__card").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -224,6 +224,58 @@
     });
     card.addEventListener("mouseleave", () => {
       card.style.transform = "";
+    });
+  });
+
+  /* ───────────────────── BASKET DRAG AND DROP ───────────────────── */
+  const basketDrop = $("[data-drop]");
+  if (basketDrop) {
+    const chips = $$(".basket-demo__chip");
+    chips.forEach((chip) => {
+      chip.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", chip.dataset.type);
+        chip.classList.add("is-dragging");
+      });
+      chip.addEventListener("dragend", () => {
+        chip.classList.remove("is-dragging");
+      });
+    });
+    basketDrop.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      basketDrop.classList.add("is-over");
+    });
+    basketDrop.addEventListener("dragleave", () => {
+      basketDrop.classList.remove("is-over");
+    });
+    basketDrop.addEventListener("drop", (e) => {
+      e.preventDefault();
+      basketDrop.classList.remove("is-over");
+      const type = e.dataTransfer.getData("text/plain");
+      const chip = $$(`.basket-demo__chip[data-type="${type}"]`)[0];
+      if (chip && !basketDrop.querySelector(`[data-dropped="${type}"]`)) {
+        const tag = document.createElement("span");
+        tag.className = "basket-dropped";
+        tag.setAttribute("data-dropped", type);
+        tag.textContent = chip.textContent;
+        const placeholder = basketDrop.querySelector("span:not(.basket-dropped)");
+        const icon = basketDrop.querySelector("svg");
+        if (placeholder) placeholder.style.display = "none";
+        if (icon) icon.style.display = "none";
+        basketDrop.appendChild(tag);
+        chip.style.opacity = "0.3";
+        chip.setAttribute("draggable", "false");
+      }
+    });
+  }
+
+  /* ───────────────────── COLLABS TABS ───────────────────── */
+  const tabBtns = $$(".collabs-tabs__btn");
+  const tabPanels = $$(".collabs-tabs__panel");
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
+      tabPanels.forEach((p) => p.classList.toggle("is-active", p.id === "tab-" + target));
     });
   });
 

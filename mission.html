@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Money Tree. Our mission to close the financial gender gap." />
+  <title>Money Tree. Our Mission.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html#top">
+      <img src="img/logo_tree.png" alt="" class="nav__logo" />
+      Money Tree
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#intro">Intro</a>
+      <a href="index.html#platform">Platform</a>
+      <a href="mission.html" class="is-active">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+    </nav>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="index.html#intro">Intro</a>
+      <a href="index.html#platform">Platform</a>
+      <a href="mission.html">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- PROBLEM -->
+    <section class="section problem" style="padding-top: calc(var(--nav-h) + 5rem);">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Why we exist</p>
+          <h2 class="h-section">At Money Tree, it is our mission to fight:</h2>
+        </header>
+
+        <div class="problem__grid">
+          <article class="problem__card reveal">
+            <div class="problem__stat">25<small>%</small></div>
+            <h3>EU gender pension gap</h3>
+            <p>Women aged 65 and older receive one quarter less in retirement income than men.</p>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__stat">29<small>%</small></div>
+            <h3>Less invested monthly</h3>
+            <p>European women invest 29% less of their monthly income than men on average.</p>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__stat">€100<small>k</small></div>
+            <h3>Lifetime wealth deficit</h3>
+            <p>Women accumulate an estimated €100,000 less in wealth over their lifetime.</p>
+          </article>
+        </div>
+
+        <p class="problem__bridge reveal">
+          These gaps do not close on their own. They close when women are
+          enabled to confidently take control of their finances and invest in
+          what they believe in.
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section mission">
+      <div class="container">
+        <blockquote class="mission__quote">
+          <p class="mission__text">
+            <span class="mission__word">Money </span>
+            <span class="mission__word">Tree </span>
+            <span class="mission__word">exists </span>
+            <span class="mission__word">to </span>
+            <span class="mission__word">close </span>
+            <span class="mission__word">the </span>
+            <span class="mission__word">financial </span>
+            <span class="mission__word">gender </span>
+            <span class="mission__word">gap. </span>
+            <span class="mission__word">Because </span>
+            <span class="mission__word">every </span>
+            <span class="mission__word">investment </span>
+            <span class="mission__word">is </span>
+            <span class="mission__word">a </span>
+            <span class="mission__word">vote. </span>
+            <span class="mission__word">We </span>
+            <span class="mission__word">build </span>
+            <span class="mission__word">a </span>
+            <span class="mission__word">platform </span>
+            <span class="mission__word">that </span>
+            <span class="mission__word">lets </span>
+            <span class="mission__word">you </span>
+            <span class="mission__word">align </span>
+            <span class="mission__word">your </span>
+            <span class="mission__word">values, </span>
+            <span class="mission__word">makes </span>
+            <span class="mission__word">investment </span>
+            <span class="mission__word">easy, </span>
+            <span class="mission__word">and </span>
+            <span class="mission__word">is </span>
+            <span class="mission__word">designed </span>
+            <span class="mission__word">from </span>
+            <span class="mission__word">the </span>
+            <span class="mission__word">ground </span>
+            <span class="mission__word">up </span>
+            <span class="mission__word">so </span>
+            <span class="mission__word">everyone </span>
+            <span class="mission__word">can </span>
+            <span class="mission__word">make </span>
+            <span class="mission__word">their </span>
+            <span class="mission__word">money </span>
+            <span class="mission__word">speak </span>
+            <span class="mission__word">and </span>
+            <span class="mission__word">secure </span>
+            <span class="mission__word">their </span>
+            <span class="mission__word">future.&#8221;</span>
+          </p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- FOUR CAPITALS -->
+    <section class="section capitals">
+      <div class="capitals__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="capitals__content">
+          <header class="section__header reveal">
+            <p class="eyebrow">A new definition of growth</p>
+            <h2 class="h-section">A new era of investing.</h2>
+          </header>
+
+          <div class="capitals__body reveal">
+            <p>
+              At Money Tree, we believe that growth must be measured across
+              four dimensions. Every company relies on
+              <span class="capital-word" data-color="gold">financial capital</span>,
+              <span class="capital-word" data-color="green">environmental capital</span>,
+              <span class="capital-word" data-color="rose">social capital</span>, and
+              <span class="capital-word" data-color="lavender">network capital</span>.
+              For decades, only the growth of financial capital has counted as
+              success. We believe that must change.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section signup" id="signup">
+      <div class="container signup__inner reveal">
+        <p class="eyebrow">Pre register</p>
+        <h2 class="h-section">Register Now</h2>
+        <p class="signup__lede">Get notified when we go live.</p>
+
+        <form class="signup__form" data-signup>
+          <label class="sr-only" for="finalEmail">Email address</label>
+          <input id="finalEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <button type="submit" class="btn btn--primary">Reserve my place</button>
+        </form>
+        <p class="signup__micro">
+          Private beta. Your email is only used for Money Tree updates.
+          Unsubscribe anytime.
+        </p>
+
+        <div class="form__success signup__success" hidden>
+          <h3>Welcome to Money Tree.</h3>
+          <p>You are officially on the early access list. We will be in touch
+             soon with your first product letter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand">Money Tree</span>
+      <span class="footer__copy">&copy; <span id="year"></span> Money Tree. Built with care for the women who come next.</span>
+      <nav class="footer__links">
+        <a href="index.html#intro">Intro</a>
+        <a href="index.html#platform">Platform</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="index.html#signup">Sign Up</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
