@@ -1,5 +1,5 @@
 /* =============================================================
-   Bluumtree. Landing page interactions.
+   Portemonnaie. Landing page interactions.
    Clean vanilla JS. No dependencies.
    Minimalist, interactive scroll animations.
    ============================================================= */
