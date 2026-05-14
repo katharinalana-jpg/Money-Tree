@@ -155,12 +155,14 @@ a { text-decoration: none; color: inherit; }
 }
 .l-brush {
   position: absolute;
-  left:   -12px;
-  right:  -16px;
-  top:     46%;   /* stroke sits from mid-cap to slightly below baseline */
-  bottom:  -9px;
-  z-index: 0;
-  pointer-events: none;
+  left:             -14px;
+  right:            -18px;
+  top:              15%;    /* start high so stroke covers full word height */
+  bottom:           -12px;
+  z-index:          0;
+  pointer-events:   none;
+  transform:        rotate(-2.5deg);
+  transform-origin: left center;
 }
 .l-brush svg {
   width: 100%;
@@ -186,12 +188,20 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 40px;
 }
 
-/* Marigold underline on "your" in the subtext */
+/* "your" underline — three Marigold bands at decreasing opacity, pencil-stroke feel */
 .l-marigold-u {
-  text-decoration: underline;
-  text-decoration-color: var(--c-marigold);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  background-image:
+    linear-gradient(#F5A623, #F5A623),
+    linear-gradient(rgba(245,166,35,.6), rgba(245,166,35,.6)),
+    linear-gradient(rgba(245,166,35,.3), rgba(245,166,35,.3));
+  background-repeat:   no-repeat;
+  background-size:     100% 1.5px, 100% 1px, 100% 1px;
+  background-position:
+    0 calc(100% + 3px),
+    0 calc(100% + 6px),
+    0 calc(100% + 8.5px);
+  padding-bottom: 2px;
 }
 
 .l-hero__ctas {

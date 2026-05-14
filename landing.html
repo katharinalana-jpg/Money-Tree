@@ -47,12 +47,12 @@
             <!-- Brushstroke wrapper: SVG stroke sits behind the italic text -->
             <span class="l-brush-wrap">
               <span class="l-brush" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 50" preserveAspectRatio="none">
-                  <!-- Main organic brushstroke body -->
-                  <path d="M4,28 C7,19 18,15 38,14 C60,13 92,11 130,12 C168,13 206,11 238,12 C258,13 274,15 284,18 C288,20 289,24 287,28 C285,32 274,34 256,34 C224,35 192,37 158,35 C124,33 90,35 58,34 C32,33 14,34 5,31 Z"
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" preserveAspectRatio="none">
+                  <!-- Thicker organic brushstroke body covering full word height -->
+                  <path d="M3,34 C6,21 18,15 40,14 C65,13 100,11 140,12 C180,13 220,11 262,12 C280,13 292,16 297,21 C299,26 299,33 296,38 C293,44 280,47 260,47 C220,48 180,50 140,48 C100,46 65,48 38,46 C16,45 6,43 3,38 Z"
                         fill="#D4EAD8"/>
-                  <!-- Subtle inner highlight for paint texture -->
-                  <path d="M10,26 C24,22 52,21 85,22 C122,23 162,21 198,22 C228,23 258,22 278,24"
+                  <!-- Inner highlight streak for paint texture -->
+                  <path d="M10,30 C24,25 52,24 85,25 C122,26 162,24 198,25 C228,26 258,25 278,27"
                         stroke="#C8E6D2" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
                 </svg>
               </span>
@@ -81,57 +81,9 @@
             <em>their future.</em>
           </div>
 
-          <!-- Plant illustration — larger so top leaves tuck behind card bottom -->
+          <!-- Plant illustration from brand kit -->
           <div class="l-hero__plant">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <filter id="lp-paint" x="-10%" y="-10%" width="120%" height="120%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3"/>
-                  <feDisplacementMap in="SourceGraphic" scale="1.6"/>
-                </filter>
-                <filter id="lp-leaf" x="-10%" y="-10%" width="120%" height="120%">
-                  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7"/>
-                  <feDisplacementMap in="SourceGraphic" scale="1.2"/>
-                </filter>
-              </defs>
-              <!-- Stems -->
-              <g stroke="#3F5A45" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#lp-paint)">
-                <path d="M100,200 C 99,170 96,140 92,118"/>
-                <path d="M100,200 C 102,175 108,150 118,128"/>
-                <path d="M100,200 C 100,180 99,165 99,150"/>
-                <path d="M99,150 C 90,142 80,135 72,128"/>
-                <path d="M99,150 C 110,140 122,134 132,128"/>
-                <path d="M92,118 C 86,108 80,100 75,94"/>
-                <path d="M92,118 C 96,108 102,98 108,88"/>
-                <path d="M118,128 C 124,118 130,108 136,98"/>
-              </g>
-              <!-- Leaves -->
-              <g fill="#7FB995" filter="url(#lp-leaf)">
-                <ellipse cx="73"  cy="90"  rx="11" ry="18" transform="rotate(-30 73 90)"/>
-                <ellipse cx="108" cy="84"  rx="11" ry="18" transform="rotate(20 108 84)"/>
-                <ellipse cx="138" cy="94"  rx="11" ry="18" transform="rotate(35 138 94)"/>
-                <ellipse cx="68"  cy="125" rx="13" ry="20" transform="rotate(-50 68 125)"/>
-                <ellipse cx="135" cy="125" rx="13" ry="20" transform="rotate(50 135 125)"/>
-                <ellipse cx="78"  cy="155" rx="12" ry="18" transform="rotate(-65 78 155)"/>
-                <ellipse cx="124" cy="155" rx="12" ry="18" transform="rotate(65 124 155)"/>
-              </g>
-              <!-- Leaf veins -->
-              <g stroke="#3F5A45" stroke-width="0.9" fill="none" opacity="0.55" stroke-linecap="round">
-                <path d="M73,73 L73,107"/>
-                <path d="M108,67 L108,101"/>
-                <path d="M138,77 L138,111"/>
-                <path d="M68,107 L68,143"/>
-                <path d="M135,107 L135,143"/>
-                <path d="M78,138 L78,172"/>
-                <path d="M124,138 L124,172"/>
-              </g>
-              <!-- Pot -->
-              <g filter="url(#lp-paint)">
-                <path d="M62,195 L138,195 L130,250 Q 100,256 70,250 Z" fill="#A8D5BA"/>
-                <path d="M62,195 L138,195 L135,205 Q 100,210 65,205 Z" fill="#7FB995"/>
-              </g>
-              <path d="M70,250 Q 100,256 130,250 L 128,245 Q 100,250 72,245 Z" fill="#6FAA85" opacity="0.55" filter="url(#lp-paint)"/>
-            </svg>
+            <img src="img/plant_full.svg" alt="" />
           </div>
 
           <!--
@@ -162,9 +114,9 @@
                 <textPath href="#lp-c2">On your terms.</textPath>
               </text>
 
-              <!-- Hand-drawn oval around "your" centred at ≈(50, 59) -->
-              <path d="M26,67 C24,59 27,52 37,49 C47,46 59,46 67,50 C75,54 78,61 74,67 C70,73 61,76 51,75 C40,74 28,72 26,67 Z"
-                    fill="none" stroke="#4A5C52" stroke-width="1.7"
+              <!-- Hand-drawn oval around "your" — Forest colour, tighter fit -->
+              <path d="M39,66 C38,59 40,52 48,49 C56,46 65,47 71,52 C77,57 76,64 71,69 C66,74 57,77 48,75 C40,73 40,70 39,66 Z"
+                    fill="none" stroke="#1F3A2E" stroke-width="1.8"
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
