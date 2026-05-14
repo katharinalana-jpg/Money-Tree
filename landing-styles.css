@@ -1,9 +1,8 @@
-/* ── Brand tokens ─────────────────────────────────────────── */
+/* ── Brand tokens ──────────────────────────────────────────── */
 :root {
   --c-bg:           #FAF8F3;
   --c-bg-warm:      #F7F3EB;
   --c-cream:        #F5EFD7;
-  --c-cream-soft:   #FAF4DC;
   --c-forest:       #1F3A2E;
   --c-forest-deep:  #14271F;
   --c-ink:          #1A2E24;
@@ -12,7 +11,6 @@
   --c-sage-deep:    #7FB995;
   --c-sage-soft:    #D4EAD8;
   --c-yellow:       #F2C94C;
-  --c-lilac:        #C8A2C8;
   --c-marigold:     #F5A623;
 
   --f-sans:  'Inter', sans-serif;
@@ -21,11 +19,10 @@
 
   --r-pill: 999px;
   --r-card: 18px;
-
-  --nav-h: 68px;
+  --nav-h:  68px;
 }
 
-/* ── Reset ───────────────────────────────────────────────── */
+/* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -44,7 +41,7 @@ a { text-decoration: none; color: inherit; }
   padding: 0 48px;
 }
 
-/* ── Buttons ─────────────────────────────────────────────── */
+/* ── Button ────────────────────────────────────────────────── */
 .l-btn {
   display: inline-flex;
   align-items: center;
@@ -58,15 +55,12 @@ a { text-decoration: none; color: inherit; }
   cursor: pointer;
   transition: opacity .18s ease, transform .18s ease;
   border: none;
+  white-space: nowrap;
 }
 .l-btn:hover { opacity: .88; transform: translateY(-1px); }
+.l-btn--dark  { background: var(--c-forest); color: #fff; }
 
-.l-btn--dark {
-  background: var(--c-forest);
-  color: #ffffff;
-}
-
-/* ── Nav ─────────────────────────────────────────────────── */
+/* ── Nav ───────────────────────────────────────────────────── */
 .l-nav {
   position: sticky;
   top: 0;
@@ -74,106 +68,114 @@ a { text-decoration: none; color: inherit; }
   background: var(--c-bg);
   border-bottom: 1px solid rgba(31, 58, 46, .07);
 }
-
 .l-nav__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--nav-h);
 }
-
 .l-nav__brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   flex-shrink: 0;
 }
-
 .l-nav__icon {
   width: 38px;
   height: 38px;
   object-fit: contain;
-  flex-shrink: 0;
 }
-
 .l-nav__wordmark {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
 }
-
 .l-nav__name {
   font-size: 16px;
   font-weight: 700;
   color: var(--c-ink);
   letter-spacing: -.025em;
 }
-
+/* "Finance" in brand yellow */
 .l-nav__tagline {
   font-family: var(--f-serif);
   font-style: italic;
   font-size: 13px;
-  color: var(--c-ink-soft);
   font-weight: 400;
+  color: var(--c-yellow);
+  letter-spacing: .01em;
 }
-
 .l-nav__links {
   display: flex;
   align-items: center;
   gap: 36px;
 }
-
 .l-nav__links a:not(.l-btn) {
   font-size: 15px;
   font-weight: 500;
   color: var(--c-ink-soft);
-  transition: color .15s ease;
+  transition: color .15s;
 }
-
 .l-nav__links a:not(.l-btn):hover { color: var(--c-ink); }
 
-/* ── Hero ────────────────────────────────────────────────── */
+/* ── Hero outer ────────────────────────────────────────────── */
 .l-hero {
   min-height: calc(100vh - var(--nav-h));
   display: flex;
   align-items: center;
 }
-
 .l-hero__inner {
   display: grid;
   grid-template-columns: 52% 48%;
   align-items: center;
   gap: 40px;
-  padding-top: 64px;
+  padding-top: 60px;
   padding-bottom: 80px;
   width: 100%;
 }
 
-/* ── Hero — Left ─────────────────────────────────────────── */
+/* ── Hero left ─────────────────────────────────────────────── */
 .l-hero__headline {
-  font-size: clamp(46px, 5.5vw, 74px);
+  font-size: clamp(46px, 5.4vw, 72px);
   font-weight: 900;
-  line-height: 1.04;
+  line-height: 1.05;
   letter-spacing: -.04em;
   color: var(--c-ink);
   margin-bottom: 28px;
 }
 
+/*
+  Brushstroke wrapper.
+  The <span class="l-brush"> holds the SVG stroke absolutely;
+  the <em> sits on top via z-index.
+*/
+.l-brush-wrap {
+  position: relative;
+  display: inline-block;
+}
+.l-brush {
+  position: absolute;
+  left:   -12px;
+  right:  -16px;
+  top:     46%;   /* stroke sits from mid-cap to slightly below baseline */
+  bottom:  -9px;
+  z-index: 0;
+  pointer-events: none;
+}
+.l-brush svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* "yours." — Instrument Serif italic, lifted above the brushstroke */
 .l-hero__accent {
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
   letter-spacing: -.02em;
-  display: inline;
-  background: linear-gradient(
-    to bottom,
-    transparent 52%,
-    var(--c-sage-soft) 52%,
-    var(--c-sage-soft) 96%,
-    transparent 96%
-  );
-  padding: 0 4px;
-  margin-left: -4px;
+  position: relative;
+  z-index: 1;
 }
 
 .l-hero__sub {
@@ -184,9 +186,11 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 40px;
 }
 
-.l-text-underline {
+/* Marigold underline on "your" in the subtext */
+.l-marigold-u {
   text-decoration: underline;
-  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--c-marigold);
+  text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
 
@@ -195,7 +199,6 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 28px;
 }
-
 .l-hero__learn {
   font-size: 15px;
   font-weight: 500;
@@ -203,102 +206,103 @@ a { text-decoration: none; color: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: gap .2s ease;
+  transition: gap .2s;
 }
 .l-hero__learn:hover { gap: 10px; }
 
-/* ── Hero — Right ────────────────────────────────────────── */
+/* ── Hero right ────────────────────────────────────────────── */
 .l-hero__right {
   position: relative;
-  height: 420px;
+  height: 500px;
 }
 
+/* Cream sticky note — highest z-index so plant slides behind it */
 .l-hero__card {
   position: absolute;
   top: 0;
-  right: 16px;
+  right: 10px;
   background: var(--c-cream);
   border-radius: var(--r-card);
   padding: 22px 26px;
   transform: rotate(3.5deg);
-  box-shadow: 0 6px 24px rgba(31, 58, 46, .09);
+  box-shadow: 0 6px 28px rgba(31, 58, 46, .09);
   font-size: 19px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--c-ink);
-  z-index: 2;
-  min-width: 180px;
+  z-index: 3;
+  min-width: 178px;
 }
-
 .l-hero__card strong {
   font-weight: 800;
   display: block;
 }
-
 .l-hero__card em {
   font-family: var(--f-serif);
   font-style: italic;
-  font-weight: 400;
 }
 
+/*
+  Plant — wider than before so it fills the column.
+  top: 8px means the SVG's first visible leaves (starting at ~26% of
+  the 260-unit viewBox) reach up to ≈ 90px from the top, overlapping
+  the card's lower edge so it reads as "plant growing behind card".
+*/
 .l-hero__plant {
   position: absolute;
-  bottom: 0;
+  top: 8px;
   left: 50%;
-  transform: translateX(-60%);
-  width: 200px;
+  transform: translateX(-55%);
+  width: 280px;
   z-index: 1;
 }
-
 .l-hero__plant svg {
   width: 100%;
   height: auto;
   display: block;
 }
 
+/*
+  Caveat SVG block — bottom-right corner.
+  The SVG contains two textPath arcs and a hand-drawn oval around "your".
+*/
 .l-hero__caveat {
   position: absolute;
-  bottom: 28px;
-  right: 4px;
-  font-family: var(--f-hand);
-  font-size: 21px;
-  font-weight: 500;
-  color: var(--c-ink-soft);
-  line-height: 1.4;
-  text-align: right;
-  transform: rotate(-4deg);
-  z-index: 3;
+  bottom: 16px;
+  right: 0;
+  width: 236px;
+  z-index: 4;
+}
+.l-hero__caveat svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
+/* ── Mobile ────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .l-container { padding: 0 24px; }
-
   .l-nav__links a:not(.l-btn) { display: none; }
   .l-nav__links { gap: 0; }
 
   .l-hero__inner {
     grid-template-columns: 1fr;
-    gap: 0;
-    padding-top: 48px;
-    padding-bottom: 60px;
-    min-height: auto;
+    padding-top: 44px;
+    padding-bottom: 56px;
   }
-
-  .l-hero {
-    min-height: auto;
-    padding-bottom: 48px;
-  }
+  .l-hero { min-height: auto; }
 
   .l-hero__right {
-    height: 360px;
-    margin-top: 48px;
+    height: 420px;
+    margin-top: 40px;
   }
+  .l-hero__plant { width: 230px; }
 }
 
 @media (max-width: 480px) {
   .l-hero__headline { letter-spacing: -.03em; }
-  .l-hero__right { height: 300px; }
-  .l-hero__plant { width: 160px; }
-  .l-hero__caveat { font-size: 18px; }
-  .l-hero__card { font-size: 16px; padding: 18px 20px; }
+  .l-hero__right  { height: 360px; }
+  .l-hero__plant  { width: 190px; top: 16px; }
+  .l-hero__card   { font-size: 16px; padding: 18px 20px; min-width: 150px; }
+  .l-hero__caveat { width: 196px; }
 }

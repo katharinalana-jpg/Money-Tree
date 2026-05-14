@@ -44,27 +44,44 @@
           <h1 class="l-hero__headline">
             Investing,<br>
             but make it<br>
-            <em class="l-hero__accent">yours.</em>
+            <!-- Brushstroke wrapper: SVG stroke sits behind the italic text -->
+            <span class="l-brush-wrap">
+              <span class="l-brush" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 50" preserveAspectRatio="none">
+                  <!-- Main organic brushstroke body -->
+                  <path d="M4,28 C7,19 18,15 38,14 C60,13 92,11 130,12 C168,13 206,11 238,12 C258,13 274,15 284,18 C288,20 289,24 287,28 C285,32 274,34 256,34 C224,35 192,37 158,35 C124,33 90,35 58,34 C32,33 14,34 5,31 Z"
+                        fill="#D4EAD8"/>
+                  <!-- Subtle inner highlight for paint texture -->
+                  <path d="M10,26 C24,22 52,21 85,22 C122,23 162,21 198,22 C228,23 258,22 278,24"
+                        stroke="#C8E6D2" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <em class="l-hero__accent">yours.</em>
+            </span>
           </h1>
+
           <p class="l-hero__sub">
             No jargon. No gatekeeping.<br>
-            Just smart tools for <span class="l-text-underline">your</span> money.
+            Just smart tools for <span class="l-marigold-u">your</span> money.
           </p>
+
           <div class="l-hero__ctas">
             <a href="index.html" class="l-btn l-btn--dark">Get Started</a>
             <a href="#" class="l-hero__learn">Learn more <span aria-hidden="true">&#8594;</span></a>
           </div>
         </div>
 
-        <!-- Right: card + plant + handwriting -->
+        <!-- Right: card + plant + caveat -->
         <div class="l-hero__right" aria-hidden="true">
 
+          <!-- Cream sticky-note card -->
           <div class="l-hero__card">
             <strong>For women</strong>
             who build<br>
             <em>their future.</em>
           </div>
 
+          <!-- Plant illustration — larger so top leaves tuck behind card bottom -->
           <div class="l-hero__plant">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid meet">
               <defs>
@@ -72,7 +89,7 @@
                   <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3"/>
                   <feDisplacementMap in="SourceGraphic" scale="1.6"/>
                 </filter>
-                <filter id="lp-paintLeaf" x="-10%" y="-10%" width="120%" height="120%">
+                <filter id="lp-leaf" x="-10%" y="-10%" width="120%" height="120%">
                   <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7"/>
                   <feDisplacementMap in="SourceGraphic" scale="1.2"/>
                 </filter>
@@ -89,13 +106,13 @@
                 <path d="M118,128 C 124,118 130,108 136,98"/>
               </g>
               <!-- Leaves -->
-              <g fill="#7FB995" filter="url(#lp-paintLeaf)">
-                <ellipse cx="73" cy="90" rx="11" ry="18" transform="rotate(-30 73 90)"/>
-                <ellipse cx="108" cy="84" rx="11" ry="18" transform="rotate(20 108 84)"/>
-                <ellipse cx="138" cy="94" rx="11" ry="18" transform="rotate(35 138 94)"/>
-                <ellipse cx="68" cy="125" rx="13" ry="20" transform="rotate(-50 68 125)"/>
+              <g fill="#7FB995" filter="url(#lp-leaf)">
+                <ellipse cx="73"  cy="90"  rx="11" ry="18" transform="rotate(-30 73 90)"/>
+                <ellipse cx="108" cy="84"  rx="11" ry="18" transform="rotate(20 108 84)"/>
+                <ellipse cx="138" cy="94"  rx="11" ry="18" transform="rotate(35 138 94)"/>
+                <ellipse cx="68"  cy="125" rx="13" ry="20" transform="rotate(-50 68 125)"/>
                 <ellipse cx="135" cy="125" rx="13" ry="20" transform="rotate(50 135 125)"/>
-                <ellipse cx="78" cy="155" rx="12" ry="18" transform="rotate(-65 78 155)"/>
+                <ellipse cx="78"  cy="155" rx="12" ry="18" transform="rotate(-65 78 155)"/>
                 <ellipse cx="124" cy="155" rx="12" ry="18" transform="rotate(65 124 155)"/>
               </g>
               <!-- Leaf veins -->
@@ -117,7 +134,40 @@
             </svg>
           </div>
 
-          <p class="l-hero__caveat">Learn. Invest. Grow.<br>On your terms.</p>
+          <!--
+            Caveat handwriting block.
+            Two lines of text follow gentle upward arcs via SVG textPath.
+            "your" in the second line has a hand-drawn oval around it.
+
+            Arc math for circle placement:
+              Path lp-c2: M8,67 C58,58 138,50 220,46  (≈213px arc length)
+              "On " advance in Caveat 19px  ≈ 30px along path
+              "your" center                ≈ 30 + 23 = 53px along path
+              At t ≈ 0.25 on that bezier   ≈ SVG coords (50, 60)
+          -->
+          <div class="l-hero__caveat">
+            <svg viewBox="0 0 234 82" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- "Learn. Invest. Grow." arc — rises gently right -->
+                <path id="lp-c1" d="M0,44 C55,32 130,20 228,12"/>
+                <!-- "On your terms." arc -->
+                <path id="lp-c2" d="M8,67 C58,58 138,50 220,46"/>
+              </defs>
+
+              <text font-family="'Caveat', cursive" font-size="19" font-weight="500" fill="#4A5C52">
+                <textPath href="#lp-c1">Learn. Invest. Grow.</textPath>
+              </text>
+
+              <text font-family="'Caveat', cursive" font-size="19" font-weight="500" fill="#4A5C52">
+                <textPath href="#lp-c2">On your terms.</textPath>
+              </text>
+
+              <!-- Hand-drawn oval around "your" centred at ≈(50, 59) -->
+              <path d="M26,67 C24,59 27,52 37,49 C47,46 59,46 67,50 C75,54 78,61 74,67 C70,73 61,76 51,75 C40,74 28,72 26,67 Z"
+                    fill="none" stroke="#4A5C52" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
 
         </div>
       </div>
