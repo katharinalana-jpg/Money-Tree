@@ -265,10 +265,10 @@ a { text-decoration: none; color: inherit; }
   width: 280px;
   z-index: 1;
 }
-.l-hero__plant object {
-  display: block;
+.l-hero__plant svg {
   width: 100%;
-  aspect-ratio: 200 / 260;
+  height: auto;
+  display: block;
 }
 
 /*
