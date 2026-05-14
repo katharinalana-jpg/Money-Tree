@@ -181,8 +181,7 @@
         // Send email to Zapier webhook
         await fetch("https://hooks.zapier.com/hooks/catch/27599229/4yxsep6/", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email }),
+          body: JSON.stringify({ email: email })
         });
 
         await new Promise((res) => setTimeout(res, 900));
