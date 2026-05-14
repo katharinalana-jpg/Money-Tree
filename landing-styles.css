@@ -1,0 +1,304 @@
+/* ── Brand tokens ─────────────────────────────────────────── */
+:root {
+  --c-bg:           #FAF8F3;
+  --c-bg-warm:      #F7F3EB;
+  --c-cream:        #F5EFD7;
+  --c-cream-soft:   #FAF4DC;
+  --c-forest:       #1F3A2E;
+  --c-forest-deep:  #14271F;
+  --c-ink:          #1A2E24;
+  --c-ink-soft:     #4A5C52;
+  --c-sage:         #A8D5BA;
+  --c-sage-deep:    #7FB995;
+  --c-sage-soft:    #D4EAD8;
+  --c-yellow:       #F2C94C;
+  --c-lilac:        #C8A2C8;
+  --c-marigold:     #F5A623;
+
+  --f-sans:  'Inter', sans-serif;
+  --f-serif: 'Instrument Serif', serif;
+  --f-hand:  'Caveat', cursive;
+
+  --r-pill: 999px;
+  --r-card: 18px;
+
+  --nav-h: 68px;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--f-sans);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.l-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.l-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 30px;
+  border-radius: var(--r-pill);
+  font-family: var(--f-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  transition: opacity .18s ease, transform .18s ease;
+  border: none;
+}
+.l-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+.l-btn--dark {
+  background: var(--c-forest);
+  color: #ffffff;
+}
+
+/* ── Nav ─────────────────────────────────────────────────── */
+.l-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--c-bg);
+  border-bottom: 1px solid rgba(31, 58, 46, .07);
+}
+
+.l-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+}
+
+.l-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.l-nav__icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.l-nav__wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.l-nav__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-ink);
+  letter-spacing: -.025em;
+}
+
+.l-nav__tagline {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--c-ink-soft);
+  font-weight: 400;
+}
+
+.l-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.l-nav__links a:not(.l-btn) {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--c-ink-soft);
+  transition: color .15s ease;
+}
+
+.l-nav__links a:not(.l-btn):hover { color: var(--c-ink); }
+
+/* ── Hero ────────────────────────────────────────────────── */
+.l-hero {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: center;
+}
+
+.l-hero__inner {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  align-items: center;
+  gap: 40px;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  width: 100%;
+}
+
+/* ── Hero — Left ─────────────────────────────────────────── */
+.l-hero__headline {
+  font-size: clamp(46px, 5.5vw, 74px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -.04em;
+  color: var(--c-ink);
+  margin-bottom: 28px;
+}
+
+.l-hero__accent {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  display: inline;
+  background: linear-gradient(
+    to bottom,
+    transparent 52%,
+    var(--c-sage-soft) 52%,
+    var(--c-sage-soft) 96%,
+    transparent 96%
+  );
+  padding: 0 4px;
+  margin-left: -4px;
+}
+
+.l-hero__sub {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--c-ink-soft);
+  line-height: 1.65;
+  margin-bottom: 40px;
+}
+
+.l-text-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.l-hero__ctas {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.l-hero__learn {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--c-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap .2s ease;
+}
+.l-hero__learn:hover { gap: 10px; }
+
+/* ── Hero — Right ────────────────────────────────────────── */
+.l-hero__right {
+  position: relative;
+  height: 420px;
+}
+
+.l-hero__card {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  background: var(--c-cream);
+  border-radius: var(--r-card);
+  padding: 22px 26px;
+  transform: rotate(3.5deg);
+  box-shadow: 0 6px 24px rgba(31, 58, 46, .09);
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--c-ink);
+  z-index: 2;
+  min-width: 180px;
+}
+
+.l-hero__card strong {
+  font-weight: 800;
+  display: block;
+}
+
+.l-hero__card em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.l-hero__plant {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-60%);
+  width: 200px;
+  z-index: 1;
+}
+
+.l-hero__plant svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.l-hero__caveat {
+  position: absolute;
+  bottom: 28px;
+  right: 4px;
+  font-family: var(--f-hand);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--c-ink-soft);
+  line-height: 1.4;
+  text-align: right;
+  transform: rotate(-4deg);
+  z-index: 3;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .l-container { padding: 0 24px; }
+
+  .l-nav__links a:not(.l-btn) { display: none; }
+  .l-nav__links { gap: 0; }
+
+  .l-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 48px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+
+  .l-hero {
+    min-height: auto;
+    padding-bottom: 48px;
+  }
+
+  .l-hero__right {
+    height: 360px;
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .l-hero__headline { letter-spacing: -.03em; }
+  .l-hero__right { height: 300px; }
+  .l-hero__plant { width: 160px; }
+  .l-hero__caveat { font-size: 18px; }
+  .l-hero__card { font-size: 16px; padding: 18px 20px; }
+}
