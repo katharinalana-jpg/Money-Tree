@@ -81,9 +81,65 @@
             <em>their future.</em>
           </div>
 
-          <!-- Plant illustration from brand kit -->
+          <!-- Plant illustration — inlined from brand kit plant_full.svg
+               (inline rather than <img> so SVG feTurbulence filters render the
+               painted/handcrafted texture in all browsers) -->
           <div class="l-hero__plant">
-            <img src="img/plant_full.svg" alt="" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <filter id="paint" x="-10%" y="-10%" width="120%" height="120%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3"/>
+                  <feDisplacementMap in="SourceGraphic" scale="1.6"/>
+                </filter>
+                <filter id="paintLeaf" x="-10%" y="-10%" width="120%" height="120%">
+                  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7"/>
+                  <feDisplacementMap in="SourceGraphic" scale="1.2"/>
+                </filter>
+              </defs>
+
+              <!-- Stems -->
+              <g stroke="#3F5A45" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#paint)">
+                <path d="M100,200 C 99,170 96,140 92,118"/>
+                <path d="M100,200 C 102,175 108,150 118,128"/>
+                <path d="M100,200 C 100,180 99,165 99,150"/>
+                <path d="M99,150 C 90,142 80,135 72,128"/>
+                <path d="M99,150 C 110,140 122,134 132,128"/>
+                <path d="M92,118 C 86,108 80,100 75,94"/>
+                <path d="M92,118 C 96,108 102,98 108,88"/>
+                <path d="M118,128 C 124,118 130,108 136,98"/>
+              </g>
+
+              <!-- Leaves -->
+              <g fill="#7FB995" filter="url(#paintLeaf)">
+                <ellipse cx="73" cy="90" rx="11" ry="18" transform="rotate(-30 73 90)"/>
+                <ellipse cx="108" cy="84" rx="11" ry="18" transform="rotate(20 108 84)"/>
+                <ellipse cx="138" cy="94" rx="11" ry="18" transform="rotate(35 138 94)"/>
+                <ellipse cx="68" cy="125" rx="13" ry="20" transform="rotate(-50 68 125)"/>
+                <ellipse cx="135" cy="125" rx="13" ry="20" transform="rotate(50 135 125)"/>
+                <ellipse cx="78" cy="155" rx="12" ry="18" transform="rotate(-65 78 155)"/>
+                <ellipse cx="124" cy="155" rx="12" ry="18" transform="rotate(65 124 155)"/>
+              </g>
+
+              <!-- Leaf veins -->
+              <g stroke="#3F5A45" stroke-width="0.9" fill="none" opacity="0.55" stroke-linecap="round">
+                <path d="M73,73 L73,107"/>
+                <path d="M108,67 L108,101"/>
+                <path d="M138,77 L138,111"/>
+                <path d="M68,107 L68,143"/>
+                <path d="M135,107 L135,143"/>
+                <path d="M78,138 L78,172"/>
+                <path d="M124,138 L124,172"/>
+              </g>
+
+              <!-- Pot -->
+              <g filter="url(#paint)">
+                <path d="M62,195 L138,195 L130,250 Q 100,256 70,250 Z" fill="#A8D5BA"/>
+                <path d="M62,195 L138,195 L135,205 Q 100,210 65,205 Z" fill="#7FB995"/>
+              </g>
+
+              <!-- Pot shading -->
+              <path d="M70,250 Q 100,256 130,250 L 128,245 Q 100,250 72,245 Z" fill="#6FAA85" opacity="0.55" filter="url(#paint)"/>
+            </svg>
           </div>
 
           <!--
