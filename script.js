@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const $  = (sel, ctx = document) => ctx.querySelector(sel);
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
@@ -87,9 +87,11 @@
   if ("IntersectionObserver" in window && pills.length) {
     const pillObs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => e.target.classList.toggle("is-visible", e.isIntersecting));
+        entries.forEach((e) =>
+          e.target.classList.toggle("is-visible", e.isIntersecting),
+        );
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
     pills.forEach((p) => pillObs.observe(p));
   }
@@ -127,7 +129,7 @@
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -60px 0px" },
     );
     revealEls.forEach((el) => obs.observe(el));
   } else {
@@ -135,11 +137,15 @@
   }
 
   /* Staggered delays for grouped items */
-  $$(".steps, .problem__grid, .platform__pills, .news__grid").forEach((group) => {
-    $$(".reveal, .reveal-left, .reveal-right, .reveal-scale", group).forEach((child, i) => {
-      child.style.transitionDelay = `${i * 0.1}s`;
-    });
-  });
+  $$(".steps, .problem__grid, .platform__pills, .news__grid").forEach(
+    (group) => {
+      $$(".reveal, .reveal-left, .reveal-right, .reveal-scale", group).forEach(
+        (child, i) => {
+          child.style.transitionDelay = `${i * 0.1}s`;
+        },
+      );
+    },
+  );
 
   /* ───────────────────── FORM SUBMISSION ─────────────────────
      Replace the simulated fetch with a real backend:
@@ -153,7 +159,9 @@
     const successMsg = form.querySelector(".form__success");
     const submitBtn = form.querySelector("button[type='submit']");
 
-    emailInput.addEventListener("input", () => emailInput.setCustomValidity(""));
+    emailInput.addEventListener("input", () =>
+      emailInput.setCustomValidity(""),
+    );
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -170,11 +178,21 @@
       submitBtn.textContent = "Saving your place...";
 
       try {
+        // Send email to Zapier webhook
+        await fetch("https://hooks.zapier.com/hooks/catch/27599229/4yxsep6/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email }),
+        });
+
         await new Promise((res) => setTimeout(res, 900));
         if (successMsg) successMsg.hidden = false;
         syncAllForms(email);
         if (typeof gtag !== "undefined") {
-          gtag("event", "sign_up", { event_category: "engagement", event_label: "pre-registration" });
+          gtag("event", "sign_up", {
+            event_category: "engagement",
+            event_label: "pre-registration",
+          });
         }
       } catch (err) {
         submitBtn.disabled = false;
@@ -205,7 +223,9 @@
   /* ───────────────────── SMOOTH ANCHOR SCROLL ───────────────────── */
   $$('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
-      const target = document.getElementById(link.getAttribute("href").slice(1));
+      const target = document.getElementById(
+        link.getAttribute("href").slice(1),
+      );
       if (!target) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -215,17 +235,19 @@
   });
 
   /* ───────────────────── INTERACTIVE HOVER TILT ───────────────────── */
-  $$(".step:not(.step--interactive), .problem__card, .news__card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `translateY(-8px) perspective(600px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
-    });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-  });
+  $$(".step:not(.step--interactive), .problem__card, .news__card").forEach(
+    (card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-8px) perspective(600px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    },
+  );
 
   /* ───────────────────── BASKET DRAG AND DROP ───────────────────── */
   const basketDrop = $("[data-drop]");
@@ -257,7 +279,9 @@
         tag.className = "basket-dropped";
         tag.setAttribute("data-dropped", type);
         tag.textContent = chip.textContent;
-        const placeholder = basketDrop.querySelector("span:not(.basket-dropped)");
+        const placeholder = basketDrop.querySelector(
+          "span:not(.basket-dropped)",
+        );
         const icon = basketDrop.querySelector("svg");
         if (placeholder) placeholder.style.display = "none";
         if (icon) icon.style.display = "none";
@@ -275,8 +299,9 @@
     btn.addEventListener("click", () => {
       const target = btn.dataset.tab;
       tabBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
-      tabPanels.forEach((p) => p.classList.toggle("is-active", p.id === "tab-" + target));
+      tabPanels.forEach((p) =>
+        p.classList.toggle("is-active", p.id === "tab-" + target),
+      );
     });
   });
-
 })();
