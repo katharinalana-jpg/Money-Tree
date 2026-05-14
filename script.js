@@ -170,6 +170,11 @@
       submitBtn.textContent = "Saving your place...";
 
       try {
+        await fetch("https://hooks.zapier.com/hooks/catch/27599229/4yxsep6/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email })
+        });
         await new Promise((res) => setTimeout(res, 900));
         if (successMsg) successMsg.hidden = false;
         syncAllForms(email);

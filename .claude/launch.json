@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "landing",
-      "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-e", "require 'webrick';s=WEBrick::HTTPServer.new(Port:8080,DocumentRoot:'/Users/ks/Documents/FemTech/Money-Tree');trap('INT'){s.shutdown};s.start"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/ks/Documents/FemTech/Money-Tree"],
       "port": 8080
     }
   ]
