@@ -8,7 +8,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="brand/logos/logomark_wallet_mono_forest.png">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -17,8 +18,11 @@
   <!-- NAV -->
   <header class="nav" id="nav">
     <a class="nav__brand" href="#top">
-      <img src="img/logo_tree.png" alt="" class="nav__logo" />
-      Portemonnaie
+      <img src="brand/logos/MAIN_logomark_wallet_color.png" alt="" class="nav__brand-mark" />
+      <span class="nav__brand-text">
+        Portemonnaie
+        <small>Finance</small>
+      </span>
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#intro" data-nav>Intro</a>
@@ -43,7 +47,7 @@
     <section class="hero" id="intro">
       <div class="container hero__inner">
         <p class="eyebrow reveal">Pre Launch. Early Access.</p>
-        <h1 class="h-display reveal">Start investing in<br/>what you support.</h1>
+        <h1 class="h-display reveal">Start investing in<br/>what you <span class="brush"><em class="serif">support</em></span>.</h1>
         <p class="hero__sub reveal">
           Portemonnaie is an investment platform for women by women. We help you
           with your first investment, to secure your future and let your money
@@ -59,6 +63,16 @@
         </form>
       </div>
 
+      <div class="hero__stage reveal" aria-hidden="true">
+        <div class="hero__sticky">
+          <strong>For women</strong>
+          <em>who build</em>
+          <em>their future.</em>
+        </div>
+        <img class="hero__plant" src="brand/illustrations/plant_full.svg" alt="" />
+        <span class="hero__signature">Learn. Invest. Grow.<br/>On <em>your</em> terms.</span>
+      </div>
+
       <a class="hero__scroll" href="#flow" aria-label="Scroll to learn more">
         <span>Discover how it works</span>
         <i></i>
@@ -70,7 +84,7 @@
       <div class="container">
         <header class="section__header reveal">
           <p class="eyebrow">The core experience</p>
-          <h2 class="h-section">Start investing according to your values in only five steps.</h2>
+          <h2 class="h-section">Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.</h2>
           <p class="section__lede">
             We help you to build your portfolio step by step.
           </p>
@@ -194,7 +208,7 @@
       <div class="container">
         <header class="section__header reveal">
           <p class="eyebrow">Phase 2. The ecosystem.</p>
-          <h2 class="h-section">All in One Platform</h2>
+          <h2 class="h-section">All in <span class="brush"><em class="serif">One</em></span> Platform</h2>
           <p class="section__lede">
             Beyond the Robo Advisor, Portemonnaie grows into a full ecosystem
             where learning about Finances, Investing and Community live in
@@ -293,8 +307,8 @@
     <section class="section signup" id="signup">
       <div class="container signup__inner reveal">
         <p class="eyebrow">Pre register</p>
-        <h2 class="h-section">Register Now</h2>
-        <p class="signup__lede">Get notified when we go live.</p>
+        <h2 class="h-section">Register <em class="serif">Now</em></h2>
+        <p class="signup__lede">Get notified when we <span class="pencil">go live</span>.</p>
 
         <form class="signup__form" data-signup>
           <label class="sr-only" for="finalEmail">Email address</label>

@@ -6,16 +6,23 @@
    ============================================================= */
 
 :root {
-  --bg:           #EBEBEB;
-  --bg-light:     #F2F2F2;
-  --bg-dark:      #E0E0E0;
-  --bg-card:      #F5F5F5;
+  /* Portemonnaie brand palette */
+  --bg:           #FAF8F3;  /* Background cream */
+  --bg-light:     #F7F3EB;  /* Background warm */
+  --bg-dark:      #F0EAD9;
+  --bg-card:      #F7F3EB;
 
-  --ink:          #1A1A1A;
-  --ink-soft:     #4A4A4A;
-  --ink-mute:     #7A7A7A;
-  --line:         rgba(26, 26, 26, 0.12);
-  --line-strong:  rgba(26, 26, 26, 0.22);
+  --ink:          #1A2E24;  /* Ink */
+  --ink-soft:     #1F3A2E;  /* Forest */
+  --ink-mute:     #5A6B61;  /* warm forest grey */
+  --line:         rgba(26, 46, 36, 0.12);
+  --line-strong:  rgba(26, 46, 36, 0.22);
+
+  /* Accent colors (sparingly) */
+  --forest:       #1F3A2E;
+  --sage:         #A8D5BA;
+  --cream:        #F5EFD7;
+  --yellow:       #F2C94C;
 
   --nav-h: 72px;
   --radius: 999px;
@@ -23,10 +30,74 @@
   --radius-sm: 12px;
 
   --ff: "Inter", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  --ff-serif: "Instrument Serif", "Times New Roman", serif;
+  --ff-script: "Caveat", "Inter", cursive;
 
-  --shadow-sm:    0 2px 8px rgba(0,0,0,0.04);
-  --shadow-md:    0 8px 30px rgba(0,0,0,0.06);
-  --shadow-lg:    0 20px 60px rgba(0,0,0,0.08);
+  --shadow-sm:    0 2px 8px rgba(31,58,46,0.04);
+  --shadow-md:    0 8px 30px rgba(31,58,46,0.06);
+  --shadow-lg:    0 20px 60px rgba(31,58,46,0.08);
+}
+
+/* Brand accent typography */
+em.serif,
+.accent-serif {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.script {
+  font-family: var(--ff-script);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.005em;
+}
+
+/* Sage brushstroke highlight (one per headline) */
+.brush {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+.brush::before {
+  content: "";
+  position: absolute;
+  left: -0.15em; right: -0.15em;
+  top: 32%; bottom: 8%;
+  background: var(--sage);
+  border-radius: 60% 40% 55% 45% / 60% 50% 50% 40%;
+  transform: rotate(-1.2deg);
+  z-index: -1;
+  opacity: 0.85;
+}
+
+/* Yellow pencil underline (one per section) — hand-drawn curve */
+.pencil {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M3 6 Q 30 1.5 60 5 T 117 6' stroke='%23F2C94C' stroke-width='2.4' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.42em;
+  padding-bottom: 0.25em;
+}
+
+/* Cream sticky note */
+.sticky {
+  background: var(--cream);
+  padding: 1.1rem 1.25rem;
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(31,58,46,0.08), 0 1px 0 rgba(31,58,46,0.04);
+  transform: rotate(-2deg);
+  font-family: var(--ff);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--forest);
+  line-height: 1.35;
+  max-width: 220px;
+}
+.sticky em {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
 /* -- Reset ------------------------------------------------- */
@@ -274,9 +345,103 @@ input { font: inherit; }
 .hero__inner {
   text-align: center;
   display: flex; flex-direction: column; align-items: center;
-  max-width: 1000px; margin: 0 auto;
+  max-width: 720px; margin: 0 auto;
   position: relative;
   z-index: 2;
+}
+.hero .h-display {
+  font-size: clamp(2.6rem, 5.2vw, 4.6rem);
+  max-width: 720px;
+}
+
+/* Hero brand stage (plant + sticky) — anchored top-right of hero section */
+.hero__stage {
+  position: absolute;
+  top: calc(var(--nav-h) + 17rem);
+  left: calc(50% + 380px);
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero__sticky {
+  position: relative;
+  background: #F2DDA4;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(31,58,46,0.10);
+  font-family: var(--ff);
+  color: var(--forest);
+  width: 180px;
+  text-align: center;
+  line-height: 1.25;
+  z-index: 2;
+  margin-bottom: -80px;
+  transform: rotate(4.5deg);
+  transform-origin: center bottom;
+}
+.hero__sticky strong {
+  display: block;
+  font-family: var(--ff);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  margin-bottom: .15rem;
+}
+.hero__sticky em {
+  display: block;
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+.hero__plant {
+  position: relative;
+  width: 200px;
+  height: auto;
+  z-index: 3;
+}
+.hero__signature {
+  position: relative;
+  margin-top: .25rem;
+  align-self: flex-end;
+  font-family: var(--ff-script);
+  font-size: 1.15rem;
+  color: var(--forest);
+  transform: rotate(-6deg);
+  line-height: 1.2;
+  text-align: right;
+  z-index: 3;
+}
+.hero__signature em {
+  font-family: var(--ff-script);
+  font-style: normal;
+  border: 1.5px solid var(--forest);
+  border-radius: 50%;
+  padding: 0 .3em;
+}
+
+@media (max-width: 1180px) {
+  .hero__stage { left: auto; right: 2vw; width: 180px; }
+  .hero__sticky { width: 160px; padding: .85rem 1rem; }
+  .hero__sticky strong { font-size: 1rem; }
+  .hero__sticky em { font-size: 1rem; }
+  .hero__plant { width: 150px; }
+}
+@media (max-width: 980px) {
+  .hero__stage {
+    position: relative;
+    top: auto; right: auto;
+    margin: 0 auto 1.5rem;
+    width: 240px;
+  }
+  .hero__plant { width: 180px; }
+  .hero .h-display { font-size: clamp(2.4rem, 7vw, 3.4rem); }
+  .hero__inner { max-width: 100%; }
 }
 .hero__inner .eyebrow {
   color: var(--ink-mute);
@@ -1229,6 +1394,218 @@ input { font: inherit; }
 }
 
 /* (divider between sections removed) */
+
+/* ============================================================
+   PORTEMONNAIE BRAND OVERRIDES (v1)
+   ============================================================ */
+
+/* Primary CTA → forest pill with cream text */
+.btn--primary {
+  background: var(--forest);
+  color: var(--bg);
+  border-color: var(--forest);
+}
+.btn--primary:hover {
+  background: #16291F;
+  border-color: #16291F;
+  box-shadow: 0 12px 30px rgba(31,58,46,0.18);
+}
+.btn--ghost {
+  border-color: var(--forest);
+  color: var(--forest);
+}
+.btn--ghost:hover {
+  background: var(--forest);
+  color: var(--bg);
+  border-color: var(--forest);
+}
+
+/* Nav: refined for cream background */
+.nav.is-scrolled {
+  background: rgba(250, 248, 243, 0.92);
+  box-shadow: 0 1px 0 var(--line);
+}
+.nav__brand {
+  font-family: var(--ff);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  font-size: 1.05rem;
+  color: var(--forest);
+}
+.nav__brand-mark {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.nav__brand-text {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+.nav__brand-text small {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--forest);
+  letter-spacing: 0;
+}
+.nav__cta {
+  background: var(--forest);
+  color: var(--bg) !important;
+  border-color: var(--forest) !important;
+}
+.nav__cta:hover {
+  background: #16291F;
+  border-color: #16291F !important;
+}
+.nav__mobile { background: rgba(250, 248, 243, 0.97); }
+
+/* Hero h1: editorial display */
+.hero .h-display {
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: var(--forest);
+}
+.hero__sub { color: var(--ink-soft); }
+
+/* Hero scroll cue */
+.hero__scroll { color: var(--ink-mute); }
+.hero__scroll i {
+  background: linear-gradient(to bottom, var(--ink-mute), transparent);
+}
+
+/* Hero input focus → sage ring */
+.hero__form input:focus,
+.signup__form input:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 4px rgba(168, 213, 186, 0.4);
+}
+
+/* Section headers */
+.h-display, .h-section, h1, h2, h3 { color: var(--forest); }
+.eyebrow { color: var(--ink-mute); }
+
+/* Steps cards on warm bg */
+.flow { background: var(--bg-light); }
+.step {
+  background: var(--bg);
+  border-color: var(--line);
+}
+.step:hover {
+  background: #fff;
+  border-color: var(--forest);
+  box-shadow: 0 16px 40px rgba(31,58,46,0.10);
+}
+.step:hover .step__num {
+  background: var(--forest);
+  color: var(--bg);
+  border-color: var(--forest);
+}
+.step__num {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  border-color: var(--line-strong);
+  color: var(--forest);
+}
+
+/* Step hover micro-mocks recolored */
+.step__hover { background: var(--cream); }
+.pie-seg--etf    { stroke: var(--forest); }
+.pie-seg--stocks { stroke: var(--sage); }
+.pie-seg--bonds  { stroke: var(--yellow); }
+.pie-legend__item--etf::before    { background: var(--forest); }
+.pie-legend__item--stocks::before { background: var(--sage); }
+.pie-legend__item--bonds::before  { background: var(--yellow); }
+.quiz-card { background: #fff; border-color: var(--line); }
+.basket-demo__chip:hover,
+.basket-demo__drop.is-over {
+  background: var(--forest);
+  color: var(--bg);
+  border-color: var(--forest);
+}
+.basket-demo__drop.is-over { background: rgba(31,58,46,0.06); color: var(--forest); }
+.basket-demo__drop .basket-dropped { background: var(--forest); }
+
+/* Platform section: device frames on cream */
+.platform { background: var(--bg); }
+.macbook__lid    { background: linear-gradient(180deg, #d4d4d4 0%, #b8b8b8 100%); }
+.macbook__screen { background: var(--bg-light); }
+.mock__card--hero {
+  background: var(--forest);
+  color: var(--bg);
+}
+.mock__card--hero span { color: rgba(245, 239, 215, 0.6); }
+.mock__val { color: var(--bg); }
+.mock__delta { color: var(--sage); }
+.mock__item--active { background: rgba(31,58,46,0.10); color: var(--forest); }
+.mock__chart i {
+  background: linear-gradient(180deg, var(--forest), var(--sage));
+  opacity: 0.7;
+}
+.iphone__screen { background: var(--bg-light); }
+.mock__phone-card { background: var(--forest); }
+.mock__phone-card em { color: var(--sage); }
+
+/* Platform pills */
+.platform__pills li {
+  background: var(--bg-light);
+  border-color: var(--line);
+  color: var(--forest);
+}
+.platform__pills li:hover {
+  background: var(--forest);
+  color: var(--bg);
+  border-color: var(--forest);
+}
+
+/* Signup card on cream surface */
+.signup { background: var(--bg-light); }
+.signup__inner {
+  background: var(--bg);
+  border-color: var(--line);
+}
+.signup__lede {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--forest);
+  opacity: .9;
+}
+.signup__signature {
+  font-family: var(--ff-script);
+  font-weight: 500;
+  color: var(--forest);
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  letter-spacing: 0.005em;
+}
+
+/* Footer: dark forest surface (used sparingly) */
+.footer {
+  background: var(--forest);
+  color: var(--bg);
+  border-top: 0;
+  padding: 3rem 0 3.5rem;
+  margin-top: 2rem;
+}
+.footer__brand {
+  color: var(--bg);
+  font-family: var(--ff);
+  font-weight: 600;
+}
+.footer__copy { color: rgba(250, 248, 243, 0.65); }
+.footer__links a { color: rgba(250, 248, 243, 0.72); }
+.footer__links a:hover { color: var(--bg); }
+
+/* Hero eyebrow chip */
+.hero__inner .eyebrow {
+  border-color: var(--line-strong);
+  color: var(--forest);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
