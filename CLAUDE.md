@@ -62,8 +62,19 @@ money-tree/
 ├── index.html        ← Pre-registration landing page
 ├── styles.css
 ├── script.js
+├── api/
+│   └── subscribe.js  ← Vercel serverless function — adds email to Brevo list
 └── img/              ← logo.png, logo_tree.png, leaf-single.png
 ```
+
+## Hosting & Infrastructure
+- **Domain**: `portemonnaie.finance` (registered via GoDaddy)
+- **Hosting**: Vercel (DNS points GoDaddy → Vercel)
+- **Mailing list**: Brevo (list ID `4` = pre-registration signups)
+- **Form flow**: `script.js` POSTs to `/api/subscribe` → serverless function calls Brevo `v3/contacts` with `updateEnabled: true`
+
+## Environment Variables (Vercel)
+- `BREVO_API_KEY` — Brevo API key (prefix `xkeysib-`). Must be enabled for Production. Adding/changing env vars requires a redeploy to take effect.
 
 ## Key Rules
 - Vanilla HTML/CSS/JS only — no npm, no framework (Phase 1)

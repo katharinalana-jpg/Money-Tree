@@ -13,8 +13,6 @@ export default async function handler(req, res) {
 
     const { email } = req.body;
 
-    console.log("Key present:", !!process.env.BREVO_API_KEY, "length:", process.env.BREVO_API_KEY?.length, "prefix:", process.env.BREVO_API_KEY?.slice(0, 8));
-
     // Basic validation
     if (!email || !email.includes("@")) {
 
@@ -57,7 +55,7 @@ export default async function handler(req, res) {
       console.error("Brevo Error:", data);
 
       return res.status(400).json({
-        error: data?.message || data?.code || "Failed to subscribe"
+        error: "Failed to subscribe"
       });
 
     }
