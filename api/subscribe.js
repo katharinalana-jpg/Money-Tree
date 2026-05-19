@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const { email } = req.body;
+    const { email, consent, consent_timestamp } = req.body;
 
     // Basic validation
     if (!email || !email.includes("@")) {
@@ -21,6 +21,16 @@ export default async function handler(req, res) {
       });
 
     }
+
+    if (!consent) {
+
+      return res.status(400).json({
+        error: "Consent is required"
+      });
+
+    }
+
+    const consentAt = consent_timestamp || new Date().toISOString();
 
     // Send email to Brevo
     const brevoResponse = await fetch(
@@ -40,7 +50,12 @@ export default async function handler(req, res) {
 
           listIds: [4],
 
-          updateEnabled: true
+          updateEnabled: true,
+
+          attributes: {
+            CONSENT: true,
+            CONSENT_TIMESTAMP: consentAt
+          }
 
         })
 

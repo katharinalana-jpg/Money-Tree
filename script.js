@@ -134,12 +134,19 @@
 
   function handleSignup(form) {
     const emailInput = form.querySelector('input[type="email"]');
+    const consentInput = form.querySelector('input[name="consent"]');
     const successMsg = form.querySelector(".form__success");
     const submitBtn = form.querySelector("button[type='submit']");
 
     emailInput.addEventListener("input", () =>
       emailInput.setCustomValidity("")
     );
+
+    if (consentInput) {
+      consentInput.addEventListener("change", () =>
+        consentInput.setCustomValidity("")
+      );
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -154,18 +161,27 @@
         return;
       }
 
+      if (consentInput && !consentInput.checked) {
+        consentInput.setCustomValidity("Please accept the privacy policy to continue.");
+        consentInput.reportValidity();
+        return;
+      }
+
       submitBtn.disabled = true;
       const originalText = submitBtn.textContent;
       submitBtn.textContent = "Saving your place...";
 
       try {
-        // ✅ NEW: Vercel API route instead of Zapier
         const response = await fetch("/api/subscribe", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({
+            email,
+            consent: !!(consentInput && consentInput.checked),
+            consent_timestamp: new Date().toISOString()
+          })
         });
 
         const data = await response.json();
