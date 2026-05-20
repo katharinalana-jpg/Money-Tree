@@ -32,7 +32,9 @@ export default async function handler(req, res) {
 
     const consentAt = consent_timestamp || new Date().toISOString();
 
-    // Send email to Brevo
+    // Add contact to the DOI pending list (5).
+    // A Brevo Automation watches list 5, sends the confirmation email,
+    // and moves the contact to list 4 (confirmed) on click.
     const brevoResponse = await fetch(
       "https://api.brevo.com/v3/contacts",
       {
@@ -48,7 +50,7 @@ export default async function handler(req, res) {
 
           email: email,
 
-          listIds: [4],
+          listIds: [5],
 
           updateEnabled: true,
 
@@ -62,9 +64,8 @@ export default async function handler(req, res) {
       }
     );
 
-    const data = await brevoResponse.json();
+    const data = await brevoResponse.json().catch(() => ({}));
 
-    // Handle Brevo API errors
     if (!brevoResponse.ok) {
 
       console.error("Brevo Error:", data);

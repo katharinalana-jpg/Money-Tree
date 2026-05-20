@@ -193,6 +193,7 @@
         await new Promise((res) => setTimeout(res, 600));
 
         if (successMsg) successMsg.hidden = false;
+        submitBtn.textContent = originalText;
 
         syncAllForms(email);
 
