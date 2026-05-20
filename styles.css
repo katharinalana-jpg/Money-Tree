@@ -536,6 +536,8 @@ input { font: inherit; }
 @media (max-width: 720px) {
   .hero { min-height: 100vh; padding-top: calc(var(--nav-h) + 3rem); }
   .hero__scroll { display: none; }
+
+  .hero__stage { display: none; }
 }
 
 /* ============================== FLOW ============================== */
