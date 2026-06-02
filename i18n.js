@@ -152,7 +152,7 @@
       "privacy.rights.li6": "Restriction of processing",
       "privacy.rights.p2": "If you suspect that violations of data protection law have occurred during the processing of your data, you can lodge a complaint with us (office@portemonnaie.finance) or with the data protection authority.",
       "privacy.contact2.h": "Contact",
-      "privacy.contact2.body": 'Website operator: Portemonnaie<br>Phone: 06604078139<br>Email: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
+      "privacy.contact2.body": 'Website operator: Portemonnaie<br>Email: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
 
       /* impressum (German is the canonical legal version) */
       "imp.back": "← Back",
@@ -303,7 +303,7 @@
       "privacy.rights.li6": "Einschränkung der Verarbeitung",
       "privacy.rights.p2": "Wenn Sie vermuten, dass im Zuge der Verarbeitung Ihrer Daten Verstöße gegen das Datenschutzrecht passiert sind, können Sie sich bei uns (office@portemonnaie.finance) oder der Datenschutzbehörde beschweren.",
       "privacy.contact2.h": "Kontakt",
-      "privacy.contact2.body": 'Webseitenbetreiber: Portemonnaie<br>Telefonnummer: 06604078139<br>E-Mail: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
+      "privacy.contact2.body": 'Webseitenbetreiber: Portemonnaie<br>E-Mail: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
 
       /* impressum (canonical German) */
       "imp.back": "← Zurück",
