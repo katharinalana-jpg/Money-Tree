@@ -31,7 +31,7 @@
       /* hero */
       "hero.eyebrow": "Pre-Launch Early Access",
       "hero.sticky": '<strong>For women</strong><em>who build</em><em>their future.</em>',
-      "hero.sub": "Portemonnaie is an investment platform by women for women. We help you with your first investment, so you can invest according to your values, secure your future, and put your money to work for what matters to you.",
+      "hero.sub": "Portemonnaie is an investment platform by women for women.<br>We help you with your first investment, so you can invest according to your values, secure your future, and put your money to work for what matters to you.",
       "hero.scroll": "Discover how it works",
       "hero.scroll_aria": "Scroll to learn more",
 
@@ -171,21 +171,21 @@
       /* hero */
       "hero.eyebrow": "Pre-Launch Early Access",
       "hero.sticky": '<strong>Für Frauen,</strong><em>die ihre Zukunft</em><em>gestalten.</em>',
-      "hero.sub": "Portemonnaie ist eine Investment-Plattform von Frauen für Frauen. Wir helfen dir bei deinem ersten Investment, damit du nach deinen Werten investieren, deine Zukunft absichern und dein Geld für das einsetzen kannst, was dir wichtig ist.",
+      "hero.sub": "Portemonnaie ist eine Investment-Plattform von Frauen für Frauen.<br>Wir helfen dir bei deinem ersten Investment, damit du nach deinen Werten investieren, deine Zukunft sichern und dein Geld für das einsetzen kannst, was dir wichtig ist.",
       "hero.scroll": "So funktioniert's",
       "hero.scroll_aria": "Scrollen für mehr",
 
       /* forms (shared) */
       "form.email_label": "E-Mail-Adresse",
       "form.consent": 'Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="/privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
-      "form.cta_early": "Auf die Zugangsliste",
+      "form.cta_early": "Get Early Access",
       "form.success_hero": "Sieh in deinem Postfach nach. Klick auf den Bestätigungslink, um die Anmeldung abzuschließen.",
 
       /* flow */
       "flow.eyebrow": "Das Produkt",
-      "flow.h2": 'Starte nach deinen <span class="brush"><em class="serif">Werten</em></span> zu investieren – in nur fünf Schritten.',
+      "flow.h2": 'Investiere nach deinen <span class="brush"><em class="serif">Werten</em></span><br>– in nur fünf Schritten.',
       "flow.lede": "Wir helfen dir, dein Portfolio Schritt für Schritt aufzubauen.",
-      "flow.cta": "Auf die Zugangsliste",
+      "flow.cta": "Get Early Access",
       "step1.title": "Mach das Quiz",
       "step1.desc": "Beantworte ein paar Fragen zu deinem Anlagestil, deinen Zielen und den Themen, die dir am Herzen liegen.",
       "quiz.q1": "Wie hoch ist deine Risikobereitschaft?",
@@ -225,8 +225,8 @@
       /* signup (shared) */
       "signup.eyebrow": "Vorab registrieren",
       "signup.h2": 'Jetzt <em class="serif">registrieren</em>',
-      "signup.lede": 'Registriere dich, sobald wir <span class="pencil">live gehen</span>.',
-      "signup.cta": "Platz reservieren",
+      "signup.lede": 'Erhalte eine Nachricht, sobald wir <span class="pencil">live gehen</span>.',
+      "signup.cta": "Get Early Access",
       "signup.micro": "Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.",
       "success.almost_title": "Fast geschafft.",
       "success.almost_body": "Wir haben dir gerade eine Bestätigungs-E-Mail geschickt. Klick auf den Link darin, um deinen Platz auf der Early-Access-Liste zu sichern.",
