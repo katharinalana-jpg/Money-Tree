@@ -29,8 +29,9 @@
       "footer.privacy": "Privacy",
 
       /* hero */
-      "hero.eyebrow": "Pre Launch. Early Access.",
-      "hero.sub": "Portemonnaie is an investment platform for women by women. We help you with your first investment, to secure your future and let your money speak for what matters to you.",
+      "hero.eyebrow": "Pre-Launch Early Access",
+      "hero.sticky": '<strong>For women</strong><em>who build</em><em>their future.</em>',
+      "hero.sub": "Portemonnaie is an investment platform by women for women. We help you with your first investment, so you can invest according to your values, secure your future, and put your money to work for what matters to you.",
       "hero.scroll": "Discover how it works",
       "hero.scroll_aria": "Scroll to learn more",
 
@@ -41,7 +42,8 @@
       "form.success_hero": "Check your inbox. Click the confirmation link to finish signing up.",
 
       /* flow */
-      "flow.eyebrow": "The core experience",
+      "flow.eyebrow": "The Product",
+      "flow.h2": 'Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.',
       "flow.lede": "We help you to build your portfolio step by step.",
       "flow.cta": "Join the Access List",
       "step1.title": "Take the quiz",
@@ -51,7 +53,6 @@
       "quiz.q3": "What is your investment horizon?",
       "quiz.q4": "How much can you invest monthly?",
       "step2.title": "Find your archetype",
-      "step2.desc": "We show you what your portfolio can look like.",
       "pie.etf": "60% ETFs",
       "pie.stocks": "30% Stocks",
       "pie.bonds": "10% Bonds",
@@ -73,6 +74,7 @@
 
       /* platform */
       "platform.eyebrow": "Phase 2. The ecosystem.",
+      "platform.h2": 'All in <span class="brush"><em class="serif">One</em></span> Platform',
       "platform.lede": "Beyond the Robo Advisor, Portemonnaie grows into a full ecosystem where learning about Finances, Investing and Community live in one place.",
       "pill1": "Gender Lens and Sustainability Robo Advisor",
       "pill2": "Financial Literacy Academy",
@@ -82,6 +84,7 @@
 
       /* signup (shared) */
       "signup.eyebrow": "Pre register",
+      "signup.h2": 'Register <em class="serif">Now</em>',
       "signup.lede": 'Get notified when we <span class="pencil">go live</span>.',
       "signup.cta": "Reserve my place",
       "signup.micro": "Private beta. Your email is only used for Portemonnaie updates. Unsubscribe anytime.",
@@ -166,19 +169,21 @@
       "footer.privacy": "Datenschutz",
 
       /* hero */
-      "hero.eyebrow": "Pre-Launch. Früher Zugang.",
-      "hero.sub": "Portemonnaie ist eine Investmentplattform für Frauen, von Frauen. Wir begleiten dich bei deinem ersten Investment, damit du deine Zukunft absicherst und dein Geld für das spricht, was dir wichtig ist.",
+      "hero.eyebrow": "Pre-Launch Early Access",
+      "hero.sticky": '<strong>Für Frauen,</strong><em>die ihre Zukunft</em><em>gestalten.</em>',
+      "hero.sub": "Portemonnaie ist eine Investment-Plattform von Frauen für Frauen. Wir helfen dir bei deinem ersten Investment, damit du nach deinen Werten investieren, deine Zukunft absichern und dein Geld für das einsetzen kannst, was dir wichtig ist.",
       "hero.scroll": "So funktioniert's",
       "hero.scroll_aria": "Scrollen für mehr",
 
       /* forms (shared) */
       "form.email_label": "E-Mail-Adresse",
       "form.consent": 'Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="/privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
-      "form.cta_early": "Früher Zugang sichern",
+      "form.cta_early": "Auf die Zugangsliste",
       "form.success_hero": "Sieh in deinem Postfach nach. Klick auf den Bestätigungslink, um die Anmeldung abzuschließen.",
 
       /* flow */
-      "flow.eyebrow": "Das Kernerlebnis",
+      "flow.eyebrow": "Das Produkt",
+      "flow.h2": 'Starte nach deinen <span class="brush"><em class="serif">Werten</em></span> zu investieren – in nur fünf Schritten.',
       "flow.lede": "Wir helfen dir, dein Portfolio Schritt für Schritt aufzubauen.",
       "flow.cta": "Auf die Zugangsliste",
       "step1.title": "Mach das Quiz",
@@ -188,7 +193,6 @@
       "quiz.q3": "Wie lang ist dein Anlagehorizont?",
       "quiz.q4": "Wie viel kannst du monatlich investieren?",
       "step2.title": "Finde deinen Archetyp",
-      "step2.desc": "Wir zeigen dir, wie dein Portfolio aussehen kann.",
       "pie.etf": "60 % ETFs",
       "pie.stocks": "30 % Aktien",
       "pie.bonds": "10 % Anleihen",
@@ -210,6 +214,7 @@
 
       /* platform */
       "platform.eyebrow": "Phase 2. Das Ökosystem.",
+      "platform.h2": 'Alles auf <span class="brush"><em class="serif">einer</em></span> Plattform',
       "platform.lede": "Über den Robo-Advisor hinaus wächst Portemonnaie zu einem ganzen Ökosystem, in dem Finanzwissen, Investieren und Community an einem Ort zusammenkommen.",
       "pill1": "Robo-Advisor mit Gender- und Nachhaltigkeitsfokus",
       "pill2": "Academy für Finanzwissen",
@@ -219,7 +224,8 @@
 
       /* signup (shared) */
       "signup.eyebrow": "Vorab registrieren",
-      "signup.lede": 'Wir benachrichtigen dich, sobald wir <span class="pencil">live gehen</span>.',
+      "signup.h2": 'Jetzt <em class="serif">registrieren</em>',
+      "signup.lede": 'Registriere dich, sobald wir <span class="pencil">live gehen</span>.',
       "signup.cta": "Platz reservieren",
       "signup.micro": "Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.",
       "success.almost_title": "Fast geschafft.",

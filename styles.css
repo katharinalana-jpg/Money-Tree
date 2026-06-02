@@ -358,7 +358,9 @@ input { font: inherit; }
 /* ============================== HERO ============================== */
 .hero {
   padding-top: calc(var(--nav-h) + 4rem);
-  padding-bottom: 4rem;
+  /* extra bottom space so longer (e.g. German) form/consent copy
+     never overlaps the absolutely-positioned scroll cue */
+  padding-bottom: 7.5rem;
   position: relative;
   min-height: 100vh;
   display: flex;
