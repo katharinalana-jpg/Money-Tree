@@ -76,8 +76,10 @@
     const end = vh * 0.15;
     const progress = clamp((start - rect.top) / (start - end), 0, 1);
     const lit = Math.floor(progress * missionWords.length);
+    // monotonic reveal: once a word is lit it stays lit, so the quote does
+    // not fade back out when scrolling up or past it
     missionWords.forEach((w, i) => {
-      w.classList.toggle("is-lit", i < lit);
+      if (i < lit) w.classList.add("is-lit");
     });
   }
 
@@ -97,6 +99,14 @@
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
+
+  // a language switch replaces the mission words with fresh (dim) spans;
+  // re-run the reveal so already-scrolled-past text does not go blank
+  document.addEventListener("click", (e) => {
+    if (e.target.closest && e.target.closest(".nav__lang button")) {
+      requestAnimationFrame(updateMission);
+    }
+  });
 
   updateNav();
   updateMission();
