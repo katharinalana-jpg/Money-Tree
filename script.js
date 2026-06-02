@@ -112,7 +112,10 @@
   updateMission();
   updateSpy();
 
-  const revealEls = $$(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+  // Hero elements animate in via the CSS heroFlyIn keyframes; keep them out
+  // of the scroll observer so the two systems don't fight and cause a jump.
+  const revealEls = $$(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+    .filter((el) => !el.closest(".hero"));
 
   if ("IntersectionObserver" in window) {
     const obs = new IntersectionObserver(

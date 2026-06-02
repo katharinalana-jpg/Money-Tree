@@ -1126,7 +1126,9 @@ input { font: inherit; }
 }
 .hero .reveal {
   opacity: 0;
-  animation: heroFlyIn 1s cubic-bezier(.2,.8,.2,1) forwards;
+  /* "both" so each element holds its start frame during its stagger delay
+     (no flicker) and its end frame after — a single, smooth entrance */
+  animation: heroFlyIn 1s cubic-bezier(.2,.8,.2,1) both;
 }
 .hero .eyebrow.reveal   { animation-delay: .15s; }
 .hero .h-display.reveal  { animation-delay: .35s; }
