@@ -672,14 +672,6 @@ input { font: inherit; }
   color: var(--ink);
 }
 .problem__card p { color: var(--ink-soft); font-size: .95rem; max-width: 28ch; }
-.problem__bridge {
-  max-width: 680px;
-  margin: 3rem auto 0;
-  text-align: center;
-  font-size: 1.05rem; font-weight: 300;
-  font-style: italic;
-  color: var(--ink-soft);
-}
 @media (max-width: 860px) { .problem__grid { grid-template-columns: 1fr; } }
 
 /* ============================== MISSION ============================== */
