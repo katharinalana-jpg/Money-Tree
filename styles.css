@@ -975,8 +975,8 @@ input { font: inherit; }
 }
 
 @media (max-width: 900px) {
-  .platform__mockups { flex-direction: column; align-items: center; gap: 1rem; }
-  .iphone { transform: translateY(-20px); }
+  .platform__mockups { flex-direction: column; align-items: center; gap: 3rem; }
+  .iphone { transform: none; }
 }
 @media (max-width: 520px) {
   .mock__dash { grid-template-columns: 1fr; }
