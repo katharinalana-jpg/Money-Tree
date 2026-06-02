@@ -701,6 +701,14 @@ input { font: inherit; }
   color: var(--ink); opacity: .15;
   margin-bottom: 1.5rem;
 }
+.mission__quote::after {
+  content: "\201D"; display: block;
+  font-family: var(--ff);
+  font-size: 5rem; font-weight: 200;
+  line-height: .6;
+  color: var(--ink); opacity: .15;
+  margin-top: 1.5rem;
+}
 .mission__text {
   font-family: var(--ff);
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
