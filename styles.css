@@ -23,6 +23,7 @@
   --sage:         #A8D5BA;
   --cream:        #F5EFD7;
   --yellow:       #F2C94C;
+  --marigold:     #EAA221;
 
   --nav-h: 72px;
   --radius: 999px;
@@ -78,6 +79,16 @@ em.serif,
   background-position: 0 100%;
   background-size: 100% 0.42em;
   padding-bottom: 0.25em;
+}
+
+/* Marigold hand-drawn underline (same stroke as .pencil, marigold colour) */
+.underline-marigold {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'><path d='M3 6 Q 30 1.5 60 5 T 117 6' stroke='%23EAA221' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.42em;
+  padding-bottom: 0.25em;
+  white-space: nowrap;
 }
 
 /* Cream sticky note */
@@ -661,6 +672,17 @@ input { font: inherit; }
   color: var(--ink);
 }
 .problem__card p { color: var(--ink-soft); font-size: .95rem; max-width: 28ch; }
+/* Mission statement under the badges */
+.problem__statement {
+  max-width: 760px;
+  margin: 4.5rem auto 0;
+  text-align: center;
+  font-family: var(--ff-serif);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink);
+}
 .problem__bridge {
   max-width: 680px;
   margin: 3rem auto 0;

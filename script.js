@@ -65,9 +65,11 @@
   }
 
   const missionSection = $(".mission");
-  const missionWords = $$(".mission__word");
   function updateMission() {
     if (!missionSection) return;
+    // re-query each tick so a runtime language switch (which replaces the
+    // mission text) keeps the word-by-word reveal working
+    const missionWords = $$(".mission__word");
     const rect = missionSection.getBoundingClientRect();
     const vh = window.innerHeight;
     const start = vh * 0.85;
