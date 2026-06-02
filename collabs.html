@@ -21,19 +21,27 @@
       Portemonnaie
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="index.html#intro">Intro</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="mission.html">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </nav>
-    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav__toggle" aria-label="Open menu" data-i18n-aria="nav.menu_aria" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="index.html#intro">Intro</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="mission.html">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </div>
   </header>
 
@@ -43,31 +51,31 @@
     <section class="section collabs-page" style="padding-top: calc(var(--nav-h) + 5rem);">
       <div class="container">
         <header class="section__header reveal">
-          <p class="eyebrow">Get involved</p>
+          <p class="eyebrow" data-i18n="collabs.eyebrow">Get involved</p>
           <h2 class="h-section">Join us on the journey.</h2>
         </header>
 
         <div class="collabs-tabs">
           <div class="collabs-tabs__nav">
-            <button class="collabs-tabs__btn is-active" data-tab="news">We are building in the open</button>
-            <button class="collabs-tabs__btn" data-tab="partner">Partner with Portemonnaie</button>
+            <button class="collabs-tabs__btn is-active" data-tab="news" data-i18n="tab.news_btn">We are building in the open</button>
+            <button class="collabs-tabs__btn" data-tab="partner" data-i18n="tab.partner_btn">Partner with Portemonnaie</button>
           </div>
 
           <div class="collabs-tabs__panel is-active" id="tab-news">
             <div class="collabs-tabs__content reveal">
-              <h3>We are building in the open.</h3>
-              <p>Follow our journey from prototype to launch. Early supporters
+              <h3 data-i18n="news.h3">We are building in the open.</h3>
+              <p data-i18n="news.p">Follow our journey from prototype to launch. Early supporters
                  receive monthly product letters and invitations to private demos.</p>
-              <a class="btn btn--ghost" href="index.html#signup">Join the Access List</a>
+              <a class="btn btn--ghost" href="index.html#signup" data-i18n="flow.cta">Join the Access List</a>
             </div>
           </div>
 
           <div class="collabs-tabs__panel" id="tab-partner">
             <div class="collabs-tabs__content reveal">
-              <h3>Partner with Portemonnaie.</h3>
-              <p>We collaborate with wealth managers, sustainability researchers,
+              <h3 data-i18n="partner.h3">Partner with Portemonnaie.</h3>
+              <p data-i18n="partner.p">We collaborate with wealth managers, sustainability researchers,
                  creators, and community builders who share our values.</p>
-              <a class="btn btn--ghost" href="mailto:hello@portemonnaie.finance">Reach out</a>
+              <a class="btn btn--ghost" href="mailto:hello@portemonnaie.finance" data-i18n="partner.cta">Reach out</a>
             </div>
           </div>
         </div>
@@ -82,16 +90,17 @@
       <span class="footer__brand">Portemonnaie</span>
       <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
       <nav class="footer__links">
-        <a href="index.html#intro">Intro</a>
-        <a href="index.html#platform">Platform</a>
-        <a href="mission.html">Our Mission</a>
-        <a href="index.html#signup">Sign Up</a>
-        <a href="imprint.html">Imprint</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+        <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+        <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+        <a href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+        <a href="impressum.html" data-i18n="footer.imprint">Imprint</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
       </nav>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

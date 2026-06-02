@@ -25,19 +25,27 @@
       </span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#intro" data-nav>Intro</a>
-      <a href="#platform" data-nav>Platform</a>
-      <a href="mission.html">Our Mission</a>
-      <a class="nav__cta" href="#signup">Sign Up</a>
+      <a href="#intro" data-nav data-i18n="nav.intro">Intro</a>
+      <a href="#platform" data-nav data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </nav>
-    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav__toggle" aria-label="Open menu" data-i18n-aria="nav.menu_aria" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="#intro">Intro</a>
-      <a href="#platform">Platform</a>
-      <a href="mission.html">Our Mission</a>
-      <a class="nav__cta" href="#signup">Sign Up</a>
+      <a href="#intro" data-i18n="nav.intro">Intro</a>
+      <a href="#platform" data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </div>
   </header>
 
@@ -46,25 +54,25 @@
     <!-- HERO -->
     <section class="hero" id="intro">
       <div class="container hero__inner">
-        <p class="eyebrow reveal">Pre Launch. Early Access.</p>
+        <p class="eyebrow reveal" data-i18n="hero.eyebrow">Pre Launch. Early Access.</p>
         <h1 class="h-display reveal">Start investing in<br/>what you <span class="brush"><em class="serif">support</em></span>.</h1>
-        <p class="hero__sub reveal">
+        <p class="hero__sub reveal" data-i18n="hero.sub">
           Portemonnaie is an investment platform for women by women. We help you
           with your first investment, to secure your future and let your money
           speak for what matters to you.
         </p>
 
         <form class="hero__form reveal" data-signup>
-          <label class="sr-only" for="heroEmail">Email address</label>
+          <label class="sr-only" for="heroEmail" data-i18n="form.email_label">Email address</label>
           <input id="heroEmail" type="email" name="email" required
                  placeholder="your@email.com" autocomplete="email" />
           <label class="form__consent" for="heroConsent">
             <input id="heroConsent" type="checkbox" name="consent" required />
-            <span>I agree to receive updates from Portemonnaie and accept the
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
               <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
           </label>
-          <button type="submit" class="btn btn--primary">Get Early Access</button>
-          <p class="form__success" hidden>Check your inbox. Click the confirmation link to finish signing up.</p>
+          <button type="submit" class="btn btn--primary" data-i18n="form.cta_early">Get Early Access</button>
+          <p class="form__success" hidden data-i18n="form.success_hero">Check your inbox. Click the confirmation link to finish signing up.</p>
         </form>
       </div>
 
@@ -78,8 +86,8 @@
         <span class="hero__signature">Learn. Invest. Grow.<br/>On <em>your</em> terms.</span>
       </div>
 
-      <a class="hero__scroll" href="#flow" aria-label="Scroll to learn more">
-        <span>Discover how it works</span>
+      <a class="hero__scroll" href="#flow" aria-label="Scroll to learn more" data-i18n-aria="hero.scroll_aria">
+        <span data-i18n="hero.scroll">Discover how it works</span>
         <i></i>
       </a>
     </section>
@@ -88,9 +96,9 @@
     <section class="section flow" id="flow">
       <div class="container">
         <header class="section__header reveal">
-          <p class="eyebrow">The core experience</p>
+          <p class="eyebrow" data-i18n="flow.eyebrow">The core experience</p>
           <h2 class="h-section">Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.</h2>
-          <p class="section__lede">
+          <p class="section__lede" data-i18n="flow.lede">
             We help you to build your portfolio step by step.
           </p>
         </header>
@@ -99,23 +107,23 @@
           <!-- Step 1: Quiz -->
           <li class="step step--interactive reveal" data-step="quiz">
             <span class="step__num">01</span>
-            <h3 class="step__title">Take the quiz</h3>
-            <p>Answer a few questions about your investing style, your goals, and the causes you care about.</p>
+            <h3 class="step__title" data-i18n="step1.title">Take the quiz</h3>
+            <p data-i18n="step1.desc">Answer a few questions about your investing style, your goals, and the causes you care about.</p>
             <div class="step__hover step__hover--quiz" aria-hidden="true">
               <div class="quiz-card quiz-card--1">
-                <span class="quiz-card__q">What is your risk tolerance?</span>
+                <span class="quiz-card__q" data-i18n="quiz.q1">What is your risk tolerance?</span>
                 <span class="quiz-card__dot"></span>
               </div>
               <div class="quiz-card quiz-card--2">
-                <span class="quiz-card__q">Which causes matter to you?</span>
+                <span class="quiz-card__q" data-i18n="quiz.q2">Which causes matter to you?</span>
                 <span class="quiz-card__dot"></span>
               </div>
               <div class="quiz-card quiz-card--3">
-                <span class="quiz-card__q">What is your investment horizon?</span>
+                <span class="quiz-card__q" data-i18n="quiz.q3">What is your investment horizon?</span>
                 <span class="quiz-card__dot"></span>
               </div>
               <div class="quiz-card quiz-card--4">
-                <span class="quiz-card__q">How much can you invest monthly?</span>
+                <span class="quiz-card__q" data-i18n="quiz.q4">How much can you invest monthly?</span>
                 <span class="quiz-card__dot"></span>
               </div>
             </div>
@@ -124,8 +132,8 @@
           <!-- Step 2: Archetype -->
           <li class="step step--interactive reveal" data-step="archetype">
             <span class="step__num">02</span>
-            <h3 class="step__title">Find your archetype</h3>
-            <p>We show you what your portfolio can look like.</p>
+            <h3 class="step__title" data-i18n="step2.title">Find your archetype</h3>
+            <p data-i18n="step2.desc">We show you what your portfolio can look like.</p>
             <div class="step__hover step__hover--archetype" aria-hidden="true">
               <svg class="pie-chart" viewBox="0 0 120 120">
                 <circle class="pie-seg pie-seg--etf" cx="60" cy="60" r="50" />
@@ -133,9 +141,9 @@
                 <circle class="pie-seg pie-seg--bonds" cx="60" cy="60" r="50" />
               </svg>
               <div class="pie-legend">
-                <span class="pie-legend__item pie-legend__item--etf">60% ETFs</span>
-                <span class="pie-legend__item pie-legend__item--stocks">30% Stocks</span>
-                <span class="pie-legend__item pie-legend__item--bonds">10% Bonds</span>
+                <span class="pie-legend__item pie-legend__item--etf" data-i18n="pie.etf">60% ETFs</span>
+                <span class="pie-legend__item pie-legend__item--stocks" data-i18n="pie.stocks">30% Stocks</span>
+                <span class="pie-legend__item pie-legend__item--bonds" data-i18n="pie.bonds">10% Bonds</span>
               </div>
             </div>
           </li>
@@ -143,13 +151,13 @@
           <!-- Step 3: Explore -->
           <li class="step step--interactive reveal" data-step="explore">
             <span class="step__num">03</span>
-            <h3 class="step__title">Explore</h3>
-            <p>Browse ETFs, stocks and bonds ranked by a sustainability score and a gender score.</p>
+            <h3 class="step__title" data-i18n="step3.title">Explore</h3>
+            <p data-i18n="step3.desc">Browse ETFs, stocks and bonds ranked by a sustainability score and a gender score.</p>
             <div class="step__hover step__hover--explore" aria-hidden="true">
               <div class="search-mock">
                 <div class="search-mock__bar">
                   <svg class="search-mock__icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span class="search-mock__text">Search ETFs, Stocks...</span>
+                  <span class="search-mock__text" data-i18n="search.ph">Search ETFs, Stocks...</span>
                 </div>
                 <div class="search-mock__results">
                   <span class="search-mock__row">iShares Global Clean Energy <em>ESG A+</em></span>
@@ -163,19 +171,19 @@
           <!-- Step 4: Basket -->
           <li class="step step--interactive reveal" data-step="basket">
             <span class="step__num">04</span>
-            <h3 class="step__title">Fill your basket</h3>
-            <p>Drag and drop to build your portfolio. Investing will feel like online shopping.</p>
+            <h3 class="step__title" data-i18n="step4.title">Fill your basket</h3>
+            <p data-i18n="step4.desc">Drag and drop to build your portfolio. Investing will feel like online shopping.</p>
             <div class="step__hover step__hover--basket" aria-hidden="true">
               <div class="basket-demo">
                 <div class="basket-demo__items">
-                  <span class="basket-demo__chip" draggable="true" data-type="stocks">Stocks</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="esg">ESG</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="etf">ETF</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="bonds">Green Bonds</span>
+                  <span class="basket-demo__chip" draggable="true" data-type="stocks" data-i18n="basket.stocks">Stocks</span>
+                  <span class="basket-demo__chip" draggable="true" data-type="esg" data-i18n="basket.esg">ESG</span>
+                  <span class="basket-demo__chip" draggable="true" data-type="etf" data-i18n="basket.etf">ETF</span>
+                  <span class="basket-demo__chip" draggable="true" data-type="bonds" data-i18n="basket.bonds">Green Bonds</span>
                 </div>
                 <div class="basket-demo__drop" data-drop>
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                  <span>Drop here</span>
+                  <span data-i18n="basket.drop">Drop here</span>
                 </div>
               </div>
             </div>
@@ -184,18 +192,18 @@
           <!-- Step 5: Execute -->
           <li class="step step--interactive reveal" data-step="execute">
             <span class="step__num">05</span>
-            <h3 class="step__title">Execute</h3>
-            <p>Open your first depot with a trusted Wealth Manager or the Broker of your choice.</p>
+            <h3 class="step__title" data-i18n="step5.title">Execute</h3>
+            <p data-i18n="step5.desc">Open your first depot with a trusted Wealth Manager or the Broker of your choice.</p>
             <div class="step__hover step__hover--execute" aria-hidden="true">
               <div class="execute-options">
                 <div class="execute-option">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                  <span>Wealth Manager</span>
+                  <span data-i18n="exec.wealth">Wealth Manager</span>
                 </div>
-                <span class="execute-or">or</span>
+                <span class="execute-or" data-i18n="exec.or">or</span>
                 <div class="execute-option">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                  <span>Broker of Your Choice</span>
+                  <span data-i18n="exec.broker">Broker of Your Choice</span>
                 </div>
               </div>
             </div>
@@ -203,7 +211,7 @@
         </ol>
 
         <div class="flow__cta reveal">
-          <a href="#signup" class="btn btn--ghost">Join the Access List</a>
+          <a href="#signup" class="btn btn--ghost" data-i18n="flow.cta">Join the Access List</a>
         </div>
       </div>
     </section>
@@ -212,9 +220,9 @@
     <section class="section platform" id="platform">
       <div class="container">
         <header class="section__header reveal">
-          <p class="eyebrow">Phase 2. The ecosystem.</p>
+          <p class="eyebrow" data-i18n="platform.eyebrow">Phase 2. The ecosystem.</p>
           <h2 class="h-section">All in <span class="brush"><em class="serif">One</em></span> Platform</h2>
-          <p class="section__lede">
+          <p class="section__lede" data-i18n="platform.lede">
             Beyond the Robo Advisor, Portemonnaie grows into a full ecosystem
             where learning about Finances, Investing and Community live in
             one place.
@@ -299,11 +307,11 @@
         </div>
 
         <ul class="platform__pills reveal">
-          <li><span>Gender Lens and Sustainability Robo Advisor</span></li>
-          <li><span>Financial Literacy Academy</span></li>
-          <li><span>Community Forum</span></li>
-          <li><span>Investment Barometer</span></li>
-          <li><span>Shop</span></li>
+          <li><span data-i18n="pill1">Gender Lens and Sustainability Robo Advisor</span></li>
+          <li><span data-i18n="pill2">Financial Literacy Academy</span></li>
+          <li><span data-i18n="pill3">Community Forum</span></li>
+          <li><span data-i18n="pill4">Investment Barometer</span></li>
+          <li><span data-i18n="pill5">Shop</span></li>
         </ul>
       </div>
     </section>
@@ -311,29 +319,29 @@
     <!-- SIGN UP -->
     <section class="section signup" id="signup">
       <div class="container signup__inner reveal">
-        <p class="eyebrow">Pre register</p>
+        <p class="eyebrow" data-i18n="signup.eyebrow">Pre register</p>
         <h2 class="h-section">Register <em class="serif">Now</em></h2>
-        <p class="signup__lede">Get notified when we <span class="pencil">go live</span>.</p>
+        <p class="signup__lede" data-i18n-html="signup.lede">Get notified when we <span class="pencil">go live</span>.</p>
 
         <form class="signup__form" data-signup>
-          <label class="sr-only" for="finalEmail">Email address</label>
+          <label class="sr-only" for="finalEmail" data-i18n="form.email_label">Email address</label>
           <input id="finalEmail" type="email" name="email" required
                  placeholder="your@email.com" autocomplete="email" />
           <label class="form__consent" for="finalConsent">
             <input id="finalConsent" type="checkbox" name="consent" required />
-            <span>I agree to receive updates from Portemonnaie and accept the
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
               <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
           </label>
-          <button type="submit" class="btn btn--primary">Reserve my place</button>
+          <button type="submit" class="btn btn--primary" data-i18n="signup.cta">Reserve my place</button>
         </form>
-        <p class="signup__micro">
+        <p class="signup__micro" data-i18n="signup.micro">
           Private beta. Your email is only used for Portemonnaie updates.
           Unsubscribe anytime.
         </p>
 
         <div class="form__success signup__success" hidden>
-          <h3>Almost there.</h3>
-          <p>We just sent you a confirmation email. Click the link inside
+          <h3 data-i18n="success.almost_title">Almost there.</h3>
+          <p data-i18n="success.almost_body">We just sent you a confirmation email. Click the link inside
              to finalize your spot on the early access list.</p>
         </div>
       </div>
@@ -346,16 +354,17 @@
       <span class="footer__brand">Portemonnaie</span>
       <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
       <nav class="footer__links">
-        <a href="#intro">Intro</a>
-        <a href="#platform">Platform</a>
-        <a href="mission.html">Our Mission</a>
-        <a href="#signup">Sign Up</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="#intro" data-i18n="nav.intro">Intro</a>
+        <a href="#platform" data-i18n="nav.platform">Platform</a>
+        <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+        <a href="#signup" data-i18n="nav.signup">Sign Up</a>
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
       </nav>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

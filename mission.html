@@ -25,19 +25,27 @@
       </span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="index.html#intro">Intro</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="mission.html" class="is-active">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" class="is-active" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </nav>
-    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav__toggle" aria-label="Open menu" data-i18n-aria="nav.menu_aria" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="index.html#intro">Intro</a>
-      <a href="index.html#platform">Platform</a>
-      <a href="mission.html">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup">Sign Up</a>
+      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
     </div>
   </header>
 
@@ -47,29 +55,29 @@
     <section class="section problem" style="padding-top: calc(var(--nav-h) + 5rem);">
       <div class="container">
         <header class="section__header reveal">
-          <p class="eyebrow">Why we exist</p>
+          <p class="eyebrow" data-i18n="problem.eyebrow">Why we exist</p>
           <h2 class="h-section">At Portemonnaie, it is our mission to <span class="brush"><em class="serif">fight</em></span>:</h2>
         </header>
 
         <div class="problem__grid">
           <article class="problem__card reveal">
             <div class="problem__stat">25<small>%</small></div>
-            <h3>EU gender pension gap</h3>
-            <p>Women aged 65 and older receive one quarter less in retirement income than men.</p>
+            <h3 data-i18n="problem.c1.title">EU gender pension gap</h3>
+            <p data-i18n="problem.c1.desc">Women aged 65 and older receive one quarter less in retirement income than men.</p>
           </article>
           <article class="problem__card reveal">
             <div class="problem__stat">29<small>%</small></div>
-            <h3>Less invested monthly</h3>
-            <p>European women invest 29% less of their monthly income than men on average.</p>
+            <h3 data-i18n="problem.c2.title">Less invested monthly</h3>
+            <p data-i18n="problem.c2.desc">European women invest 29% less of their monthly income than men on average.</p>
           </article>
           <article class="problem__card reveal">
             <div class="problem__stat">€100<small>k</small></div>
-            <h3>Lifetime wealth deficit</h3>
-            <p>Women accumulate an estimated €100,000 less in wealth over their lifetime.</p>
+            <h3 data-i18n="problem.c3.title">Lifetime wealth deficit</h3>
+            <p data-i18n="problem.c3.desc">Women accumulate an estimated €100,000 less in wealth over their lifetime.</p>
           </article>
         </div>
 
-        <p class="problem__bridge reveal">
+        <p class="problem__bridge reveal" data-i18n="problem.bridge">
           These gaps do not close on their own. They close when women are
           enabled to confidently take control of their finances and invest in
           what they believe in.
@@ -137,12 +145,12 @@
       <div class="container">
         <div class="capitals__content">
           <header class="section__header reveal">
-            <p class="eyebrow">A new definition of growth</p>
+            <p class="eyebrow" data-i18n="capitals.eyebrow">A new definition of growth</p>
             <h2 class="h-section">A <em class="serif">new era</em> of investing.</h2>
           </header>
 
           <div class="capitals__body reveal">
-            <p>
+            <p data-i18n-html="capitals.body">
               At Portemonnaie, we believe that growth must be measured across
               four dimensions. Every company relies on
               <span class="capital-word" data-color="gold">financial capital</span>,
@@ -160,24 +168,24 @@
     <!-- CTA -->
     <section class="section signup" id="signup">
       <div class="container signup__inner reveal">
-        <p class="eyebrow">Pre register</p>
+        <p class="eyebrow" data-i18n="signup.eyebrow">Pre register</p>
         <h2 class="h-section">Register <em class="serif">Now</em></h2>
-        <p class="signup__lede">Get notified when we <span class="pencil">go live</span>.</p>
+        <p class="signup__lede" data-i18n-html="signup.lede">Get notified when we <span class="pencil">go live</span>.</p>
 
         <form class="signup__form" data-signup>
-          <label class="sr-only" for="finalEmail">Email address</label>
+          <label class="sr-only" for="finalEmail" data-i18n="form.email_label">Email address</label>
           <input id="finalEmail" type="email" name="email" required
                  placeholder="your@email.com" autocomplete="email" />
-          <button type="submit" class="btn btn--primary">Reserve my place</button>
+          <button type="submit" class="btn btn--primary" data-i18n="signup.cta">Reserve my place</button>
         </form>
-        <p class="signup__micro">
+        <p class="signup__micro" data-i18n="signup.micro">
           Private beta. Your email is only used for Portemonnaie updates.
           Unsubscribe anytime.
         </p>
 
         <div class="form__success signup__success" hidden>
-          <h3>Welcome to Portemonnaie.</h3>
-          <p>You are officially on the early access list. We will be in touch
+          <h3 data-i18n="success.welcome_title">Welcome to Portemonnaie.</h3>
+          <p data-i18n="success.welcome_body">You are officially on the early access list. We will be in touch
              soon with your first product letter.</p>
         </div>
       </div>
@@ -190,16 +198,17 @@
       <span class="footer__brand">Portemonnaie</span>
       <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
       <nav class="footer__links">
-        <a href="index.html#intro">Intro</a>
-        <a href="index.html#platform">Platform</a>
-        <a href="mission.html">Our Mission</a>
-        <a href="index.html#signup">Sign Up</a>
-        <a href="imprint.html">Imprint</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
+        <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+        <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+        <a href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+        <a href="impressum.html" data-i18n="footer.imprint">Imprint</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
       </nav>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
