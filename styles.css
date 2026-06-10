@@ -1510,7 +1510,7 @@ input { font: inherit; }
   font-style: italic;
   font-weight: 400;
   font-size: 0.78rem;
-  color: var(--forest);
+  color: var(--yellow); /* gold accent (#F2C94C) */
   letter-spacing: 0;
 }
 .nav__cta {

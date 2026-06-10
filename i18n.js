@@ -21,9 +21,12 @@
     en: {
       /* nav + footer (shared) */
       "nav.intro": "Intro",
+      "nav.home": "Home",
       "nav.platform": "Platform",
       "nav.mission": "Our Mission",
+      "nav.calculator": "Calculator",
       "nav.signup": "Sign Up",
+      "nav.start": "Start investing",
       "nav.menu_aria": "Open menu",
       "footer.imprint": "Imprint",
       "footer.privacy": "Privacy",
@@ -44,7 +47,7 @@
       /* flow */
       "flow.eyebrow": "The Product",
       "flow.h2": 'Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.',
-      "flow.lede": "We help you to build your portfolio step by step.",
+      "flow.lede": "We guide you in 5 easy steps.",
       "flow.cta": "Join the Access List",
       "step1.title": "Take the quiz",
       "step1.desc": "Answer a few questions about your investing style, your goals, and the causes you care about.",
@@ -92,6 +95,28 @@
       "success.almost_body": "We just sent you a confirmation email. Click the link inside to finalize your spot on the early access list.",
       "success.welcome_title": "Welcome to Portemonnaie.",
       "success.welcome_body": "You are officially on the early access list. We will be in touch soon with your first product letter.",
+
+      /* calculator page */
+      "calc.eyebrow": "The cost of waiting",
+      "calc.h1": 'See what your money could <span class="brush"><em class="serif">grow</em></span> into.',
+      "calc.sub": "Investing does not have to be complicated or expensive. Move the sliders to see how a small amount each month could build your future — and help close the gender pension gap.",
+      "calc.monthly": "Monthly investment",
+      "calc.age_now": "Your age today",
+      "calc.age_retire": "Retirement age",
+      "calc.style": "Investing style",
+      "calc.style.cautious": "Cautious",
+      "calc.style.balanced": "Balanced",
+      "calc.style.ambitious": "Ambitious",
+      "calc.style.hint": "Assumed average annual return. Real returns vary year to year.",
+      "calc.result.label": "Projected value at age",
+      "calc.invested": "You invest",
+      "calc.growth": "Growth earned",
+      "calc.income.label": "Roughly equal to a monthly top-up of",
+      "calc.cta": "Start my plan",
+      "calc.disclaimer": "This is a simplified projection for educational purposes only. It assumes a constant average return and does not account for fees, taxes or inflation. This is not investment advice.",
+      "cta.eyebrow": "Your future, your terms",
+      "cta.h2": 'Ready to start <em class="serif">investing</em>?',
+      "cta.lede": "Build a values-matched portfolio in minutes — guided every step of the way.",
 
       /* mission */
       "problem.eyebrow": "Why we exist",
@@ -172,9 +197,12 @@
     de: {
       /* nav + footer (shared) */
       "nav.intro": "Intro",
+      "nav.home": "Start",
       "nav.platform": "Plattform",
       "nav.mission": "Unsere Mission",
+      "nav.calculator": "Rechner",
       "nav.signup": "Anmelden",
+      "nav.start": "Jetzt investieren",
       "nav.menu_aria": "Menü öffnen",
       "footer.imprint": "Impressum",
       "footer.privacy": "Datenschutz",
@@ -195,7 +223,7 @@
       /* flow */
       "flow.eyebrow": "Das Produkt",
       "flow.h2": 'Investiere nach deinen <span class="brush"><em class="serif">Werten</em></span><br>– in nur fünf Schritten.',
-      "flow.lede": "Wir helfen dir, dein Portfolio Schritt für Schritt aufzubauen.",
+      "flow.lede": "Wir begleiten dich in 5 einfachen Schritten.",
       "flow.cta": "Get Early Access",
       "step1.title": "Mach das Quiz",
       "step1.desc": "Beantworte ein paar Fragen zu deinem Anlagestil, deinen Zielen und den Themen, die dir am Herzen liegen.",
@@ -243,6 +271,28 @@
       "success.almost_body": "Wir haben dir gerade eine Bestätigungs-E-Mail geschickt. Klick auf den Link darin, um deinen Platz auf der Early-Access-Liste zu sichern.",
       "success.welcome_title": "Willkommen bei Portemonnaie.",
       "success.welcome_body": "Du stehst offiziell auf der Early-Access-Liste. Wir melden uns bald mit deinem ersten Produkt-Newsletter.",
+
+      /* calculator page */
+      "calc.eyebrow": "Was Warten kostet",
+      "calc.h1": 'Sieh, woraus dein Geld <span class="brush"><em class="serif">wachsen</em></span> kann.',
+      "calc.sub": "Investieren muss weder kompliziert noch teuer sein. Bewege die Regler und sieh, wie ein kleiner Betrag im Monat deine Zukunft aufbauen kann – und hilft, die Gender-Pension-Gap zu schließen.",
+      "calc.monthly": "Monatliche Investition",
+      "calc.age_now": "Dein Alter heute",
+      "calc.age_retire": "Renteneintrittsalter",
+      "calc.style": "Anlagestil",
+      "calc.style.cautious": "Vorsichtig",
+      "calc.style.balanced": "Ausgewogen",
+      "calc.style.ambitious": "Ambitioniert",
+      "calc.style.hint": "Angenommene durchschnittliche Jahresrendite. Tatsächliche Renditen schwanken von Jahr zu Jahr.",
+      "calc.result.label": "Voraussichtlicher Wert mit Alter",
+      "calc.invested": "Du investierst",
+      "calc.growth": "Erwirtschaftetes Wachstum",
+      "calc.income.label": "Entspricht etwa einer monatlichen Zusatzrente von",
+      "calc.cta": "Meinen Plan starten",
+      "calc.disclaimer": "Dies ist eine vereinfachte Hochrechnung zu Bildungszwecken. Sie geht von einer konstanten Durchschnittsrendite aus und berücksichtigt weder Gebühren noch Steuern oder Inflation. Dies ist keine Anlageberatung.",
+      "cta.eyebrow": "Deine Zukunft, deine Regeln",
+      "cta.h2": 'Bereit, mit dem <em class="serif">Investieren</em> zu beginnen?',
+      "cta.lede": "Bau dir in wenigen Minuten ein werteorientiertes Portfolio – Schritt für Schritt begleitet.",
 
       /* mission */
       "problem.eyebrow": "Warum es uns gibt",
