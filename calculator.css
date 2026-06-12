@@ -34,7 +34,9 @@
   display: inline-block;
   padding: .45rem 1.3rem;
   border-radius: var(--radius);
-  border: 1.5px solid var(--line-strong);
+  border: 1.5px solid rgba(234, 162, 33, 0.45); /* marigold */
+  background: rgba(234, 162, 33, 0.12);
+  color: var(--forest);
   margin-bottom: 0;
 }
 
@@ -59,8 +61,8 @@
   gap: 1.75rem;
 }
 .calc__results {
-  background: var(--forest);
-  color: var(--bg);
+  background: var(--sage);
+  color: var(--forest);
   display: flex;
   flex-direction: column;
 }
@@ -145,44 +147,9 @@
   box-shadow: 0 0 0 4px rgba(168, 213, 186, 0.5);
 }
 
-/* Segmented control — investing style */
-.calc-seg {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .5rem;
-}
-.calc-seg__btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .15rem;
-  padding: .7rem .4rem;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--line-strong);
-  background: #fff;
-  color: var(--forest);
-  transition: all .25s ease;
-}
-.calc-seg__btn strong {
-  font-size: .82rem;
-  font-weight: 500;
-}
-.calc-seg__btn em {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--ink-mute);
-}
-.calc-seg__btn:hover {
-  border-color: var(--forest);
-}
-.calc-seg__btn.is-active {
-  background: var(--forest);
-  border-color: var(--forest);
-  color: var(--bg);
-}
-.calc-seg__btn.is-active em {
-  color: var(--sage);
+/* Assumption note under the inputs */
+.calc-field__assume {
+  margin-top: .25rem;
 }
 
 /* ----- Results panel ----- */
@@ -190,141 +157,127 @@
   font-size: .8rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(245, 239, 215, 0.6);
+  color: rgba(31, 58, 46, 0.6);
   margin-bottom: .35rem;
 }
 .calc-result__value {
   font-family: var(--ff);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(2.6rem, 6vw, 3.6rem);
   letter-spacing: -0.04em;
   line-height: 1;
-  color: var(--bg);
+  color: #D64545; /* the shortfall — the loss from waiting to invest */
+}
+.calc-result__sub {
+  font-size: .82rem;
+  color: rgba(31, 58, 46, 0.6);
+  margin-top: .5rem;
 }
 
-/* Mini growth chart */
+/* Saving vs investing chart */
 .calc-chart {
-  margin: 1.5rem 0 1.25rem;
+  margin: 1.5rem 0 1rem;
 }
 .calc-chart svg {
   width: 100%;
-  height: 120px;
+  height: auto;
   display: block;
   overflow: visible;
 }
-.calc-chart__area {
-  transition: d .6s ease;
+
+/* Axes + tick labels */
+.calc-chart__grid {
+  stroke: rgba(31, 58, 46, 0.1);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
-.calc-chart__line {
-  stroke: var(--sage);
-  stroke-width: 2.5;
+.calc-chart__axis {
+  stroke: rgba(31, 58, 46, 0.25);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.calc-chart__tick {
+  fill: rgba(31, 58, 46, 0.55);
+  font-family: var(--ff);
+  font-size: 9px;
+}
+.calc-chart__tick--y { text-anchor: end; }
+.calc-chart__tick--xstart { text-anchor: start; }
+.calc-chart__tick--xend { text-anchor: end; }
+.calc-chart__invest {
+  stroke: var(--marigold);
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
-.calc-chart__base {
-  stroke: rgba(245, 239, 215, 0.35);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 4;
+.calc-chart__save {
+  stroke: rgba(31, 58, 46, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
   stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
-/* Invested vs growth split */
-.calc-split {
-  margin-bottom: 1.5rem;
-}
-.calc-split__bar {
-  display: flex;
-  height: 10px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(245, 239, 215, 0.15);
-  margin-bottom: .85rem;
-}
-.calc-split__invested {
-  background: rgba(245, 239, 215, 0.55);
-  transition: width .6s cubic-bezier(.2,.8,.2,1);
-}
-.calc-split__growth {
-  background: var(--sage);
-  transition: width .6s cubic-bezier(.2,.8,.2,1);
-}
-.calc-split__keys {
+/* Legend: invest vs save final values */
+.calc-legend {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
-.calc-split__key {
+.calc-legend__item {
   display: flex;
   flex-direction: column;
   gap: .15rem;
 }
-.calc-split__key em {
+.calc-legend__item em {
   font-style: normal;
   font-size: .72rem;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: rgba(245, 239, 215, 0.6);
+  color: rgba(31, 58, 46, 0.65);
   display: flex;
   align-items: center;
   gap: .4rem;
 }
-.calc-split__key em::before {
+.calc-legend__item em::before {
   content: "";
-  width: 9px; height: 9px;
+  width: 10px; height: 10px;
   border-radius: 2px;
+  flex-shrink: 0;
 }
-.calc-split__key--invested em::before { background: rgba(245, 239, 215, 0.55); }
-.calc-split__key--growth em::before { background: var(--sage); }
-.calc-split__key--growth { text-align: right; align-items: flex-end; }
-.calc-split__key strong {
-  font-size: 1.1rem;
+.calc-legend__item--invest em::before { background: var(--marigold); }
+.calc-legend__item--save em::before {
+  background: transparent;
+  border: 1.5px dashed rgba(31, 58, 46, 0.5);
+}
+.calc-legend__item--save { text-align: right; align-items: flex-end; }
+.calc-legend__item strong {
+  font-size: 1.25rem;
   font-weight: 500;
-}
-
-/* Retirement income highlight */
-.calc-income {
-  margin-top: auto;
-  padding: 1.1rem 1.25rem;
-  border-radius: var(--radius-sm);
-  background: rgba(245, 239, 215, 0.08);
-  border: 1px solid rgba(245, 239, 215, 0.16);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-.calc-income__label,
-.calc-income__sub {
-  display: block;
-  font-size: .8rem;
-  color: rgba(245, 239, 215, 0.7);
-}
-.calc-income__value {
-  display: block;
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-size: 2rem;
-  color: var(--sage);
-  line-height: 1.1;
-  margin: .15rem 0;
+  color: var(--forest);
 }
 
 .calc-result__cta {
   width: 100%;
-  background: var(--bg);
+  margin-top: auto;
+  background: var(--marigold);
   color: var(--forest);
-  border-color: var(--bg);
+  border-color: var(--marigold);
 }
 .calc-result__cta:hover {
-  background: var(--sage);
-  border-color: var(--sage);
+  background: #D8951C; /* deeper marigold */
+  border-color: #D8951C;
   color: var(--forest);
+  transform: translateY(-2px);
 }
 .calc-disclaimer {
   margin-top: 1rem;
   font-size: .72rem;
   line-height: 1.5;
-  color: rgba(245, 239, 215, 0.5);
+  color: rgba(31, 58, 46, 0.55);
   text-align: center;
 }
 
