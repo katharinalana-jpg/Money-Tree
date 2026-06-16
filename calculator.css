@@ -166,7 +166,7 @@
   font-size: clamp(2.6rem, 6vw, 3.6rem);
   letter-spacing: -0.04em;
   line-height: 1;
-  color: #D64545; /* the shortfall — the loss from waiting to invest */
+  color: #9B2C24; /* the shortfall: a deep red that pairs with the forest green */
 }
 .calc-result__sub {
   font-size: .82rem;

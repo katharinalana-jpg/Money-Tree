@@ -21,7 +21,7 @@
   const calc = $("#calculator");
   if (!calc) return;
 
-  const SAVE_RATE = 0.01;   // 1% a year — typical savings account
+  const SAVE_RATE = 0.01;   // 1% a year, a typical savings account
   const INVEST_RATE = 0.06; // 6% a year — assumed long-term average
 
   const els = {
@@ -57,6 +57,12 @@
     const v = Math.max(0, Math.round(n));
     if (lang() === "de") return new Intl.NumberFormat("de-DE").format(v) + " €";
     return "€" + new Intl.NumberFormat("en-US").format(v);
+  }
+
+  // the shortfall is a loss, so show it with a leading minus (never for €0)
+  function moneyLoss(n) {
+    const v = Math.max(0, Math.round(n));
+    return v > 0 ? "-" + money(v) : money(v);
   }
 
   // compact money for axis ticks, e.g. €120k / 120k €
@@ -202,10 +208,11 @@
 
   /* ---------- count-up animation ---------- */
   const animState = new WeakMap();
-  function countTo(el, target, animate) {
+  function countTo(el, target, animate, fmt) {
+    fmt = fmt || money;
     if (!animate) {
       animState.set(el, target);
-      el.textContent = money(target);
+      el.textContent = fmt(target);
       return;
     }
     const from = animState.get(el) || 0;
@@ -215,7 +222,7 @@
     function frame(now) {
       const t = Math.min(1, (now - start) / dur);
       const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = money(from + (target - from) * eased);
+      el.textContent = fmt(from + (target - from) * eased);
       if (t < 1 && animState.get(el) === target) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -230,7 +237,7 @@
     els.outAgeRetire.textContent = els.ageRetire.value;
     els.outResultAge.textContent = r.ageRetire;
 
-    countTo(els.outGap, r.gap, animate);
+    countTo(els.outGap, r.gap, animate, moneyLoss);
     countTo(els.outInvest, r.investFinal, animate);
     countTo(els.outSave, r.saveFinal, animate);
 
