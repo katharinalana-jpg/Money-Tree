@@ -94,6 +94,21 @@
       "success.welcome_title": "Welcome to Portemonnaie.",
       "success.welcome_body": "You are officially on the early access list. We will be in touch soon with your first product letter.",
 
+      /* calculator */
+      "calc.eyebrow": "The cost of waiting",
+      "calc.h1": 'See what you stand to <span class="brush"><em class="serif">lose</em></span>.',
+      "calc.sub": "Saving keeps your money safe — but it barely grows. Move the sliders to see how much you could miss out on by saving instead of investing the same amount each month.",
+      "calc.monthly": "Monthly amount",
+      "calc.age_now": "Your age today",
+      "calc.age_retire": "Retirement age",
+      "calc.assume": "Compares saving (1% a year) with investing (6% average a year), putting away the same amount each month.",
+      "calc.result.label": "What you could miss out on by age",
+      "calc.result.sub": "by saving instead of investing the same each month",
+      "calc.invest": "If you invest",
+      "calc.save": "If you save",
+      "calc.cta": "Start my plan",
+      "calc.disclaimer": "A simplified projection for educational purposes only. It assumes 1% a year on savings and a 6% average on investments, and does not account for fees, taxes or inflation. This is not investment advice.",
+
       /* mission */
       "problem.eyebrow": "Why we exist",
       "problem.c1.title": "EU gender pension gap",
@@ -245,6 +260,21 @@
       "success.almost_body": "Wir haben dir gerade eine Bestätigungs-E-Mail geschickt. Klick auf den Link darin, um deinen Platz auf der Early-Access-Liste zu sichern.",
       "success.welcome_title": "Willkommen bei Portemonnaie.",
       "success.welcome_body": "Du stehst offiziell auf der Early-Access-Liste. Wir melden uns bald mit deinem ersten Produkt-Newsletter.",
+
+      /* calculator */
+      "calc.eyebrow": "Was Warten dich kostet",
+      "calc.h1": 'Sieh, was dir jedes Jahr Warten <span class="brush"><em class="serif">entgeht</em></span>.',
+      "calc.sub": "Auf dem Sparkonto ist dein Geld sicher – aber es wächst kaum. Bewege die Regler und sieh, wie viel dir entgeht, wenn du den gleichen Betrag jeden Monat nur sparst, statt ihn zu investieren.",
+      "calc.monthly": "Betrag pro Monat",
+      "calc.age_now": "Dein Alter heute",
+      "calc.age_retire": "Renteneintrittsalter",
+      "calc.assume": "Vergleicht Sparen (1 % pro Jahr) mit Investieren (durchschnittlich 6 % pro Jahr) – bei gleichem Betrag pro Monat.",
+      "calc.result.label": "Das entgeht dir bis zum Alter von",
+      "calc.result.sub": "wenn du nur sparst, statt denselben Betrag zu investieren",
+      "calc.invest": "Wenn du investierst",
+      "calc.save": "Wenn du nur sparst",
+      "calc.cta": "Meinen Plan starten",
+      "calc.disclaimer": "Eine vereinfachte Hochrechnung zu Bildungszwecken. Sie nimmt 1 % pro Jahr beim Sparen und durchschnittlich 6 % beim Investieren an und berücksichtigt weder Gebühren noch Steuern oder Inflation. Dies ist keine Anlageberatung.",
 
       /* mission */
       "problem.eyebrow": "Warum es uns gibt",
