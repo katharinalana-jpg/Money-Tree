@@ -1,0 +1,274 @@
+/* =============================================================
+   Portemonnaie. Quiz page styles.
+   Brand tokens only (see styles.css :root). No new palette.
+   ============================================================= */
+
+.quiz-main {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+}
+
+/* progress bar pinned under the nav */
+.quiz-progress {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.quiz-progress__track {
+  height: 4px;
+  background: var(--line);
+}
+.quiz-progress__bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--forest), var(--marigold));
+  transition: width .45s cubic-bezier(.4, 0, .2, 1);
+}
+.quiz-progress__label {
+  display: block;
+  width: min(640px, 90%);
+  margin: .6rem auto 0;
+  padding-bottom: .6rem;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* the screen stage */
+.quiz-stage {
+  flex: 1;
+  padding: clamp(2rem, 6vw, 4.5rem) 0 5rem;
+}
+/* the mount node fills the stage so % / centering resolve against a
+   definite width, not a shrink-wrapped flex item */
+#quizStage { width: 100%; }
+.quiz-card-screen,
+.quiz-mirror,
+.quiz-result {
+  width: min(640px, 90vw);
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* intro / question typography */
+.quiz-intro {
+  color: var(--ink-mute);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin-bottom: 1.1rem;
+}
+.quiz-question {
+  font-family: var(--ff);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--forest);
+  margin-bottom: .4rem;
+}
+.quiz-help {
+  color: var(--ink-mute);
+  font-size: .9rem;
+  margin-bottom: 1.6rem;
+}
+.quiz-question + .quiz-options { margin-top: 1.8rem; }
+
+/* option list */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.quiz-opt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  text-align: center;
+  padding: 1.1rem 1.35rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-card);
+  transition: border-color .25s ease, background .25s ease, transform .15s ease, box-shadow .25s ease;
+}
+.quiz-opt:hover {
+  border-color: var(--forest);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.quiz-opt.is-selected {
+  border-color: var(--forest);
+  background: rgba(168, 213, 186, 0.18); /* soft sage wash */
+  box-shadow: var(--shadow-sm);
+}
+.quiz-opt__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centre label + hint */
+  gap: .15rem;
+  flex: 1;               /* fill width so text-align:center truly centres */
+}
+.quiz-opt__label {
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.quiz-opt__hint {
+  font-size: .85rem;
+  color: var(--ink-mute);
+}
+
+/* multi-select rows (A1, A2): label stays centred, check pip is taken
+   out of flow into the right padding so it can't pull the text sideways */
+.quiz-options--multi .quiz-opt {
+  position: relative;
+  padding-left: 2.8rem;
+  padding-right: 2.8rem;
+}
+.quiz-opt__check {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid var(--line-strong);
+  transition: background .2s ease, border-color .2s ease;
+}
+.quiz-opt.is-selected .quiz-opt__check {
+  background: var(--marigold);
+  border-color: var(--marigold);
+}
+.quiz-opt.is-selected .quiz-opt__check::after {
+  content: "";
+  position: absolute;
+  left: 7px; top: 3px;
+  width: 5px; height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* C2 feeling-curve options: mini-curve stacked above a centred label */
+.quiz-options--curves .quiz-opt {
+  flex-direction: column;
+  gap: .55rem;
+}
+.quiz-curve {
+  flex: 0 0 auto;
+  width: 110px;
+  height: 38px;
+}
+
+.quiz-note,
+.quiz-nudge {
+  font-size: .88rem;
+  line-height: 1.5;
+  margin-top: 1.2rem;
+}
+.quiz-note { color: var(--ink-mute); }
+.quiz-nudge {
+  color: var(--ink-soft);
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+}
+
+/* mirror screen (impact reflection) */
+.quiz-mirror__body {
+  color: var(--ink-mute);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-top: 1.2rem;
+}
+.quiz-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .55rem;
+  margin-top: 1.4rem;
+}
+.quiz-tag {
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--sage);
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+}
+
+/* result screen */
+.quiz-result { text-align: center; }
+.quiz-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--forest);
+  margin-bottom: 1rem;
+}
+.quiz-result__title {
+  font-family: var(--ff);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--forest);
+  margin-bottom: 1.1rem;
+}
+.quiz-result__lede {
+  color: var(--ink-mute);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 30rem;
+  margin: 0 auto 2rem;
+}
+.quiz-disclaimer {
+  margin-top: 1.8rem;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--ink-mute);
+}
+
+/* nav (back / continue) */
+.quiz-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+.quiz-nav__back {
+  font-size: .92rem;
+  color: var(--ink-mute);
+  padding: .6rem .2rem;
+  transition: color .2s ease;
+}
+.quiz-nav__back:hover { color: var(--ink); }
+.quiz-nav__back:disabled { opacity: 0; pointer-events: none; }
+.quiz-nav__next:disabled { opacity: .35; pointer-events: none; }
+.quiz-nav__next { margin-left: auto; }
+
+/* entrance */
+.reveal-now { animation: quizIn .45s cubic-bezier(.4, 0, .2, 1) both; }
+@keyframes quizIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-now { animation: none; }
+  .quiz-progress__bar { transition: none; }
+}
+
+@media (max-width: 720px) {
+  .quiz-opt { padding: 1rem 1.1rem; }
+  .quiz-curve { width: 92px; height: 34px; }
+  .quiz-stage { padding-top: 2rem; }
+}

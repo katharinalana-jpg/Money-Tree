@@ -52,6 +52,7 @@
       "flow.cta": "Join the Access List",
       "step1.title": "Take the quiz",
       "step1.desc": "Answer a few questions about your investing style, your goals, and the causes you care about.",
+      "step1.go": "Start the quiz",
       "quiz.q1": "What is your risk tolerance?",
       "quiz.q2": "Which causes matter to you?",
       "quiz.q3": "What is your investment horizon?",
@@ -225,6 +226,7 @@
       "flow.cta": "Get Early Access",
       "step1.title": "Mach das Quiz",
       "step1.desc": "Beantworte ein paar Fragen zu deinem Anlagestil, deinen Zielen und den Themen, die dir am Herzen liegen.",
+      "step1.go": "Quiz starten",
       "quiz.q1": "Wie hoch ist deine Risikobereitschaft?",
       "quiz.q2": "Welche Themen sind dir wichtig?",
       "quiz.q3": "Wie lang ist dein Anlagehorizont?",
@@ -398,6 +400,9 @@
       b.classList.toggle("is-active", active);
       b.setAttribute("aria-pressed", String(active));
     });
+
+    // let JS-rendered widgets (e.g. the quiz) react to a language switch
+    document.dispatchEvent(new CustomEvent("pm:langchange", { detail: { lang: lang } }));
   }
 
   function setLang(lang) {
