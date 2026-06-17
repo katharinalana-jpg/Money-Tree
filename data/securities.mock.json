@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "version": "0.1.0-mock",
+    "generated": "2026-06-17",
+    "disclaimer": "This is not investment advice. Content is for educational purposes only.",
+    "dataNote": "SYNTHETIC TEST FIXTURE. All names, tickers and ISINs are fictional. Built to exercise the UI and tests: one of each type, both gender extremes (A+ and F), sustainability 0 and 100, every impact level, null ticker/ISIN/ter. Do NOT ship to production.",
+    "scoringSystem": {
+      "genderScore": "A+ to F",
+      "sustainabilityScore": "0-100",
+      "impact": "High / Medium / Low",
+      "fourCapitals": "Financial, Environmental, Social, Network (0-100 each)"
+    }
+  },
+  "securities": [
+    {
+      "id": "mock-etf-best",
+      "name": "Mock Best-In-Class Gender ETF",
+      "ticker": "MOCKA",
+      "isin": "XX0000000001",
+      "type": "ETF",
+      "assetClass": "Equity",
+      "sector": "Diversified",
+      "region": "Global",
+      "currency": "EUR",
+      "ter": 0.15,
+      "description": "Fixture: top of every scale - A+ gender, 100 sustainability, High impact.",
+      "fourCapitals": { "financial": 100, "environmental": 100, "social": 100, "network": 100 },
+      "genderScore": "A+",
+      "sustainabilityScore": 100,
+      "impact": "High",
+      "themes": ["gender-diversity", "test", "edge-high"],
+      "facts": {
+        "womenOnBoardPct": 60,
+        "womenInLeadershipPct": 55,
+        "esgHighlights": ["Fixture top-of-scale record"],
+        "controversies": []
+      },
+      "asOf": "2025-Q4"
+    },
+    {
+      "id": "mock-stock-worst",
+      "name": "Mock Bottom-Of-Scale Corp",
+      "ticker": "MOCKZ",
+      "isin": "XX0000000002",
+      "type": "Stock",
+      "assetClass": "Equity",
+      "sector": "Energy",
+      "region": "US",
+      "currency": "USD",
+      "ter": null,
+      "description": "Fixture: bottom of every scale - F gender, 0 sustainability, Low impact.",
+      "fourCapitals": { "financial": 40, "environmental": 0, "social": 5, "network": 20 },
+      "genderScore": "F",
+      "sustainabilityScore": 0,
+      "impact": "Low",
+      "themes": ["test", "edge-low"],
+      "facts": {
+        "womenOnBoardPct": 0,
+        "womenInLeadershipPct": 0,
+        "esgHighlights": [],
+        "controversies": ["Fixture: multiple severe controversies", "Fossil-heavy"]
+      },
+      "asOf": "2025-Q4"
+    },
+    {
+      "id": "mock-fund-mid",
+      "name": "Mock Balanced Impact Fund",
+      "ticker": null,
+      "isin": "XX0000000003",
+      "type": "Fund",
+      "assetClass": "Equity",
+      "sector": "Diversified",
+      "region": "Europe",
+      "currency": "EUR",
+      "ter": 1.25,
+      "description": "Fixture: mid-range values, Medium impact, null ticker.",
+      "fourCapitals": { "financial": 60, "environmental": 55, "social": 58, "network": 52 },
+      "genderScore": "C",
+      "sustainabilityScore": 55,
+      "impact": "Medium",
+      "themes": ["test", "edge-mid"],
+      "facts": {
+        "womenOnBoardPct": 30,
+        "womenInLeadershipPct": 25,
+        "esgHighlights": ["Fixture mid record"],
+        "controversies": []
+      },
+      "asOf": "2025-Q4"
+    },
+    {
+      "id": "mock-fund-missing-ids",
+      "name": "Mock Fund With Missing Identifiers",
+      "ticker": null,
+      "isin": null,
+      "type": "Fund",
+      "assetClass": "Equity",
+      "sector": "Impact",
+      "region": "Global",
+      "currency": "EUR",
+      "ter": null,
+      "description": "Fixture: null ticker, null ISIN and null TER to test optional-field handling.",
+      "fourCapitals": { "financial": 50, "environmental": 70, "social": 65, "network": 48 },
+      "genderScore": "B",
+      "sustainabilityScore": 72,
+      "impact": "High",
+      "themes": ["test", "null-fields"],
+      "facts": {
+        "womenOnBoardPct": null,
+        "womenInLeadershipPct": null,
+        "esgHighlights": [],
+        "controversies": []
+      },
+      "asOf": "2025-Q4"
+    }
+  ]
+}
