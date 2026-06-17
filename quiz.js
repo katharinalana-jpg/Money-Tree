@@ -32,7 +32,11 @@
   /* ---- language ------------------------------------------------ */
   const LANG_KEY = "pm_lang";
   function getLang() {
-    const l = localStorage.getItem(LANG_KEY);
+    // Mirror i18n.js: it sets <html lang> from its own detection (which can
+    // come from navigator and is NOT persisted to localStorage). Reading the
+    // resolved <html lang> first keeps the quiz in sync with the nav/site;
+    // fall back to the stored preference, then English.
+    const l = (document.documentElement.lang || localStorage.getItem(LANG_KEY) || "").toLowerCase();
     return l === "de" ? "de" : "en";
   }
   function t(node) {
