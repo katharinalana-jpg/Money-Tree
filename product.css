@@ -1,0 +1,238 @@
+/* =============================================================
+   Portemonnaie — Product detail page.
+   Builds on tokens in styles.css and the green family + card
+   surfaces defined in explore.css. Brand-only palette, pill
+   buttons, 20px card radius, no emoji.
+   ============================================================= */
+
+.product {
+  width: min(1080px, 92%);
+  margin-inline: auto;
+  padding-top: calc(var(--nav-h) + 1.6rem);
+  padding-bottom: 3rem;
+}
+
+.product__back {
+  display: inline-block;
+  color: var(--ink-mute);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-decoration: none;
+}
+.product__back:hover { color: var(--forest); }
+
+/* ── Header ───────────────────────────────────────────────── */
+.product__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.8rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+.product__type {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--swatch, var(--green));
+  border-radius: 999px;
+  padding: 0.28rem 0.8rem;
+  margin-bottom: 0.7rem;
+}
+.product__name {
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.product__meta {
+  color: var(--ink-mute);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.9rem;
+}
+.product__desc {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  max-width: 56ch;
+}
+
+/* score tiles */
+.scoretiles { display: flex; gap: 0.7rem; }
+.scoretile {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1.1rem;
+  min-width: 104px;
+  text-align: center;
+}
+.scoretile--impact { background: var(--forest); border-color: var(--forest); }
+.scoretile--impact .scoretile__label { color: var(--sage); }
+.scoretile--impact .scoretile__big { color: #fff; }
+.scoretile__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 0.4rem;
+}
+.scoretile__big {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+}
+.scoretile__big small { font-size: 0.8rem; font-weight: 600; color: var(--ink-mute); }
+
+/* ── Card grid ────────────────────────────────────────────── */
+.product__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.pcard {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 1.3rem 1.4rem;
+  position: relative;
+}
+.pcard__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.pcard__caption { margin-top: 0.7rem; font-size: 0.72rem; color: var(--ink-mute); }
+.pcard__srclink { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+.pcard__srclink:hover { color: var(--forest); }
+.pcard__empty { color: var(--ink-mute); font-size: 0.9rem; padding: 2rem 0; text-align: center; }
+.pcard__badge {
+  position: absolute;
+  top: 1.3rem; right: 1.4rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  background: rgba(234, 162, 33, 0.12);
+  border: 1px solid rgba(234, 162, 33, 0.4);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+}
+
+/* ── Price chart ──────────────────────────────────────────── */
+.pchart__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.pchart__price { font-size: 1.5rem; font-weight: 800; color: var(--ink); }
+.pchart__chg { font-size: 0.95rem; font-weight: 700; margin-left: 0.5rem; }
+.pchart__chg.is-up { color: var(--green); }
+.pchart__chg.is-down { color: #B4543B; }
+.pchart__period { font-size: 0.78rem; color: var(--ink-mute); }
+.linechart { width: 100%; height: auto; display: block; }
+
+/* ── Four Capitals ────────────────────────────────────────── */
+.capitals { display: flex; align-items: center; gap: 1.2rem; }
+.capitals__radar { flex: none; }
+.radar--lg { width: 200px; height: auto; }
+.radar__label {
+  fill: var(--ink-mute);
+  font-family: var(--ff);
+  font-size: 11px;
+  font-weight: 600;
+}
+.capitals__bars { flex: 1; display: flex; flex-direction: column; gap: 0.7rem; }
+.capbar__head {
+  display: flex; justify-content: space-between;
+  font-size: 0.84rem; color: var(--ink-soft); margin-bottom: 0.25rem;
+}
+.capbar__val { font-weight: 700; color: var(--ink); }
+.capbar__track {
+  height: 7px; border-radius: 999px;
+  background: var(--bg-dark); overflow: hidden;
+}
+.capbar__fill { display: block; height: 100%; background: var(--green); border-radius: 999px; }
+
+/* ── Criteria / facts lists ───────────────────────────────── */
+.critlist { display: flex; flex-direction: column; }
+.critrow {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+.critrow:last-child { border-bottom: 0; }
+.critrow__k { color: var(--ink-mute); }
+.critrow__v { color: var(--ink); font-weight: 600; text-align: right; }
+
+.factlist { margin-top: 1rem; }
+.factlist__h {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem;
+}
+.factlist--watch .factlist__h { color: var(--marigold); }
+.factlist ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.factlist li {
+  position: relative; padding-left: 1.1rem;
+  font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45;
+}
+.factlist li::before {
+  content: ""; position: absolute; left: 0; top: 0.55em;
+  width: 6px; height: 6px; border-radius: 999px; background: var(--green-line);
+}
+.factlist--watch li::before { background: var(--marigold); }
+
+/* ── Holdings + related ───────────────────────────────────── */
+.holdings { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.related { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+.relcard {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.relcard:hover { border-color: var(--green-line); box-shadow: var(--shadow-sm); }
+.relcard__swatch { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
+.relcard__name {
+  display: block; font-weight: 700; color: var(--ink);
+  font-size: 0.92rem; margin: 0.4rem 0 0.2rem;
+}
+.relcard__meta { display: block; font-size: 0.78rem; color: var(--ink-mute); }
+
+/* ── Disclaimer / error ───────────────────────────────────── */
+.product__disclaimer {
+  margin-top: 1.6rem;
+  text-align: center;
+  font-size: 0.74rem;
+  color: var(--ink-mute);
+}
+.product__error { padding: 2rem 0 4rem; text-align: center; }
+.product__error .product__desc { margin-inline: auto; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .product__head { grid-template-columns: 1fr; }
+  .product__grid { grid-template-columns: 1fr; }
+  .scoretiles { flex-wrap: wrap; }
+  .related { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .capitals { flex-direction: column; align-items: stretch; }
+  .capitals__radar { align-self: center; }
+}

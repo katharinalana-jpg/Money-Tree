@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "generated": "2026-06-17",
     "disclaimer": "This is not investment advice. Content is for educational purposes only.",
-    "dataNote": "Real names, tickers, ISINs, sectors and TERs from public sources. Scores (genderScore, sustainabilityScore, impact, fourCapitals) are Money Tree-derived estimates from public facts as of 2023-2025 disclosures, NOT a licensed third-party feed. Replace with a documented scoring pipeline and/or licensed data before launch.",
+    "dataNote": "Real names, tickers, ISINs, sectors and TERs from public sources. Scores (genderScore, sustainabilityScore, impact, fourCapitals) are Money Tree-derived estimates from public facts as of 2023-2025 disclosures, NOT a licensed third-party feed. The profile block holds descriptive investment criteria; structural fields (replication, domicile, distribution, inception, index, exchange) are public facts, while numeric snapshot fields (aum, marketCap, peRatio, dividendYield) are approximate and must be verified against a licensed feed before launch. Replace with a documented scoring pipeline and/or licensed data before launch.",
     "scoringSystem": {
       "genderScore": "A+ to F, driven by women on board / in leadership",
       "sustainabilityScore": "0-100, ESG / environmental profile",
@@ -24,6 +24,16 @@
       "currency": "USD",
       "ter": 0.2,
       "description": "US large-cap companies ranking highest in their sector on gender-diversity ratios across senior leadership and board.",
+      "profile": {
+        "aum": "USD 0.2B",
+        "replication": "Physical",
+        "domicile": "United States",
+        "distribution": "Distributing",
+        "inception": "2016",
+        "indexTracked": "SSGA Gender Diversity Index",
+        "topHoldings": ["Microsoft", "NVIDIA", "Mastercard", "Procter & Gamble", "Home Depot"],
+        "exchange": "NYSE Arca"
+      },
       "fourCapitals": { "financial": 74, "environmental": 58, "social": 88, "network": 66 },
       "genderScore": "A+",
       "sustainabilityScore": 68,
@@ -49,6 +59,16 @@
       "currency": "USD",
       "ter": 0.2,
       "description": "Tracks the Solactive Equileap Global Gender Equality 100 Leaders index - 100 global companies with strong records in gender diversity and sustainability.",
+      "profile": {
+        "aum": "USD 0.8B",
+        "replication": "Physical",
+        "domicile": "Ireland",
+        "distribution": "Accumulating",
+        "inception": "2018",
+        "indexTracked": "Solactive Equileap Global Gender Equality 100 Leaders Index",
+        "topHoldings": [],
+        "exchange": "SIX Swiss Exchange / Xetra"
+      },
       "fourCapitals": { "financial": 72, "environmental": 64, "social": 90, "network": 70 },
       "genderScore": "A+",
       "sustainabilityScore": 76,
@@ -74,6 +94,16 @@
       "currency": "USD",
       "ter": 0.75,
       "description": "US companies that meet YWCA standards on advancing gender equality and women's empowerment.",
+      "profile": {
+        "aum": "USD 0.1B",
+        "replication": "Physical",
+        "domicile": "United States",
+        "distribution": "Distributing",
+        "inception": "2018",
+        "indexTracked": "Morningstar Women's Empowerment Index",
+        "topHoldings": [],
+        "exchange": "NYSE Arca"
+      },
       "fourCapitals": { "financial": 68, "environmental": 60, "social": 92, "network": 64 },
       "genderScore": "A+",
       "sustainabilityScore": 70,
@@ -99,6 +129,16 @@
       "currency": "USD",
       "ter": 0.59,
       "description": "Actively managed ETF favouring companies that prioritise and advance women's leadership and development.",
+      "profile": {
+        "aum": "USD 0.05B",
+        "replication": "Physical",
+        "domicile": "United States",
+        "distribution": "Distributing",
+        "inception": "2021",
+        "indexTracked": "Actively managed (no benchmark index)",
+        "topHoldings": [],
+        "exchange": "Cboe BZX"
+      },
       "fourCapitals": { "financial": 70, "environmental": 58, "social": 89, "network": 63 },
       "genderScore": "A+",
       "sustainabilityScore": 67,
@@ -124,6 +164,16 @@
       "currency": "USD",
       "ter": 0.65,
       "description": "Tracks the S&P Global Clean Energy Transition index of leading global clean-energy companies; screens out coal, oil sands, shale and arctic oil & gas.",
+      "profile": {
+        "aum": "USD 4B",
+        "replication": "Physical",
+        "domicile": "Ireland",
+        "distribution": "Distributing",
+        "inception": "2007",
+        "indexTracked": "S&P Global Clean Energy Transition Index",
+        "topHoldings": ["First Solar", "Iberdrola", "Vestas Wind Systems", "Enphase Energy", "Orsted"],
+        "exchange": "London Stock Exchange / Xetra"
+      },
       "fourCapitals": { "financial": 60, "environmental": 95, "social": 70, "network": 62 },
       "genderScore": "C",
       "sustainabilityScore": 92,
@@ -149,6 +199,16 @@
       "currency": "USD",
       "ter": 0.41,
       "description": "US-listed version tracking global clean-energy equities across solar, wind and related technologies.",
+      "profile": {
+        "aum": "USD 2.5B",
+        "replication": "Physical",
+        "domicile": "United States",
+        "distribution": "Distributing",
+        "inception": "2008",
+        "indexTracked": "S&P Global Clean Energy Index",
+        "topHoldings": ["First Solar", "Enphase Energy", "Iberdrola", "Vestas Wind Systems", "Consolidated Edison"],
+        "exchange": "Nasdaq"
+      },
       "fourCapitals": { "financial": 61, "environmental": 95, "social": 70, "network": 62 },
       "genderScore": "C",
       "sustainabilityScore": 91,
@@ -174,6 +234,16 @@
       "currency": "USD",
       "ter": 0.18,
       "description": "Developed-market large/mid caps with high ESG ratings versus sector peers; broad, low-cost core ESG building block.",
+      "profile": {
+        "aum": "USD 0.5B",
+        "replication": "Physical",
+        "domicile": "Ireland",
+        "distribution": "Accumulating",
+        "inception": "2018",
+        "indexTracked": "MSCI World ESG Leaders Select 5% Issuer Capped Index",
+        "topHoldings": ["Apple", "Microsoft", "NVIDIA", "Tesla", "Home Depot"],
+        "exchange": "Euronext Paris / Xetra"
+      },
       "fourCapitals": { "financial": 80, "environmental": 72, "social": 74, "network": 72 },
       "genderScore": "B",
       "sustainabilityScore": 78,
@@ -199,6 +269,16 @@
       "currency": "USD",
       "ter": 0.2,
       "description": "Socially responsible version of MSCI World - excludes controversial sectors and keeps the highest ESG-rated companies.",
+      "profile": {
+        "aum": "USD 6B",
+        "replication": "Physical",
+        "domicile": "Ireland",
+        "distribution": "Accumulating",
+        "inception": "2017",
+        "indexTracked": "MSCI World SRI Select Reduced Fossil Fuel Index",
+        "topHoldings": ["Microsoft", "NVIDIA", "Tesla", "Home Depot", "Visa"],
+        "exchange": "London Stock Exchange / Xetra"
+      },
       "fourCapitals": { "financial": 79, "environmental": 76, "social": 76, "network": 71 },
       "genderScore": "B",
       "sustainabilityScore": 82,
@@ -224,6 +304,16 @@
       "currency": "USD",
       "ter": 0.65,
       "description": "Global companies in water utilities, infrastructure and treatment - a thematic environmental play on water scarcity.",
+      "profile": {
+        "aum": "USD 2B",
+        "replication": "Physical",
+        "domicile": "Ireland",
+        "distribution": "Distributing",
+        "inception": "2007",
+        "indexTracked": "S&P Global Water Index",
+        "topHoldings": ["American Water Works", "Xylem", "Veolia Environnement", "Ecolab", "Geberit"],
+        "exchange": "London Stock Exchange / Xetra"
+      },
       "fourCapitals": { "financial": 70, "environmental": 86, "social": 68, "network": 60 },
       "genderScore": "C",
       "sustainabilityScore": 80,
@@ -249,6 +339,12 @@
       "currency": "GBP",
       "ter": null,
       "description": "Global consumer-goods group with long-standing gender-balance and sustainable-living commitments.",
+      "profile": {
+        "exchange": "London Stock Exchange",
+        "marketCap": "GBP ~110B",
+        "peRatio": 18,
+        "dividendYield": 3.5
+      },
       "fourCapitals": { "financial": 78, "environmental": 74, "social": 86, "network": 80 },
       "genderScore": "A",
       "sustainabilityScore": 79,
@@ -274,6 +370,12 @@
       "currency": "DKK",
       "ter": null,
       "description": "World-leading offshore-wind developer; transitioned from fossil fuels to renewables.",
+      "profile": {
+        "exchange": "Nasdaq Copenhagen",
+        "marketCap": "DKK ~200B",
+        "peRatio": null,
+        "dividendYield": 0
+      },
       "fourCapitals": { "financial": 64, "environmental": 96, "social": 74, "network": 70 },
       "genderScore": "B",
       "sustainabilityScore": 93,
@@ -299,6 +401,12 @@
       "currency": "DKK",
       "ter": null,
       "description": "World's largest wind-turbine manufacturer; core enabler of the renewable transition.",
+      "profile": {
+        "exchange": "Nasdaq Copenhagen",
+        "marketCap": "DKK ~150B",
+        "peRatio": 30,
+        "dividendYield": 0.5
+      },
       "fourCapitals": { "financial": 66, "environmental": 94, "social": 72, "network": 74 },
       "genderScore": "C",
       "sustainabilityScore": 90,
@@ -324,6 +432,12 @@
       "currency": "USD",
       "ter": null,
       "description": "Global professional-services firm with a public goal of a gender-balanced workforce.",
+      "profile": {
+        "exchange": "NYSE",
+        "marketCap": "USD ~210B",
+        "peRatio": 28,
+        "dividendYield": 1.6
+      },
       "fourCapitals": { "financial": 84, "environmental": 70, "social": 85, "network": 82 },
       "genderScore": "A",
       "sustainabilityScore": 77,
@@ -349,6 +463,12 @@
       "currency": "EUR",
       "ter": null,
       "description": "Global beauty leader with high female representation across its workforce and management.",
+      "profile": {
+        "exchange": "Euronext Paris",
+        "marketCap": "EUR ~210B",
+        "peRatio": 30,
+        "dividendYield": 1.7
+      },
       "fourCapitals": { "financial": 82, "environmental": 72, "social": 84, "network": 78 },
       "genderScore": "A",
       "sustainabilityScore": 78,
@@ -374,6 +494,12 @@
       "currency": "USD",
       "ter": null,
       "description": "Global software and cloud leader with carbon-negative-by-2030 commitments.",
+      "profile": {
+        "exchange": "Nasdaq",
+        "marketCap": "USD ~3.1T",
+        "peRatio": 35,
+        "dividendYield": 0.7
+      },
       "fourCapitals": { "financial": 90, "environmental": 76, "social": 74, "network": 88 },
       "genderScore": "C",
       "sustainabilityScore": 75,
@@ -399,6 +525,12 @@
       "currency": "USD",
       "ter": null,
       "description": "Leading designer of GPUs and AI computing platforms.",
+      "profile": {
+        "exchange": "Nasdaq",
+        "marketCap": "USD ~3.0T",
+        "peRatio": 50,
+        "dividendYield": 0.03
+      },
       "fourCapitals": { "financial": 92, "environmental": 64, "social": 62, "network": 86 },
       "genderScore": "D",
       "sustainabilityScore": 60,
@@ -424,6 +556,12 @@
       "currency": "EUR",
       "ter": null,
       "description": "Global sportswear group with recycled-materials and supply-chain sustainability programmes.",
+      "profile": {
+        "exchange": "Xetra (Frankfurt)",
+        "marketCap": "EUR ~40B",
+        "peRatio": 40,
+        "dividendYield": 1.0
+      },
       "fourCapitals": { "financial": 74, "environmental": 66, "social": 72, "network": 76 },
       "genderScore": "C",
       "sustainabilityScore": 64,
@@ -449,6 +587,12 @@
       "currency": "USD",
       "ter": null,
       "description": "Electric-vehicle and energy-storage maker; strong environmental product, weaker governance profile.",
+      "profile": {
+        "exchange": "Nasdaq",
+        "marketCap": "USD ~800B",
+        "peRatio": 60,
+        "dividendYield": 0
+      },
       "fourCapitals": { "financial": 80, "environmental": 88, "social": 50, "network": 78 },
       "genderScore": "E",
       "sustainabilityScore": 66,
@@ -474,6 +618,12 @@
       "currency": "USD",
       "ter": null,
       "description": "Semiconductor manufacturer with established diversity reporting and water/emissions targets.",
+      "profile": {
+        "exchange": "Nasdaq",
+        "marketCap": "USD ~90B",
+        "peRatio": null,
+        "dividendYield": 1.5
+      },
       "fourCapitals": { "financial": 66, "environmental": 70, "social": 72, "network": 74 },
       "genderScore": "C",
       "sustainabilityScore": 69,
@@ -499,6 +649,16 @@
       "currency": "EUR",
       "ter": 1.9,
       "description": "Actively managed fund investing in companies offering climate and resource-efficiency solutions.",
+      "profile": {
+        "aum": "EUR 8B",
+        "replication": null,
+        "domicile": "Luxembourg",
+        "distribution": "Accumulating",
+        "inception": "2008",
+        "indexTracked": "Actively managed (no benchmark index)",
+        "topHoldings": [],
+        "exchange": "Luxembourg (open-ended fund, daily NAV)"
+      },
       "fourCapitals": { "financial": 70, "environmental": 90, "social": 70, "network": 66 },
       "genderScore": "C",
       "sustainabilityScore": 86,
@@ -524,6 +684,16 @@
       "currency": "EUR",
       "ter": 1.6,
       "description": "Invests in companies operating within the planetary boundaries across the environmental value chain.",
+      "profile": {
+        "aum": "EUR 9B",
+        "replication": null,
+        "domicile": "Luxembourg",
+        "distribution": "Accumulating",
+        "inception": "2010",
+        "indexTracked": "Actively managed (no benchmark index)",
+        "topHoldings": [],
+        "exchange": "Luxembourg (open-ended fund, daily NAV)"
+      },
       "fourCapitals": { "financial": 71, "environmental": 92, "social": 70, "network": 66 },
       "genderScore": "C",
       "sustainabilityScore": 88,
@@ -549,6 +719,16 @@
       "currency": "EUR",
       "ter": 1.5,
       "description": "Impact fund investing only in companies meeting Triodos's strict minimum sustainability standards.",
+      "profile": {
+        "aum": "EUR 1.5B",
+        "replication": null,
+        "domicile": "Luxembourg",
+        "distribution": "Distributing",
+        "inception": "2018",
+        "indexTracked": "Actively managed (no benchmark index)",
+        "topHoldings": [],
+        "exchange": "Luxembourg (open-ended fund, daily NAV)"
+      },
       "fourCapitals": { "financial": 68, "environmental": 84, "social": 86, "network": 70 },
       "genderScore": "B",
       "sustainabilityScore": 89,

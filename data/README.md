@@ -9,6 +9,41 @@ Data layer for the **Explore** and **Basket** steps of the Robo Advisor flow.
 | `securities.json` | Close-to-real-life dataset. Real names / tickers / ISINs / sectors. Scores are **Money Tree-derived** (see below). Use in the real UI. |
 | `securities.mock.json` | Deterministic synthetic fixtures for tests & UI development. Includes edge cases (A+ and F gender, 0 and 100 sustainability). **Do not ship to production.** |
 | `securities.schema.json` | JSON Schema (draft 2020-12) describing one security record. Validate both datasets against it. |
+| `prices/<id>.json` | Per-security end-of-day price **snapshot** for the product-detail chart. Static — refreshed by running `scripts/fetch-prices.mjs`. See below. |
+
+## Price snapshots (`prices/<id>.json`)
+
+The product detail page draws its chart from a static price snapshot per security,
+keyed by the security `id`. We snapshot rather than call a price API at runtime so
+the shipped site stays pure vanilla, has no rate limits, and exposes no API key.
+
+```jsonc
+{
+  "id": "stock-microsoft",        // matches a securities.json id
+  "symbol": "MSFT",               // ticker (or ISIN) the series was fetched for
+  "currency": "USD",
+  "asOf": "2026-06-22",           // last close in the series
+  "source": "Twelve Data (EOD, delayed)",  // attribution; "placeholder" = synthetic
+  "sourceUrl": "https://twelvedata.com",   // optional — renders the source as a link
+  "placeholder": false,           // true → seeded preview data, not real prices
+  "series": [                     // oldest → newest
+    { "d": "2025-06-23", "c": 467.12 },
+    { "d": "2025-06-24", "c": 470.38 }
+  ]
+}
+```
+
+Regenerate the real snapshots by running, from the repo root, with a Twelve Data
+key in the environment:
+
+```bash
+TWELVE_DATA_API_KEY=xxxxx node scripts/fetch-prices.mjs
+```
+
+The script reads `securities.json`, fetches an EOD series per security, and writes
+`prices/<id>.json`. Until it is run, the seeded files carry `"placeholder": true`
+and the UI labels the chart as preview data. The script is a maintenance tool — it
+is **not** shipped to the browser.
 
 ## Regulatory note — IMPORTANT
 

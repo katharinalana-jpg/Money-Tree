@@ -60,6 +60,26 @@
         "sustainabilityScore": { "type": "integer", "minimum": 0, "maximum": 100 },
         "impact": { "enum": ["High", "Medium", "Low"] },
         "themes": { "type": "array", "items": { "type": "string" } },
+        "profile": {
+          "type": "object",
+          "description": "Optional descriptive investment criteria shown on the product detail page. Public-sourced facts; numeric snapshot fields (aum, marketCap, peRatio, dividendYield, week52*) are estimates to be replaced with a licensed feed before launch.",
+          "additionalProperties": false,
+          "properties": {
+            "aum": { "type": ["string", "null"], "description": "Assets under management as a display string, e.g. \"USD 1.2B\"." },
+            "replication": { "enum": ["Physical", "Physical (sampling)", "Synthetic", null] },
+            "domicile": { "type": ["string", "null"] },
+            "distribution": { "enum": ["Accumulating", "Distributing", null] },
+            "inception": { "type": ["string", "null"], "description": "Year or YYYY-MM." },
+            "indexTracked": { "type": ["string", "null"] },
+            "topHoldings": { "type": "array", "items": { "type": "string" } },
+            "exchange": { "type": ["string", "null"] },
+            "marketCap": { "type": ["string", "null"], "description": "Market capitalisation as a display string, e.g. \"USD 3.1T\"." },
+            "peRatio": { "type": ["number", "null"], "minimum": 0 },
+            "dividendYield": { "type": ["number", "null"], "minimum": 0, "description": "Percent, e.g. 1.8 for 1.8%." },
+            "week52Low": { "type": ["number", "null"], "minimum": 0 },
+            "week52High": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
         "facts": {
           "type": "object",
           "additionalProperties": false,

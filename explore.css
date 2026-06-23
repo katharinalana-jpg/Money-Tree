@@ -215,9 +215,13 @@
 
 .card__main { min-width: 0; }
 .card__name {
+  display: inline-block;
   font-size: 1.12rem; font-weight: 700; color: var(--ink);
   letter-spacing: -0.01em;
+  text-decoration: none;
 }
+.card__name:hover { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.card { cursor: pointer; }
 .card__meta { color: var(--ink-mute); font-size: 0.83rem; margin: 0.15rem 0 0.5rem; }
 .card__stats { color: var(--ink-soft); font-size: 0.83rem; }
 .card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }

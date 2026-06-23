@@ -270,7 +270,7 @@
 
       return `<li class="card ${inBasket ? "is-selected" : ""}" draggable="true" data-id="${s.id}">
         <div class="card__main">
-          <div class="card__name">${s.name}</div>
+          <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}">${s.name}</a>
           <div class="card__meta">${t().typeShort[s.type]} · ${s.region}${terStr}</div>
           <div class="card__stats">${s.facts && s.facts.esgHighlights && s.facts.esgHighlights[0] ? s.facts.esgHighlights[0] : s.description}</div>
           <div class="card__tags">${tags}</div>
@@ -288,6 +288,14 @@
 
     $$("#cards .addbtn").forEach((b) =>
       b.addEventListener("click", (e) => { e.stopPropagation(); toggleBasket(b.dataset.add); })
+    );
+    // clicking the card body opens its detail page; the + button and the
+    // name link handle their own clicks, and drags never fire a click.
+    $$("#cards .card").forEach((card) =>
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".addbtn") || e.target.closest(".card__name")) return;
+        location.href = "product.html?id=" + encodeURIComponent(card.dataset.id);
+      })
     );
     wireDragSources();
   }
