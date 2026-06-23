@@ -133,7 +133,9 @@
   /* gender letter grade → 0-100 (radar + sorting only) */
   const GENDER_NUM = { "A+": 100, A: 90, B: 78, C: 64, D: 50, E: 35, F: 15 };
   const IMPACT_NUM = { High: 3, Medium: 2, Low: 1 };
-  const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#1F3A2E", Fund: "#A8D5BA" };
+  // Stock was --forest (#1F3A2E) — invisible against the forest portfolio panel.
+  // Lifted to a brighter emerald that reads on both the cream basket and dark panel.
+  const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#2D6A4F", Fund: "#A8D5BA" };
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -359,14 +361,24 @@
       { key: "Fund", label: t().legendFund, val: counts.Fund, color: TYPE_SWATCH.Fund }
     ];
 
-    // donut: build-progress arc (matches "% built" in the mockup)
+    // donut: one equal slice per holding, coloured by type so the segments
+    // match the legend dots below. The filled portion = build progress; the
+    // remainder stays as the faint track (denominator caps at TARGET_SIZE).
     const R = 48, C = 60, circ = 2 * Math.PI * R;
-    const prog = (pct / 100) * circ;
+    const denom = Math.max(n, TARGET_SIZE);
+    let accFrac = 0;
+    const arcs = seg.filter((g) => g.val > 0).map((g) => {
+      const frac = g.val / denom;
+      const len = frac * circ;
+      const rot = -90 + accFrac * 360;
+      accFrac += frac;
+      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${g.color}" stroke-width="12"
+        stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}"
+        transform="rotate(${rot.toFixed(2)} ${C} ${C})"/>`;
+    }).join("");
     $("#donut").innerHTML = `
       <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="12"/>
-      <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="#A8D5BA" stroke-width="12"
-        stroke-linecap="round" stroke-dasharray="${prog.toFixed(1)} ${(circ - prog).toFixed(1)}"
-        transform="rotate(-90 ${C} ${C})"/>
+      ${arcs}
       <text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${pct}%</text>`;
 
     $("#portfolioLegend").innerHTML = seg.map((g) => {
