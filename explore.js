@@ -47,7 +47,7 @@
       legendStock: "Stocks",
       legendFund: "Funds",
       checkout: "Checkout",
-      disclaimer: "Not investment advice · Educational purposes only",
+      disclaimer: "This is not investment advice. Content is for educational purposes only.",
       remove: "Remove",
       add: "Add to basket",
       risk: { low: "lower risk", medium: "medium risk", high: "higher risk" },
@@ -84,7 +84,7 @@
       legendStock: "Aktien",
       legendFund: "Fonds",
       checkout: "Checkout",
-      disclaimer: "Keine Anlageberatung · Nur zu Bildungszwecken",
+      disclaimer: "Dies ist keine Anlageberatung. Die Inhalte dienen ausschließlich Bildungszwecken.",
       remove: "Entfernen",
       add: "Zum Basket hinzufügen",
       risk: { low: "Risiko niedrig", medium: "Risiko mittel", high: "Risiko höher" },
@@ -425,6 +425,7 @@
   function renderChrome() {
     $("#search").placeholder = t().searchPh;
     $("#sortLabel").textContent = t().sortLabel;
+    $("#resultsDisclaimer").textContent = t().disclaimer;
     const sort = $("#sort");
     const opts = [
       ["impact", t().sortImpact], ["sustainability", t().sortSustainability],

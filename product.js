@@ -177,11 +177,7 @@
     const area = `${padL},${(H - padB).toFixed(1)} ${line} ${(W - padR).toFixed(1)},${(H - padB).toFixed(1)}`;
     const lx = X(n - 1).toFixed(1), ly = Y(cs[n - 1]).toFixed(1);
     return `<svg class="linechart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t().priceTitle)}">
-      <defs><linearGradient id="lcFill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(78,140,106,0.28)"/>
-        <stop offset="100%" stop-color="rgba(78,140,106,0.02)"/>
-      </linearGradient></defs>
-      <polygon class="linechart__area" points="${area}" fill="url(#lcFill)"/>
+      <polygon class="linechart__area" points="${area}" fill="rgba(168,213,186,0.18)"/>
       <polyline class="linechart__line" points="${line}" fill="none" stroke="#4E8C6A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="${lx}" cy="${ly}" r="4" fill="#1F3A2E"/>
     </svg>`;

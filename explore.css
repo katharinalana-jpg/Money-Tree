@@ -147,6 +147,13 @@
   border: 0; background: none; outline: none;
   font-size: 0.98rem; color: var(--ink);
 }
+.results__disclaimer {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-mute);
+}
+
 .results__head {
   display: flex;
   align-items: baseline;

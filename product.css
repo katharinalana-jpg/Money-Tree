@@ -123,9 +123,9 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--marigold);
-  background: rgba(234, 162, 33, 0.12);
-  border: 1px solid rgba(234, 162, 33, 0.4);
+  color: var(--ink);
+  background: rgba(242, 201, 76, 0.18);
+  border: 1px solid rgba(242, 201, 76, 0.55);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
 }
@@ -140,7 +140,7 @@
 .pchart__price { font-size: 1.5rem; font-weight: 800; color: var(--ink); }
 .pchart__chg { font-size: 0.95rem; font-weight: 700; margin-left: 0.5rem; }
 .pchart__chg.is-up { color: var(--green); }
-.pchart__chg.is-down { color: #B4543B; }
+.pchart__chg.is-down { color: var(--ink-mute); }
 .pchart__period { font-size: 0.78rem; color: var(--ink-mute); }
 .linechart { width: 100%; height: auto; display: block; }
 
@@ -183,7 +183,7 @@
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem;
 }
-.factlist--watch .factlist__h { color: var(--marigold); }
+.factlist--watch .factlist__h { color: var(--ink-mute); }
 .factlist ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
 .factlist li {
   position: relative; padding-left: 1.1rem;
@@ -193,7 +193,7 @@
   content: ""; position: absolute; left: 0; top: 0.55em;
   width: 6px; height: 6px; border-radius: 999px; background: var(--green-line);
 }
-.factlist--watch li::before { background: var(--marigold); }
+.factlist--watch li::before { background: var(--yellow); }
 
 /* ── Holdings + related ───────────────────────────────────── */
 .holdings { display: flex; flex-wrap: wrap; gap: 0.5rem; }
