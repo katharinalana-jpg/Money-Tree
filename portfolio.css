@@ -1,0 +1,155 @@
+/* =============================================================
+   Portemonnaie — Portfolio review (Step "Portfolio").
+   Full-page review between Explore and Checkout: composition,
+   a big donut (100% invested) and the "Your impact" ESG panel.
+   Brand-only palette, pill CTA, 20px cards. Builds on
+   styles.css + explore.css tokens (reuses .flowsteps, the
+   flow-nav active underline, --green).
+   ============================================================= */
+
+.pf {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  padding-top: calc(var(--nav-h) + 2.6rem);
+  padding-bottom: 3rem;
+}
+
+/* ── Intro ────────────────────────────────────────────────── */
+.pf__intro { text-align: center; max-width: 640px; margin: 0 auto 2.8rem; }
+.pf__eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--green);
+}
+.pf__eyebrow::before {
+  content: ""; display: block;
+  width: 26px; height: 2px; margin: 0 auto 0.9rem;
+  background: var(--green); border-radius: 2px;
+}
+.pf__title {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: var(--forest);
+  margin: 0.7rem 0 0.5rem;
+}
+.pf__title .serif { font-weight: 400; }
+.pf__sub { color: var(--ink-mute); font-size: 1rem; }
+
+/* ── Stage: composition · donut · impact ──────────────────── */
+.pf__stage {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.pf__col { display: flex; flex-direction: column; gap: 1.4rem; }
+.pf__col--center { align-items: center; gap: 2rem; }
+.pf__col--left { align-items: stretch; }
+.pf__col--right { align-items: stretch; }
+
+/* Cards */
+.pf-card {
+  border-radius: var(--radius-card);
+  padding: 1.6rem 1.6rem 1.7rem;
+}
+.pf-comp {
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.pf-impact {
+  background: var(--cream);
+  border: 1px solid rgba(31,58,46,0.06);
+}
+.pf-card__eyebrow {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--green);
+  margin-bottom: 1.2rem;
+}
+.pf-card__eyebrow::before {
+  content: ""; width: 22px; height: 2px; background: var(--green); border-radius: 2px;
+}
+
+/* Composition rows */
+.pf-comp__list { display: flex; flex-direction: column; gap: 1.15rem; }
+.pf-comp__row { display: flex; align-items: center; gap: 0.8rem; }
+.pf-comp__swatch { width: 14px; height: 14px; border-radius: 4px; flex: none; }
+.pf-comp__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pf-comp__name { font-weight: 700; color: var(--ink); font-size: 1.05rem; }
+.pf-comp__sub { color: var(--ink-mute); font-size: 0.82rem; margin-top: 0.1rem; }
+.pf-comp__pct { font-weight: 700; color: var(--ink); font-size: 1.05rem; }
+
+/* Sticky note */
+.pf-note {
+  align-self: flex-start;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+}
+.pf-note__strong { font-weight: 700; color: var(--ink); }
+.pf-note__soft {
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: 1.15rem; color: var(--ink-soft);
+  margin-top: 0.1rem;
+}
+
+/* Donut */
+.pf-donut { width: min(340px, 72vw); }
+.pf-donut svg { width: 100%; height: auto; display: block; }
+.pf-donut__pct { fill: var(--forest); font-weight: 700; font-size: 42px; }
+.pf-donut__word {
+  fill: var(--ink-mute); font-size: 18px;
+  font-family: var(--ff-serif); font-style: italic;
+}
+.pf__cta { min-width: 260px; }
+.pf__cta.btn--primary {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #fff;
+}
+.pf__cta.btn--primary:hover { background: var(--ink); border-color: var(--ink); }
+
+/* Impact bars */
+.pf-bar + .pf-bar { margin-top: 1.3rem; }
+.pf-bar__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-size: 0.9rem; color: var(--ink-soft);
+  margin-bottom: 0.45rem;
+}
+.pf-bar__val { font-weight: 700; color: var(--ink); font-size: 1rem; }
+.pf-bar__track {
+  height: 7px; border-radius: 999px;
+  background: rgba(31,58,46,0.10);
+  overflow: hidden;
+}
+.pf-bar__fill { display: block; height: 100%; background: var(--green); border-radius: 999px; }
+
+/* ── Empty state ──────────────────────────────────────────── */
+.pf-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.pf-empty__title { font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+.pf-empty__sub { color: var(--ink-mute); margin: 0.5rem 0 1.4rem; }
+.pf-empty__cta {
+  background: var(--forest); border-color: var(--forest); color: #fff;
+}
+
+/* ── Disclaimer ───────────────────────────────────────────── */
+.pf__disclaimer {
+  text-align: center;
+  margin-top: 2.4rem;
+  color: var(--ink-mute);
+  font-size: 0.72rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pf__stage { grid-template-columns: 1fr; gap: 2rem; justify-items: center; }
+  .pf__col { width: min(420px, 100%); }
+  .pf__col--center { order: -1; }   /* donut first on mobile */
+  .pf-note { align-self: center; }
+}

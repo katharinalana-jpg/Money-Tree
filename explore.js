@@ -484,10 +484,11 @@
     });
     $("#sort").addEventListener("change", (e) => { filters.sort = e.target.value; renderCards(); });
     $("#checkoutBtn").addEventListener("click", () => {
-      // Phase 1: checkout is the informational hand-off step. The basket is
-      // already persisted in localStorage (pm_basket); checkout.js reads it.
+      // Proceed to the full-page Portfolio review (composition + impact),
+      // then on to Checkout. Basket is persisted in localStorage (pm_basket);
+      // portfolio.js reads it.
       if (!basket.length) return;
-      location.href = "checkout.html";
+      location.href = "portfolio.html";
     });
   }
 
