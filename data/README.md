@@ -64,6 +64,14 @@ the three `LU…` / tickerless funds keep placeholder snapshots). The European
 symbols/MICs currently set are **best-effort**; if one is skipped at fetch time,
 verify it against Twelve Data's `symbol_search` and adjust the `priceFeed`.
 
+> **TODO — real market data before launch.** All `prices/<id>.json` snapshots are
+> still `"placeholder": true` synthetic data. We have not yet run a real fetch:
+> `fetch-prices.mjs` needs a `TWELVE_DATA_API_KEY`, and the 10 European `priceFeed`
+> symbol/MIC hints are unverified guesses that must be confirmed against a live
+> feed. Open item: **either provision a Twelve Data API key and run the fetch, or
+> pick an alternative source for real stock price data** (and adjust the script
+> accordingly). Until then the product chart shows illustrative sample data only.
+
 ## Regulatory note — IMPORTANT
 
 This is a **financial-literacy** dataset, not investment advice.
