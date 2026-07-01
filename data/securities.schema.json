@@ -60,6 +60,16 @@
         "sustainabilityScore": { "type": "integer", "minimum": 0, "maximum": 100 },
         "impact": { "enum": ["High", "Medium", "Low"] },
         "themes": { "type": "array", "items": { "type": "string" } },
+        "priceFeed": {
+          "type": "object",
+          "description": "Optional hint for scripts/fetch-prices.mjs telling the price API which exchange-qualified listing to request. Omit for US listings (they resolve on a bare ticker) and for instruments with no exchange listing (open-ended funds).",
+          "required": ["symbol", "micCode"],
+          "additionalProperties": false,
+          "properties": {
+            "symbol": { "type": "string", "minLength": 1, "description": "Symbol as the price API knows it on the target exchange." },
+            "micCode": { "type": "string", "pattern": "^[A-Z0-9]{4}$", "description": "ISO 10383 MIC of the listing to fetch, e.g. XLON, XETR, XPAR, XCSE, XSWX." }
+          }
+        },
         "profile": {
           "type": "object",
           "description": "Optional descriptive investment criteria shown on the product detail page. Public-sourced facts; numeric snapshot fields (aum, marketCap, peRatio, dividendYield, week52*) are estimates to be replaced with a licensed feed before launch.",

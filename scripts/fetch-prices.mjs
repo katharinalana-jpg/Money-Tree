@@ -14,9 +14,14 @@
 
    Notes
    - Free Twelve Data tiers are rate-limited (≈8 calls/min) and are
-     strongest on US listings. Non-US tickers/ISINs may not resolve;
-     those securities are skipped and keep their existing snapshot.
-   - Data is delayed/EOD. Keep the "source" string for attribution.
+     strongest on US listings. Non-US listings need an exchange-qualified
+     symbol: set a "priceFeed": { "symbol", "micCode" } block on the
+     security in securities.json and we pass the MIC to the API. Anything
+     that still won't resolve is skipped and keeps its existing snapshot.
+   - The listing currency/exchange returned by the API is recorded on the
+     snapshot, so a non-USD line (e.g. a CHF/EUR share class) is labelled
+     correctly on the chart regardless of the dataset's nominal currency.
+   - Data is delayed/EOD. Keep the "source"/"sourceUrl" for attribution.
    ============================================================= */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -38,9 +43,10 @@ const ONLY = onlyArg > -1 ? process.argv[onlyArg + 1] : null;
 
 function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
-async function fetchSeries(symbol) {
+async function fetchSeries(symbol, micCode) {
   const url = new URL("https://api.twelvedata.com/time_series");
   url.searchParams.set("symbol", symbol);
+  if (micCode) url.searchParams.set("mic_code", micCode);
   url.searchParams.set("interval", "1day");
   url.searchParams.set("outputsize", String(OUTPUTSIZE));
   url.searchParams.set("order", "ASC");
@@ -51,7 +57,8 @@ async function fetchSeries(symbol) {
   if (body.status === "error" || !Array.isArray(body.values)) {
     throw new Error(body.message || `no series for ${symbol}`);
   }
-  return body.values.map((v) => ({ d: v.datetime, c: Number(Number(v.close).toFixed(2)) }));
+  const series = body.values.map((v) => ({ d: v.datetime, c: Number(Number(v.close).toFixed(2)) }));
+  return { series, meta: body.meta || {} };
 }
 
 async function main() {
@@ -66,16 +73,19 @@ async function main() {
 
   let ok = 0, skipped = 0;
   for (const s of securities) {
-    const symbol = s.ticker || s.isin;
+    const symbol = s.priceFeed?.symbol || s.ticker || s.isin;
+    const micCode = s.priceFeed?.micCode || null;
     if (!symbol) { console.warn(`- skip ${s.id}: no ticker/ISIN`); skipped++; continue; }
+    const label = micCode ? `${symbol}:${micCode}` : symbol;
 
     try {
-      const series = await fetchSeries(symbol);
+      const { series, meta } = await fetchSeries(symbol, micCode);
       if (!series.length) throw new Error("empty series");
       const snapshot = {
         id: s.id,
         symbol,
-        currency: s.currency,
+        exchange: meta.mic_code || micCode || null,
+        currency: meta.currency || s.currency,
         asOf: series[series.length - 1].d,
         source: SOURCE,
         sourceUrl: SOURCE_URL,
@@ -83,10 +93,10 @@ async function main() {
         series
       };
       await writeFile(join(OUT, `${s.id}.json`), JSON.stringify(snapshot, null, 2) + "\n");
-      console.log(`✓ ${s.id} (${symbol}) — ${series.length} points`);
+      console.log(`✓ ${s.id} (${label}) — ${series.length} points, ${snapshot.currency}`);
       ok++;
     } catch (err) {
-      console.warn(`- skip ${s.id} (${symbol}): ${err.message} — kept existing snapshot`);
+      console.warn(`- skip ${s.id} (${label}): ${err.message} — kept existing snapshot`);
       skipped++;
     }
     await sleep(THROTTLE_MS);

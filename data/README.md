@@ -20,8 +20,9 @@ the shipped site stays pure vanilla, has no rate limits, and exposes no API key.
 ```jsonc
 {
   "id": "stock-microsoft",        // matches a securities.json id
-  "symbol": "MSFT",               // ticker (or ISIN) the series was fetched for
-  "currency": "USD",
+  "symbol": "MSFT",               // symbol the series was fetched for
+  "exchange": "XNAS",             // MIC of the resolved listing (null if unknown)
+  "currency": "USD",              // listing currency reported by the API
   "asOf": "2026-06-22",           // last close in the series
   "source": "Twelve Data (EOD, delayed)",  // attribution; "placeholder" = synthetic
   "sourceUrl": "https://twelvedata.com",   // optional — renders the source as a link
@@ -41,9 +42,27 @@ TWELVE_DATA_API_KEY=xxxxx node scripts/fetch-prices.mjs
 ```
 
 The script reads `securities.json`, fetches an EOD series per security, and writes
-`prices/<id>.json`. Until it is run, the seeded files carry `"placeholder": true`
-and the UI labels the chart as preview data. The script is a maintenance tool — it
-is **not** shipped to the browser.
+`prices/<id>.json`. It records the listing **currency** and **exchange** the API
+actually returned (so a non-USD share class is labelled correctly), and writes
+`source` / `sourceUrl` so the product chart shows the provider as a clickable link.
+Until it is run, the seeded files carry `"placeholder": true` and the UI labels the
+chart as illustrative sample data. The script is a maintenance tool — it is **not**
+shipped to the browser.
+
+### Resolving non-US listings (`priceFeed`)
+
+Twelve Data resolves US tickers from a bare symbol, but European/UCITS listings
+need an exchange-qualified request. Set an optional `priceFeed` block on the
+security in `securities.json` and the script passes the MIC to the API:
+
+```jsonc
+"priceFeed": { "symbol": "INRG", "micCode": "XLON" }  // ISO 10383 MIC
+```
+
+Omit `priceFeed` for US listings and for open-ended funds (no exchange listing —
+the three `LU…` / tickerless funds keep placeholder snapshots). The European
+symbols/MICs currently set are **best-effort**; if one is skipped at fetch time,
+verify it against Twelve Data's `symbol_search` and adjust the `priceFeed`.
 
 ## Regulatory note — IMPORTANT
 

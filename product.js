@@ -29,6 +29,7 @@
       pricePeriod: "Last 12 months",
       previewBadge: "Preview data",
       priceSource: (src, asOf) => `Source: ${src} · as of ${asOf}`,
+      priceSample: "Illustrative sample data — not live market prices.",
       noPrice: "No price history available for this security yet.",
       capitalsTitle: "Four Capitals",
       capitals: { financial: "Financial", environmental: "Environmental", social: "Social", network: "Network" },
@@ -64,6 +65,7 @@
       pricePeriod: "Letzte 12 Monate",
       previewBadge: "Beispieldaten",
       priceSource: (src, asOf) => `Quelle: ${src} · Stand ${asOf}`,
+      priceSample: "Illustrative Beispieldaten — keine Live-Kurse.",
       noPrice: "Für dieses Wertpapier liegt noch kein Kursverlauf vor.",
       capitalsTitle: "Vier Kapitalien",
       capitals: { financial: "Finanzen", environmental: "Umwelt", social: "Soziales", network: "Netzwerk" },
@@ -194,10 +196,16 @@
     const cur = PRICES.currency || SEC.currency || "";
     const badge = PRICES.placeholder
       ? `<span class="pcard__badge">${t().previewBadge}</span>` : "";
-    const srcName = PRICES.source || "—";
-    const srcHtml = PRICES.sourceUrl
-      ? `<a class="pcard__srclink" href="${esc(PRICES.sourceUrl)}" target="_blank" rel="noopener">${esc(srcName)}</a>`
-      : esc(srcName);
+    let caption;
+    if (PRICES.placeholder) {
+      caption = t().priceSample;
+    } else {
+      const srcName = PRICES.source || "—";
+      const srcHtml = PRICES.sourceUrl
+        ? `<a class="pcard__srclink" href="${esc(PRICES.sourceUrl)}" target="_blank" rel="noopener">${esc(srcName)}</a>`
+        : esc(srcName);
+      caption = t().priceSource(srcHtml, esc(PRICES.asOf || "—"));
+    }
     return `
       <div class="pchart__head">
         <div class="pchart__now">
@@ -207,7 +215,7 @@
         <span class="pchart__period">${t().pricePeriod}</span>
       </div>
       ${lineChartSVG(s)}
-      <p class="pcard__caption">${t().priceSource(srcHtml, esc(PRICES.asOf || "—"))}</p>
+      <p class="pcard__caption">${caption}</p>
       ${badge}`;
   }
 

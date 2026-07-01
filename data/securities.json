@@ -74,6 +74,7 @@
       "sustainabilityScore": 76,
       "impact": "High",
       "themes": ["gender-diversity", "global-equity", "sustainability"],
+      "priceFeed": { "symbol": "GENDER", "micCode": "XSWX" },
       "facts": {
         "womenOnBoardPct": 42,
         "womenInLeadershipPct": 38,
@@ -179,6 +180,7 @@
       "sustainabilityScore": 92,
       "impact": "High",
       "themes": ["clean-energy", "climate", "global-equity"],
+      "priceFeed": { "symbol": "INRG", "micCode": "XLON" },
       "facts": {
         "womenOnBoardPct": 28,
         "womenInLeadershipPct": 22,
@@ -249,6 +251,7 @@
       "sustainabilityScore": 78,
       "impact": "Medium",
       "themes": ["esg", "global-equity", "core", "low-cost"],
+      "priceFeed": { "symbol": "MWOP", "micCode": "XPAR" },
       "facts": {
         "womenOnBoardPct": 34,
         "womenInLeadershipPct": 27,
@@ -284,6 +287,7 @@
       "sustainabilityScore": 82,
       "impact": "Medium",
       "themes": ["sri", "esg", "global-equity", "core"],
+      "priceFeed": { "symbol": "SUSW", "micCode": "XLON" },
       "facts": {
         "womenOnBoardPct": 35,
         "womenInLeadershipPct": 28,
@@ -319,6 +323,7 @@
       "sustainabilityScore": 80,
       "impact": "Medium",
       "themes": ["water", "infrastructure", "environment"],
+      "priceFeed": { "symbol": "IH2O", "micCode": "XLON" },
       "facts": {
         "womenOnBoardPct": 30,
         "womenInLeadershipPct": 24,
@@ -350,6 +355,7 @@
       "sustainabilityScore": 79,
       "impact": "High",
       "themes": ["gender-diversity", "consumer-staples", "sustainability"],
+      "priceFeed": { "symbol": "ULVR", "micCode": "XLON" },
       "facts": {
         "womenOnBoardPct": 45,
         "womenInLeadershipPct": 55,
@@ -381,6 +387,7 @@
       "sustainabilityScore": 93,
       "impact": "High",
       "themes": ["clean-energy", "offshore-wind", "climate"],
+      "priceFeed": { "symbol": "ORSTED", "micCode": "XCSE" },
       "facts": {
         "womenOnBoardPct": 38,
         "womenInLeadershipPct": 30,
@@ -412,6 +419,7 @@
       "sustainabilityScore": 90,
       "impact": "High",
       "themes": ["clean-energy", "wind", "industrials"],
+      "priceFeed": { "symbol": "VWS", "micCode": "XCSE" },
       "facts": {
         "womenOnBoardPct": 33,
         "womenInLeadershipPct": 25,
@@ -474,6 +482,7 @@
       "sustainabilityScore": 78,
       "impact": "High",
       "themes": ["gender-diversity", "consumer-staples"],
+      "priceFeed": { "symbol": "OR", "micCode": "XPAR" },
       "facts": {
         "womenOnBoardPct": 46,
         "womenInLeadershipPct": 53,
@@ -567,6 +576,7 @@
       "sustainabilityScore": 64,
       "impact": "Medium",
       "themes": ["consumer-discretionary", "apparel", "sustainability"],
+      "priceFeed": { "symbol": "ADS", "micCode": "XETR" },
       "facts": {
         "womenOnBoardPct": 33,
         "womenInLeadershipPct": 34,
