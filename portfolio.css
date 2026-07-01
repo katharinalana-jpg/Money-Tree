@@ -33,6 +33,16 @@
 }
 .pf__title .serif { font-weight: 400; }
 .pf__sub { color: var(--ink-mute); font-size: 1rem; }
+.pf__type {
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.6rem;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--cream);
+  border-radius: var(--radius);
+}
+.pf__type-name { font-weight: 700; color: var(--forest); font-size: 0.9rem; }
+.pf__type-mix { color: var(--ink-mute); font-size: 0.82rem; }
 
 /* ── Stage: composition · donut · impact ──────────────────── */
 .pf__stage {

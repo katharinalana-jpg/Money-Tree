@@ -193,30 +193,90 @@
   ];
 
   /* ===========================================================
-     SCORING — DEFERRED. Wired but not activated. See spec.
+     ARCHETYPES — four nature metaphors along a calm→bold risk axis.
+     Output stays at asset-class level (ETF / stocks / bonds) — a
+     MODEL portfolio, never a specific instrument. Fully bilingual.
+     =========================================================== */
+  const ARCH_ORDER = ["gaertnerin", "architektin", "seglerin", "bergsteigerin"];
+  const ARCHETYPES = {
+    gaertnerin: {
+      idx: 0,
+      name: { de: "die Gärtnerin", en: "the Gardener" },
+      alloc: { ETF: 60, Stock: 20, Bond: 20 },
+      quote: {
+        de: "Du lässt dein Geld ruhig gedeihen. Schritt für Schritt, mit Geduld und echter Wirkung.",
+        en: "You let your money grow calmly. Step by step, with patience and real impact."
+      },
+      caption: { de: "Ruhig wachsend, breit gestreut, wirkungsstark.", en: "Calmly growing, broadly diversified, impactful." },
+      strengths: { de: ["Geduld", "Beständigkeit", "Langfristiger Blick"], en: ["Patience", "Consistency", "A long-term view"] },
+      interests: { de: ["Nachhaltigkeit", "Stetiges Wachstum", "Sicherheit"], en: ["Sustainability", "Steady growth", "Security"] },
+      motives:   { de: ["Vorsorge", "Echte Wirkung", "Ruhe statt Risiko"], en: ["Provision", "Real impact", "Calm over risk"] }
+    },
+    architektin: {
+      idx: 1,
+      name: { de: "die Architektin", en: "the Architect" },
+      alloc: { ETF: 60, Stock: 30, Bond: 10 },
+      quote: {
+        de: "Du baust dein Vermögen mit Plan. Durchdacht, strukturiert, Stein auf Stein.",
+        en: "You build your wealth with a plan. Considered, structured, brick by brick."
+      },
+      caption: { de: "Strukturiert wachsend, klar geplant, solide.", en: "Structured growth, clearly planned, solid." },
+      strengths: { de: ["Struktur", "Weitblick", "Disziplin"], en: ["Structure", "Foresight", "Discipline"] },
+      interests: { de: ["Solide Werte", "Planbarkeit", "Qualität"], en: ["Solid assets", "Predictability", "Quality"] },
+      motives:   { de: ["Aufbau", "Kontrolle", "Langfristige Stabilität"], en: ["Building", "Control", "Long-term stability"] }
+    },
+    seglerin: {
+      idx: 2,
+      name: { de: "die Seglerin", en: "the Sailor" },
+      alloc: { ETF: 55, Stock: 40, Bond: 5 },
+      quote: {
+        de: "Du nutzt den Wind, wie er kommt. Beweglich, wach, mit Kurs auf Wachstum.",
+        en: "You use the wind as it comes. Agile, alert, on course for growth."
+      },
+      caption: { de: "Wachstumsstark, beweglich, chancenorientiert.", en: "Growth-oriented, agile, opportunity-driven." },
+      strengths: { de: ["Anpassungsfähigkeit", "Mut zur Bewegung", "Überblick"], en: ["Adaptability", "Courage to move", "Overview"] },
+      interests: { de: ["Wachstum", "Neue Chancen", "Dynamik"], en: ["Growth", "New opportunities", "Momentum"] },
+      motives:   { de: ["Vermögen mehren", "Freiheit", "Fortschritt"], en: ["Growing wealth", "Freedom", "Progress"] }
+    },
+    bergsteigerin: {
+      idx: 3,
+      name: { de: "die Bergsteigerin", en: "the Mountaineer" },
+      alloc: { ETF: 45, Stock: 50, Bond: 5 },
+      quote: {
+        de: "Du gehst für das große Ziel auch steile Wege. Mutig, ausdauernd, weit nach oben.",
+        en: "For the big goal you'll take steep paths too. Bold, enduring, reaching high."
+      },
+      caption: { de: "Chancenstark, ausdauernd, auf lange Sicht.", en: "High-opportunity, enduring, for the long climb." },
+      strengths: { de: ["Mut", "Ausdauer", "Nervenstärke"], en: ["Courage", "Endurance", "Steady nerves"] },
+      interests: { de: ["Langfristiges Wachstum", "Chancen", "Innovation"], en: ["Long-term growth", "Opportunity", "Innovation"] },
+      motives:   { de: ["Maximales Potenzial", "Unabhängigkeit", "Großes Ziel"], en: ["Maximum potential", "Independence", "A big goal"] }
+    }
+  };
+  // asset-class colours for the model-portfolio pie (match the app's type palette)
+  const CLASS_COLOR = { ETF: "#4E8C6A", Stock: "#1F3A2E", Bond: "#A8D5BA" };
+
+  /* ===========================================================
+     SCORING — maps the risk-bearing answers onto one of four bands.
+     risk = b2 + c1 + c2  (0..6), then c3 caps how high it may reach.
+     Uncertainty never pushes the band up (unsure answers weigh low).
      =========================================================== */
   function computeArchetype(answers) {
-    // TODO: ARCHETYPE — activate when the result copy per archetype is final.
-    //
-    // const optByVal = (id, val) =>
-    //   (SCREENS.find(s => s.id === id).options || []).find(o => o.value === val);
-    // const w = id => { const o = optByVal(id, answers[id]); return o && o.risk != null ? o.risk : 0; };
-    // const capOf = () => { const o = optByVal("c3", answers.c3); return o && o.cap != null ? o.cap : R.hoch; };
-    //
-    // let risk = w("b2") + w("c1") + w("c2");      // 0..6
-    // risk = Math.min(risk, capOf() * 3);          // c3 caps the band
-    //
-    // // Fallback: if the risk signal is largely missing (multiple unsure),
-    // // default to the lowest archetype. Never push up through uncertainty.
-    // const bands = [
-    //   { max: 1, key: "gaertnerin"  },   // die Gärtnerin
-    //   { max: 3, key: "seglerin"    },   // die Seglerin
-    //   { max: 5, key: "entdeckerin" },   // die Entdeckerin
-    //   { max: 6, key: "bergsteigerin" }  // die Bergsteigerin
-    // ];
-    // const band = bands.find(b => risk <= b.max) || bands[0];
-    // return { key: band.key, risk, tone: answers.c4, tags: answers.a2 || [] };
-    return null; // archetype intentionally not shown yet
+    const optByVal = (id, val) =>
+      (SCREENS.find(s => s.id === id).options || []).find(o => o.value === val);
+    const w = id => { const o = optByVal(id, answers[id]); return o && o.risk != null ? o.risk : 0; };
+    const capOf = () => { const o = optByVal("c3", answers.c3); return o && o.cap != null ? o.cap : R.hoch; };
+
+    let risk = w("b2") + w("c1") + w("c2");   // 0..6
+    risk = Math.min(risk, capOf() * 3);       // c3 caps the band
+
+    const bands = [
+      { max: 1, key: "gaertnerin" },
+      { max: 3, key: "architektin" },
+      { max: 5, key: "seglerin" },
+      { max: 6, key: "bergsteigerin" }
+    ];
+    const band = bands.find(b => risk <= b.max) || bands[0];
+    return { key: band.key, risk, tone: answers.c4, tags: answers.a2 || [] };
   }
 
   /* ---- state --------------------------------------------------- */
@@ -396,33 +456,159 @@
     mount(card, screen, { canNext: true });
   }
 
-  function renderResult(screen) {
+  function renderResult() {
     saveAnswers();
-    computeArchetype(state.answers); // deferred: returns null today
+    const res = computeArchetype(state.answers) || { key: "gaertnerin" };
+    const a = ARCHETYPES[res.key] || ARCHETYPES.gaertnerin;
+    // persist for downstream pages (Portfolio review reads pm_archetype)
+    try {
+      localStorage.setItem("pm_archetype", JSON.stringify({
+        v: 1, at: Date.now(), key: res.key, risk: res.risk,
+        name: a.name, alloc: a.alloc
+      }));
+    } catch (e) { /* storage may be blocked; non-fatal */ }
 
     const de = getLang() === "de";
-    const card = el("div", "quiz-result reveal-now");
-    card.appendChild(el("p", "quiz-eyebrow", de ? "Geschafft" : "All done"));
-    card.appendChild(el("h1", "quiz-result__title",
-      de ? "Dein Profil ist gespeichert." : "Your profile is saved."));
-    card.appendChild(el("p", "quiz-result__lede",
-      de
-        ? "Wir bereiten gerade deinen persönlichen Anlage-Archetyp und eine dazu passende Aufteilung auf Asset-Klassen-Ebene vor. Du bist auf dem Weg."
-        : "We're preparing your personal investor archetype and a matching split at the asset-class level. You're on your way."));
+    const L = de
+      ? { model: "Dein Musterportfolio", result: "Dein Ergebnis", you: "Du bist",
+          strengths: "Stärken", interests: "Interessen", motives: "Motive",
+          all: "Alle vier Typen", calm: "Ruhig", bold: "Mutig",
+          discover: "Portfolio entdecken", share: "Ergebnis teilen",
+          cls: { ETF: "ETFs", Stock: "Aktien", Bond: "Bonds" } }
+      : { model: "Your model portfolio", result: "Your result", you: "You are",
+          strengths: "Strengths", interests: "Interests", motives: "Motives",
+          all: "All four types", calm: "Calm", bold: "Bold",
+          discover: "Discover portfolio", share: "Share result",
+          cls: { ETF: "ETFs", Stock: "Stocks", Bond: "Bonds" } };
 
-    const cta = el("a", "btn btn--primary",
-      de ? "Zur Early-Access-Liste" : "Join the Early Access list");
-    cta.href = "index.html#signup";
-    card.appendChild(cta);
+    const card = el("div", "arch reveal-now");
 
-    card.appendChild(el("p", "quiz-disclaimer",
-      de
+    const legend = ["ETF", "Stock", "Bond"].map((k) =>
+      `<li class="arch-legend__row">
+        <span class="arch-legend__dot" style="background:${CLASS_COLOR[k]}"></span>
+        <span class="arch-legend__name">${L.cls[k]}</span>
+        <span class="arch-legend__pct">${a.alloc[k]}%</span>
+      </li>`).join("");
+
+    const dots = ARCH_ORDER.map((_, i) =>
+      `<span class="arch-slider__dot ${i === a.idx ? "is-on" : ""}"></span>`).join("");
+
+    const traitBlock = (label, items) =>
+      `<div class="arch-trait">
+        <p class="arch-trait__label">${label}</p>
+        <ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul>
+      </div>`;
+
+    const chips = ARCH_ORDER.map((k) => {
+      const on = k === res.key;
+      const check = on
+        ? `<svg class="arch-chip__check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+        : "";
+      return `<span class="arch-chip ${on ? "is-on" : ""}">${check}${ARCHETYPES[k].name[de ? "de" : "en"]}</span>`;
+    }).join("");
+
+    card.innerHTML = `
+      <div class="arch__grid">
+        <section class="arch-model" aria-label="${L.model}">
+          <p class="arch-eyebrow">${L.model}</p>
+          <div class="arch-pie">${pieSVG(a.alloc)}</div>
+          <ul class="arch-legend">${legend}</ul>
+          <div class="arch-slider">
+            <div class="arch-slider__scale">
+              <span>${L.calm}</span><span>${L.bold}</span>
+            </div>
+            <div class="arch-slider__track">
+              <span class="arch-slider__fill" style="width:${(a.idx / (ARCH_ORDER.length - 1)) * 100}%"></span>
+              ${dots}
+            </div>
+          </div>
+          <p class="arch-model__caption">${a.caption[de ? "de" : "en"]}</p>
+        </section>
+
+        <div class="arch-result">
+          <p class="arch-eyebrow">${L.result}</p>
+          <h1 class="arch-title">${L.you} <span class="arch-name">${a.name[de ? "de" : "en"]}.</span></h1>
+          <p class="arch-quote">&bdquo;${a.quote[de ? "de" : "en"]}&ldquo;</p>
+          <div class="arch-traits">
+            ${traitBlock(L.strengths, a.strengths[de ? "de" : "en"])}
+            ${traitBlock(L.interests, a.interests[de ? "de" : "en"])}
+            ${traitBlock(L.motives, a.motives[de ? "de" : "en"])}
+          </div>
+          <p class="arch-all__label">${L.all}</p>
+          <div class="arch-chips">${chips}</div>
+          <div class="arch-cta">
+            <a class="btn btn--primary arch-cta__go" href="explore.html">${L.discover}</a>
+            <button type="button" class="btn btn--ghost arch-cta__share" id="archShare">${L.share}</button>
+          </div>
+        </div>
+      </div>
+      <p class="quiz-disclaimer">${de
         ? "Dies ist keine Anlageberatung. Die Inhalte dienen ausschließlich Bildungszwecken."
-        : "This is not investment advice. Content is for educational purposes only."));
+        : "This is not investment advice. Content is for educational purposes only."}</p>
+      <div class="flowsteps" aria-hidden="true">${flowStepsHTML(de)}</div>`;
 
     stage.innerHTML = "";
     stage.appendChild(card);
     document.querySelector(".quiz-progress").style.visibility = "hidden";
+    setFlowNavActive("quiz.html#result");
+
+    const share = card.querySelector("#archShare");
+    if (share) share.addEventListener("click", () => shareResult(a, de));
+  }
+
+  /* model-portfolio pie (asset-class shares) */
+  function pieSVG(alloc) {
+    const segs = ["ETF", "Stock", "Bond"].map((k) => ({ k, val: alloc[k] }))
+      .filter((s) => s.val > 0);
+    const total = segs.reduce((n, s) => n + s.val, 0) || 1;
+    const cx = 90, cy = 90, r = 82;
+    let a0 = -Math.PI / 2;
+    const paths = segs.map((s) => {
+      const frac = s.val / total;
+      const a1 = a0 + frac * 2 * Math.PI;
+      const x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0);
+      const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+      const large = frac > 0.5 ? 1 : 0;
+      a0 = a1;
+      // full circle guard (single class = 100%)
+      if (frac >= 0.999) return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${CLASS_COLOR[s.k]}"/>`;
+      return `<path d="M${cx},${cy} L${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 ${large} 1 ${x1.toFixed(1)},${y1.toFixed(1)} Z" fill="${CLASS_COLOR[s.k]}"/>`;
+    }).join("");
+    return `<svg viewBox="0 0 180 180" role="img" aria-hidden="true">${paths}</svg>`;
+  }
+
+  function flowStepsHTML(de) {
+    const steps = de
+      ? ["Quiz", "Typ", "Entdecken", "Portfolio", "Checkout"]
+      : ["Quiz", "Type", "Explore", "Portfolio", "Checkout"];
+    return steps.map((name, i) => {
+      const cls = i < 1 ? "is-done" : (i === 1 ? "is-active" : "");
+      return `<div class="flowstep ${cls}">
+        <span class="flowstep__dot"></span><span class="flowstep__name">${name}</span>
+        ${i < steps.length - 1 ? '<span class="flowstep__line"></span>' : ""}
+      </div>`;
+    }).join("");
+  }
+
+  // reflect the current flow step in the (flow) nav
+  function setFlowNavActive(href) {
+    document.querySelectorAll(".nav__links--flow a[href], .nav__mobile a[href]").forEach((el2) => {
+      el2.classList.toggle("is-active", el2.getAttribute("href") === href);
+    });
+  }
+
+  function shareResult(a, de) {
+    const name = a.name[de ? "de" : "en"];
+    const text = de ? `Mein Portemonnaie-Typ: ${name}.` : `My Portemonnaie type: ${name}.`;
+    const url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: "Portemonnaie", text, url }).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(`${text} ${url}`).then(() => {
+        const btn = document.getElementById("archShare");
+        if (btn) btn.textContent = de ? "Link kopiert" : "Link copied";
+      }).catch(() => {});
+    }
   }
 
   /* ---- navigation chrome --------------------------------------- */

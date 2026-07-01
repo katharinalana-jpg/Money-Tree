@@ -35,6 +35,8 @@
       compEyebrow: "Composition",
       impactEyebrow: "Your impact",
       invested: "invested",
+      typePrefix: "Your type",
+      targetMix: "target mix",
       noteStrong: "You decide.",
       noteSoft: "We guide you.",
       checkout: "Checkout",
@@ -60,6 +62,8 @@
       compEyebrow: "Zusammensetzung",
       impactEyebrow: "Deine Wirkung",
       invested: "investiert",
+      typePrefix: "Dein Typ",
+      targetMix: "Zielmix",
       noteStrong: "Du entscheidest.",
       noteSoft: "Wir begleiten.",
       checkout: "Checkout",
@@ -103,6 +107,12 @@
   function loadBasket() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
     catch (e) { return []; }
+  }
+  // archetype (from the quiz "Typ" screen) — its model mix indicates how the
+  // portfolio is meant to look. Optional: null if the quiz wasn't taken.
+  function loadArchetype() {
+    try { return JSON.parse(localStorage.getItem("pm_archetype")) || null; }
+    catch (e) { return null; }
   }
 
   /* ── composition ────────────────────────────────────────── */
@@ -171,6 +181,20 @@
       bar(t().envLabel, envAvg, num(envAvg));
   }
 
+  /* ── archetype badge (type + its target mix) ────────────── */
+  function renderType() {
+    const box = $("#pfType");
+    if (!box) return;
+    const arch = loadArchetype();
+    if (!arch || !arch.name || !arch.alloc) { box.hidden = true; return; }
+    const name = arch.name[lang] || arch.name.en;
+    const a = arch.alloc;
+    const mix = `${t().typeLabel.ETF} ${a.ETF} · ${t().typeLabel.Stock} ${a.Stock} · Bonds ${a.Bond}`;
+    box.innerHTML = `<span class="pf__type-name">${esc(t().typePrefix)}: ${esc(name)}</span>` +
+      `<span class="pf__type-mix">${esc(t().targetMix)} · ${esc(mix)}</span>`;
+    box.hidden = false;
+  }
+
   /* ── flow steps ─────────────────────────────────────────── */
   function renderSteps() {
     $("#flowsteps").innerHTML = t().steps.map((name, i) => {
@@ -198,6 +222,7 @@
     $("#pfTitle").innerHTML = t().title;
     $("#pfSub").textContent = t().sub;
     $("#pfDisclaimer").textContent = t().disclaimer;
+    renderType();
     renderSteps();
 
     if (!ITEMS.length) { renderEmpty(); return; }

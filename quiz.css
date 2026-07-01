@@ -272,3 +272,164 @@
   .quiz-curve { width: 92px; height: 34px; }
   .quiz-stage { padding-top: 2rem; }
 }
+
+/* =============================================================
+   Archetype ("Typ") result screen — model portfolio + result.
+   Reuses the flow stepper / flow-nav styles from explore.css.
+   ============================================================= */
+.arch {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+  text-align: left;
+}
+.arch__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 2.6rem;
+  align-items: start;
+}
+
+.arch-eyebrow {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--green);
+  margin-bottom: 1.4rem;
+}
+.arch-eyebrow::before {
+  content: ""; width: 22px; height: 2px; background: var(--green); border-radius: 2px;
+}
+
+/* LEFT · model portfolio */
+.arch-model {
+  background: var(--bg-dark);
+  border-radius: var(--radius-card);
+  padding: 1.9rem 1.8rem 2rem;
+}
+.arch-pie { display: flex; justify-content: center; margin: 0.4rem 0 1.6rem; }
+.arch-pie svg { width: min(210px, 60%); height: auto; }
+
+.arch-legend { display: flex; flex-direction: column; gap: 0.85rem; max-width: 260px; margin: 0 auto; }
+.arch-legend__row { display: flex; align-items: center; gap: 0.7rem; }
+.arch-legend__dot { width: 13px; height: 13px; border-radius: 4px; flex: none; }
+.arch-legend__name { font-weight: 700; color: var(--ink); }
+.arch-legend__pct { margin-left: auto; font-weight: 700; color: var(--ink); }
+
+.arch-slider { max-width: 300px; margin: 1.8rem auto 1.2rem; }
+.arch-slider__scale {
+  display: flex; justify-content: space-between;
+  font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 0.6rem;
+}
+.arch-slider__track {
+  position: relative;
+  height: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.arch-slider__track::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  height: 3px; transform: translateY(-50%);
+  background: var(--line-strong); border-radius: 999px;
+}
+.arch-slider__fill {
+  position: absolute; left: 0; top: 50%;
+  height: 3px; transform: translateY(-50%);
+  background: var(--green); border-radius: 999px;
+}
+.arch-slider__dot {
+  position: relative;
+  width: 11px; height: 11px; border-radius: 999px;
+  background: var(--line-strong);
+}
+.arch-slider__dot.is-on {
+  width: 17px; height: 17px;
+  background: var(--forest);
+  box-shadow: 0 0 0 4px var(--bg-dark);
+}
+.arch-model__caption {
+  text-align: center;
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: 1.02rem; color: var(--ink-soft);
+  margin-top: 1rem;
+}
+
+/* RIGHT · result */
+.arch-title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--forest); line-height: 1.08;
+  margin-bottom: 1.1rem;
+}
+.arch-name {
+  font-family: var(--ff-serif); font-style: italic; font-weight: 400;
+  background: var(--sage);
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  padding: 0.05em 0.3em; border-radius: 6px;
+}
+.arch-quote {
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: 1.25rem; line-height: 1.5; color: var(--ink-soft);
+  margin-bottom: 1.8rem; max-width: 34rem;
+}
+
+.arch-traits {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+.arch-trait {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.1rem 1.2rem;
+}
+.arch-trait__label {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--green);
+  margin-bottom: 0.8rem;
+}
+.arch-trait__label::before {
+  content: ""; width: 16px; height: 2px; background: var(--green); border-radius: 2px;
+}
+.arch-trait ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.arch-trait li {
+  position: relative; padding-left: 1rem;
+  font-size: 0.92rem; color: var(--ink);
+}
+.arch-trait li::before {
+  content: ""; position: absolute; left: 0; top: 0.5em;
+  width: 6px; height: 6px; border-radius: 999px; background: var(--sage);
+}
+
+.arch-all__label { font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 0.7rem; }
+.arch-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.9rem; }
+.arch-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.45rem 0.95rem; border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  font-size: 0.86rem; font-weight: 500; color: var(--ink-soft);
+  background: var(--bg);
+}
+.arch-chip.is-on {
+  background: var(--sage); border-color: var(--sage);
+  color: var(--forest); font-weight: 700;
+}
+.arch-chip__check { width: 15px; height: 15px; }
+
+.arch-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+.arch-cta__go.btn--primary {
+  background: var(--forest); border-color: var(--forest); color: #fff;
+}
+.arch-cta__go.btn--primary:hover { background: var(--ink); border-color: var(--ink); }
+
+/* stepper spacing on the result screen */
+.arch + .quiz-disclaimer { text-align: center; }
+.quiz-result .flowsteps,
+.arch .flowsteps { margin-top: 2.4rem; }
+
+@media (max-width: 860px) {
+  .arch__grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .arch-model { order: 2; }
+  .arch-quote { font-size: 1.1rem; }
+}
+@media (max-width: 560px) {
+  .arch-traits { grid-template-columns: 1fr; }
+}
