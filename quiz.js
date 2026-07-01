@@ -683,15 +683,34 @@
     return svg;
   }
 
+  // Jump straight to the archetype result — powers the "Type" nav tab and
+  // lets you re-see your result without re-answering. If the quiz was taken
+  // before, the saved answers drive the archetype; otherwise it falls back
+  // to the lowest-risk default so the downstream flow is still reachable.
+  function jumpToResult() {
+    if (location.hash !== "#result") return false;
+    try {
+      const saved = JSON.parse(localStorage.getItem("pm_quiz_answers"));
+      if (saved && saved.answers) state.answers = saved.answers;
+    } catch (e) { /* ignore */ }
+    state.i = SCREENS.findIndex((s) => s.type === "result");
+    render();
+    window.scrollTo(0, 0);
+    return true;
+  }
+
   /* ---- boot ---------------------------------------------------- */
   function boot() {
     stage = document.getElementById("quizStage");
     bar = document.querySelector(".quiz-progress__bar");
     progressLabel = document.querySelector(".quiz-progress__label");
     if (!stage) return;
-    render();
+    // deep-link: quiz.html#result shows the archetype immediately
+    if (!jumpToResult()) render();
     // re-render on language switch (i18n.js dispatches this)
     document.addEventListener("pm:langchange", render);
+    // in-page nav to #result (e.g. the "Type" tab) jumps to the result
+    window.addEventListener("hashchange", jumpToResult);
   }
 
   if (document.readyState === "loading") {
