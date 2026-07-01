@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portemonnaie.finance/data/securities.schema.json",
+  "title": "Money Tree securities dataset",
+  "type": "object",
+  "required": ["meta", "securities"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "generated", "disclaimer"],
+      "additionalProperties": true,
+      "properties": {
+        "version": { "type": "string" },
+        "generated": { "type": "string" },
+        "disclaimer": { "type": "string" },
+        "dataNote": { "type": "string" },
+        "scoringSystem": { "type": "object" }
+      }
+    },
+    "securities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/security" }
+    }
+  },
+  "$defs": {
+    "security": {
+      "type": "object",
+      "required": [
+        "id", "name", "ticker", "isin", "type", "assetClass",
+        "sector", "region", "currency", "ter", "description",
+        "fourCapitals", "genderScore", "sustainabilityScore", "impact",
+        "themes", "facts", "asOf"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "ticker": { "type": ["string", "null"] },
+        "isin": { "type": ["string", "null"], "pattern": "^[A-Z]{2}[A-Z0-9]{9}[0-9]$" },
+        "type": { "enum": ["ETF", "Stock", "Fund"] },
+        "assetClass": { "type": "string" },
+        "sector": { "type": "string" },
+        "region": { "type": "string" },
+        "currency": { "type": "string" },
+        "ter": { "type": ["number", "null"], "minimum": 0 },
+        "description": { "type": "string" },
+        "fourCapitals": {
+          "type": "object",
+          "required": ["financial", "environmental", "social", "network"],
+          "additionalProperties": false,
+          "properties": {
+            "financial": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "environmental": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "social": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "network": { "type": "integer", "minimum": 0, "maximum": 100 }
+          }
+        },
+        "genderScore": { "enum": ["A+", "A", "B", "C", "D", "E", "F"] },
+        "sustainabilityScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "impact": { "enum": ["High", "Medium", "Low"] },
+        "themes": { "type": "array", "items": { "type": "string" } },
+        "priceFeed": {
+          "type": "object",
+          "description": "Optional hint for scripts/fetch-prices.mjs telling the price API which exchange-qualified listing to request. Omit for US listings (they resolve on a bare ticker) and for instruments with no exchange listing (open-ended funds).",
+          "required": ["symbol", "micCode"],
+          "additionalProperties": false,
+          "properties": {
+            "symbol": { "type": "string", "minLength": 1, "description": "Symbol as the price API knows it on the target exchange." },
+            "micCode": { "type": "string", "pattern": "^[A-Z0-9]{4}$", "description": "ISO 10383 MIC of the listing to fetch, e.g. XLON, XETR, XPAR, XCSE, XSWX." }
+          }
+        },
+        "profile": {
+          "type": "object",
+          "description": "Optional descriptive investment criteria shown on the product detail page. Public-sourced facts; numeric snapshot fields (aum, marketCap, peRatio, dividendYield, week52*) are estimates to be replaced with a licensed feed before launch.",
+          "additionalProperties": false,
+          "properties": {
+            "aum": { "type": ["string", "null"], "description": "Assets under management as a display string, e.g. \"USD 1.2B\"." },
+            "replication": { "enum": ["Physical", "Physical (sampling)", "Synthetic", null] },
+            "domicile": { "type": ["string", "null"] },
+            "distribution": { "enum": ["Accumulating", "Distributing", null] },
+            "inception": { "type": ["string", "null"], "description": "Year or YYYY-MM." },
+            "indexTracked": { "type": ["string", "null"] },
+            "topHoldings": { "type": "array", "items": { "type": "string" } },
+            "exchange": { "type": ["string", "null"] },
+            "marketCap": { "type": ["string", "null"], "description": "Market capitalisation as a display string, e.g. \"USD 3.1T\"." },
+            "peRatio": { "type": ["number", "null"], "minimum": 0 },
+            "dividendYield": { "type": ["number", "null"], "minimum": 0, "description": "Percent, e.g. 1.8 for 1.8%." },
+            "week52Low": { "type": ["number", "null"], "minimum": 0 },
+            "week52High": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "womenOnBoardPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "womenInLeadershipPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "esgHighlights": { "type": "array", "items": { "type": "string" } },
+            "controversies": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "asOf": { "type": "string" }
+      }
+    }
+  }
+}

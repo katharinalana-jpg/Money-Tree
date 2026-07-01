@@ -119,11 +119,10 @@ Use instead of "robo-advisor":
 # BRAND PHRASES
 
 ## Primary Tagline
-"Investing, but make it yours."
+"Invest in what you believe in."
 
 Rules:
-- "yours" italic
-- Keep punctuation exactly
+- Keep punctuation exactly (trailing period)
 - Never rewrite
 
 ## Signature

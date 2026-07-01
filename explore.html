@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore ETFs, stocks and funds ranked by a sustainability score and a gender score, then build your basket — Portemonnaie." />
+  <title>Explore — Portemonnaie</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
+
+  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="explore.css?v=4" />
+</head>
+<body class="explore-body">
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html#top">
+      <img src="brand/logos/MAIN_logomark_wallet_color.png" alt="" class="nav__brand-mark" />
+      <span class="nav__brand-text">
+        Portemonnaie
+        <small>Finance</small>
+      </span>
+    </a>
+    <nav class="nav__links nav__links--flow" aria-label="Primary">
+      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
+      <a href="explore.html" class="is-active" data-i18n="nav.explore">Explore</a>
+      <a href="explore.html#basket" data-i18n="nav.portfolio">Portfolio</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+    </nav>
+    <button class="nav__toggle" aria-label="Open menu" data-i18n-aria="nav.menu_aria" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
+      <a href="explore.html#basket" data-i18n="nav.portfolio">Portfolio</a>
+      <div class="nav__lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="explore" id="top">
+    <div class="explore__grid">
+
+      <!-- LEFT: filters -->
+      <aside class="filters" id="filters" aria-label="Filters">
+        <noscript>This page needs JavaScript enabled.</noscript>
+      </aside>
+
+      <!-- MIDDLE: results -->
+      <section class="results" aria-label="Results">
+        <div class="searchbar">
+          <svg class="searchbar__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="search" autocomplete="off" />
+        </div>
+
+        <div class="results__head">
+          <h1 class="results__title" id="resultsTitle"></h1>
+          <span class="results__count" id="resultsCount"></span>
+          <div class="results__sort">
+            <label class="sr-only" for="sort" id="sortLabel"></label>
+            <select id="sort"></select>
+          </div>
+        </div>
+
+        <ul class="cards" id="cards"></ul>
+        <p class="results__disclaimer" id="resultsDisclaimer"></p>
+      </section>
+
+      <!-- RIGHT: basket + portfolio -->
+      <aside class="sidebar" id="basketCol" aria-label="Your basket">
+        <div class="basket" id="basket">
+          <p class="basket__eyebrow" id="basketEyebrow"></p>
+          <h2 class="basket__title" id="basketTitle"></h2>
+          <p class="basket__sub" id="basketSub"></p>
+          <ul class="basket__list" id="basketList"></ul>
+        </div>
+
+        <div class="autofill" id="autofill"></div>
+
+        <div class="portfolio" id="portfolio">
+          <h2 class="portfolio__title" id="portfolioTitle"></h2>
+          <p class="portfolio__progress" id="portfolioProgress"></p>
+          <div class="portfolio__chart">
+            <svg class="donut" viewBox="0 0 120 120" id="donut" aria-hidden="true"></svg>
+            <ul class="portfolio__legend" id="portfolioLegend"></ul>
+          </div>
+          <button type="button" class="btn btn--primary portfolio__cta" id="checkoutBtn"></button>
+          <p class="portfolio__disclaimer" id="portfolioDisclaimer"></p>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- bottom flow steps -->
+    <div class="flowsteps" id="flowsteps" aria-hidden="true"></div>
+  </main>
+
+  <script src="i18n.js?v=14"></script>
+  <script src="script.js?v=4"></script>
+  <script src="explore.js?v=4"></script>
+</body>
+</html>
