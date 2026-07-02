@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Product detail — investment criteria, scores and price history for an ETF, stock or fund on Portemonnaie." />
-  <title>Product — Portemonnaie</title>
+  <meta name="description" content="The last step — choose how you invest: open a depot yourself with a broker, or get personal guidance from a wealth manager. Informational hand-off, not investment advice." />
+  <title>Checkout — Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +13,9 @@
 
   <link rel="stylesheet" href="styles.css?v=8" />
   <link rel="stylesheet" href="explore.css?v=5" />
-  <link rel="stylesheet" href="product.css?v=4" />
+  <link rel="stylesheet" href="checkout.css?v=1" />
 </head>
-<body class="explore-body">
+<body class="explore-body checkout-body">
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -29,8 +29,8 @@
     <nav class="nav__links nav__links--flow" aria-label="Primary">
       <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
       <a href="quiz.html#result" data-i18n="nav.type">Type</a>
-      <a href="explore.html" class="is-active" data-i18n="nav.explore">Explore</a>
-      <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
+      <a href="portfolio.html" class="is-active" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -51,12 +51,27 @@
     </div>
   </header>
 
-  <main class="product" id="product">
+  <main class="checkout" id="top">
     <noscript>This page needs JavaScript enabled.</noscript>
+
+    <header class="checkout__intro">
+      <p class="checkout__eyebrow" id="ckEyebrow"></p>
+      <h1 class="checkout__title" id="ckTitle"></h1>
+      <p class="checkout__sub" id="ckSub"></p>
+      <p class="checkout__summary" id="ckSummary"></p>
+    </header>
+
+    <div class="paths" id="paths"></div>
+
+    <p class="checkout__foot" id="ckFoot"></p>
+    <p class="checkout__disclaimer" id="ckDisclaimer"></p>
+
+    <!-- bottom flow steps -->
+    <div class="flowsteps" id="flowsteps" aria-hidden="true"></div>
   </main>
 
   <script src="i18n.js?v=14"></script>
   <script src="script.js?v=4"></script>
-  <script src="product.js?v=5"></script>
+  <script src="checkout.js?v=1"></script>
 </body>
 </html>

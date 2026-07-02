@@ -46,6 +46,9 @@
       legendEtf: "ETFs",
       legendStock: "Stocks",
       legendFund: "Funds",
+      impactHead: "Your impact",
+      susLabel: "Sustainability score",
+      genLabel: "Gender score",
       checkout: "Checkout",
       disclaimer: "This is not investment advice. Content is for educational purposes only.",
       remove: "Remove",
@@ -83,6 +86,9 @@
       legendEtf: "ETFs",
       legendStock: "Aktien",
       legendFund: "Fonds",
+      impactHead: "Deine Wirkung",
+      susLabel: "Nachhaltigkeits-Score",
+      genLabel: "Gender-Score",
       checkout: "Checkout",
       disclaimer: "Dies ist keine Anlageberatung. Die Inhalte dienen ausschließlich Bildungszwecken.",
       remove: "Entfernen",
@@ -390,10 +396,37 @@
       </li>`;
     }).join("");
 
+    renderImpact(items);
+
     const btn = $("#checkoutBtn");
     btn.textContent = t().checkout;
     btn.disabled = n === 0;
     $("#portfolioDisclaimer").textContent = t().disclaimer;
+  }
+
+  /* ── portfolio impact (aggregate scores) ────────────────── */
+  // Averages the basket's factual sustainability + gender scores onto a 0–10
+  // scale. Educational aggregate only — never a buy/sell signal.
+  function renderImpact(items) {
+    const box = $("#portfolioImpact");
+    if (!box) return;
+    const n = items.length;
+    if (!n) { box.innerHTML = ""; return; }
+
+    const susAvg = items.reduce((a, s) => a + s.sustainabilityScore, 0) / n; // 0–100
+    const genAvg = items.reduce((a, s) => a + GENDER_NUM[s.genderScore], 0) / n; // 0–100
+    const num = (v) => (v / 10).toFixed(1).replace(".", lang === "de" ? "," : ".");
+
+    const bar = (label, pct, val) => `
+      <div class="impactbar">
+        <div class="impactbar__head"><span>${label}</span><span class="impactbar__val">${val}</span></div>
+        <div class="impactbar__track"><span class="impactbar__fill" style="width:${pct.toFixed(0)}%"></span></div>
+      </div>`;
+
+    box.innerHTML = `
+      <p class="portfolio__impacthead">${t().impactHead}</p>
+      ${bar(t().susLabel, susAvg, num(susAvg))}
+      ${bar(t().genLabel, genAvg, num(genAvg))}`;
   }
 
   /* ── drag & drop ────────────────────────────────────────── */
@@ -451,8 +484,11 @@
     });
     $("#sort").addEventListener("change", (e) => { filters.sort = e.target.value; renderCards(); });
     $("#checkoutBtn").addEventListener("click", () => {
-      // Phase 1: checkout is the hand-off step; keep it informational, never advice.
-      alert(t().disclaimer);
+      // Proceed to the full-page Portfolio review (composition + impact),
+      // then on to Checkout. Basket is persisted in localStorage (pm_basket);
+      // portfolio.js reads it.
+      if (!basket.length) return;
+      location.href = "portfolio.html";
     });
   }
 

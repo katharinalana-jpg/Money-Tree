@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Product detail — investment criteria, scores and price history for an ETF, stock or fund on Portemonnaie." />
-  <title>Product — Portemonnaie</title>
+  <meta name="description" content="Your portfolio, fully built — see its composition and your impact (sustainability, gender and environmental scores) before you choose how to invest. Portemonnaie." />
+  <title>Your Portfolio — Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +13,9 @@
 
   <link rel="stylesheet" href="styles.css?v=8" />
   <link rel="stylesheet" href="explore.css?v=5" />
-  <link rel="stylesheet" href="product.css?v=4" />
+  <link rel="stylesheet" href="portfolio.css?v=2" />
 </head>
-<body class="explore-body">
+<body class="explore-body portfolio-body">
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -29,8 +29,8 @@
     <nav class="nav__links nav__links--flow" aria-label="Primary">
       <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
       <a href="quiz.html#result" data-i18n="nav.type">Type</a>
-      <a href="explore.html" class="is-active" data-i18n="nav.explore">Explore</a>
-      <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
+      <a href="portfolio.html" class="is-active" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -51,12 +51,54 @@
     </div>
   </header>
 
-  <main class="product" id="product">
+  <main class="pf" id="top">
     <noscript>This page needs JavaScript enabled.</noscript>
+
+    <header class="pf__intro">
+      <p class="pf__eyebrow" id="pfEyebrow"></p>
+      <h1 class="pf__title" id="pfTitle"></h1>
+      <p class="pf__sub" id="pfSub"></p>
+      <p class="pf__type" id="pfType" hidden></p>
+    </header>
+
+    <div class="pf__stage" id="pfStage">
+      <!-- LEFT: composition + sticky note -->
+      <div class="pf__col pf__col--left">
+        <section class="pf-card pf-comp" aria-label="Composition">
+          <p class="pf-card__eyebrow" id="compEyebrow"></p>
+          <ul class="pf-comp__list" id="compList"></ul>
+        </section>
+        <div class="pf-note">
+          <p class="pf-note__strong" id="noteStrong"></p>
+          <p class="pf-note__soft" id="noteSoft"></p>
+        </div>
+      </div>
+
+      <!-- CENTER: donut + checkout -->
+      <div class="pf__col pf__col--center">
+        <div class="pf-donut">
+          <svg viewBox="0 0 240 240" id="pfDonut" aria-hidden="true"></svg>
+        </div>
+        <button type="button" class="btn btn--primary pf__cta" id="pfCheckout"></button>
+      </div>
+
+      <!-- RIGHT: impact / ESG -->
+      <div class="pf__col pf__col--right">
+        <section class="pf-card pf-impact" aria-label="Your impact">
+          <p class="pf-card__eyebrow" id="impactEyebrow"></p>
+          <div id="impactList"></div>
+        </section>
+      </div>
+    </div>
+
+    <p class="pf__disclaimer" id="pfDisclaimer"></p>
+
+    <!-- bottom flow steps -->
+    <div class="flowsteps" id="flowsteps" aria-hidden="true"></div>
   </main>
 
   <script src="i18n.js?v=14"></script>
   <script src="script.js?v=4"></script>
-  <script src="product.js?v=5"></script>
+  <script src="portfolio.js?v=2"></script>
 </body>
 </html>

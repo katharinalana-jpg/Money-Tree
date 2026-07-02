@@ -12,24 +12,25 @@
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
   <link rel="stylesheet" href="styles.css?v=8" />
-  <link rel="stylesheet" href="quiz.css?v=6" />
+  <link rel="stylesheet" href="explore.css?v=5" />
+  <link rel="stylesheet" href="quiz.css?v=7" />
 </head>
 <body>
 
   <!-- NAV -->
   <header class="nav" id="nav">
-    <a class="nav__brand" href="index.html">
+    <a class="nav__brand" href="index.html#top">
       <img src="brand/logos/MAIN_logomark_wallet_color.png" alt="" class="nav__brand-mark" />
       <span class="nav__brand-text">
         Portemonnaie
         <small>Finance</small>
       </span>
     </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
-      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+    <nav class="nav__links nav__links--flow" aria-label="Primary">
+      <a href="quiz.html" class="is-active" data-i18n="nav.quiz">Quiz</a>
+      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
+      <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -39,10 +40,10 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
-      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
+      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
+      <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -71,8 +72,8 @@
     </div>
   </main>
 
-  <script src="i18n.js?v=13"></script>
+  <script src="i18n.js?v=14"></script>
   <script src="script.js?v=4"></script>
-  <script src="quiz.js?v=3"></script>
+  <script src="quiz.js?v=5"></script>
 </body>
 </html>
