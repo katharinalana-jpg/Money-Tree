@@ -15,7 +15,7 @@ a vanilla HTML/CSS/JS site (Phase 1) — **no npm, no framework**.
 
 ## Steps
 
-1. **Model on an existing page.** Read `landing_calculator.html` as the template
+1. **Model on an existing page.** Read `index.html` as the template
    — it has the canonical `<head>`, `.nav` (desktop + mobile), `<main>`, and
    `.footer`. Copy that structure; do not invent new nav/footer markup.
 

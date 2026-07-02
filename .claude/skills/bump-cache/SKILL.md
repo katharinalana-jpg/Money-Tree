@@ -18,7 +18,7 @@ returning visitors keep the stale file.
 ## When to run
 After editing any of:
 - **Shared**: `styles.css`, `i18n.js`, `script.js` — referenced by *most* pages.
-- **Page assets**: `calculator.css` / `calculator.js` (index, landing_calculator),
+- **Page assets**: `calculator.css` / `calculator.js` (index),
   `quiz.css` / `quiz.js` (quiz.html).
 
 ## Workflow
