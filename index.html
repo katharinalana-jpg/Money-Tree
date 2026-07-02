@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -241,34 +241,13 @@
             <div class="macbook__lid">
               <div class="macbook__bezel">
                 <div class="macbook__notch"></div>
-                <div class="macbook__screen">
-                  <div class="mock__topbar">
-                    <span></span><span></span><span></span>
-                    <span class="mock__url">portemonnaie.finance/dashboard</span>
-                  </div>
-                  <div class="mock__dash">
-                    <div class="mock__side">
-                      <span class="mock__logo">Portemonnaie</span>
-                      <span class="mock__item mock__item--active">Dashboard</span>
-                      <span class="mock__item">Advisor</span>
-                      <span class="mock__item">Academy</span>
-                      <span class="mock__item">Community</span>
-                      <span class="mock__item">Barometer</span>
-                      <span class="mock__item">Shop</span>
-                    </div>
-                    <div class="mock__main">
-                      <div class="mock__card mock__card--hero">
-                        <span class="mock__label">Your portfolio</span>
-                        <span class="mock__val">€ 12,480</span>
-                        <span class="mock__delta">+ 4.2% this month</span>
-                      </div>
-                      <div class="mock__row">
-                        <div class="mock__card"><span>Gender score</span><strong>A+</strong></div>
-                        <div class="mock__card"><span>Sustainability</span><strong>92</strong></div>
-                        <div class="mock__card"><span>Impact</span><strong>High</strong></div>
-                      </div>
-                      <div class="mock__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
+                <div class="macbook__screen macbook__screen--show">
+                  <div class="mshow mshow--laptop" data-mshow-laptop>
+                    <img class="mshow__img is-active" data-idx="0" src="img/mockups/quiz.png?v=1" alt="Portemonnaie guided flow — values and risk quiz" loading="lazy" />
+                    <img class="mshow__img" data-idx="1" src="img/mockups/typ.png?v=1" alt="Portemonnaie guided flow — investor archetype result" loading="lazy" />
+                    <img class="mshow__img" data-idx="2" src="img/mockups/explore.png?v=1" alt="Portemonnaie guided flow — explore and basket builder" loading="lazy" />
+                    <img class="mshow__img" data-idx="3" src="img/mockups/portfolio.png?v=1" alt="Portemonnaie guided flow — portfolio summary" loading="lazy" />
+                    <img class="mshow__img" data-idx="4" src="img/mockups/execute.png?v=1" alt="Portemonnaie guided flow — choose your path" loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -294,22 +273,67 @@
                     <i class="ios-bat"></i>
                   </span>
                 </div>
-                <p class="mock__phone-eyebrow">Today</p>
-                <p class="mock__phone-title">Good morning,<br/>Amelie.</p>
-                <div class="mock__phone-card">
-                  <span>Balance</span>
-                  <strong>€ 12,480</strong>
-                  <em>+ €53 today</em>
-                </div>
-                <div class="mock__phone-list">
-                  <span>Academy. Lesson 04</span>
-                  <span>Community. New thread</span>
-                  <span>Barometer. Weekly</span>
+                <div class="mshow mshow--phone" data-mshow-phone>
+                  <!-- Quiz -->
+                  <div class="pslide is-active" data-idx="0">
+                    <span class="ps__eyebrow">Deine Ziele · 2 / 6</span>
+                    <div class="ps__bar"><i></i></div>
+                    <h4 class="ps__title">Welche UN-Ziele sind dir <em>am wichtigsten?</em></h4>
+                    <div class="ps__opt ps__opt--on"><span class="ps__check"></span>Geschlechtergleichheit</div>
+                    <div class="ps__opt ps__opt--on"><span class="ps__check"></span>Klimaschutz</div>
+                    <div class="ps__opt"><span class="ps__dot"></span>Saubere Energie</div>
+                    <button class="ps__btn" type="button" tabindex="-1">Weiter</button>
+                  </div>
+                  <!-- Typ / Archetype -->
+                  <div class="pslide" data-idx="1">
+                    <span class="ps__eyebrow">Dein Ergebnis</span>
+                    <h4 class="ps__title">Du bist <em class="ps__hl">die Gärtnerin.</em></h4>
+                    <div class="ps__pie"></div>
+                    <ul class="ps__legend">
+                      <li><i style="background:var(--sage)"></i>ETFs<b>60%</b></li>
+                      <li><i style="background:var(--forest)"></i>Aktien<b>20%</b></li>
+                      <li><i style="background:#CBE6D5"></i>Bonds<b>20%</b></li>
+                    </ul>
+                  </div>
+                  <!-- Entdecken / Explore -->
+                  <div class="pslide" data-idx="2">
+                    <div class="ps__search">Suche nach ETFs und Bonds…</div>
+                    <span class="ps__eyebrow">ETFs &amp; Fonds · 5</span>
+                    <div class="ps__row"><div><b>Global Equality ETF</b><span>Aktien-ETF · Welt</span></div><span class="ps__score">8.7</span></div>
+                    <div class="ps__row"><div><b>Climate Leaders ETF</b><span>Aktien-ETF · Industrie</span></div><span class="ps__score">9.2</span></div>
+                    <div class="ps__row"><div><b>Diversity Champions</b><span>Aktien-ETF · Welt</span></div><span class="ps__score">7.6</span></div>
+                    <div class="ps__basket">Dein Basket · 3 von 5</div>
+                  </div>
+                  <!-- Portfolio -->
+                  <div class="pslide" data-idx="3">
+                    <span class="ps__eyebrow">Dein Portfolio ist bereit</span>
+                    <div class="ps__donut"><span>100%</span></div>
+                    <ul class="ps__legend">
+                      <li><i style="background:var(--sage)"></i>ETFs<b>60%</b></li>
+                      <li><i style="background:var(--forest)"></i>Aktien<b>20%</b></li>
+                      <li><i style="background:#CBE6D5"></i>Bonds<b>20%</b></li>
+                    </ul>
+                  </div>
+                  <!-- Checkout / Execute -->
+                  <div class="pslide" data-idx="4">
+                    <span class="ps__eyebrow">Letzter Schritt</span>
+                    <h4 class="ps__title">Du wählst <em>deinen Weg.</em></h4>
+                    <div class="ps__path"><b>Selbst investieren</b><span>Depot direkt beim Broker</span></div>
+                    <div class="ps__path ps__path--alt"><b>Beraten lassen</b><span>Begleitung durch Expert:innen</span></div>
+                  </div>
                 </div>
                 <div class="iphone__home"></div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="mockshow__nav reveal" aria-hidden="true" data-mshow-nav>
+          <span class="mockshow__dot is-active" data-idx="0">Quiz</span>
+          <span class="mockshow__dot" data-idx="1">Typ</span>
+          <span class="mockshow__dot" data-idx="2">Entdecken</span>
+          <span class="mockshow__dot" data-idx="3">Portfolio</span>
+          <span class="mockshow__dot" data-idx="4">Checkout</span>
         </div>
 
         <ul class="platform__pills reveal">
@@ -372,5 +396,40 @@
 
   <script src="i18n.js?v=8"></script>
   <script src="script.js?v=4"></script>
+
+  <!-- Guided-flow preview slideshow (laptop + phone in sync) -->
+  <script>
+    (function () {
+      var root = document.querySelector('.platform__mockups');
+      var nav = document.querySelector('[data-mshow-nav]');
+      if (!root || !nav) return;
+
+      var laptop = root.querySelectorAll('[data-mshow-laptop] .mshow__img');
+      var phone = root.querySelectorAll('[data-mshow-phone] .pslide');
+      var dots = nav.querySelectorAll('.mockshow__dot');
+      var n = dots.length;
+      var i = 0, timer = null;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var DELAY = 4200;
+
+      function show(k) {
+        i = (k % n + n) % n;
+        for (var a = 0; a < laptop.length; a++) laptop[a].classList.toggle('is-active', a === i);
+        for (var b = 0; b < phone.length; b++) phone[b].classList.toggle('is-active', b === i);
+        for (var c = 0; c < dots.length; c++) dots[c].classList.toggle('is-active', c === i);
+      }
+      function play() { if (reduce) return; stop(); timer = setInterval(function () { show(i + 1); }, DELAY); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+      show(0);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { en.isIntersecting ? play() : stop(); });
+        }, { threshold: 0.25 }).observe(root);
+      } else {
+        play();
+      }
+    })();
+  </script>
 </body>
 </html>
