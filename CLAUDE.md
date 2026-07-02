@@ -66,12 +66,12 @@ Dashboard · Advisor · Academy · Community · Barometer · Shop
 ## Folder Structure (current)
 ```
 money-tree/
-├── index.html                ← Landing / pre-registration page
+├── index.html                ← Home: "cost of waiting" calculator landing + flow (guided-flow entry)
+├── calculator.js / calculator.css            ← calculator logic + styles (used by index)
+├── prereg.html                               ← Pre-registration / early-access landing page (signup form)
 ├── quiz.html / quiz.js / quiz.css            ← Step 1–2: values & risk quiz
 ├── explore.html / explore.js / explore.css   ← Step 3–4: Explore + basket builder
 ├── product.html / product.js / product.css   ← Product detail page (?id=<id>)
-├── landing_calculator.html                   ← "cost of waiting" calculator landing
-├── calculator.js / calculator.css
 ├── mission.html, collabs.html, confirmed.html, impressum.html, privacy.html
 ├── styles.css                ← shared brand tokens + base styles
 ├── script.js                 ← shared: nav, mobile menu, signup form POST

@@ -412,7 +412,7 @@
 
     const cta = el("a", "btn btn--primary",
       de ? "Zur Early-Access-Liste" : "Join the Early Access list");
-    cta.href = "index.html#signup";
+    cta.href = "prereg.html#signup";
     card.appendChild(cta);
 
     card.appendChild(el("p", "quiz-disclaimer",

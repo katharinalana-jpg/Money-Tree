@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="See what your money could grow into. Portemonnaie's investment calculator shows how a small monthly amount can build your future and close the gender pension gap." />
-  <title>Investment Calculator — Portemonnaie</title>
+  <meta name="description" content="Portemonnaie. Values aligned investing for women. Pre register for early access." />
+  <title>Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
   <link rel="stylesheet" href="styles.css?v=8" />
-  <link rel="stylesheet" href="calculator.css?v=5" />
+  <link rel="stylesheet" href="calculator.css?v=2" />
 </head>
 <body>
 
@@ -27,9 +27,10 @@
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
       <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a class="nav__cta" href="#" data-i18n="nav.start">Start investing</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -40,9 +41,10 @@
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
       <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="index.html#platform" data-i18n="nav.platform">Platform</a>
+      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
+      <a href="explore.html" data-i18n="nav.explore">Explore</a>
       <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a class="nav__cta" href="#" data-i18n="nav.start">Start investing</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -52,16 +54,57 @@
 
   <main id="top">
 
-    <!-- HERO + CALCULATOR -->
-    <section class="calc-hero" id="calculator">
+    <!-- HERO -->
+    <section class="hero" id="intro">
+      <div class="container hero__inner">
+        <p class="eyebrow reveal" data-i18n="hero.eyebrow">Pre Launch. Early Access.</p>
+        <h1 class="h-display reveal">Start investing in<br/>what you <span class="brush"><em class="serif">support</em></span>.</h1>
+        <p class="hero__sub reveal" data-i18n-html="hero.sub">
+          Portemonnaie is an investment platform for women by women. We help you
+          with your first investment, to secure your future and let your money
+          speak for what matters to you.
+        </p>
+
+        <form class="hero__form reveal" data-signup>
+          <label class="sr-only" for="heroEmail" data-i18n="form.email_label">Email address</label>
+          <input id="heroEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <label class="form__consent" for="heroConsent">
+            <input id="heroConsent" type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
+              <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--primary" data-i18n="form.cta_early">Get Early Access</button>
+          <p class="form__success" hidden data-i18n="form.success_hero">Check your inbox. Click the confirmation link to finish signing up.</p>
+        </form>
+      </div>
+
+      <div class="hero__stage reveal" aria-hidden="true">
+        <div class="hero__sticky" data-i18n-html="hero.sticky">
+          <strong>For women</strong>
+          <em>who build</em>
+          <em>their future.</em>
+        </div>
+        <img class="hero__plant" src="brand/illustrations/plant_full.svg" alt="" />
+        <span class="hero__signature">Learn. Invest. Grow.<br/>On <em>your</em> terms.</span>
+      </div>
+
+      <a class="hero__scroll" href="#flow" aria-label="Scroll to learn more" data-i18n-aria="hero.scroll_aria">
+        <span data-i18n="hero.scroll">Discover how it works</span>
+        <i></i>
+      </a>
+    </section>
+
+    <!-- CALCULATOR: the cost of waiting -->
+    <section class="section calc-section" id="calculator">
       <div class="container">
-        <header class="calc-hero__head reveal">
+        <header class="section__header reveal">
           <p class="eyebrow" data-i18n="calc.eyebrow">The cost of waiting</p>
-          <h1 class="h-display" data-i18n-html="calc.h1">See what your money could <span class="brush"><em class="serif">grow</em></span> into.</h1>
-          <p class="calc-hero__sub" data-i18n="calc.sub">
-            Saving keeps your money safe — but investing puts it to work. Move the
-            sliders to see the difference the same amount each month could make by
-            the time you retire.
+          <h2 class="h-section" data-i18n-html="calc.h1">See how much you <span class="brush"><em class="serif">lose</em></span> by not investing.</h2>
+          <p class="section__lede" data-i18n="calc.sub">
+            Saving keeps your money safe, but it barely grows. Move the sliders to
+            see how much you leave on the table by saving instead of investing the
+            same amount each month.
           </p>
         </header>
 
@@ -104,20 +147,20 @@
           <!-- RESULTS -->
           <div class="calc__panel calc__results">
             <p class="calc-result__label">
-              <span data-i18n="calc.result.label">Possible difference by age</span>
+              <span data-i18n="calc.result.label">What you leave on the table by age</span>
               <span id="outResultAge">67</span>
             </p>
             <p class="calc-result__value" id="outGap">€0</p>
             <p class="calc-result__sub" data-i18n="calc.result.sub">
-              between saving and investing the same each month
+              by saving instead of investing the same each month
             </p>
 
             <div class="calc-chart" aria-hidden="true">
               <svg id="calcChart" viewBox="0 0 360 210">
                 <defs>
                   <linearGradient id="calcGap" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D64545" stop-opacity="0.42" />
-                    <stop offset="100%" stop-color="#D64545" stop-opacity="0.06" />
+                    <stop offset="0%" stop-color="#9B2C24" stop-opacity="0.42" />
+                    <stop offset="100%" stop-color="#9B2C24" stop-opacity="0.06" />
                   </linearGradient>
                 </defs>
 
@@ -160,7 +203,7 @@
               </span>
             </div>
 
-            <a href="#" class="btn btn--primary calc-result__cta" data-i18n="calc.cta">
+            <a href="#signup" class="btn btn--primary calc-result__cta" data-i18n="calc.cta">
               Start my plan
             </a>
             <p class="calc-disclaimer" data-i18n="calc.disclaimer">
@@ -173,14 +216,14 @@
       </div>
     </section>
 
-    <!-- FLOW (full 5-step interactive — shared with landing page) -->
+    <!-- FLOW -->
     <section class="section flow" id="flow">
       <div class="container">
         <header class="section__header reveal">
           <p class="eyebrow" data-i18n="flow.eyebrow">The core experience</p>
           <h2 class="h-section" data-i18n-html="flow.h2">Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.</h2>
           <p class="section__lede" data-i18n="flow.lede">
-            We guide you in 5 easy steps.
+            We help you to build your portfolio step by step.
           </p>
         </header>
 
@@ -215,6 +258,7 @@
           <li class="step step--interactive reveal" data-step="archetype">
             <span class="step__num">02</span>
             <h3 class="step__title" data-i18n="step2.title">Find your archetype</h3>
+            <p data-i18n="step2.desc">Discover your investor type and get a clear portfolio direction that matches your goals and values.</p>
             <div class="step__hover step__hover--archetype" aria-hidden="true">
               <svg class="pie-chart" viewBox="0 0 120 120">
                 <circle class="pie-seg pie-seg--etf" cx="60" cy="60" r="50" />
@@ -292,20 +336,139 @@
         </ol>
 
         <div class="flow__cta reveal">
-          <a href="quiz.html" class="btn btn--ghost" data-i18n="calc.cta">Start my plan</a>
+          <a href="#signup" class="btn btn--ghost" data-i18n="flow.cta">Join the Access List</a>
         </div>
       </div>
     </section>
 
-    <!-- CLOSING CTA -->
-    <section class="section signup" id="start">
+    <!-- PLATFORM -->
+    <section class="section platform" id="platform">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow" data-i18n="platform.eyebrow">Phase 2. The ecosystem.</p>
+          <h2 class="h-section" data-i18n-html="platform.h2">All in <span class="brush"><em class="serif">One</em></span> Platform</h2>
+          <p class="section__lede" data-i18n="platform.lede">
+            Beyond the Robo Advisor, Portemonnaie grows into a full ecosystem
+            where learning about Finances, Investing and Community live in
+            one place.
+          </p>
+        </header>
+
+        <div class="platform__mockups reveal">
+          <!-- MacBook mockup -->
+          <div class="macbook" aria-label="MacBook preview of the Portemonnaie dashboard">
+            <div class="macbook__lid">
+              <div class="macbook__bezel">
+                <div class="macbook__notch"></div>
+                <div class="macbook__screen">
+                  <div class="mock__topbar">
+                    <span></span><span></span><span></span>
+                    <span class="mock__url">portemonnaie.finance/dashboard</span>
+                  </div>
+                  <div class="mock__dash">
+                    <div class="mock__side">
+                      <span class="mock__logo">Portemonnaie</span>
+                      <span class="mock__item mock__item--active">Dashboard</span>
+                      <span class="mock__item">Advisor</span>
+                      <span class="mock__item">Academy</span>
+                      <span class="mock__item">Community</span>
+                      <span class="mock__item">Barometer</span>
+                      <span class="mock__item">Shop</span>
+                    </div>
+                    <div class="mock__main">
+                      <div class="mock__card mock__card--hero">
+                        <span class="mock__label">Your portfolio</span>
+                        <span class="mock__val">€ 12,480</span>
+                        <span class="mock__delta">+ 4.2% this month</span>
+                      </div>
+                      <div class="mock__row">
+                        <div class="mock__card"><span>Gender score</span><strong>A+</strong></div>
+                        <div class="mock__card"><span>Sustainability</span><strong>92</strong></div>
+                        <div class="mock__card"><span>Impact</span><strong>High</strong></div>
+                      </div>
+                      <div class="mock__chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="macbook__hinge"></div>
+            <div class="macbook__base">
+              <div class="macbook__slot"></div>
+            </div>
+          </div>
+
+          <!-- iPhone mockup -->
+          <div class="iphone" aria-label="iPhone preview of the Portemonnaie app">
+            <div class="iphone__side iphone__side--left"></div>
+            <div class="iphone__side iphone__side--right"></div>
+            <div class="iphone__frame">
+              <div class="iphone__screen">
+                <div class="iphone__island"></div>
+                <div class="iphone__status">
+                  <span>9:41</span>
+                  <span class="iphone__status-right">
+                    <i class="ios-signal"></i>
+                    <i class="ios-wifi"></i>
+                    <i class="ios-bat"></i>
+                  </span>
+                </div>
+                <p class="mock__phone-eyebrow">Today</p>
+                <p class="mock__phone-title">Good morning,<br/>Amelie.</p>
+                <div class="mock__phone-card">
+                  <span>Balance</span>
+                  <strong>€ 12,480</strong>
+                  <em>+ €53 today</em>
+                </div>
+                <div class="mock__phone-list">
+                  <span>Academy. Lesson 04</span>
+                  <span>Community. New thread</span>
+                  <span>Barometer. Weekly</span>
+                </div>
+                <div class="iphone__home"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="platform__pills reveal">
+          <li><span data-i18n="pill1">Gender Lens and Sustainability Robo Advisor</span></li>
+          <li><span data-i18n="pill2">Financial Literacy Academy</span></li>
+          <li><span data-i18n="pill3">Community Forum</span></li>
+          <li><span data-i18n="pill4">Investment Barometer</span></li>
+          <li><span data-i18n="pill5">Shop</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SIGN UP -->
+    <section class="section signup" id="signup">
       <div class="container signup__inner reveal">
-        <p class="eyebrow" data-i18n="cta.eyebrow">Your future, your terms</p>
-        <h2 class="h-section" data-i18n-html="cta.h2">Ready to start <em class="serif">investing</em>?</h2>
-        <p class="signup__lede" data-i18n="cta.lede">
-          Build a values-matched portfolio in minutes — guided every step of the way.
+        <p class="eyebrow" data-i18n="signup.eyebrow">Pre register</p>
+        <h2 class="h-section" data-i18n-html="signup.h2">Register <em class="serif">Now</em></h2>
+        <p class="signup__lede" data-i18n-html="signup.lede">Get notified when we <span class="pencil">go live</span>.</p>
+
+        <form class="signup__form" data-signup>
+          <label class="sr-only" for="finalEmail" data-i18n="form.email_label">Email address</label>
+          <input id="finalEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <label class="form__consent" for="finalConsent">
+            <input id="finalConsent" type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
+              <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--primary" data-i18n="signup.cta">Reserve my place</button>
+        </form>
+        <p class="signup__micro" data-i18n="signup.micro">
+          Private beta. Your email is only used for Portemonnaie updates.
+          Unsubscribe anytime.
         </p>
-        <a href="#" class="btn btn--primary" data-i18n="calc.cta">Start my plan</a>
+
+        <div class="form__success signup__success" hidden>
+          <h3 data-i18n="success.almost_title">Almost there.</h3>
+          <p data-i18n="success.almost_body">We just sent you a confirmation email. Click the link inside
+             to finalize your spot on the early access list.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -316,17 +479,18 @@
       <span class="footer__brand">Portemonnaie</span>
       <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
       <nav class="footer__links">
-        <a href="index.html" data-i18n="nav.home">Home</a>
-        <a href="landing_calculator.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="#intro" data-i18n="nav.intro">Intro</a>
+        <a href="#platform" data-i18n="nav.platform">Platform</a>
         <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
+        <a href="#signup" data-i18n="nav.signup">Sign Up</a>
         <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
         <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
       </nav>
     </div>
   </footer>
 
-  <script src="i18n.js?v=13"></script>
+  <script src="i18n.js?v=14"></script>
   <script src="script.js?v=4"></script>
-  <script src="calculator.js?v=6"></script>
+  <script src="calculator.js?v=3"></script>
 </body>
 </html>
