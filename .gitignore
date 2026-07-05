@@ -11,5 +11,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .claude/settings.local.json
-
-.playwright-mcp/
