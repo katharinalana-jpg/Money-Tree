@@ -21,6 +21,7 @@
     en: {
       /* nav + footer (shared) */
       "nav.intro": "Intro",
+      "nav.library": "Library",
       "nav.platform": "Platform",
       "nav.mission": "Our Mission",
       "nav.signup": "Sign Up",
@@ -31,7 +32,22 @@
       /* hero */
       "hero.eyebrow": "Pre-Launch Early Access",
       "hero.sticky": '<strong>For women</strong><em>who build</em><em>their future.</em>',
-      "hero.sub": "Portemonnaie is an investment platform by women for women.<br>We help you with your first investment, so you can invest according to your values, secure your future, and put your money to work for what matters to you.",
+      "hero.sub": "Let your money work for you and your values.",
+
+      /* calculator (ported from develop) */
+      "calc.eyebrow": "The cost of waiting",
+      "calc.h1": 'See what your money could <span class="brush"><em class="serif">grow</em></span> into.',
+      "calc.sub": "Saving keeps your money safe — but investing puts it to work. Move the sliders to see the difference the same amount each month could make by the time you retire.",
+      "calc.monthly": "Monthly amount",
+      "calc.age_now": "Your age today",
+      "calc.age_retire": "Retirement age",
+      "calc.assume": "Compares saving (1% a year) with investing (6% average a year), putting away the same amount each month.",
+      "calc.result.label": "Possible difference by age",
+      "calc.result.sub": "between saving and investing the same each month",
+      "calc.invest": "If you invest",
+      "calc.save": "If you save",
+      "calc.cta": "Start my plan",
+      "calc.disclaimer": "A simplified projection for educational purposes only. It assumes 1% a year on savings and a 6% average on investments, and does not account for fees, taxes or inflation. This is not investment advice.",
       "hero.scroll": "Discover how it works",
       "hero.scroll_aria": "Scroll to learn more",
 
@@ -173,6 +189,7 @@
     de: {
       /* nav + footer (shared) */
       "nav.intro": "Intro",
+      "nav.library": "Bibliothek",
       "nav.platform": "Plattform",
       "nav.mission": "Unsere Mission",
       "nav.signup": "Anmelden",
@@ -183,7 +200,22 @@
       /* hero */
       "hero.eyebrow": "Pre-Launch Early Access",
       "hero.sticky": '<strong>Für Frauen,</strong><em>die ihre Zukunft</em><em>gestalten.</em>',
-      "hero.sub": "Portemonnaie ist eine Investment-Plattform von Frauen für Frauen.<br>Wir helfen dir bei deinem ersten Investment, damit du nach deinen Werten investieren, deine Zukunft sichern und dein Geld für das einsetzen kannst, was dir wichtig ist.",
+      "hero.sub": "Lass dein Geld für dich und deine Werte arbeiten.",
+
+      /* calculator (ported from develop) */
+      "calc.eyebrow": "Was Warten kostet",
+      "calc.h1": 'Sieh, woraus dein Geld <span class="brush"><em class="serif">wachsen</em></span> kann.',
+      "calc.sub": "Sparen hält dein Geld sicher – Investieren lässt es arbeiten. Bewege die Regler und sieh, welchen Unterschied derselbe Betrag im Monat bis zur Rente machen kann.",
+      "calc.monthly": "Monatlicher Betrag",
+      "calc.age_now": "Dein Alter heute",
+      "calc.age_retire": "Renteneintrittsalter",
+      "calc.assume": "Vergleicht Sparen (1 % pro Jahr) mit Investieren (6 % Schnitt pro Jahr) – bei gleichem Betrag jeden Monat.",
+      "calc.result.label": "Möglicher Unterschied bis Alter",
+      "calc.result.sub": "zwischen Sparen und Investieren – bei gleichem Monatsbetrag",
+      "calc.invest": "Wenn du investierst",
+      "calc.save": "Wenn du sparst",
+      "calc.cta": "Meinen Plan starten",
+      "calc.disclaimer": "Eine vereinfachte Hochrechnung zu Bildungszwecken. Sie nimmt 1 % pro Jahr beim Sparen und durchschnittlich 6 % beim Investieren an und berücksichtigt weder Gebühren noch Steuern oder Inflation. Dies ist keine Anlageberatung.",
       "hero.scroll": "So funktioniert's",
       "hero.scroll_aria": "Scrollen für mehr",
 

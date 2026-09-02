@@ -1,0 +1,286 @@
+/* =============================================================
+   Portemonnaie. Investment calculator page.
+   Builds on styles.css (brand tokens, nav, buttons, footer,
+   signup, reveal). Page-specific styles only below.
+   ============================================================= */
+
+/* ============================== HERO + CALCULATOR ============================== */
+.calc-hero {
+  padding-top: calc(var(--nav-h) + 4rem);
+  padding-bottom: 5rem;
+  position: relative;
+}
+.calc-hero__head {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.calc-hero .h-display {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: var(--forest);
+  margin: 1rem 0 1.25rem;
+}
+.calc-hero__sub {
+  font-size: 1.12rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.calc-hero__head .eyebrow {
+  display: inline-block;
+  padding: .45rem 1.3rem;
+  border-radius: var(--radius);
+  border: 1.5px solid rgba(234, 162, 33, 0.45); /* marigold */
+  background: rgba(234, 162, 33, 0.12);
+  color: var(--forest);
+  margin-bottom: 0;
+}
+
+/* Calculator shell: inputs + results side by side */
+.calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.calc__panel {
+  border-radius: var(--radius-card);
+  padding: 2.25rem 2rem;
+}
+.calc__inputs {
+  background: var(--bg-light);
+  border: 1.5px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.calc__results {
+  background: var(--sage);
+  color: var(--forest);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 820px) {
+  .calc { grid-template-columns: 1fr; }
+}
+
+/* ----- Input fields ----- */
+.calc-field__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: .65rem;
+}
+.calc-field label,
+.calc-field__legend {
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--forest);
+}
+.calc-field__legend {
+  display: block;
+  margin-bottom: .75rem;
+}
+.calc-field__val {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--forest);
+  letter-spacing: -0.01em;
+}
+.calc-field__scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .4rem;
+  font-size: .72rem;
+  color: var(--ink-mute);
+}
+.calc-field__hint {
+  margin-top: .75rem;
+  font-size: .78rem;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+
+/* Range slider — themed to match brand */
+.calc-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  outline: none;
+  cursor: pointer;
+}
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--forest);
+  border: 3px solid var(--bg);
+  box-shadow: 0 2px 8px rgba(31,58,46,0.25);
+  transition: transform .2s ease;
+}
+.calc-field input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--forest);
+  border: 3px solid var(--bg);
+  box-shadow: 0 2px 8px rgba(31,58,46,0.25);
+  cursor: pointer;
+}
+.calc-field input[type="range"]:focus-visible {
+  box-shadow: 0 0 0 4px rgba(168, 213, 186, 0.5);
+}
+
+/* Assumption note under the inputs */
+.calc-field__assume {
+  margin-top: .25rem;
+}
+
+/* ----- Results panel ----- */
+.calc-result__label {
+  font-size: .8rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(31, 58, 46, 0.6);
+  margin-bottom: .35rem;
+}
+.calc-result__value {
+  font-family: var(--ff);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 3.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #D64545; /* the shortfall — the loss from waiting to invest */
+}
+.calc-result__sub {
+  font-size: .82rem;
+  color: rgba(31, 58, 46, 0.6);
+  margin-top: .5rem;
+}
+
+/* Saving vs investing chart */
+.calc-chart {
+  margin: 1.5rem 0 1rem;
+}
+.calc-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Axes + tick labels */
+.calc-chart__grid {
+  stroke: rgba(31, 58, 46, 0.1);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.calc-chart__axis {
+  stroke: rgba(31, 58, 46, 0.25);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.calc-chart__tick {
+  fill: rgba(31, 58, 46, 0.55);
+  font-family: var(--ff);
+  font-size: 9px;
+}
+.calc-chart__tick--y { text-anchor: end; }
+.calc-chart__tick--xstart { text-anchor: start; }
+.calc-chart__tick--xend { text-anchor: end; }
+.calc-chart__invest {
+  stroke: var(--marigold);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.calc-chart__save {
+  stroke: rgba(31, 58, 46, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Legend: invest vs save final values */
+.calc-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.calc-legend__item {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+.calc-legend__item em {
+  font-style: normal;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(31, 58, 46, 0.65);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.calc-legend__item em::before {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.calc-legend__item--invest em::before { background: var(--marigold); }
+.calc-legend__item--save em::before {
+  background: transparent;
+  border: 1.5px dashed rgba(31, 58, 46, 0.5);
+}
+.calc-legend__item--save { text-align: right; align-items: flex-end; }
+.calc-legend__item strong {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--forest);
+}
+
+.calc-result__cta {
+  width: 100%;
+  margin-top: auto;
+  background: var(--marigold);
+  color: var(--forest);
+  border-color: var(--marigold);
+}
+.calc-result__cta:hover {
+  background: #D8951C; /* deeper marigold */
+  border-color: #D8951C;
+  color: var(--forest);
+  transform: translateY(-2px);
+}
+.calc-disclaimer {
+  margin-top: 1rem;
+  font-size: .72rem;
+  line-height: 1.5;
+  color: rgba(31, 58, 46, 0.55);
+  text-align: center;
+}
+
+/* ============================== CLOSING CTA ============================== */
+/* Reuses the shared .signup card styling; just ensure the headline colour. */
+.signup .h-section { color: var(--forest); }
