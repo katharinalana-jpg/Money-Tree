@@ -66,6 +66,7 @@
       "calc.cta": "Put your money to work",
       "calc.disclaimer": "A simplified projection shown in today's money, for learning only. Long-term returns are assumptions, not guarantees, and this ignores fees and taxes. This is not investment advice.",
       "calc.source": 'The roughly 6% a year that investing has historically added over cash reflects long-run EU data. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Source: European Commission (2025)</a>.',
+      "calc.about": "We're designing Portemonnaie Finance, an investment guidance platform that takes you from your values to your first investment in under 15 minutes. No finance bro attitude, no jargon, just women who believe that our financial decisions today shape the world of tomorrow.",
       "hero.scroll": "Discover how it works",
       "hero.scroll_aria": "Scroll to learn more",
 
@@ -252,6 +253,7 @@
       "calc.cta": "Bring dein Geld zum Arbeiten",
       "calc.disclaimer": "Eine vereinfachte Hochrechnung in heutigem Geld, nur zu Bildungszwecken. Langfristige Renditen sind Annahmen, keine Garantien, und Gebühren sowie Steuern sind nicht berücksichtigt. Dies ist keine Anlageberatung.",
       "calc.source": 'Die rund 6 % pro Jahr, die Investieren gegenüber Bargeld historisch gebracht hat, beruhen auf langfristigen EU-Daten. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Quelle: Europäische Kommission (2025)</a>.',
+      "calc.about": "Wir entwickeln Portemonnaie Finance, eine Plattform für Investment Guidance, die dich in unter 15 Minuten von deinen Werten zu deinem ersten Investment bringt. Keine Finance Bro Attitüde, kein Fachjargon, nur Frauen, die daran glauben, dass unsere finanziellen Entscheidungen von heute die Welt von morgen prägen.",
       "hero.scroll": "So funktioniert's",
       "hero.scroll_aria": "Scrollen für mehr",
 

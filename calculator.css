@@ -47,11 +47,7 @@
   gap: 1.5rem;
   max-width: 980px;
   margin: 0 auto;
-  align-items: start;
-}
-/* keep the result in view while the (often taller) input column scrolls */
-@media (min-width: 821px) {
-  .calc__results { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
+  align-items: stretch; /* both boxes share the same (taller) height */
 }
 .calc__panel {
   border-radius: var(--radius-card);
@@ -62,6 +58,7 @@
   border: 1.5px solid var(--line);
   display: flex;
   flex-direction: column;
+  justify-content: center; /* balance the sliders vertically in the shared height */
   gap: 1.75rem;
 }
 .calc__results {
@@ -73,6 +70,18 @@
 
 @media (max-width: 820px) {
   .calc { grid-template-columns: 1fr; }
+}
+
+/* Intro sentence below the two boxes — brand lede treatment (Inter, soft ink) */
+.calc-about {
+  max-width: 620px;
+  margin: 2.25rem auto 0;
+  text-align: center;
+  font-family: var(--ff);
+  font-size: 1.08rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-soft);
 }
 
 /* ----- Input fields ----- */
