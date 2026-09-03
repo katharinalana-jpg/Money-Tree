@@ -21,6 +21,8 @@
   /* Accent colors (sparingly) */
   --forest:       #1F3A2E;
   --sage:         #A8D5BA;
+  --sage-brand:   #98BDA5;  /* Brand kit Sage */
+  --sage-brush:   rgba(152, 189, 165, 0.65);  /* brush highlight, 65% */
   --cream:        #F5EFD7;
   --yellow:       #F2C94C;
   --marigold:     #EAA221;
@@ -113,7 +115,7 @@ em.serif,
 
 /* -- Reset ------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--ff);
   font-weight: 300;
@@ -517,6 +519,60 @@ input { font: inherit; }
   box-shadow: 0 0 0 4px rgba(26,26,26,0.06);
 }
 
+/* Name field sits beside the email on wide screens, stacks on narrow */
+.hero__form .form__name,
+.signup__form .form__name {
+  flex: 1 1 160px;
+}
+
+/* Language preference: a small segmented pill group (EN / DE / FR) */
+.form__lang {
+  flex-basis: 100%;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem;
+  margin: 0; padding: 0; border: 0; min-width: 0;
+  justify-content: center;
+}
+.form__lang-label {
+  float: left; /* keeps the legend inline with the pills */
+  padding: 0;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+.form__lang-opt {
+  position: relative;
+  cursor: pointer;
+}
+.form__lang-opt input {
+  position: absolute;
+  opacity: 0; width: 1px; height: 1px;
+  margin: 0; pointer-events: none;
+}
+.form__lang-opt span {
+  display: inline-block;
+  min-width: 3.1rem;
+  padding: .42rem .95rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line-strong);
+  font-size: .8rem; font-weight: 500;
+  letter-spacing: .06em;
+  text-align: center;
+  color: var(--ink-soft);
+  background: transparent;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  user-select: none;
+}
+.form__lang-opt:hover span { border-color: var(--ink); color: var(--ink); }
+.form__lang-opt input:checked + span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.form__lang-opt input:focus-visible + span {
+  box-shadow: 0 0 0 4px rgba(168, 213, 186, 0.4);
+  border-color: var(--forest);
+}
+.form__lang-opt input:disabled + span { opacity: .55; cursor: default; }
+
 .form__success {
   flex-basis: 100%;
   padding: 1rem 1.25rem;
@@ -656,68 +712,34 @@ input { font: inherit; }
   background: var(--bg-card);
   border-color: var(--ink);
 }
-.problem__stat {
+.problem__ordinal {
   font-family: var(--ff);
-  font-size: 3.8rem; font-weight: 200;
-  line-height: 1;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--ink-mute);
+  margin-bottom: 1.25rem;
 }
-.problem__stat small { font-size: 1.6rem; color: var(--ink-mute); margin-left: .1rem; }
 .problem__card h3 {
   font-family: var(--ff);
-  font-size: 1.1rem; font-weight: 500;
-  margin-bottom: .6rem;
+  font-size: 1.25rem; font-weight: 500;
+  line-height: 1.4;
   color: var(--ink);
+  max-width: 20ch;
 }
-.problem__card p { color: var(--ink-soft); font-size: .95rem; max-width: 28ch; }
-@media (max-width: 860px) { .problem__grid { grid-template-columns: 1fr; } }
-
-/* ============================== MISSION ============================== */
-.mission {
-  padding: 6rem 0;
-  min-height: 55vh;
-  display: flex; align-items: center;
-}
-.mission__quote {
-  max-width: 920px; margin: 0 auto;
-  text-align: center;
-  padding: 2rem 1rem; position: relative;
-}
-.mission__quote::before {
-  content: "\201C"; display: block;
+/* Closing line under the three statements — pull-quote treatment */
+.problem__closing {
   font-family: var(--ff);
-  font-size: 5rem; font-weight: 200;
-  line-height: .6;
-  color: var(--ink); opacity: .15;
-  margin-bottom: 1.5rem;
-}
-.mission__quote::after {
-  content: "\201D"; display: block;
-  font-family: var(--ff);
-  font-size: 5rem; font-weight: 200;
-  line-height: .6;
-  color: var(--ink); opacity: .15;
-  margin-top: 1.5rem;
-}
-.mission__text {
-  font-family: var(--ff);
-  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
   font-weight: 300;
-  line-height: 1.6;
-  color: var(--ink);
+  letter-spacing: -0.03em;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 1.35;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 44ch;
+  margin: 3rem auto 0;
 }
-.mission__word {
-  display: inline-block;
-  opacity: 0.08;
-  transform: translateY(4px);
-  transition: opacity .5s ease, transform .5s ease;
-}
-.mission__word.is-lit {
-  opacity: 1;
-  transform: translateY(0);
-}
+@media (max-width: 860px) { .problem__grid { grid-template-columns: 1fr; } }
 
 /* ============================== FOUR CAPITALS ============================== */
 .capitals {
@@ -761,17 +783,20 @@ input { font: inherit; }
   text-align: center;
 }
 
+/* Brush highlight — Brand kit Sage #98BDA5 at 65%. The stroke width is
+   driven by scroll position in script.js, so it paints as the reader
+   scrolls rather than on a timer. */
+.mission__mark,
 .capital-word {
   font-weight: 500;
   color: var(--ink);
-  padding: .15rem .4rem;
-  border-radius: 4px;
-  background: rgba(26,26,26,0.06);
-  transition: background .4s ease, color .4s ease;
-}
-.capital-word:hover {
-  background: var(--ink);
-  color: var(--bg);
+  background-color: transparent;
+  background-image: linear-gradient(to right, var(--sage-brush) 0%, var(--sage-brush) 100%);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 88%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* ============================== PLATFORM ============================== */
@@ -1107,7 +1132,7 @@ input { font: inherit; }
 }
 .footer__brand { font-size: 1.1rem; font-weight: 500; color: var(--ink); }
 .footer__copy { font-size: .82rem; color: var(--ink-mute); }
-.footer__links { display: flex; gap: 1.5rem; }
+.footer__links { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; }
 .footer__links a { font-size: .85rem; color: var(--ink-mute); transition: color .25s ease; }
 .footer__links a:hover { color: var(--ink); }
 
@@ -1493,12 +1518,13 @@ input { font: inherit; }
   font-family: var(--ff);
   font-weight: 600;
   letter-spacing: -0.005em;
-  font-size: 1.05rem;
+  font-size: 1.22rem;
+  gap: .6rem;
   color: var(--forest);
 }
 .nav__brand-mark {
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
 }
 .nav__brand-text {
@@ -1511,7 +1537,7 @@ input { font: inherit; }
   font-family: var(--ff-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: var(--forest);
   letter-spacing: 0;
 }
@@ -1678,5 +1704,30 @@ input { font: inherit; }
   }
   .reveal { opacity: 1; transform: none; }
   .hero .reveal { animation: none; opacity: 1; }
-  .mission__word { opacity: 1; transform: none; }
+  .mission__mark, .capital-word { background-size: 100% 88% !important; }
+}
+
+/* ============================== LIBRARY (coming soon) ============================== */
+.library {
+  padding-top: calc(var(--nav-h) + 4rem);
+  padding-bottom: 7rem;
+  min-height: 100vh;
+  display: flex; align-items: center;
+}
+.library__inner {
+  max-width: 720px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.library__plant {
+  width: 180px; height: auto;
+  margin-bottom: .5rem;
+  pointer-events: none;
+}
+.library .h-section { color: var(--forest); margin-bottom: .5rem; }
+.library .section__lede { margin-top: .8rem; }
+.library__cta { margin-top: 2.2rem; }
+
+@media (max-width: 640px) {
+  .library__plant { width: 140px; }
 }

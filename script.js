@@ -83,6 +83,41 @@
     });
   }
 
+  // Brush highlights. The stroke width is tied directly to scroll position,
+  // so it paints as the reader scrolls rather than running on a timer.
+  const MARK_START = 1.0; // viewport fraction where the stroke begins
+  const MARK_END = 0.35;  // viewport fraction where it is complete
+  function markProgress(rect, vh) {
+    return clamp((MARK_START - rect.top / vh) / (MARK_START - MARK_END), 0, 1);
+  }
+  function updateMarks() {
+    // re-query each tick so a language switch keeps the highlights working
+    const vh = window.innerHeight;
+
+    // standalone stroke: driven by its own position
+    $$(".mission__mark").forEach((m) => {
+      const p = markProgress(m.getBoundingClientRect(), vh);
+      m.style.backgroundSize = (p * 100).toFixed(2) + "% 88%";
+    });
+
+    // the four capitals read as ONE continuous stroke travelling through the
+    // paragraph: a single progress value is shared out across the words in
+    // order, so each one finishes before the next begins
+    $$(".capitals__body").forEach((group) => {
+      const words = $$(".capital-word", group);
+      if (!words.length) return;
+      const widths = words.map((w) => w.getBoundingClientRect().width);
+      const total = widths.reduce((a, b) => a + b, 0);
+      if (!total) return;
+      let filled = markProgress(group.getBoundingClientRect(), vh) * total;
+      words.forEach((w, i) => {
+        const p = clamp(filled / widths[i], 0, 1);
+        w.style.backgroundSize = (p * 100).toFixed(2) + "% 88%";
+        filled -= widths[i];
+      });
+    });
+  }
+
   let ticking = false;
   function onScroll() {
     if (!ticking) {
@@ -90,6 +125,7 @@
         updateNav();
         updateDrift();
         updateMission();
+        updateMarks();
         updateSpy();
         ticking = false;
       });
@@ -105,11 +141,13 @@
   document.addEventListener("click", (e) => {
     if (e.target.closest && e.target.closest(".nav__lang button")) {
       requestAnimationFrame(updateMission);
+      requestAnimationFrame(updateMarks);
     }
   });
 
   updateNav();
   updateMission();
+  updateMarks();
   updateSpy();
 
   // Hero elements animate in via the CSS heroFlyIn keyframes; keep them out
@@ -149,7 +187,17 @@
 
   function handleSignup(form) {
     const emailInput = form.querySelector('input[type="email"]');
+    const nameInput = form.querySelector('input[name="first_name"]');
+    const langInputs = $$('input[name="language"]', form);
     const consentInput = form.querySelector('input[name="consent"]');
+
+    // Preselect the newsletter language from the site language (EN/DE);
+    // the visitor can still switch to FR or any other option by hand.
+    if (langInputs.length && !langInputs.some((r) => r.checked)) {
+      const siteLang = (document.documentElement.lang || "en").slice(0, 2);
+      const match = langInputs.find((r) => r.value === siteLang) || langInputs[0];
+      match.checked = true;
+    }
     const successMsg = form.querySelector(".form__success");
     const submitBtn = form.querySelector("button[type='submit']");
 
@@ -167,6 +215,9 @@
       e.preventDefault();
 
       const email = emailInput.value.trim();
+      const firstName = nameInput ? nameInput.value.trim() : "";
+      const langChoice = langInputs.find((r) => r.checked);
+      const language = langChoice ? langChoice.value : "en";
 
       if (!email) return;
 
@@ -194,6 +245,8 @@
           },
           body: JSON.stringify({
             email,
+            first_name: firstName,
+            language,
             consent: !!(consentInput && consentInput.checked),
             consent_timestamp: new Date().toISOString()
           })
@@ -210,7 +263,7 @@
         if (successMsg) successMsg.hidden = false;
         submitBtn.textContent = originalText;
 
-        syncAllForms(email);
+        syncAllForms(email, firstName, language);
 
         if (typeof gtag !== "undefined") {
           gtag("event", "sign_up", {
@@ -228,7 +281,7 @@
     });
   }
 
-  function syncAllForms(email) {
+  function syncAllForms(email, firstName, language) {
     $$("[data-signup]").forEach((form) => {
       if (!form.dataset.completed) {
         form.dataset.completed = "true";
@@ -237,6 +290,13 @@
         const success = form.querySelector(".form__success");
 
         if (input) input.value = email;
+
+        const name = form.querySelector('input[name="first_name"]');
+        if (name && firstName) name.value = firstName;
+
+        $$('input[name="language"]', form).forEach((r) => {
+          r.checked = r.value === language;
+        });
 
         $$("input, button", form).forEach((el) => (el.disabled = true));
 

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const { email, consent, consent_timestamp } = req.body;
+    const { email, consent, consent_timestamp, first_name, language } = req.body;
 
     // Basic validation
     if (!email || !email.includes("@")) {
@@ -31,6 +31,28 @@ export default async function handler(req, res) {
     }
 
     const consentAt = consent_timestamp || new Date().toISOString();
+
+    // Newsletter language: only the three we publish in. Anything else
+    // falls back to English rather than rejecting the signup.
+    const ALLOWED_LANGUAGES = ["en", "de", "fr"];
+    const lang = String(language || "en").toLowerCase().slice(0, 2);
+    const preferredLanguage = ALLOWED_LANGUAGES.includes(lang) ? lang.toUpperCase() : "EN";
+
+    // First name is optional. Trim, cap length, strip control characters.
+    const firstName = String(first_name || "")
+      .replace(/[\u0000-\u001F\u007F]/g, "")
+      .trim()
+      .slice(0, 60);
+
+    const attributes = {
+      CONSENT: true,
+      CONSENT_TIMESTAMP: consentAt,
+      LANGUAGE: preferredLanguage
+    };
+
+    // Only send FIRSTNAME when given, so a later re-signup without a name
+    // does not blank out a name we already have (updateEnabled: true).
+    if (firstName) attributes.FIRSTNAME = firstName;
 
     // Add contact to the DOI pending list (5).
     // A Brevo Automation watches list 5, sends the confirmation email,
@@ -54,10 +76,7 @@ export default async function handler(req, res) {
 
           updateEnabled: true,
 
-          attributes: {
-            CONSENT: true,
-            CONSENT_TIMESTAMP: consentAt
-          }
+          attributes: attributes
 
         })
 
