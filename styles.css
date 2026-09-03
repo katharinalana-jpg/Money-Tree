@@ -729,60 +729,17 @@ input { font: inherit; }
 }
 /* Closing line under the three statements — pull-quote treatment */
 .problem__closing {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-  line-height: 1.55;
-  letter-spacing: -0.01em;
+  font-family: var(--ff);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 1.35;
   color: var(--ink-soft);
   text-align: center;
   max-width: 44ch;
   margin: 3rem auto 0;
 }
 @media (max-width: 860px) { .problem__grid { grid-template-columns: 1fr; } }
-
-/* ============================== MISSION ============================== */
-.mission {
-  padding: 6rem 0;
-  min-height: 55vh;
-  display: flex; align-items: center;
-}
-.mission__quote {
-  max-width: 920px; margin: 0 auto;
-  text-align: center;
-  padding: 2rem 1rem; position: relative;
-}
-.mission__text {
-  font-family: var(--ff);
-  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--ink);
-}
-/* Second, quieter line of the statement */
-.mission__sub {
-  font-family: var(--ff);
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  margin-top: 1.75rem;
-  max-width: 62ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.mission__word {
-  display: inline-block;
-  opacity: 0.08;
-  transform: translateY(4px);
-  transition: opacity .5s ease, transform .5s ease;
-}
-.mission__word.is-lit {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* ============================== FOUR CAPITALS ============================== */
 .capitals {
@@ -1561,12 +1518,13 @@ input { font: inherit; }
   font-family: var(--ff);
   font-weight: 600;
   letter-spacing: -0.005em;
-  font-size: 1.05rem;
+  font-size: 1.22rem;
+  gap: .6rem;
   color: var(--forest);
 }
 .nav__brand-mark {
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
 }
 .nav__brand-text {
@@ -1579,7 +1537,7 @@ input { font: inherit; }
   font-family: var(--ff-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: var(--forest);
   letter-spacing: 0;
 }
@@ -1746,7 +1704,6 @@ input { font: inherit; }
   }
   .reveal { opacity: 1; transform: none; }
   .hero .reveal { animation: none; opacity: 1; }
-  .mission__word { opacity: 1; transform: none; }
   .mission__mark, .capital-word { background-size: 100% 88% !important; }
 }
 

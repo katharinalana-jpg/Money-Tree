@@ -181,7 +181,7 @@
   line-height: 1;
   color: var(--forest);
 }
-.calc-result__value--loss { color: #D64545; } /* the loss from staying in cash */
+.calc-result__value--loss { color: #9E3A3A; } /* wine-terracotta: the loss from staying in cash */
 .calc-result__sub {
   font-size: .82rem;
   color: rgba(31, 58, 46, 0.78);
@@ -191,6 +191,10 @@
 /* Saving vs investing chart */
 .calc-chart {
   margin: 1.5rem 0 1rem;
+  padding: 1rem .9rem .6rem;
+  border-radius: var(--radius-sm);
+  /* a shade darker than the sage panel so the graph reads as its own surface */
+  background: rgba(31, 58, 46, 0.09);
 }
 .calc-chart svg {
   width: 100%;
