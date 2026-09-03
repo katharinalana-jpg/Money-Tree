@@ -519,6 +519,60 @@ input { font: inherit; }
   box-shadow: 0 0 0 4px rgba(26,26,26,0.06);
 }
 
+/* Name field sits beside the email on wide screens, stacks on narrow */
+.hero__form .form__name,
+.signup__form .form__name {
+  flex: 1 1 160px;
+}
+
+/* Language preference: a small segmented pill group (EN / DE / FR) */
+.form__lang {
+  flex-basis: 100%;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem;
+  margin: 0; padding: 0; border: 0; min-width: 0;
+  justify-content: center;
+}
+.form__lang-label {
+  float: left; /* keeps the legend inline with the pills */
+  padding: 0;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+.form__lang-opt {
+  position: relative;
+  cursor: pointer;
+}
+.form__lang-opt input {
+  position: absolute;
+  opacity: 0; width: 1px; height: 1px;
+  margin: 0; pointer-events: none;
+}
+.form__lang-opt span {
+  display: inline-block;
+  min-width: 3.1rem;
+  padding: .42rem .95rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line-strong);
+  font-size: .8rem; font-weight: 500;
+  letter-spacing: .06em;
+  text-align: center;
+  color: var(--ink-soft);
+  background: transparent;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  user-select: none;
+}
+.form__lang-opt:hover span { border-color: var(--ink); color: var(--ink); }
+.form__lang-opt input:checked + span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.form__lang-opt input:focus-visible + span {
+  box-shadow: 0 0 0 4px rgba(168, 213, 186, 0.4);
+  border-color: var(--forest);
+}
+.form__lang-opt input:disabled + span { opacity: .55; cursor: default; }
+
 .form__success {
   flex-basis: 100%;
   padding: 1rem 1.25rem;

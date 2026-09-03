@@ -71,6 +71,9 @@
 
       /* forms (shared) */
       "form.email_label": "Email address",
+      "form.name_label": "First name",
+      "form.name_ph": "First name",
+      "form.lang_label": "Send me updates in",
       "form.consent": 'I agree to receive updates from Portemonnaie and accept the <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.',
       "form.cta_early": "Get Early Access",
       "form.success_hero": "Check your inbox. Click the confirmation link to finish signing up.",
@@ -256,6 +259,9 @@
 
       /* forms (shared) */
       "form.email_label": "E-Mail-Adresse",
+      "form.name_label": "Vorname",
+      "form.name_ph": "Vorname",
+      "form.lang_label": "Updates bitte auf",
       "form.consent": 'Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="/privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
       "form.cta_early": "Get Early Access",
       "form.success_hero": "Sieh in deinem Postfach nach. Klick auf den Bestätigungslink, um die Anmeldung abzuschließen.",
