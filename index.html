@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
   <link rel="stylesheet" href="styles.css?v=8" />
-  <link rel="stylesheet" href="calculator.css?v=1" />
+  <link rel="stylesheet" href="calculator.css?v=10" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -97,98 +97,83 @@
       </a>
     </section>
 
-    <!-- CALCULATOR (ported from develop; replaces the former Flow "core experience" section) -->
+    <!-- CALCULATOR (cash vs investing — opportunity cost, real terms) -->
     <section class="calc-hero" id="calculator">
       <div class="container">
         <header class="calc-hero__head reveal">
-          <p class="eyebrow" data-i18n="calc.eyebrow">The cost of waiting</p>
-          <h2 class="h-display" data-i18n-html="calc.h1">See what your money could <span class="brush"><em class="serif">grow</em></span> into.</h2>
-          <p class="calc-hero__sub" data-i18n="calc.sub">
-            Saving keeps your money safe — but investing puts it to work. Move the
-            sliders to see the difference the same amount each month could make by
-            the time you retire.
-          </p>
+          <p class="eyebrow" data-i18n="calc.eyebrow">What could your money become?</p>
+          <h2 class="h-display" data-i18n-html="calc.h1">See what your money could <span class="brush"><em class="serif">become</em></span>.</h2>
         </header>
 
         <div class="calc reveal">
           <!-- INPUTS -->
-          <div class="calc__panel calc__inputs">
+          <form class="calc__panel calc__inputs" id="calcForm" novalidate>
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inMonthly" data-i18n="calc.monthly">Monthly amount</label>
-                <output class="calc-field__val" id="outMonthly">€150</output>
+                <label for="inAge" data-i18n="calc.age">Your age today</label>
+                <output class="calc-field__val" id="outAge">30</output>
               </div>
-              <input type="range" id="inMonthly" min="25" max="2000" step="25" value="150" />
-              <div class="calc-field__scale"><span>€25</span><span>€2,000</span></div>
+              <input type="range" id="inAge" />
             </div>
 
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inAgeNow" data-i18n="calc.age_now">Your age today</label>
-                <output class="calc-field__val" id="outAgeNow">30</output>
+                <label for="inSaving" data-i18n="calc.saving">What you set aside each month</label>
+                <output class="calc-field__val" id="outSaving">€200</output>
               </div>
-              <input type="range" id="inAgeNow" min="18" max="60" step="1" value="30" />
-              <div class="calc-field__scale"><span>18</span><span>60</span></div>
+              <input type="range" id="inSaving" />
             </div>
 
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inAgeRetire" data-i18n="calc.age_retire">Retirement age</label>
-                <output class="calc-field__val" id="outAgeRetire">67</output>
+                <label for="inStart" data-i18n="calc.start">How much you have now</label>
+                <output class="calc-field__val" id="outStart">€5,000</output>
               </div>
-              <input type="range" id="inAgeRetire" min="55" max="75" step="1" value="67" />
-              <div class="calc-field__scale"><span>55</span><span>75</span></div>
+              <input type="range" id="inStart" />
             </div>
 
-            <p class="calc-field__hint calc-field__assume" data-i18n="calc.assume">
-              Compares saving (1% a year) with investing (6% average a year),
-              putting away the same amount each month.
-            </p>
-          </div>
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label for="inHorizon" data-i18n="calc.horizon">The age you want to retire</label>
+                <output class="calc-field__val" id="outHorizon">67</output>
+              </div>
+              <input type="range" id="inHorizon" />
+            </div>
+          </form>
 
           <!-- RESULTS -->
           <div class="calc__panel calc__results">
-            <p class="calc-result__label">
-              <span data-i18n="calc.result.label">Possible difference by age</span>
-              <span id="outResultAge">67</span>
-            </p>
-            <p class="calc-result__value" id="outGap">€0</p>
-            <p class="calc-result__sub" data-i18n="calc.result.sub">
-              between saving and investing the same each month
-            </p>
+            <p class="calc-result__label" data-i18n="calc.diff">Potential difference</p>
+            <p class="calc-result__value calc-result__value--loss" id="outGap" aria-live="polite">€0</p>
 
             <div class="calc-chart" aria-hidden="true">
               <svg id="calcChart" viewBox="0 0 360 210">
                 <defs>
                   <linearGradient id="calcGap" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D64545" stop-opacity="0.42" />
-                    <stop offset="100%" stop-color="#D64545" stop-opacity="0.06" />
+                    <stop offset="0%" stop-color="var(--marigold)" stop-opacity="0.38" />
+                    <stop offset="100%" stop-color="var(--marigold)" stop-opacity="0.05" />
                   </linearGradient>
                 </defs>
 
-                <!-- horizontal gridlines (fixed positions; curve grows against them) -->
                 <line class="calc-chart__grid" x1="46" y1="10" x2="352" y2="10" />
                 <line class="calc-chart__grid" x1="46" y1="53.5" x2="352" y2="53.5" />
                 <line class="calc-chart__grid" x1="46" y1="97" x2="352" y2="97" />
                 <line class="calc-chart__grid" x1="46" y1="140.5" x2="352" y2="140.5" />
 
-                <!-- axes -->
                 <line class="calc-chart__axis" x1="46" y1="10" x2="46" y2="184" />
                 <line class="calc-chart__axis" x1="46" y1="184" x2="352" y2="184" />
 
-                <!-- series: red gap fill between the two lines -->
+                <!-- gap fill = potential upside between cash and invested -->
                 <path id="calcGapArea" class="calc-chart__gap" d="" fill="url(#calcGap)" />
                 <path id="calcSave" class="calc-chart__save" d="" fill="none" />
                 <path id="calcInvest" class="calc-chart__invest" d="" fill="none" />
 
-                <!-- y-axis ticks (money) -->
                 <text id="calcYTop" class="calc-chart__tick calc-chart__tick--y" x="42" y="13"></text>
                 <text id="calcY75" class="calc-chart__tick calc-chart__tick--y" x="42" y="56.5"></text>
                 <text id="calcYMid" class="calc-chart__tick calc-chart__tick--y" x="42" y="100"></text>
                 <text id="calcY25" class="calc-chart__tick calc-chart__tick--y" x="42" y="143.5"></text>
                 <text id="calcYBot" class="calc-chart__tick calc-chart__tick--y" x="42" y="187"></text>
 
-                <!-- x-axis ticks (age) -->
                 <text id="calcXStart" class="calc-chart__tick calc-chart__tick--xstart" x="46" y="200"></text>
                 <text id="calcXEnd" class="calc-chart__tick calc-chart__tick--xend" x="352" y="200"></text>
               </svg>
@@ -196,22 +181,24 @@
 
             <div class="calc-legend">
               <span class="calc-legend__item calc-legend__item--invest">
-                <em data-i18n="calc.invest">If you invest</em>
-                <strong id="outInvest">€0</strong>
+                <em data-i18n="calc.invest.short">Invested</em>
               </span>
               <span class="calc-legend__item calc-legend__item--save">
-                <em data-i18n="calc.save">If you save</em>
-                <strong id="outSave">€0</strong>
+                <em data-i18n="calc.cash.short">Cash</em>
               </span>
             </div>
 
             <a href="#signup" class="btn btn--primary calc-result__cta" data-i18n="calc.cta">
-              Start my plan
+              Put your money to work
             </a>
             <p class="calc-disclaimer" data-i18n="calc.disclaimer">
-              A simplified projection for educational purposes only. It assumes 1% a year on
-              savings and a 6% average on investments, and does not account for fees, taxes or
-              inflation. This is not investment advice.
+              A simplified projection shown in today's money, for learning only. Long-term
+              returns are assumptions, not guarantees, and this ignores fees and taxes.
+              This is not investment advice.
+            </p>
+            <p class="calc-source" data-i18n-html="calc.source">
+              The roughly 6% a year that investing has historically added over cash reflects long-run EU data.
+              <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Source: European Commission (2025)</a>.
             </p>
           </div>
         </div>
@@ -374,8 +361,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=11"></script>
+  <script src="i18n.js?v=17"></script>
   <script src="script.js?v=4"></script>
-  <script src="calculator.js?v=1"></script>
+  <script type="module" src="calculator.js?v=16"></script>
 </body>
 </html>

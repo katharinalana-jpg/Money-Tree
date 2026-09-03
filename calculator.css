@@ -47,7 +47,11 @@
   gap: 1.5rem;
   max-width: 980px;
   margin: 0 auto;
-  align-items: stretch;
+  align-items: start;
+}
+/* keep the result in view while the (often taller) input column scrolls */
+@media (min-width: 821px) {
+  .calc__results { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
 }
 .calc__panel {
   border-radius: var(--radius-card);
@@ -157,7 +161,7 @@
   font-size: .8rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(31, 58, 46, 0.6);
+  color: rgba(31, 58, 46, 0.75);
   margin-bottom: .35rem;
 }
 .calc-result__value {
@@ -166,11 +170,12 @@
   font-size: clamp(2.6rem, 6vw, 3.6rem);
   letter-spacing: -0.04em;
   line-height: 1;
-  color: #D64545; /* the shortfall — the loss from waiting to invest */
+  color: var(--forest);
 }
+.calc-result__value--loss { color: #D64545; } /* the loss from staying in cash */
 .calc-result__sub {
   font-size: .82rem;
-  color: rgba(31, 58, 46, 0.6);
+  color: rgba(31, 58, 46, 0.78);
   margin-top: .5rem;
 }
 
@@ -262,7 +267,7 @@
 
 .calc-result__cta {
   width: 100%;
-  margin-top: auto;
+  margin-top: 1.5rem;
   background: var(--marigold);
   color: var(--forest);
   border-color: var(--marigold);
@@ -277,10 +282,54 @@
   margin-top: 1rem;
   font-size: .72rem;
   line-height: 1.5;
-  color: rgba(31, 58, 46, 0.55);
+  color: rgba(31, 58, 46, 0.75);
   text-align: center;
 }
+.calc-source {
+  margin-top: .5rem;
+  font-size: .7rem;
+  line-height: 1.5;
+  color: rgba(31, 58, 46, 0.6);
+  text-align: center;
+}
+.calc-source a { color: var(--forest); text-decoration: underline; }
 
 /* ============================== CLOSING CTA ============================== */
 /* Reuses the shared .signup card styling; just ensure the headline colour. */
 .signup .h-section { color: var(--forest); }
+
+/* ============================== v2 controls ============================== */
+/* CSS vars aren't valid inside SVG presentation attributes — tokenise here */
+#calcGap stop { stop-color: var(--marigold); }
+
+.calc-field__top--spaced { margin-top: 1rem; }
+.calc-field__legend--spaced { margin-top: 1rem; }
+
+/* segmented control */
+.calc-seg {
+  display: flex; gap: .3rem;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: .3rem;
+}
+.calc-seg__btn {
+  flex: 1; appearance: none; border: none; background: transparent;
+  font: inherit; font-size: .82rem; font-weight: 500;
+  color: var(--ink-mute);
+  padding: .55rem .4rem; border-radius: var(--radius);
+  cursor: pointer; white-space: nowrap;
+  transition: background .2s ease, color .2s ease;
+}
+.calc-seg__btn:hover { color: var(--forest); }
+.calc-seg__btn.is-active { background: var(--forest); color: var(--bg); }
+.calc-seg__btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(168, 213, 186, 0.6); }
+
+/* scenario switch sits on the sage results panel — lighter chrome */
+.calc-seg--scenario {
+  background: rgba(255,255,255,0.35);
+  border-color: rgba(31,58,46,0.15);
+  margin-bottom: 1.5rem;
+}
+.calc-seg--scenario .calc-seg__btn { color: rgba(31,58,46,0.7); }
+.calc-seg--scenario .calc-seg__btn.is-active { background: var(--forest); color: var(--bg); }
