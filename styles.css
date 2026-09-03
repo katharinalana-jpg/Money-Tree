@@ -21,6 +21,8 @@
   /* Accent colors (sparingly) */
   --forest:       #1F3A2E;
   --sage:         #A8D5BA;
+  --sage-brand:   #98BDA5;  /* Brand kit Sage */
+  --sage-brush:   rgba(152, 189, 165, 0.65);  /* brush highlight, 65% */
   --cream:        #F5EFD7;
   --yellow:       #F2C94C;
   --marigold:     #EAA221;
@@ -656,22 +658,33 @@ input { font: inherit; }
   background: var(--bg-card);
   border-color: var(--ink);
 }
-.problem__stat {
+.problem__ordinal {
   font-family: var(--ff);
-  font-size: 3.8rem; font-weight: 200;
-  line-height: 1;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--ink-mute);
+  margin-bottom: 1.25rem;
 }
-.problem__stat small { font-size: 1.6rem; color: var(--ink-mute); margin-left: .1rem; }
 .problem__card h3 {
   font-family: var(--ff);
-  font-size: 1.1rem; font-weight: 500;
-  margin-bottom: .6rem;
+  font-size: 1.25rem; font-weight: 500;
+  line-height: 1.4;
   color: var(--ink);
+  max-width: 20ch;
 }
-.problem__card p { color: var(--ink-soft); font-size: .95rem; max-width: 28ch; }
+/* Closing line under the three statements — pull-quote treatment */
+.problem__closing {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 44ch;
+  margin: 3rem auto 0;
+}
 @media (max-width: 860px) { .problem__grid { grid-template-columns: 1fr; } }
 
 /* ============================== MISSION ============================== */
@@ -685,22 +698,6 @@ input { font: inherit; }
   text-align: center;
   padding: 2rem 1rem; position: relative;
 }
-.mission__quote::before {
-  content: "\201C"; display: block;
-  font-family: var(--ff);
-  font-size: 5rem; font-weight: 200;
-  line-height: .6;
-  color: var(--ink); opacity: .15;
-  margin-bottom: 1.5rem;
-}
-.mission__quote::after {
-  content: "\201D"; display: block;
-  font-family: var(--ff);
-  font-size: 5rem; font-weight: 200;
-  line-height: .6;
-  color: var(--ink); opacity: .15;
-  margin-top: 1.5rem;
-}
 .mission__text {
   font-family: var(--ff);
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
@@ -708,6 +705,20 @@ input { font: inherit; }
   line-height: 1.6;
   color: var(--ink);
 }
+/* Second, quieter line of the statement */
+.mission__sub {
+  font-family: var(--ff);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-top: 1.75rem;
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .mission__word {
   display: inline-block;
   opacity: 0.08;
@@ -761,17 +772,20 @@ input { font: inherit; }
   text-align: center;
 }
 
+/* Brush highlight — Brand kit Sage #98BDA5 at 65%. The stroke width is
+   driven by scroll position in script.js, so it paints as the reader
+   scrolls rather than on a timer. */
+.mission__mark,
 .capital-word {
   font-weight: 500;
   color: var(--ink);
-  padding: .15rem .4rem;
-  border-radius: 4px;
-  background: rgba(26,26,26,0.06);
-  transition: background .4s ease, color .4s ease;
-}
-.capital-word:hover {
-  background: var(--ink);
-  color: var(--bg);
+  background-color: transparent;
+  background-image: linear-gradient(to right, var(--sage-brush) 0%, var(--sage-brush) 100%);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 88%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* ============================== PLATFORM ============================== */
@@ -1679,4 +1693,5 @@ input { font: inherit; }
   .reveal { opacity: 1; transform: none; }
   .hero .reveal { animation: none; opacity: 1; }
   .mission__word { opacity: 1; transform: none; }
+  .mission__mark, .capital-word { background-size: 100% 88% !important; }
 }

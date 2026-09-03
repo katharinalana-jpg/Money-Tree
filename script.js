@@ -83,6 +83,41 @@
     });
   }
 
+  // Brush highlights. The stroke width is tied directly to scroll position,
+  // so it paints as the reader scrolls rather than running on a timer.
+  const MARK_START = 1.0; // viewport fraction where the stroke begins
+  const MARK_END = 0.35;  // viewport fraction where it is complete
+  function markProgress(rect, vh) {
+    return clamp((MARK_START - rect.top / vh) / (MARK_START - MARK_END), 0, 1);
+  }
+  function updateMarks() {
+    // re-query each tick so a language switch keeps the highlights working
+    const vh = window.innerHeight;
+
+    // standalone stroke: driven by its own position
+    $$(".mission__mark").forEach((m) => {
+      const p = markProgress(m.getBoundingClientRect(), vh);
+      m.style.backgroundSize = (p * 100).toFixed(2) + "% 88%";
+    });
+
+    // the four capitals read as ONE continuous stroke travelling through the
+    // paragraph: a single progress value is shared out across the words in
+    // order, so each one finishes before the next begins
+    $$(".capitals__body").forEach((group) => {
+      const words = $$(".capital-word", group);
+      if (!words.length) return;
+      const widths = words.map((w) => w.getBoundingClientRect().width);
+      const total = widths.reduce((a, b) => a + b, 0);
+      if (!total) return;
+      let filled = markProgress(group.getBoundingClientRect(), vh) * total;
+      words.forEach((w, i) => {
+        const p = clamp(filled / widths[i], 0, 1);
+        w.style.backgroundSize = (p * 100).toFixed(2) + "% 88%";
+        filled -= widths[i];
+      });
+    });
+  }
+
   let ticking = false;
   function onScroll() {
     if (!ticking) {
@@ -90,6 +125,7 @@
         updateNav();
         updateDrift();
         updateMission();
+        updateMarks();
         updateSpy();
         ticking = false;
       });
@@ -105,11 +141,13 @@
   document.addEventListener("click", (e) => {
     if (e.target.closest && e.target.closest(".nav__lang button")) {
       requestAnimationFrame(updateMission);
+      requestAnimationFrame(updateMarks);
     }
   });
 
   updateNav();
   updateMission();
+  updateMarks();
   updateSpy();
 
   // Hero elements animate in via the CSS heroFlyIn keyframes; keep them out
