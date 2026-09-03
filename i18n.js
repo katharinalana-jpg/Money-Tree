@@ -323,9 +323,9 @@
 
       /* mission */
       "problem.eyebrow": "Warum es uns gibt",
-      "problem.c1.title": "Die Gender Wealth Gap zu schließen",
-      "problem.c2.title": "Die Gender Pension Gap zu schließen",
-      "problem.c3.title": "Die Gender Confidence Gap in Finanzfragen zu schließen",
+      "problem.c1.title": "Den Gender Wealth Gap zu schließen",
+      "problem.c2.title": "Den Gender Pension Gap zu schließen",
+      "problem.c3.title": "Den Gender Confidence Gap in Finanzfragen zu schließen",
       "problem.h2": 'Bei Portemonnaie <em class="serif underline-marigold">kämpfen</em> wir dafür:',
       "problem.closing": 'Mit unseren Werten. Mit unseren Überzeugungen. Mit dem, <span class="underline-marigold">was wir entscheiden</span>. – Für uns und eine bessere Zukunft.',
       "capitals.eyebrow": "Eine neue Definition von Wachstum",
