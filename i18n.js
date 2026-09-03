@@ -145,6 +145,17 @@
 
       /* collabs */
       "collabs.eyebrow": "Get involved",
+
+      "library.eyebrow": "Library. Coming soon.",
+      "library.lede": "We are writing the Library: plain-language guides, a glossary, and articles on investing with your values. Published in English, German and French.",
+      "library.card1_h": "Foundations",
+      "library.card1_p": "How investing works, from your first euro to a long-term portfolio. No jargon, no assumptions.",
+      "library.card2_h": "Four Capitals",
+      "library.card2_p": "Financial, environmental, social and network capital, and how we read a company through all four.",
+      "library.card3_h": "Values in practice",
+      "library.card3_p": "How gender and sustainability scores are built, and what they can and cannot tell you.",
+      "library.cta": "Reserve my place",
+      "library.micro": "Sign up and the first pieces land in your inbox, in the language you choose.",
       "tab.news_btn": "We are building in the open",
       "tab.partner_btn": "Partner with Portemonnaie",
       "news.h3": "We are building in the open.",
@@ -333,6 +344,17 @@
 
       /* collabs */
       "collabs.eyebrow": "Mach mit",
+
+      "library.eyebrow": "Bibliothek. Bald verfügbar.",
+      "library.lede": "Wir schreiben gerade an der Bibliothek: verständliche Leitfäden, ein Glossar und Artikel über Investieren nach deinen Werten. Auf Englisch, Deutsch und Französisch.",
+      "library.card1_h": "Grundlagen",
+      "library.card1_p": "Wie Investieren funktioniert, vom ersten Euro bis zum langfristigen Portfolio. Ohne Fachjargon, ohne Vorwissen.",
+      "library.card2_h": "Vier Kapitalarten",
+      "library.card2_p": "Finanzielles, ökologisches, soziales und Netzwerkkapital, und wie wir ein Unternehmen durch alle vier betrachten.",
+      "library.card3_h": "Werte in der Praxis",
+      "library.card3_p": "Wie Gender- und Nachhaltigkeits-Scores entstehen, und was sie aussagen können und was nicht.",
+      "library.cta": "Platz reservieren",
+      "library.micro": "Melde dich an und die ersten Beiträge landen in deinem Postfach, in der Sprache deiner Wahl.",
       "tab.news_btn": "Wir bauen transparent",
       "tab.partner_btn": "Werde Partner von Portemonnaie",
       "news.h3": "Wir bauen transparent.",
