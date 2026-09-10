@@ -1,22 +1,12 @@
 /* =============================================================
-   Portemonnaie — Portfolio review (Step "Portfolio").
-   Vanilla JS, no dependencies. The full-page review that sits
-   between Explore (basket building) and Checkout (Execute).
+   Portemonnaie — Portfolio (S10, interim after task 02).
+   Vanilla JS, no dependencies. Reads the basket from
+   localStorage ("pm_basket"), loads data/securities.json, and
+   renders composition by type and a donut. S10 per PRD (weights,
+   goals card, amount split, PDF, email) comes with tasks 15/16.
 
-   Reads the basket from localStorage ("pm_basket"), loads
-   data/securities.json, and renders:
-     · composition (share by type, with counts)
-     · a big donut — the whole basket = 100% invested
-     · "Your impact" — aggregate Sustainability, Gender and
-       Environmental scores (factual aggregates, educational
-       only — never a buy/sell signal)
-
-   Impact note: the licensed carbon feed is not wired yet, so the
-   third metric uses the Environmental pillar of the Four Capitals
-   (a real field) rather than a fabricated CO2-vs-benchmark figure.
-
-   Mirrors explore.js / product.js conventions: self-contained
-   EN/DE copy reacting to the shared "pm:langchange" event.
+   Removed with task 02: archetype badge, own-score averages,
+   the Checkout hand-off (S11 is out of scope, decision 10.09.2026).
    ============================================================= */
 
 (function () {
@@ -24,72 +14,55 @@
 
   const $ = (s, c = document) => c.querySelector(s);
 
-  const STORE_KEY = "pm_basket"; // same key Explore writes to
+  const STORE_KEY = "pm_basket";
 
   /* ── copy (EN / DE) ─────────────────────────────────────── */
   const T = {
     en: {
-      eyebrow: "Your portfolio is ready",
+      eyebrow: "Your portfolio",
       title: 'Your <em class="serif">Portfolio</em>.',
-      sub: "Fully built. Ready when you are.",
+      sub: "Here is what you built. You decide, we guide.",
       compEyebrow: "Composition",
-      impactEyebrow: "Your impact",
-      invested: "invested",
-      typePrefix: "Your type",
-      targetMix: "target mix",
+      invested: "of your portfolio",
       noteStrong: "You decide.",
       noteSoft: "We guide you.",
-      checkout: "Checkout",
-      disclaimer: "This is not investment advice. Content is for educational purposes only.",
-      emptyTitle: "Your basket is empty.",
-      emptySub: "Build your portfolio in Explore first.",
-      emptyCta: "Go to Explore",
+      disclaimer: "The information does not constitute investment advice, any other recommendation, or an offer to buy securities or to make specific investments.",
+      emptyTitle: "Your portfolio is empty.",
+      emptySub: "Build it in the Explorer first.",
+      emptyCta: "Go to the Explorer",
       typeLabel: { ETF: "ETFs", Stock: "Stocks", Fund: "Funds" },
       typeSub: {
         ETF: (n) => `${n} ${n === 1 ? "ETF" : "ETFs"}`,
         Stock: (n) => `${n} ${n === 1 ? "single stock" : "single stocks"}`,
         Fund: (n) => `${n} ${n === 1 ? "fund" : "funds"}`
       },
-      susLabel: "Sustainability score",
-      genLabel: "Gender score",
-      envLabel: "Environmental score",
-      steps: ["Quiz", "Type", "Explore", "Portfolio", "Checkout"]
+      steps: ["Quiz", "Summary", "Explorer", "Portfolio"]
     },
     de: {
-      eyebrow: "Dein Portfolio ist bereit",
+      eyebrow: "Dein Portfolio",
       title: 'Dein <em class="serif">Portfolio</em>.',
-      sub: "Vollständig aufgebaut. Bereit, wenn du es bist.",
+      sub: "Das hast du gebaut. Du entscheidest, wir begleiten.",
       compEyebrow: "Zusammensetzung",
-      impactEyebrow: "Deine Wirkung",
-      invested: "investiert",
-      typePrefix: "Dein Typ",
-      targetMix: "Zielmix",
+      invested: "deines Portfolios",
       noteStrong: "Du entscheidest.",
       noteSoft: "Wir begleiten.",
-      checkout: "Checkout",
-      disclaimer: "Dies ist keine Anlageberatung. Die Inhalte dienen ausschließlich Bildungszwecken.",
-      emptyTitle: "Dein Basket ist leer.",
-      emptySub: "Bau zuerst dein Portfolio in Entdecken auf.",
-      emptyCta: "Zu Entdecken",
+      disclaimer: "Die Informationen stellen keine Anlageberatung, keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur Vornahme bestimmter Investitionen dar.",
+      emptyTitle: "Dein Portfolio ist leer.",
+      emptySub: "Bau es zuerst im Explorer auf.",
+      emptyCta: "Zum Explorer",
       typeLabel: { ETF: "ETFs", Stock: "Aktien", Fund: "Fonds" },
       typeSub: {
         ETF: (n) => `${n} ${n === 1 ? "ETF" : "ETFs"}`,
-        Stock: (n) => `${n} ${n === 1 ? "Einzeltitel" : "Einzeltitel"}`,
+        Stock: (n) => `${n} Einzeltitel`,
         Fund: (n) => `${n} Fonds`
       },
-      susLabel: "Nachhaltigkeits-Score",
-      genLabel: "Gender-Score",
-      envLabel: "Umwelt-Score",
-      steps: ["Quiz", "Typ", "Entdecken", "Portfolio", "Checkout"]
+      steps: ["Quiz", "Zusammenfassung", "Explorer", "Portfolio"]
     }
   };
 
-  const GENDER_NUM = { "A+": 100, A: 90, B: 78, C: 64, D: 50, E: 35, F: 15 };
-  // Type colours (hex, not CSS vars — these feed SVG stroke presentation
-  // attributes, which do not resolve var()). Stock = --forest so "Aktien"
-  // reads as the darkest slice on the light page, matching the mockup.
+  // hex, not CSS vars: these feed SVG presentation attributes
   const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#1F3A2E", Fund: "#A8D5BA" };
-  const TRACK_STROKE = "rgba(26,46,36,0.10)"; // = --line, as a literal for SVG
+  const TRACK_STROKE = "rgba(26,46,36,0.10)";
   const TYPE_ORDER = ["ETF", "Stock", "Fund"];
 
   /* ── state ──────────────────────────────────────────────── */
@@ -102,17 +75,10 @@
   function esc(s) {
     return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
-  const num = (v) => (v / 10).toFixed(1).replace(".", lang === "de" ? "," : ".");
 
   function loadBasket() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
     catch (e) { return []; }
-  }
-  // archetype (from the quiz "Typ" screen) — its model mix indicates how the
-  // portfolio is meant to look. Optional: null if the quiz wasn't taken.
-  function loadArchetype() {
-    try { return JSON.parse(localStorage.getItem("pm_archetype")) || null; }
-    catch (e) { return null; }
   }
 
   /* ── composition ────────────────────────────────────────── */
@@ -139,7 +105,7 @@
     }).join("");
   }
 
-  /* ── donut (whole basket = 100% invested) ───────────────── */
+  /* ── donut (whole basket = 100 %) ───────────────────────── */
   function renderDonut() {
     const c = counts();
     const total = ITEMS.length || 1;
@@ -161,41 +127,7 @@
       <text x="${C}" y="${C + 30}" text-anchor="middle" class="pf-donut__word">${esc(t().invested)}</text>`;
   }
 
-  /* ── impact / ESG (aggregate, educational only) ─────────── */
-  function renderImpact() {
-    $("#impactEyebrow").textContent = t().impactEyebrow;
-    const n = ITEMS.length || 1;
-    const susAvg = ITEMS.reduce((a, s) => a + s.sustainabilityScore, 0) / n;
-    const genAvg = ITEMS.reduce((a, s) => a + GENDER_NUM[s.genderScore], 0) / n;
-    const envAvg = ITEMS.reduce((a, s) => a + (s.fourCapitals ? s.fourCapitals.environmental : 0), 0) / n;
-
-    const bar = (label, pct, val) => `
-      <div class="pf-bar">
-        <div class="pf-bar__head"><span>${esc(label)}</span><span class="pf-bar__val">${val}</span></div>
-        <div class="pf-bar__track"><span class="pf-bar__fill" style="width:${pct.toFixed(0)}%"></span></div>
-      </div>`;
-
-    $("#impactList").innerHTML =
-      bar(t().susLabel, susAvg, num(susAvg)) +
-      bar(t().genLabel, genAvg, num(genAvg)) +
-      bar(t().envLabel, envAvg, num(envAvg));
-  }
-
-  /* ── archetype badge (type + its target mix) ────────────── */
-  function renderType() {
-    const box = $("#pfType");
-    if (!box) return;
-    const arch = loadArchetype();
-    if (!arch || !arch.name || !arch.alloc) { box.hidden = true; return; }
-    const name = arch.name[lang] || arch.name.en;
-    const a = arch.alloc;
-    const mix = `${t().typeLabel.ETF} ${a.ETF} · ${t().typeLabel.Stock} ${a.Stock} · Bonds ${a.Bond}`;
-    box.innerHTML = `<span class="pf__type-name">${esc(t().typePrefix)}: ${esc(name)}</span>` +
-      `<span class="pf__type-mix">${esc(t().targetMix)} · ${esc(mix)}</span>`;
-    box.hidden = false;
-  }
-
-  /* ── flow steps ─────────────────────────────────────────── */
+  /* ── flow steps (interim; PRD 5.1 ProgressBar in task 06) ─ */
   function renderSteps() {
     $("#flowsteps").innerHTML = t().steps.map((name, i) => {
       const cls = i < 3 ? "is-done" : (i === 3 ? "is-active" : "");
@@ -222,19 +154,14 @@
     $("#pfTitle").innerHTML = t().title;
     $("#pfSub").textContent = t().sub;
     $("#pfDisclaimer").textContent = t().disclaimer;
-    renderType();
     renderSteps();
 
     if (!ITEMS.length) { renderEmpty(); return; }
 
     $("#noteStrong").textContent = t().noteStrong;
     $("#noteSoft").textContent = t().noteSoft;
-    const btn = $("#pfCheckout");
-    btn.textContent = t().checkout;
-
     renderComposition();
     renderDonut();
-    renderImpact();
   }
 
   document.addEventListener("pm:langchange", (e) => {
@@ -243,14 +170,6 @@
   });
 
   /* ── boot ───────────────────────────────────────────────── */
-  // wire the checkout button once (survives re-renders — it is not
-  // replaced unless the basket is empty)
-  document.addEventListener("click", (e) => {
-    if (e.target.closest && e.target.closest("#pfCheckout")) {
-      location.href = "checkout.html";
-    }
-  });
-
   fetch("data/securities.json")
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((doc) => {

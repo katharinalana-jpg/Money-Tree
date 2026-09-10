@@ -33,16 +33,6 @@
 }
 .pf__title .serif { font-weight: 400; }
 .pf__sub { color: var(--ink-mute); font-size: 1rem; }
-.pf__type {
-  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.6rem;
-  justify-content: center;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--cream);
-  border-radius: var(--radius);
-}
-.pf__type-name { font-weight: 700; color: var(--forest); font-size: 0.9rem; }
-.pf__type-mix { color: var(--ink-mute); font-size: 0.82rem; }
 
 /* ── Stage: composition · donut · impact ──────────────────── */
 .pf__stage {
@@ -54,7 +44,6 @@
 .pf__col { display: flex; flex-direction: column; gap: 1.4rem; }
 .pf__col--center { align-items: center; gap: 2rem; }
 .pf__col--left { align-items: stretch; }
-.pf__col--right { align-items: stretch; }
 
 /* Cards */
 .pf-card {
@@ -66,10 +55,7 @@
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
 }
-.pf-impact {
-  background: var(--cream);
-  border: 1px solid rgba(31,58,46,0.06);
-}
+
 .pf-card__eyebrow {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;

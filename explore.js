@@ -1,14 +1,15 @@
 /* =============================================================
-   Portemonnaie — Explore (basket builder).
+   Portemonnaie — Explorer (S9 catalog, interim after task 02).
    Vanilla JS, no dependencies. Loads data/securities.json and
-   renders the three-column explore experience:
-     · left   — category + impact/gender filters
-     · middle — searchable, sortable product cards w/ radar charts
-     · right  — drag-and-drop basket + portfolio donut
+   renders: type filter + search (left/middle), a sortable list
+   of product cards, and the basket panel (right).
 
-   Reacts to the shared EN/DE toggle via the "pm:langchange" event
-   dispatched by i18n.js. All explore copy lives in EXPLORE_I18N so
-   this page stays self-contained.
+   Removed with task 02 (PRD 2.4, 7.7): own scores, impact sort,
+   theme filter, radar, product-page links, the 5-item "built"
+   ring. Default sort is name A to Z; the user chooses any other
+   sort. Weights and the PRD product drawer come with tasks 13/14.
+
+   Reacts to the shared EN/DE toggle via "pm:langchange".
    ============================================================= */
 
 (function () {
@@ -18,144 +19,81 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
   const STORE_KEY = "pm_basket";
-  const TARGET_SIZE = 5; // portfolio is "built" at 5 positions (mirrors the flow)
 
   /* ── copy (EN / DE) ─────────────────────────────────────── */
   const EXPLORE_I18N = {
     en: {
-      filterEyebrow: "Sustainability & Gender",
-      filterLede: "Your filter for impact.",
+      filterEyebrow: "Catalog",
+      filterLede: "Filters you set yourself.",
       catTitle: "Categories",
-      impactTitle: "Impact & Gender",
-      searchPh: "Search companies, ETFs and funds…",
+      searchPh: "Search by name, ISIN or theme…",
       resultsTitle: "ETFs, stocks & funds",
       resultsCount: (n) => `${n} ${n === 1 ? "result" : "results"}`,
       sortLabel: "Sort by",
-      sortImpact: "Sort: Impact",
-      sortSustainability: "Sort: Sustainability",
-      sortGender: "Sort: Gender",
-      sortName: "Sort: Name",
-      basketEyebrow: "Your basket",
-      basketEmptyTitle: "Drag ETFs here.",
-      basketEmptySub: "Drag & drop. Your portfolio builds itself.",
-      basketTitle: "Your basket",
+      sortName: "Sort: Name A–Z",
+      sortCost: "Sort: Cost ascending",
+      basketEyebrow: "Your portfolio",
+      basketEmptyTitle: "Drag products here or tap +.",
+      basketEmptySub: "Your portfolio builds up below.",
+      basketTitle: "Your portfolio",
       basketSub: "Drag a card here, or use the + on any product.",
-      autofill: "fills automatically",
       portfolioTitle: "Your portfolio",
-      portfolioProgress: (pct, n) => `${pct}% built · ${n} of ${TARGET_SIZE}`,
+      portfolioCount: (n) => `${n} ${n === 1 ? "product" : "products"}`,
       legendEtf: "ETFs",
       legendStock: "Stocks",
       legendFund: "Funds",
-      impactHead: "Your impact",
-      susLabel: "Sustainability score",
-      genLabel: "Gender score",
-      checkout: "Checkout",
-      disclaimer: "This is not investment advice. Content is for educational purposes only.",
+      next: "To the portfolio",
+      disclaimer: "The information does not constitute investment advice, any other recommendation, or an offer to buy securities or to make specific investments.",
       remove: "Remove",
-      add: "Add to basket",
-      risk: { low: "lower risk", medium: "medium risk", high: "higher risk" },
+      add: "Add to portfolio",
       typeShort: { ETF: "ETF", Stock: "Stock", Fund: "Fund" },
       cat: { ETF: "ETFs", Stock: "Stocks", Fund: "Funds" },
-      positions: "positions",
       ter: "TER",
-      sus: "Sustainability",
-      gen: "Gender",
-      steps: ["Quiz", "Type", "Explore", "Portfolio", "Checkout"]
+      steps: ["Quiz", "Summary", "Explorer", "Portfolio"]
     },
     de: {
-      filterEyebrow: "Nachhaltigkeit & Gender",
-      filterLede: "Dein Filter für Wirkung.",
+      filterEyebrow: "Katalog",
+      filterLede: "Filter, die du selbst setzt.",
       catTitle: "Kategorien",
-      impactTitle: "Wirkung & Gender",
-      searchPh: "Suche nach Unternehmen, ETFs und Fonds…",
+      searchPh: "Suche nach Name, ISIN oder Thema…",
       resultsTitle: "ETFs, Aktien & Fonds",
       resultsCount: (n) => `${n} ${n === 1 ? "Ergebnis" : "Ergebnisse"}`,
       sortLabel: "Sortieren nach",
-      sortImpact: "Sortieren: Wirkung",
-      sortSustainability: "Sortieren: Nachhaltigkeit",
-      sortGender: "Sortieren: Gender",
-      sortName: "Sortieren: Name",
-      basketEyebrow: "Dein Basket",
-      basketEmptyTitle: "Zieh ETFs hierher.",
-      basketEmptySub: "Drag & Drop. Dein Portfolio baut sich auf.",
-      basketTitle: "Dein Basket",
+      sortName: "Sortieren: Name A–Z",
+      sortCost: "Sortieren: Kosten aufsteigend",
+      basketEyebrow: "Dein Portfolio",
+      basketEmptyTitle: "Zieh Produkte hierher oder tipp auf „+“.",
+      basketEmptySub: "Dein Portfolio baut sich unten auf.",
+      basketTitle: "Dein Portfolio",
       basketSub: "Zieh eine Karte hierher oder nutze das + am Produkt.",
-      autofill: "füllt sich automatisch",
       portfolioTitle: "Dein Portfolio",
-      portfolioProgress: (pct, n) => `${pct}% aufgebaut · ${n} von ${TARGET_SIZE}`,
+      portfolioCount: (n) => `${n} ${n === 1 ? "Produkt" : "Produkte"}`,
       legendEtf: "ETFs",
       legendStock: "Aktien",
       legendFund: "Fonds",
-      impactHead: "Deine Wirkung",
-      susLabel: "Nachhaltigkeits-Score",
-      genLabel: "Gender-Score",
-      checkout: "Checkout",
-      disclaimer: "Dies ist keine Anlageberatung. Die Inhalte dienen ausschließlich Bildungszwecken.",
+      next: "Zum Portfolio",
+      disclaimer: "Die Informationen stellen keine Anlageberatung, keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur Vornahme bestimmter Investitionen dar.",
       remove: "Entfernen",
-      add: "Zum Basket hinzufügen",
-      risk: { low: "Risiko niedrig", medium: "Risiko mittel", high: "Risiko höher" },
+      add: "In mein Portfolio",
       typeShort: { ETF: "ETF", Stock: "Aktie", Fund: "Fonds" },
       cat: { ETF: "ETFs", Stock: "Aktien", Fund: "Fonds" },
-      positions: "Positionen",
       ter: "TER",
-      sus: "Nachhaltigkeit",
-      gen: "Gender",
-      steps: ["Quiz", "Typ", "Entdecken", "Portfolio", "Checkout"]
+      steps: ["Quiz", "Zusammenfassung", "Explorer", "Portfolio"]
     }
   };
 
-  /* friendly labels for the kebab themes found in the data */
-  const THEME_LABELS = {
-    en: {
-      "gender-diversity": "Women in leadership",
-      "empowerment": "Empowerment",
-      "sustainability": "Sustainability",
-      "esg": "ESG leaders",
-      "sri": "Socially responsible",
-      "climate": "Climate",
-      "clean-energy": "Renewable energy",
-      "water": "Water",
-      "environment": "Environment",
-      "consumer-staples": "Everyday goods",
-      "technology": "Technology",
-      "impact": "Impact"
-    },
-    de: {
-      "gender-diversity": "Frauen in Führung",
-      "empowerment": "Empowerment",
-      "sustainability": "Nachhaltigkeit",
-      "esg": "ESG-Vorreiter",
-      "sri": "Sozial verantwortlich",
-      "climate": "Klima",
-      "clean-energy": "Erneuerbare Energien",
-      "water": "Wasser",
-      "environment": "Umwelt",
-      "consumer-staples": "Alltagsgüter",
-      "technology": "Technologie",
-      "impact": "Wirkung"
-    }
-  };
-
-  /* gender letter grade → 0-100 (radar + sorting only) */
-  const GENDER_NUM = { "A+": 100, A: 90, B: 78, C: 64, D: 50, E: 35, F: 15 };
-  const IMPACT_NUM = { High: 3, Medium: 2, Low: 1 };
-  // Stock was --forest (#1F3A2E) — invisible against the forest portfolio panel.
-  // Lifted to a brighter emerald that reads on both the cream basket and dark panel.
   const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#2D6A4F", Fund: "#A8D5BA" };
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
-  // i18n.js runs first and sets <html lang> + may store pm_lang; mirror it so
-  // the explore content boots in the same language as the nav (avoids desync).
   let lang = (document.documentElement.lang === "de" ||
               localStorage.getItem("pm_lang") === "de") ? "de" : "en";
-  const filters = { types: new Set(), themes: new Set(), q: "", sort: "impact" };
+  const filters = { types: new Set(), q: "", sort: "name" }; // PRD S9: neutral default sort
   let basket = loadBasket();
-  let availableThemes = [];
 
   function t() { return EXPLORE_I18N[lang]; }
-  function themeLabel(key) {
-    return (THEME_LABELS[lang][key]) || key.replace(/-/g, " ");
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
 
   /* ── persistence ────────────────────────────────────────── */
@@ -167,72 +105,30 @@
     localStorage.setItem(STORE_KEY, JSON.stringify(basket));
   }
 
-  /* ── radar (6 axes) ─────────────────────────────────────── */
-  function radarSVG(s) {
-    const axes = [
-      s.fourCapitals.environmental,
-      s.fourCapitals.social,
-      s.sustainabilityScore,
-      GENDER_NUM[s.genderScore],
-      s.fourCapitals.financial,
-      s.fourCapitals.network
-    ];
-    const cx = 46, cy = 46, r = 38;
-    const pt = (val, i) => {
-      const a = (Math.PI * 2 * i / axes.length) - Math.PI / 2;
-      const rad = r * (val / 100);
-      return [cx + rad * Math.cos(a), cy + rad * Math.sin(a)];
-    };
-    const grid = (val) => axes.map((_, i) => {
-      const a = (Math.PI * 2 * i / axes.length) - Math.PI / 2;
-      return `${(cx + r * val * Math.cos(a)).toFixed(1)},${(cy + r * val * Math.sin(a)).toFixed(1)}`;
-    }).join(" ");
-    const poly = axes.map((v, i) => pt(v, i).map((n) => n.toFixed(1)).join(",")).join(" ");
-    const spokes = axes.map((_, i) => {
-      const a = (Math.PI * 2 * i / axes.length) - Math.PI / 2;
-      return `<line x1="${cx}" y1="${cy}" x2="${(cx + r * Math.cos(a)).toFixed(1)}" y2="${(cy + r * Math.sin(a)).toFixed(1)}" stroke="rgba(26,46,36,0.12)" stroke-width="1"/>`;
-    }).join("");
-    return `<svg class="radar" viewBox="0 0 92 92" aria-hidden="true">
-      <polygon points="${grid(1)}" fill="none" stroke="rgba(26,46,36,0.10)" stroke-width="1"/>
-      <polygon points="${grid(0.66)}" fill="none" stroke="rgba(26,46,36,0.08)" stroke-width="1"/>
-      <polygon points="${grid(0.33)}" fill="none" stroke="rgba(26,46,36,0.06)" stroke-width="1"/>
-      ${spokes}
-      <polygon points="${poly}" fill="rgba(168,213,186,0.55)" stroke="#4E8C6A" stroke-width="1.5" stroke-linejoin="round"/>
-    </svg>`;
-  }
-
-  /* ── filtering + sorting ────────────────────────────────── */
+  /* ── filtering + sorting (pure set operations, PRD S9) ─── */
   function visible() {
     const q = filters.q.trim().toLowerCase();
-    let out = DATA.filter((s) => {
+    const out = DATA.filter((s) => {
       if (filters.types.size && !filters.types.has(s.type)) return false;
-      if (filters.themes.size && !s.themes.some((th) => filters.themes.has(th))) return false;
       if (q) {
-        const hay = (s.name + " " + (s.ticker || "") + " " + s.themes.join(" ") + " " + s.sector).toLowerCase();
+        const hay = (s.name + " " + (s.isin || "") + " " + (s.themes || []).join(" ")).toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
     const by = {
-      impact: (a, b) => (IMPACT_NUM[b.impact] - IMPACT_NUM[a.impact]) || (b.sustainabilityScore - a.sustainabilityScore),
-      sustainability: (a, b) => b.sustainabilityScore - a.sustainabilityScore,
-      gender: (a, b) => GENDER_NUM[b.genderScore] - GENDER_NUM[a.genderScore],
-      name: (a, b) => a.name.localeCompare(b.name)
+      name: (a, b) => a.name.localeCompare(b.name),
+      cost: (a, b) => (a.ter == null ? 1 : 0) - (b.ter == null ? 1 : 0) || (a.ter || 0) - (b.ter || 0)
     };
-    return out.sort(by[filters.sort] || by.impact);
+    return out.sort(by[filters.sort] || by.name);
   }
 
   /* ── render: filters ────────────────────────────────────── */
   function renderFilters() {
     const types = ["ETF", "Stock", "Fund"];
     const checkIcon = `<svg class="pill__check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
     const typePills = types.map((ty) =>
       `<button type="button" class="pill ${filters.types.has(ty) ? "is-on" : ""}" data-type="${ty}">${checkIcon}${t().cat[ty]}</button>`
-    ).join("");
-
-    const themePills = availableThemes.map((th) =>
-      `<button type="button" class="pill ${filters.themes.has(th) ? "is-on" : ""}" data-theme="${th}">${checkIcon}${themeLabel(th)}</button>`
     ).join("");
 
     $("#filters").innerHTML = `
@@ -241,17 +137,10 @@
       <div class="filters__group">
         <div class="filters__label">${t().catTitle}</div>
         <div class="pillset">${typePills}</div>
-      </div>
-      <div class="filters__group">
-        <div class="filters__label">${t().impactTitle}</div>
-        <div class="pillset">${themePills}</div>
       </div>`;
 
     $$("#filters .pill[data-type]").forEach((b) =>
       b.addEventListener("click", () => { toggle(filters.types, b.dataset.type); renderFilters(); renderCards(); })
-    );
-    $$("#filters .pill[data-theme]").forEach((b) =>
-      b.addEventListener("click", () => { toggle(filters.themes, b.dataset.theme); renderFilters(); renderCards(); })
     );
   }
   function toggle(set, v) { set.has(v) ? set.delete(v) : set.add(v); }
@@ -270,40 +159,24 @@
     $("#cards").innerHTML = list.map((s) => {
       const inBasket = basket.includes(s.id);
       const terStr = s.ter != null ? ` · ${t().ter} ${s.ter.toFixed(2).replace(".", lang === "de" ? "," : ".")}%` : "";
-      const sus = (s.sustainabilityScore / 10).toFixed(1).replace(".", lang === "de" ? "," : ".");
-      const tags = s.themes.slice(0, 2).map((th) => `<span class="tag">${themeLabel(th)}</span>`).join("");
       const addIcon = inBasket
         ? `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l3.8 3.8L16 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
         : `<svg viewBox="0 0 20 20" aria-hidden="true"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
 
-      return `<li class="card ${inBasket ? "is-selected" : ""}" draggable="true" data-id="${s.id}">
+      return `<li class="card ${inBasket ? "is-selected" : ""}" draggable="true" data-id="${esc(s.id)}">
         <div class="card__main">
-          <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}">${s.name}</a>
-          <div class="card__meta">${t().typeShort[s.type]} · ${s.region}${terStr}</div>
-          <div class="card__stats">${s.facts && s.facts.esgHighlights && s.facts.esgHighlights[0] ? s.facts.esgHighlights[0] : s.description}</div>
-          <div class="card__tags">${tags}</div>
-        </div>
-        <div class="card__scores">
-          <div class="score"><span class="score__dot score__dot--sus"></span><span class="score__label">${t().sus}</span><span class="score__val">${sus}</span></div>
-          <div class="score"><span class="score__dot score__dot--gen"></span><span class="score__label">${t().gen}</span><span class="score__val">${s.genderScore}</span></div>
+          <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}">${esc(s.name)}</a>
+          <div class="card__meta">${t().typeShort[s.type] || esc(s.type)} · ${esc(s.region)}${terStr}${s.isin ? " · " + esc(s.isin) : ""}</div>
+          <div class="card__stats">${esc(s.description || "")}</div>
         </div>
         <div class="card__right">
-          ${radarSVG(s)}
-          <button type="button" class="addbtn ${inBasket ? "is-added" : ""}" data-add="${s.id}" aria-label="${t().add}">${addIcon}</button>
+          <button type="button" class="addbtn ${inBasket ? "is-added" : ""}" data-add="${esc(s.id)}" aria-label="${t().add}">${addIcon}</button>
         </div>
       </li>`;
     }).join("");
 
     $$("#cards .addbtn").forEach((b) =>
       b.addEventListener("click", (e) => { e.stopPropagation(); toggleBasket(b.dataset.add); })
-    );
-    // clicking the card body opens its detail page; the + button and the
-    // name link handle their own clicks, and drags never fire a click.
-    $$("#cards .card").forEach((card) =>
-      card.addEventListener("click", (e) => {
-        if (e.target.closest(".addbtn") || e.target.closest(".card__name")) return;
-        location.href = "product.html?id=" + encodeURIComponent(card.dataset.id);
-      })
     );
     wireDragSources();
   }
@@ -324,20 +197,14 @@
   function renderBasket() {
     const items = basket.map((id) => DATA.find((s) => s.id === id)).filter(Boolean);
     $("#basketEyebrow").textContent = t().basketEyebrow;
-
-    if (!items.length) {
-      $("#basketTitle").textContent = t().basketEmptyTitle;
-      $("#basketSub").textContent = t().basketEmptySub;
-    } else {
-      $("#basketTitle").textContent = t().basketTitle;
-      $("#basketSub").textContent = t().basketSub;
-    }
+    $("#basketTitle").textContent = items.length ? t().basketTitle : t().basketEmptyTitle;
+    $("#basketSub").textContent = items.length ? t().basketSub : t().basketEmptySub;
 
     $("#basketList").innerHTML = items.map((s) =>
-      `<li class="basket-item" data-id="${s.id}">
-        <span class="basket-item__swatch" style="background:${TYPE_SWATCH[s.type]}"></span>
-        <span class="basket-item__name">${s.name}</span>
-        <button type="button" class="basket-item__remove" data-remove="${s.id}" aria-label="${t().remove}">
+      `<li class="basket-item" data-id="${esc(s.id)}">
+        <span class="basket-item__swatch" style="background:${TYPE_SWATCH[s.type] || TYPE_SWATCH.Fund}"></span>
+        <span class="basket-item__name">${esc(s.name)}</span>
+        <button type="button" class="basket-item__remove" data-remove="${esc(s.id)}" aria-label="${t().remove}">
           <svg viewBox="0 0 16 16" aria-hidden="true"><line x1="4" y1="4" x2="12" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="4" x2="4" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
       </li>`
@@ -347,16 +214,15 @@
       b.addEventListener("click", () => toggleBasket(b.dataset.remove))
     );
 
-    $("#autofill").innerHTML = `${t().autofill}<span>↓</span>`;
+    $("#autofill").innerHTML = "";
     renderPortfolio(items);
   }
 
-  /* ── portfolio donut ────────────────────────────────────── */
+  /* ── portfolio donut (share by type, descriptive only) ──── */
   function renderPortfolio(items) {
     $("#portfolioTitle").textContent = t().portfolioTitle;
     const n = items.length;
-    const pct = Math.min(100, Math.round((n / TARGET_SIZE) * 100));
-    $("#portfolioProgress").textContent = t().portfolioProgress(pct, n);
+    $("#portfolioProgress").textContent = t().portfolioCount(n);
 
     const counts = { ETF: 0, Stock: 0, Fund: 0 };
     items.forEach((s) => { counts[s.type] = (counts[s.type] || 0) + 1; });
@@ -367,14 +233,10 @@
       { key: "Fund", label: t().legendFund, val: counts.Fund, color: TYPE_SWATCH.Fund }
     ];
 
-    // donut: one equal slice per holding, coloured by type so the segments
-    // match the legend dots below. The filled portion = build progress; the
-    // remainder stays as the faint track (denominator caps at TARGET_SIZE).
     const R = 48, C = 60, circ = 2 * Math.PI * R;
-    const denom = Math.max(n, TARGET_SIZE);
     let accFrac = 0;
     const arcs = seg.filter((g) => g.val > 0).map((g) => {
-      const frac = g.val / denom;
+      const frac = g.val / total;
       const len = frac * circ;
       const rot = -90 + accFrac * 360;
       accFrac += frac;
@@ -385,7 +247,7 @@
     $("#donut").innerHTML = `
       <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="12"/>
       ${arcs}
-      <text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${pct}%</text>`;
+      <text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${n}</text>`;
 
     $("#portfolioLegend").innerHTML = seg.map((g) => {
       const share = n ? Math.round((g.val / total) * 100) : 0;
@@ -396,40 +258,13 @@
       </li>`;
     }).join("");
 
-    renderImpact(items);
-
     const btn = $("#checkoutBtn");
-    btn.textContent = t().checkout;
+    btn.textContent = t().next;
     btn.disabled = n === 0;
     $("#portfolioDisclaimer").textContent = t().disclaimer;
   }
 
-  /* ── portfolio impact (aggregate scores) ────────────────── */
-  // Averages the basket's factual sustainability + gender scores onto a 0–10
-  // scale. Educational aggregate only — never a buy/sell signal.
-  function renderImpact(items) {
-    const box = $("#portfolioImpact");
-    if (!box) return;
-    const n = items.length;
-    if (!n) { box.innerHTML = ""; return; }
-
-    const susAvg = items.reduce((a, s) => a + s.sustainabilityScore, 0) / n; // 0–100
-    const genAvg = items.reduce((a, s) => a + GENDER_NUM[s.genderScore], 0) / n; // 0–100
-    const num = (v) => (v / 10).toFixed(1).replace(".", lang === "de" ? "," : ".");
-
-    const bar = (label, pct, val) => `
-      <div class="impactbar">
-        <div class="impactbar__head"><span>${label}</span><span class="impactbar__val">${val}</span></div>
-        <div class="impactbar__track"><span class="impactbar__fill" style="width:${pct.toFixed(0)}%"></span></div>
-      </div>`;
-
-    box.innerHTML = `
-      <p class="portfolio__impacthead">${t().impactHead}</p>
-      ${bar(t().susLabel, susAvg, num(susAvg))}
-      ${bar(t().genLabel, genAvg, num(genAvg))}`;
-  }
-
-  /* ── drag & drop ────────────────────────────────────────── */
+  /* ── drag & drop (button alternative: the + on each card) ─ */
   function wireDragSources() {
     $$("#cards .card").forEach((card) => {
       card.addEventListener("dragstart", (e) => {
@@ -460,10 +295,7 @@
     $("#sortLabel").textContent = t().sortLabel;
     $("#resultsDisclaimer").textContent = t().disclaimer;
     const sort = $("#sort");
-    const opts = [
-      ["impact", t().sortImpact], ["sustainability", t().sortSustainability],
-      ["gender", t().sortGender], ["name", t().sortName]
-    ];
+    const opts = [["name", t().sortName], ["cost", t().sortCost]];
     sort.innerHTML = opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
     sort.value = filters.sort;
 
@@ -484,9 +316,6 @@
     });
     $("#sort").addEventListener("change", (e) => { filters.sort = e.target.value; renderCards(); });
     $("#checkoutBtn").addEventListener("click", () => {
-      // Proceed to the full-page Portfolio review (composition + impact),
-      // then on to Checkout. Basket is persisted in localStorage (pm_basket);
-      // portfolio.js reads it.
       if (!basket.length) return;
       location.href = "portfolio.html";
     });
@@ -501,30 +330,17 @@
   });
 
   /* ── boot ───────────────────────────────────────────────── */
-  function deriveThemes() {
-    const seen = new Map();
-    DATA.forEach((s) => s.themes.forEach((th) => seen.set(th, (seen.get(th) || 0) + 1)));
-    // keep themes that appear on 2+ products so filters are meaningful
-    availableThemes = [...seen.entries()]
-      .filter(([, c]) => c >= 2)
-      .sort((a, b) => b[1] - a[1])
-      .map(([k]) => k)
-      .slice(0, 12);
-  }
-
   function showError() {
     $("#cards").innerHTML =
       `<li class="empty">Could not load the securities dataset.<br>
-      Open this page through a local web server (e.g. <code>python -m http.server</code>) or the deployed site — browsers block <code>fetch()</code> of local files.</li>`;
+      Open this page through a local web server or the deployed site — browsers block <code>fetch()</code> of local files.</li>`;
   }
 
   fetch("data/securities.json")
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((doc) => {
-      DATA = (doc.securities || []).filter((s) => GENDER_NUM[s.genderScore] != null);
-      // drop any basket ids no longer in the dataset
+      DATA = doc.securities || [];
       basket = basket.filter((id) => DATA.some((s) => s.id === id));
-      deriveThemes();
       wireDropZone();
       wireChrome();
       renderAll();

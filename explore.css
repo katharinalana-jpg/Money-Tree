@@ -221,16 +221,7 @@
   padding: 0.28rem 0.7rem;
 }
 
-.card__scores { display: flex; flex-direction: column; gap: 0.4rem; min-width: 130px; }
-.score { display: flex; align-items: center; gap: 0.5rem; font-size: 0.86rem; }
-.score__dot { width: 9px; height: 9px; border-radius: 999px; flex: none; }
-.score__dot--sus { background: var(--green); }
-.score__dot--gen { background: var(--forest); }
-.score__label { color: var(--ink-mute); }
-.score__val { margin-left: auto; font-weight: 700; color: var(--ink); }
-
 .card__right { display: flex; align-items: center; gap: 0.75rem; }
-.radar { width: 92px; height: 92px; flex: none; }
 
 .addbtn {
   width: 34px; height: 34px;
@@ -317,34 +308,6 @@
 .legend-row__dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
 .legend-row__name { color: rgba(255,255,255,0.82); }
 .legend-row__val { margin-left: auto; font-weight: 700; }
-
-/* aggregate impact bars (sustainability + gender) */
-.portfolio__impact { margin-bottom: 1.2rem; }
-.portfolio__impacthead {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--sage);
-  margin-bottom: 0.85rem;
-}
-.portfolio__impacthead::before {
-  content: ""; width: 22px; height: 2px; background: var(--sage); border-radius: 2px;
-}
-.impactbar + .impactbar { margin-top: 0.7rem; }
-.impactbar__head {
-  display: flex; align-items: baseline; justify-content: space-between;
-  font-size: 0.82rem; color: rgba(255,255,255,0.82);
-  margin-bottom: 0.35rem;
-}
-.impactbar__val { font-weight: 700; color: #fff; }
-.impactbar__track {
-  height: 6px; border-radius: 999px;
-  background: rgba(255,255,255,0.14);
-  overflow: hidden;
-}
-.impactbar__fill {
-  display: block; height: 100%;
-  background: var(--sage); border-radius: 999px;
-}
 
 .portfolio__cta { width: 100%; }
 .portfolio .btn--primary {

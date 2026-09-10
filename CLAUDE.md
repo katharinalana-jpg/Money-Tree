@@ -111,26 +111,27 @@ money-tree/
 ├── index.html                ← Home: pre-registration landing page (mirrors main) with signup form + cash-vs-investing calculator
 ├── calculator.js / calculator.css            ← calculator logic + styles (used by index; engine in calc-engine.mjs / calc-config.mjs)
 ├── library.html                              ← Library coming-soon page
-├── quiz.html / quiz.js / quiz.css            ← Step 1–2: values & risk quiz
-├── explore.html / explore.js / explore.css   ← Step 3–4: Explore + basket builder
-├── product.html / product.js / product.css   ← Product detail page (?id=<id>)
+├── session.js                ← shared pm_session helper (PRD 7.1) + S0 wiring
+├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
+├── summary.html                              ← S8 (empty until task 11)
+├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)
+├── portfolio.html / portfolio.js / portfolio.css ← S10 (interim)
+├── product.html / product.js / product.css   ← Product detail page (?id=<id>), kept for now (conflict 17)
+├── vercel.json               ← cleanUrls + rewrites of the PRD routes to the stage pages
 ├── mission.html, collabs.html, confirmed.html, impressum.html, privacy.html
 ├── styles.css                ← shared brand tokens + base styles
 ├── script.js                 ← shared: nav, mobile menu, signup form POST
 ├── i18n.js                   ← shared EN/DE i18n (data-i18n hooks + pm:langchange)
 ├── api/
 │   └── subscribe.js          ← Vercel serverless fn — adds email to Brevo list
-├── data/                     ← securities dataset + price snapshots (see data/README.md)
-│   ├── securities.json, securities.mock.json, securities.schema.json
-│   └── prices/<id>.json      ← static EOD price snapshots for the product chart
+├── data/                     ← static JSON (see data/README.md)
+│   ├── securities.json       ← interim product list, replaced by products.json in task 05
+│   └── sdgs.json             ← 17 SDGs (PRD 7.4 / 8.3)
 ├── docs/
 │   ├── PRD.md                ← binding spec for the Guidance Flow update
 │   └── PROGRESS.md           ← task log, open issues, typo fixes
-├── scripts/
-│   └── fetch-prices.mjs      ← LOCAL Node tool to refresh price snapshots (not shipped)
 ├── brand/                    ← BRAND_GUIDELINES.md + logos / illustrations / reference
-├── features/                 ← content specs (e.g. quiz copy)
-├── img/                      ← logo.png, logo_tree.png, leaf-single.png
+├── img/                      ← logo.png, logo_tree.png, leaf-single.png, mockups/ (June 2026, partly superseded)
 └── .claude/                  ← skills/ and agents/ for Claude Code (see Tooling below)
 ```
 
@@ -155,16 +156,14 @@ Assets are referenced with a `?v=N` cache-busting query; bump it after editing a
 - No emojis anywhere in the UI.
 
 ## Data Layer (Explore / Product) — current state
-- `data/securities.json` — curated securities: real names / tickers / ISINs / sectors / TERs, Money Tree-derived scores (gender, sustainability, impact, four capitals) and a `profile` block of investment criteria (AUM, replication, domicile, distribution, index, holdings; or exchange, market cap, P/E, dividend yield for stocks).
-- `data/securities.mock.json` — synthetic test fixtures (edge cases). `data/securities.schema.json` — JSON Schema for both. Validate after edits.
-- `data/prices/<id>.json` — static end-of-day price snapshots for the product chart. Superseded, see above.
-- All scores and the numeric `profile` fields are **estimates to verify against a licensed feed before launch** (see `data/README.md` and `meta.dataNote`). Under PRD 7.7 Money Tree-derived scores are not shown; master data comes from KID, factsheet and EET.
+- `data/securities.json` — interim list of 22 securities: names, ISINs, types (ETF / Stock / Fund), regions, currencies, TERs, an English description and a `profile` block (AUM, distribution, inception, top holdings) from public issuer documents. No scores. Replaced by `data/products.json` with schema in task 05.
+- `data/sdgs.json` — the 17 SDGs per PRD 7.4, German texts verbatim from 8.3.
+- Numeric `profile` fields are **approximate until verified against KID and factsheet** (see `data/README.md` and `meta.dataNote`). Master data comes from KID, factsheet and EET; scores come from a licensed provider with `scoreSource` (PRD 7.7).
 
 ## Tooling for Claude Code (this repo)
 - **`brand/BRAND_GUIDELINES.md`** — authoritative brand voice + visual system. Read before producing copy or UI.
 - **`.claude/skills/`** — `add-i18n`, `brand-ui`, `bump-cache`, `new-page` (project workflows).
-- **`.claude/agents/`** — `compliance-checker`, `brand-auditor`, `securities-data-validator` (read-only review agents; they load at session start, so restart Claude Code after adding/editing them). They may still contain superseded rules until task 02 updates them.
-- **`features/`** — content specs (e.g. `portemonnaie_quiz_content.md`, superseded as quiz spec).
+- **`.claude/agents/`** — `compliance-checker`, `brand-auditor`, `securities-data-validator` (read-only review agents; they load at session start, so restart Claude Code after adding/editing them). Updated to the PRD rules in task 02; the data validator targets the interim `securities.json` until the task 05 schemas exist.
 
 ## Out of Scope for Phase 1
 Academy · Community Forum · AI Chat · Native App · Broker API sync · Robo auto-invest (requires license) · Login, account, payment · Live prices, live ESG API, portfolio tracker, shop · Automated depot opening or order transfer · English content (structure yes, texts later)
@@ -177,9 +176,13 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 - 10.09.2026: The existing prototype is updated, the vanilla stack is kept. Archetypes and any answer to portfolio logic are removed (PRD 2.4).
 - 10.09.2026: Copy: typo fixes allowed and logged; wording and legal conflicts are flagged, not changed.
 - 10.09.2026: S0 lives on `index.html`. The pre-registration landing keeps signup, calculator and mission; the hero carries the S0 elements (CTA "Los geht's", checkmarks, stage overview, resume banner). Session helper: `session.js` (`window.pmSession`, key `pm_session`).
+- 10.09.2026: Conflict 1: Phase 1 stops at S10. S11 (Weg wählen, `/execute`) is out of scope; `checkout.*` removed, four stages in the progress bar (Quiz · Zusammenfassung · Explorer · Portfolio), `partners.json` not created.
+- 10.09.2026: Conflict 16: option B, one HTML page per stage. `quiz.html` hosts S2 to S7 as internal steps, `summary.html` is S8, `explore.html` S9, `portfolio.html` S10. `vercel.json` (`cleanUrls` + rewrites) maps the PRD paths; `history.pushState` sets the PRD path per quiz step (task 06).
+- 10.09.2026: Conflict 17: `product.html` stays for now, trimmed to public key facts (no chart, no own scores, no Four Capitals). Field migration `securities.json` → `products.json` in task 05 (see PROGRESS.md task 01 proposal for the field map).
+- 10.09.2026: Conflict 19: Four Capitals stays a content idea only (landing "A new definition of growth" section, this file). Removed from data and code; never an evaluation of products.
 
 ## Open PRD conflicts (ask before touching)
-1. Scope: PRD 3.1 says S0 to S10, but S11 is fully specified. No S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
+1. Decided 10.09.2026 (S11 out of scope), see Decisions. Still open: no S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
 2. Score shape: 7.2 flat `scores` plus `scoreSource` vs 7.7 per score `{ value, source, method, asOf }` plus a ScoreProvider adapter "ManualEET". Source of the six radar axes unclear.
 3. Lint vs final copy: "fehlt" in the Teilzeit card (8.2). "für dich" in S3 feedback and S8 phase block, while S5 lint forbids it. Proposal: apply the "für dich / passend" rule only to product related keys.
 4. Menopause card (8.2) contains the internal note "Euroraum-Zahl: noch offen". Must not ship.
@@ -194,7 +197,7 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 13. Legal review, do not edit: S4b "wäre am Konto gut aufgehoben", S8 "Genau hier lohnt sich Vermögensaufbau am Meisten".
 14. i18n: PRD 5.5 wants `locales/de.json` (source) and `en.json` (empty), while the repo uses `i18n.js` plus page JS blocks with filled EN. Proposal: keep the `i18n.js` hooks, load Guidance Flow strings from `locales/*.json`.
 15. PRD 10 asks for schema validation in CI, E2E test, PDF snapshot test and an accessibility audit; the repo rule is no npm. Option A: zero dependency Node scripts and `node --test` only, no E2E. Option B: dev only packages (e.g. ajv, Playwright, axe) that are never shipped; check the Vercel deploy stays unaffected.
-16. Routes: PRD paths vs the repo's HTML pages. Option A: one HTML page per screen with clean URLs via `vercel.json`. Option B: one page per stage with internal steps.
-17. Data: which `securities.json` fields move into `products.json`; whether `product.html` stays, since PRD S9 uses a drawer.
+16. Decided 10.09.2026 (option B, one page per stage), see Decisions.
+17. Partly decided 10.09.2026 (`product.html` stays for now), see Decisions. Still open: which `securities.json` fields move into `products.json` and the `Fund` type (PRD knows etf, stock, bond).
 18. Tokens: repo `--ink-soft` is `#1F3A2E` (Forest), PRD Ink Soft is `#4A5C52`. Repo `--marigold`, `--bg-dark`, `--ink-mute` are not in PRD 5.6. Resolve with `brand/BRAND_GUIDELINES.md`.
-19. Four Capitals framework (Financial · Environmental · Social · Network) is not in the PRD. As an own evaluation it conflicts with PRD 7.7. Keep as content idea only, or drop?
+19. Decided 10.09.2026 (content idea only, removed from data and code), see Decisions.

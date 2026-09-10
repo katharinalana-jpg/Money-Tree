@@ -16,14 +16,14 @@
   const SCHEMA_VERSION = 1;
   const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 
-  /* PRD route → stage label key + the HTML page that serves it today.
-     Page mapping is provisional until conflict 16 is decided. */
+  /* PRD route → stage label key + the HTML page that serves it
+     (routes decision 10.09.2026: one page per stage, vercel.json
+     rewrites the PRD paths). S11 is out of scope (decision 10.09.2026). */
   const STAGES = [
     { prefix: "/quiz",      label: "s0.stage1", page: "quiz.html" },
-    { prefix: "/summary",   label: "s0.stage2", page: "quiz.html" },
+    { prefix: "/summary",   label: "s0.stage2", page: "summary.html" },
     { prefix: "/explore",   label: "s0.stage3", page: "explore.html" },
-    { prefix: "/portfolio", label: "s0.stage4", page: "portfolio.html" },
-    { prefix: "/execute",   label: "s0.stage5", page: "checkout.html" }
+    { prefix: "/portfolio", label: "s0.stage4", page: "portfolio.html" }
   ];
   const FIRST_SCREEN = "/quiz/traps";
 
@@ -101,9 +101,9 @@
 
   const FALLBACK = {
     de: { resume: "Du warst bei Schritt {step}.", confirm: "Deine bisherigen Antworten werden gelöscht.",
-          stages: ["Quiz", "Zusammenfassung", "Explorer", "Portfolio", "Weg wählen"] },
+          stages: ["Quiz", "Zusammenfassung", "Explorer", "Portfolio"] },
     en: { resume: "You were at step {step}.", confirm: "Your previous answers will be deleted.",
-          stages: ["Quiz", "Summary", "Explorer", "Portfolio", "Choose your path"] }
+          stages: ["Quiz", "Summary", "Explorer", "Portfolio"] }
   };
 
   function copy(key, idx) {

@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "source": "PRD 8.3 (German short titles and hover examples, verbatim); title_en = official UN English titles",
+    "note": "colorToken values are names only. The muted sdg-01 to sdg-17 tokens are defined with task 03 / conflict 10."
+  },
+  "sdgs": [
+    { "id": 1,  "title_de": "Keine Armut", "title_en": "No Poverty", "hover_de": "Mikrofinanz, Grundversorgung, faire Löhne", "colorToken": "sdg-01", "themes_de": ["Mikrofinanz", "Grundversorgung", "faire Löhne"] },
+    { "id": 2,  "title_de": "Kein Hunger", "title_en": "Zero Hunger", "hover_de": "nachhaltige Landwirtschaft, Lebensmittelversorgung", "colorToken": "sdg-02", "themes_de": ["nachhaltige Landwirtschaft", "Lebensmittelversorgung"] },
+    { "id": 3,  "title_de": "Gesundheit und Wohlergehen", "title_en": "Good Health and Well-being", "hover_de": "Medizin, Prävention, Pflege", "colorToken": "sdg-03", "themes_de": ["Medizin", "Prävention", "Pflege"] },
+    { "id": 4,  "title_de": "Hochwertige Bildung", "title_en": "Quality Education", "hover_de": "Bildungsanbieter, EdTech, Ausbildung", "colorToken": "sdg-04", "themes_de": ["Bildungsanbieter", "EdTech", "Ausbildung"] },
+    { "id": 5,  "title_de": "Geschlechtergleichheit", "title_en": "Gender Equality", "hover_de": "Frauen in Führung, Gender Pay Gap, faire Karrierewege", "colorToken": "sdg-05", "themes_de": ["Frauen in Führung", "Gender Pay Gap", "faire Karrierewege"] },
+    { "id": 6,  "title_de": "Sauberes Wasser und Sanitärversorgung", "title_en": "Clean Water and Sanitation", "hover_de": "Wasseraufbereitung, Infrastruktur", "colorToken": "sdg-06", "themes_de": ["Wasseraufbereitung", "Infrastruktur"] },
+    { "id": 7,  "title_de": "Bezahlbare und saubere Energie", "title_en": "Affordable and Clean Energy", "hover_de": "Wind, Solar, Netze, Speicher", "colorToken": "sdg-07", "themes_de": ["Wind", "Solar", "Netze", "Speicher"] },
+    { "id": 8,  "title_de": "Menschenwürdige Arbeit und Wirtschaftswachstum", "title_en": "Decent Work and Economic Growth", "hover_de": "faire Lieferketten, Arbeitsrechte", "colorToken": "sdg-08", "themes_de": ["faire Lieferketten", "Arbeitsrechte"] },
+    { "id": 9,  "title_de": "Industrie, Innovation und Infrastruktur", "title_en": "Industry, Innovation and Infrastructure", "hover_de": "grüne Technologie, Kreislaufwirtschaft", "colorToken": "sdg-09", "themes_de": ["grüne Technologie", "Kreislaufwirtschaft"] },
+    { "id": 10, "title_de": "Weniger Ungleichheiten", "title_en": "Reduced Inequalities", "hover_de": "Inklusion, Zugang zu Kapital", "colorToken": "sdg-10", "themes_de": ["Inklusion", "Zugang zu Kapital"] },
+    { "id": 11, "title_de": "Nachhaltige Städte und Gemeinden", "title_en": "Sustainable Cities and Communities", "hover_de": "Wohnbau, Mobilität, Stadtgrün", "colorToken": "sdg-11", "themes_de": ["Wohnbau", "Mobilität", "Stadtgrün"] },
+    { "id": 12, "title_de": "Nachhaltiger Konsum und Produktion", "title_en": "Responsible Consumption and Production", "hover_de": "Recycling, Kreislaufwirtschaft, Transparenz", "colorToken": "sdg-12", "themes_de": ["Recycling", "Kreislaufwirtschaft", "Transparenz"] },
+    { "id": 13, "title_de": "Maßnahmen zum Klimaschutz", "title_en": "Climate Action", "hover_de": "CO₂-Reduktion, Klimaanpassung", "colorToken": "sdg-13", "themes_de": ["CO₂-Reduktion", "Klimaanpassung"] },
+    { "id": 14, "title_de": "Leben unter Wasser", "title_en": "Life Below Water", "hover_de": "Meeresschutz, nachhaltige Fischerei", "colorToken": "sdg-14", "themes_de": ["Meeresschutz", "nachhaltige Fischerei"] },
+    { "id": 15, "title_de": "Leben an Land", "title_en": "Life on Land", "hover_de": "Biodiversität, Wald, Boden", "colorToken": "sdg-15", "themes_de": ["Biodiversität", "Wald", "Boden"] },
+    { "id": 16, "title_de": "Frieden, Gerechtigkeit und starke Institutionen", "title_en": "Peace, Justice and Strong Institutions", "hover_de": "Governance, Anti-Korruption, Ausschluss Waffen", "colorToken": "sdg-16", "themes_de": ["Governance", "Anti-Korruption", "Ausschluss Waffen"] },
+    { "id": 17, "title_de": "Partnerschaften zur Erreichung der Ziele", "title_en": "Partnerships for the Goals", "hover_de": "Entwicklungsfinanzierung, Kooperationen", "colorToken": "sdg-17", "themes_de": ["Entwicklungsfinanzierung", "Kooperationen"] }
+  ]
+}

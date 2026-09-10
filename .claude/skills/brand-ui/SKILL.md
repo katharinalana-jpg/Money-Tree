@@ -10,8 +10,10 @@ tools: Read, Glob, Grep, Edit, Write
 
 # Brand UI
 
-Money Tree's look is **minimalist, monochrome, editorial, clean, with botanical
-line-art accents.** Professional only. **No emojis. No heavy colour palettes.**
+Money Tree's look is **minimal, editorial, warm, soft, handcrafted, premium and
+calm, with botanical line-art accents** — a forest / sage / cream palette, not
+monochrome. **No emojis. No gradients, shadows, glows or pure white surfaces.**
+Authoritative source: `brand/BRAND_GUIDELINES.md`, tokens in PRD 5.6.
 
 ## Tokens — use these, never hard-coded hex
 
@@ -22,17 +24,22 @@ Defined in `styles.css :root`:
 | `--bg` | `#FAF8F3` | page background (cream) |
 | `--bg-card` | `#F7F3EB` | card background |
 | `--ink` | `#1A2E24` | primary text |
-| `--ink-soft` | `#1F3A2E` | = forest |
+| `--ink-soft` | see conflict 18 | repo value is Forest today; PRD Ink Soft is `#4A5C52` (captions ≥ 18 px only) |
 | `--ink-mute` | `#5A6B61` | secondary / muted text |
-| `--forest` | `#1F3A2E` | primary green accent, headings |
-| `--sage` | `#A8D5BA` | soft accent / brushstroke / tags |
-| `--marigold` | `#EAA221` | warm accent (use sparingly) |
-| `--cream` | `#F5EFD7` | soft highlight backgrounds |
+| `--forest` | `#1F3A2E` | primary green accent, headings, primary CTA fill |
+| `--sage` | `#A8D5BA` | brush highlight behind one italic word |
+| `--cream` | `#F5EFD7` | InfoNote and sticky-note cards |
+| `--yellow` | `#F2C94C` | underline only, once per screen; never a fill |
 | `--line` / `--line-strong` | translucent ink | borders |
+
+PRD 5.6 adds `--forest-deep`, `--sage-deep`, `--sage-soft`, `--cream-soft`
+(added to `:root` in task 03; until then use `var(--token, #hex)` fallbacks).
+Marigold and lilac live only inside the logo, never as a UI colour.
 
 Radii: `--radius: 999px` (pills), `--radius-card: 20px`, `--radius-sm: 12px`.
 Fonts: `--ff` Inter (body/headings), `--ff-serif` Instrument Serif (`em.serif`
-accents), `--ff-script` Caveat. Shadows: `--shadow-sm/md/lg`.
+accents), `--ff-script` Caveat. No shadows in flow screens (PRD 5.6); the
+`--shadow-*` tokens remain for the prereg pages only.
 
 ## Rules
 - **Buttons are always pills** — reuse `.btn` + `.btn--primary` / `.btn--ghost`.
@@ -41,8 +48,9 @@ accents), `--ff-script` Caveat. Shadows: `--shadow-sm/md/lg`.
 - Headings use Inter `font-weight: 300`, `letter-spacing: -0.03em`; an accented
   word can use `<em class="serif">` or the `.brush` sage highlight (one per
   headline).
-- Marigold and sage are **accents** — small doses (a selected state, a pill, a
-  progress bar), never large fills.
+- Sage is an **accent** — small doses (a brush highlight, a chip, a progress
+  fill), never large fills. Forest as a full surface only for one reserved
+  moment per flow.
 - **No emojis.** Use inline SVG line-icons (see existing `stroke="currentColor"`
   icons) for iconography.
 - Respect `prefers-reduced-motion` for any animation.
@@ -59,5 +67,5 @@ accents), `--ff-script` Caveat. Shadows: `--shadow-sm/md/lg`.
 - [ ] Only `var(--token)` colours, no raw hex
 - [ ] Buttons are pills via `.btn*`
 - [ ] No emojis; icons are inline SVG
-- [ ] Accents (marigold/sage) used sparingly
+- [ ] Sage used sparingly, no shadows or gradients, no `#fff` surfaces
 - [ ] Reused existing classes where possible

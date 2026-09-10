@@ -102,6 +102,37 @@ Verification (PRD S0 Akzeptanz)
 Copy typo fixes
 - S0 subline: "Kein Jargon" → "kein Jargon" (capitalisation mid-sentence).
 
+## Task 02 · Cleanup and routes (10.09.2026)
+
+Decisions taken first (CLAUDE.md Decisions): conflict 1 S11 out of scope · 16 option B one page per stage · 17 product.html stays trimmed · 19 Four Capitals content idea only.
+
+Removed
+- Files: `data/prices/` (22), `scripts/fetch-prices.mjs`, `checkout.html/js/css` (S11), `features/portemonnaie_quiz_content.md`, `data/securities.mock.json`, `data/securities.schema.json`, `img/mockups/typ.png`, `.claude/launch.json`.
+- `quiz.js` rewritten: engine kept; archetypes, risk weights, `computeArchetype`, `jumpToResult`, share, pie, curves, nudge, screens a1/b1/c1–c4 and `SDG_GROUPS` removed. Interim screens: values (17 SDGs from `data/sdgs.json`, max 5), mirror, horizon (PRD S4b enums), saved-result. Answers persist into `pm_session` (`values.sdgs`, `situation.horizon`).
+- `explore.js` rewritten: own scores, impact sort, theme filter, radar, 5-item ring removed; default sort name A–Z, second sort cost; product links kept (conflict 17). `explore.html`: impact panel and "Type" tab removed.
+- `portfolio.js` rewritten: archetype badge, score averages, checkout hand-off removed. `portfolio.html`: impact column, type badge, checkout button removed.
+- `product.js` rewritten: price chart, prices fetch, Four Capitals, score tiles, facts block, removed profile fields gone; key facts from public documents only.
+- `data/securities.json`: fields `ticker`, `assetClass`, `sector`, `genderScore`, `sustainabilityScore`, `impact`, `fourCapitals`, `facts`, `meta.scoringSystem` and `profile.{replication,domicile,indexTracked,exchange,marketCap,peRatio,dividendYield}` removed; `meta.disclaimer` = PRD 2.4 text. `data/README.md` rewritten.
+- `i18n.js`: `nav.type`, orphaned landing flow keys (`flow.eyebrow/h2/lede`, `step1–5.*`, `quiz.q1–4`, `pie.*`, `search.ph`, `basket.*`, `exec.*`), `s0.stage5` removed; "Robo Advisor" wording in `platform.lede` / `pill1` replaced by "guided investment flow" / "geführter Anlageprozess".
+- Old disclaimer string replaced by the PRD 2.4 text (DE, EN equivalent) in quiz, explore, portfolio, product, `securities.json`, `compliance-checker`, `new-page`.
+- CSS: archetype block, curves, nudge (`quiz.css`); score rows, radar, impact bars (`explore.css`); impact card, type badge, right column (`portfolio.css`); chart, capitals, score tiles, facts lists (`product.css`); the dead landing "five steps" section with its hover mock-ups and archetype pie (`styles.css`, FLOW, STEP INTERACTIVE HOVER, RESPONSIVE STEP HOVER and the warm-bg overrides, about 370 lines; no page uses `.step`).
+- `.claude`: `compliance-checker` (PRD 2.4 rules), `brand-auditor` (palette, PRD 5.6 flow rules, mockups marked superseded), `brand-ui` and `new-page` (palette, tokens, no shadows, PRD disclaimer). `securities-data-validator` rewritten for the interim dataset. `add-i18n` untouched (conflict 14 open).
+
+Added
+- `data/sdgs.json` (17 entries, PRD 7.4 shape; DE verbatim from 8.3, EN = UN titles; colour tokens named only).
+- `summary.html` (S8, title only). `vercel.json` with `cleanUrls` and rewrites for `/quiz/:step`, `/summary`, `/explore`, `/portfolio`.
+- Nav on flow pages: Quiz · Explore · Portfolio (Type tab gone). Progress strip on all flow pages: Quiz · Zusammenfassung · Explorer · Portfolio. `session.js` stages reduced to four, summary points to `summary.html`. S0 stage list on index reduced to four ("Die vier Etappen").
+- Cache bumped on quiz, explore, portfolio, product pages (styles v25, i18n v33, script v8, page assets +1). `session.js?v=2`.
+
+Verification
+- `node --check` on all JS: pass. `JSON.parse` on `sdgs.json`, `securities.json`, `vercel.json`: pass.
+- Grep for `archetype`, `GENDER_NUM`, `fourCapitals`, `data/prices`, `checkout.html`, `nav.type`, `pm_archetype`, the old disclaimer string and "Robo" in shipped HTML/JS/CSS/JSON: no hits except explanatory comments in `quiz.js` / `portfolio.js` headers and the calculator's own `calc.disclaimer` copy.
+- Brace balance of all five stylesheets after pruning: balanced. Every element id used by quiz, explore and portfolio scripts exists in its page.
+- Not run in a browser.
+
+Copy typo fixes
+- None. Interim quiz/explore/portfolio strings are placeholders, not PRD copy.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -110,7 +141,11 @@ Copy typo fixes
 - O7 · LCP and the resume/restart flow are untested in a browser; run once the quiz page exists at the PRD route.
 - O8 · `?ref=` referral on S0 (PRD S8) not stored: `referrer` is missing from the 7.1 schema (conflict 9).
 - O9 · "Weitermachen" for `/summary` points to `quiz.html` because no summary page exists yet; fix with conflict 16.
-- O10 · The PRD gives no label for the collapsible stage overview; "Die fünf Etappen" / "The five stages" used.
+- O10 · The PRD gives no label for the collapsible stage overview; "Die vier Etappen" / "The four stages" used (four after the S11 decision).
+- O11 · `securities.json` keeps three `Fund` entries and an English `description`; PRD 7.2 knows etf / stock / bond and `description_de`. Settle with conflict 17 in task 05.
+- O12 · PRD S0 copy says "15 Minuten" and PRD 4 lists five stages; with S11 out of scope the time budget is 14:30 and the progress bar has four stages. PRD text not changed.
+- O13 · The interim quiz screens carry placeholder copy (not PRD 6 strings) until tasks 09 to 11; the interim result screen links to `summary.html`, which is empty.
+- O14 · `.claude/settings.local.json` still allows commands referencing `product.html`, `data/prices` and `securities.schema.json` (local file, not tracked).
 - O3 · `explore.js` radar uses 6 axes from Four Capitals + own scores; PRD radar axes (climate, social, governance, gender, biodiversity, transparency) have no data source (conflict 2, 19).
 - O4 · Shadows: `--shadow-*` tokens are used by the prereg site too; the no-shadow rule applies to the flow screens, keep the tokens for the landing unless the brand doc says otherwise.
 - O5 · Landing copy `platform.lede` / `pill1` use "Robo Advisor" in user-facing text on the live site; outside this task's scope but violates the copy lint.

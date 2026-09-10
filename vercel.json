@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/quiz/:step", "destination": "/quiz.html" },
+    { "source": "/summary", "destination": "/summary.html" },
+    { "source": "/explore", "destination": "/explore.html" },
+    { "source": "/portfolio", "destination": "/portfolio.html" }
+  ]
+}

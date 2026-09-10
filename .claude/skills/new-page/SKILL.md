@@ -26,10 +26,12 @@ a vanilla HTML/CSS/JS site (Phase 1) — **no npm, no framework**.
    - Unique `<title>` and `<meta name="description">`
 
 3. **Brand rules** (see `CLAUDE.md` and the `brand-ui` skill):
-   - Use brand tokens only: `--bg`, `--ink`, `--forest`, `--sage`, `--marigold`,
-     `--cream` (defined in `styles.css :root`). No new palette.
+   - Use brand tokens only: `--bg`, `--ink`, `--forest`, `--sage`, `--cream`,
+     `--yellow` (defined in `styles.css :root`, PRD 5.6). No new palette, no
+     marigold in UI.
    - Pill buttons (`.btn`, radius `999px`), `20px` card radius.
-   - **No emojis anywhere.** Minimalist, editorial, monochrome + botanical.
+   - **No emojis anywhere.** Minimal, editorial, warm forest / sage / cream +
+     botanical. No shadows, gradients or `#fff` surfaces.
 
 4. **i18n.** All user-facing copy needs a `data-i18n="key"` hook and matching
    `en` + `de` entries in `i18n.js`. Use the `add-i18n` skill. Brand slogans /
@@ -41,9 +43,11 @@ a vanilla HTML/CSS/JS site (Phase 1) — **no npm, no framework**.
 6. **Cache-busting.** Set `?v=` on every local CSS/JS link. When you change a
    shared file later, use the `bump-cache` skill to update all pages together.
 
-7. **Compliance.** Any quiz-result or portfolio screen MUST carry:
-   *"This is not investment advice. Content is for educational purposes only."*
-   (and its German equivalent). Anonymous flow — no forced login before a result.
+7. **Compliance.** Every flow screen from S5 on MUST carry the PRD 2.4
+   disclaimer in the footer: *"Die Informationen stellen keine Anlageberatung,
+   keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur
+   Vornahme bestimmter Investitionen dar."* (EN equivalent in the en locale).
+   Anonymous flow — no login, account or personal data before S10.
 
 8. **Link it in.** Add the page to the nav and/or footer of the relevant pages,
    and to any flow/CTA that should point to it.
@@ -53,5 +57,5 @@ a vanilla HTML/CSS/JS site (Phase 1) — **no npm, no framework**.
 - [ ] Brand tokens only, pill buttons, no emojis
 - [ ] EN + DE i18n keys added for all copy
 - [ ] `?v=` set on all local assets
-- [ ] Disclaimer present if it's a result/portfolio screen
+- [ ] PRD 2.4 disclaimer present if it's a flow screen from S5 on
 - [ ] Linked from nav/footer/CTAs where appropriate

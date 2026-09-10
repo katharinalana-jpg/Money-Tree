@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Find your investor profile with Portemonnaie's values & risk quiz — a warm, jargon-free way to discover how you want your money to work." />
-  <title>Find your profile — Portemonnaie</title>
+  <meta name="description" content="Portemonnaie quiz: your values and your situation, explained step by step. No investor profile, no recommendation." />
+  <title>Quiz — Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
-  <link rel="stylesheet" href="styles.css?v=9" />
-  <link rel="stylesheet" href="explore.css?v=5" />
-  <link rel="stylesheet" href="quiz.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="explore.css?v=6" />
+  <link rel="stylesheet" href="quiz.css?v=8" />
 </head>
 <body>
 
@@ -28,7 +28,6 @@
     </a>
     <nav class="nav__links nav__links--flow" aria-label="Primary">
       <a href="quiz.html" class="is-active" data-i18n="nav.quiz">Quiz</a>
-      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
       <a href="explore.html" data-i18n="nav.explore">Explore</a>
       <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
@@ -41,7 +40,6 @@
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
       <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-      <a href="quiz.html#result" data-i18n="nav.type">Type</a>
       <a href="explore.html" data-i18n="nav.explore">Explore</a>
       <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
       <div class="nav__lang" role="group" aria-label="Language">
@@ -65,15 +63,16 @@
       <div id="quizStage">
         <noscript>
           <p style="text-align:center;max-width:32rem;margin:3rem auto;color:var(--ink-mute)">
-            This quiz needs JavaScript enabled. Please turn it on to find your investor profile.
+            This quiz needs JavaScript enabled. Please turn it on to use the quiz.
           </p>
         </noscript>
       </div>
     </div>
   </main>
 
-  <script src="i18n.js?v=14"></script>
-  <script src="script.js?v=4"></script>
-  <script src="quiz.js?v=5"></script>
+  <script src="i18n.js?v=33"></script>
+  <script src="script.js?v=8"></script>
+  <script src="session.js?v=2"></script>
+  <script src="quiz.js?v=6"></script>
 </body>
 </html>
