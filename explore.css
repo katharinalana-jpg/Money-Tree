@@ -6,12 +6,11 @@
    ============================================================= */
 
 :root {
-  /* greens derived from the brand sage→forest family, used for
-     selected states, score dots, radar fills and the donut */
-  --green:      #4E8C6A;   /* mid leaf — selected pills, accents */
-  --green-soft: #DDEBE2;   /* tint for soft fills / hovers */
-  --green-line: #BFD9CB;   /* card outline on hover/selected */
-  --sage-fill:  rgba(168, 213, 186, 0.55); /* radar area */
+  /* local aliases onto the PRD 5.6 tokens in styles.css (task 03):
+     no colour is defined here */
+  --green:      var(--sage-deep);  /* markers, section tags, selected states */
+  --green-soft: var(--sage-soft);  /* soft fills / hovers */
+  --green-line: var(--sage);       /* card outline on hover/selected */
 }
 
 /* The explore app is a fixed-height workspace, not a scrolling page */
@@ -120,12 +119,11 @@
   width: 14px; height: 14px;
 }
 .pill.is-on {
-  background: var(--green);
-  border-color: var(--green);
-  color: #fff;
+  background: var(--sage-soft);
+  border-color: var(--forest);
+  color: var(--forest);
 }
 .pill.is-on .pill__check { display: block; }
-.pill:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 /* ── MIDDLE · Results ─────────────────────────────────────── */
 .results { padding: 1.2rem 1.3rem 1.5rem; }
@@ -193,9 +191,9 @@
   border-radius: var(--radius-card);
   background: var(--bg);
   cursor: grab;
-  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  transition: border-color .15s ease, background .15s ease;
 }
-.card:hover { border-color: var(--green-line); box-shadow: var(--shadow-sm); }
+.card:hover { border-color: var(--green-line); background: var(--bg-warm); }
 .card.is-selected { border-color: var(--green); }
 .card.is-dragging { opacity: 0.5; }
 .card:active { cursor: grabbing; }
@@ -235,9 +233,9 @@
 }
 .addbtn:hover { background: var(--green-soft); }
 .addbtn.is-added {
-  background: var(--green);
-  border-color: var(--green);
-  color: #fff;
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--bg);
 }
 .addbtn svg { width: 18px; height: 18px; }
 
@@ -289,38 +287,33 @@
 }
 .autofill span { display: block; font-size: 1rem; line-height: 1; margin-top: 0.1rem; }
 
-/* ── Portfolio (dark forest card) ─────────────────────────── */
+/* ── Portfolio panel (PRD S9: right panel on Background Warm) ── */
 .portfolio {
-  background: var(--forest);
-  border-color: var(--forest);
-  color: #fff;
+  background: var(--bg-warm);
+  border-color: var(--line);
+  color: var(--ink);
   padding: 1.4rem 1.3rem 1.2rem;
 }
-.portfolio__title { font-size: 1.2rem; font-weight: 700; }
-.portfolio__progress { color: var(--sage); font-size: 0.83rem; margin: 0.15rem 0 1.1rem; }
+.portfolio__title { font-size: 1.2rem; font-weight: 700; color: var(--forest); }
+.portfolio__progress { color: var(--ink-mute); font-size: 0.83rem; margin: 0.15rem 0 1.1rem; }
 
 .portfolio__chart { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1.2rem; }
 .donut { width: 116px; height: 116px; flex: none; }
-.donut__label { fill: #fff; font-weight: 700; font-size: 17px; }
+.donut__label { fill: var(--forest); font-weight: 700; font-size: 17px; }
 
 .portfolio__legend { flex: 1; display: flex; flex-direction: column; gap: 0.55rem; }
 .legend-row { display: flex; align-items: center; gap: 0.55rem; font-size: 0.86rem; }
 .legend-row__dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-.legend-row__name { color: rgba(255,255,255,0.82); }
-.legend-row__val { margin-left: auto; font-weight: 700; }
+.legend-row__name { color: var(--ink-mute); }
+.legend-row__val { margin-left: auto; font-weight: 700; color: var(--ink); }
 
 .portfolio__cta { width: 100%; }
-.portfolio .btn--primary {
-  background: var(--sage);
-  color: var(--forest);
-}
-.portfolio .btn--primary:hover { filter: brightness(1.04); }
 .portfolio__cta[disabled] { opacity: 0.45; cursor: not-allowed; }
 .portfolio__disclaimer {
   margin-top: 0.9rem;
   text-align: center;
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.72);
+  color: var(--ink-mute);
 }
 
 /* ── Bottom flow steps ────────────────────────────────────── */

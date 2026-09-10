@@ -60,9 +60,9 @@
     }
   };
 
-  // hex, not CSS vars: these feed SVG presentation attributes
-  const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#1F3A2E", Fund: "#A8D5BA" };
-  const TRACK_STROKE = "rgba(26,46,36,0.10)";
+  // CSS variables: applied through inline style so SVG resolves them
+  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
+  const TRACK_STROKE = "var(--line)";
   const TYPE_ORDER = ["ETF", "Stock", "Fund"];
 
   /* ── state ──────────────────────────────────────────────── */
@@ -116,12 +116,12 @@
       const len = frac * circ;
       const rot = -90 + acc * 360;
       acc += frac;
-      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${TYPE_SWATCH[ty]}" stroke-width="26"
+      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:${TYPE_SWATCH[ty]}" stroke-width="26"
         stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}"
         transform="rotate(${rot.toFixed(2)} ${C} ${C})"/>`;
     }).join("");
     $("#pfDonut").innerHTML = `
-      <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${TRACK_STROKE}" stroke-width="26"/>
+      <circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:${TRACK_STROKE}" stroke-width="26"/>
       ${arcs}
       <text x="${C}" y="${C - 4}" text-anchor="middle" class="pf-donut__pct">100%</text>
       <text x="${C}" y="${C + 30}" text-anchor="middle" class="pf-donut__word">${esc(t().invested)}</text>`;

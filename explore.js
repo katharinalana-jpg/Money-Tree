@@ -82,7 +82,7 @@
     }
   };
 
-  const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#2D6A4F", Fund: "#A8D5BA" };
+  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -240,12 +240,12 @@
       const len = frac * circ;
       const rot = -90 + accFrac * 360;
       accFrac += frac;
-      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${g.color}" stroke-width="12"
+      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:${g.color}" stroke-width="12"
         stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}"
         transform="rotate(${rot.toFixed(2)} ${C} ${C})"/>`;
     }).join("");
     $("#donut").innerHTML = `
-      <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="12"/>
+      <circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:var(--line)" stroke-width="12"/>
       ${arcs}
       <text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${n}</text>`;
 

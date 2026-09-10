@@ -133,6 +133,29 @@ Verification
 Copy typo fixes
 - None. Interim quiz/explore/portfolio strings are placeholders, not PRD copy.
 
+## Task 03 · Design tokens and fonts (10.09.2026)
+
+Decisions taken first (CLAUDE.md Decisions): conflict 18 repo names kept, PRD tokens added alongside · surface rules apply to flow pages only.
+
+Done
+- `styles.css :root`: `--bg-warm`, `--ink-caption` (PRD Ink Soft), `--forest-deep`, `--sage-deep`, `--sage-soft`, `--cream-soft`, `--font-sans/serif/script` (aliases of `--ff*`). `--marigold` marked logo-only. The `.s0` fallbacks `var(--x, #hex)` removed.
+- `styles.css`: new `body.flow-body` block — primary CTA Forest fill / `--bg` text / hover Forest Deep, secondary Forest outline / hover Sage Soft, focus 2 px Forest outline on every focusable element, min-height 44 px, no transform or shadow. Class set on quiz, summary, explore, portfolio, product.
+- `quiz.css`: progress bar gradient → Forest; option hover/selected shadows → Sage Soft surface; check pip marigold → Forest; `#fff` → `--bg`.
+- `explore.css`: local `--green*` become aliases of `--sage-deep` / `--sage-soft` / `--sage`; selected pill and add button on tokens; card hover shadow → Background Warm surface; the "Dein Portfolio" panel changes from a Forest full surface with white text to Background Warm with Ink text (PRD 5.6 and S9 layout); focus rule removed in favour of the shared one.
+- `portfolio.css` and `product.css` rewritten on tokens: white card → `--bg-warm`, shadows gone, dead impact-bar and CTA rules gone, product type badge Sage Soft / Forest, page title Forest.
+- `explore.js`, `portfolio.js`, `product.js`: type swatches and SVG strokes are `var(--token)` strings applied through inline `style`, so no hex remains in scripts.
+- Cache bumped: `styles.css?v=26` on all twelve pages; quiz.css v9, explore.css v7, portfolio.css v4, product.css v3, explore.js v8, portfolio.js v4, product.js v7.
+
+Verification
+- Search for `#fff`, `#ffffff`, `white`, `box-shadow`, `gradient`, raw hex and `rgba(` in quiz.css, explore.css, portfolio.css, product.css and the flow scripts: no hits except `white-space` and header comments. Allowed exception: the select arrow data URI in `explore.css` (`%235A6B61`, the `--ink-mute` value; data URIs cannot use `var()`).
+- `styles.css` `.s0` and `.flow-body` blocks: only `box-shadow: none` resets. The rest of `styles.css` and `calculator.css` still contain shadows and gradients by the scope decision (O15).
+- Token values in `:root` match PRD 5.6. Brace balance of all five stylesheets after the edits: balanced. `node --check` on flow scripts: pass.
+- brand-auditor on the changed files: PASS, no BLOCKER / WARNING / NIT. It confirmed tokens-only colour in the flow files, the documented data-URI exception, the CTA / focus rules, no Yellow or Marigold in flow UI, the `:root` values, the inline-style SVG strokes, and no emojis. Side note from the audit: the global `.btn--primary:hover` in `styles.css` still carries a raw hex and a shadow for the landing; `.flow-body` overrides it on flow pages (covered by O15).
+- Not run in a browser.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -146,6 +169,8 @@ Copy typo fixes
 - O12 · PRD S0 copy says "15 Minuten" and PRD 4 lists five stages; with S11 out of scope the time budget is 14:30 and the progress bar has four stages. PRD text not changed.
 - O13 · The interim quiz screens carry placeholder copy (not PRD 6 strings) until tasks 09 to 11; the interim result screen links to `summary.html`, which is empty.
 - O14 · `.claude/settings.local.json` still allows commands referencing `product.html`, `data/prices` and `securities.schema.json` (local file, not tracked).
+- O15 · Pre-registration pages (landing incl. calculator, mission, library, legal) keep shadows, gradients, `#fff` surfaces and marigold by the scope decision of task 03. `styles.css` outside the `.s0` / `.flow-body` blocks and `calculator.css` are not on PRD 5.6. Revisit before launch or when the landing becomes S0 in full.
+- O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O3 · `explore.js` radar uses 6 axes from Four Capitals + own scores; PRD radar axes (climate, social, governance, gender, biodiversity, transparency) have no data source (conflict 2, 19).
 - O4 · Shadows: `--shadow-*` tokens are used by the prereg site too; the no-shadow rule applies to the flow screens, keep the tokens for the landing unless the brand doc says otherwise.
 - O5 · Landing copy `platform.lede` / `pill1` use "Robo Advisor" in user-facing text on the live site; outside this task's scope but violates the copy lint.

@@ -53,7 +53,7 @@
     }
   };
 
-  const TYPE_SWATCH = { ETF: "#4E8C6A", Stock: "#1F3A2E", Fund: "#A8D5BA" };
+  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -120,7 +120,7 @@
 
       <header class="product__head">
         <div class="product__id">
-          <span class="product__type" style="--swatch:${TYPE_SWATCH[SEC.type] || TYPE_SWATCH.Fund}">${esc(SEC.type)}</span>
+          <span class="product__type">${esc(SEC.type)}</span>
           <h1 class="product__name">${esc(SEC.name)}</h1>
           <p class="product__meta">${[SEC.isin, SEC.region].filter(Boolean).map(esc).join(" · ")}</p>
           <p class="product__desc">${esc(SEC.description || "")}</p>

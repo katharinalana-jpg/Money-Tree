@@ -25,7 +25,7 @@
 .quiz-progress__bar {
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, var(--forest), var(--marigold));
+  background: var(--forest);
   transition: width .45s cubic-bezier(.4, 0, .2, 1);
 }
 .quiz-progress__label {
@@ -95,17 +95,15 @@
   background: var(--bg-card);
   border: 1.5px solid var(--line);
   border-radius: var(--radius-card);
-  transition: border-color .25s ease, background .25s ease, transform .15s ease, box-shadow .25s ease;
+  transition: border-color .25s ease, background .25s ease;
 }
 .quiz-opt:hover {
   border-color: var(--forest);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  background: var(--sage-soft);
 }
 .quiz-opt.is-selected {
   border-color: var(--forest);
-  background: rgba(168, 213, 186, 0.18); /* soft sage wash */
-  box-shadow: var(--shadow-sm);
+  background: var(--sage-soft);
 }
 .quiz-opt__text {
   display: flex;
@@ -143,15 +141,15 @@
   transition: background .2s ease, border-color .2s ease;
 }
 .quiz-opt.is-selected .quiz-opt__check {
-  background: var(--marigold);
-  border-color: var(--marigold);
+  background: var(--forest);
+  border-color: var(--forest);
 }
 .quiz-opt.is-selected .quiz-opt__check::after {
   content: "";
   position: absolute;
   left: 7px; top: 3px;
   width: 5px; height: 10px;
-  border: solid #fff;
+  border: solid var(--bg);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }

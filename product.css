@@ -1,8 +1,8 @@
 /* =============================================================
-   Portemonnaie — Product detail page.
-   Builds on tokens in styles.css and the green family + card
-   surfaces defined in explore.css. Brand-only palette, pill
-   buttons, 20px card radius, no emoji.
+   Portemonnaie — Product detail page (kept for now, conflict 17).
+   Colour only via PRD 5.6 tokens in styles.css (task 03): no
+   shadows, no gradients, no white surfaces. Builds on the card
+   surfaces and --green alias in explore.css.
    ============================================================= */
 
 .product {
@@ -25,7 +25,7 @@
 /* ── Header ───────────────────────────────────────────────── */
 .product__head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.8rem;
   align-items: start;
   margin-bottom: 1.5rem;
@@ -36,8 +36,8 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--swatch, var(--green));
+  color: var(--forest);
+  background: var(--sage-soft);
   border-radius: 999px;
   padding: 0.28rem 0.8rem;
   margin-bottom: 0.7rem;
@@ -46,7 +46,7 @@
   font-size: clamp(1.6rem, 3.5vw, 2.3rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: var(--forest);
   line-height: 1.1;
 }
 .product__meta {
@@ -55,13 +55,11 @@
   margin: 0.5rem 0 0.9rem;
 }
 .product__desc {
-  color: var(--ink-soft);
+  color: var(--ink);
   font-size: 1.02rem;
   line-height: 1.55;
   max-width: 56ch;
 }
-
-/* score tiles */
 
 /* ── Card grid ────────────────────────────────────────────── */
 .product__grid {
@@ -71,7 +69,7 @@
   margin-bottom: 1.2rem;
 }
 .pcard {
-  background: var(--bg-card);
+  background: var(--bg-warm);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   padding: 1.3rem 1.4rem;
@@ -80,15 +78,11 @@
 .pcard__title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--forest);
   margin-bottom: 1rem;
 }
 
-/* ── Price chart ──────────────────────────────────────────── */
-
-/* ── Four Capitals ────────────────────────────────────────── */
-
-/* ── Criteria / facts lists ───────────────────────────────── */
+/* ── Key facts list ───────────────────────────────────────── */
 .critlist { display: flex; flex-direction: column; }
 .critrow {
   display: flex; justify-content: space-between; gap: 1rem;
@@ -110,9 +104,9 @@
   border-radius: var(--radius-sm);
   background: var(--bg);
   text-decoration: none;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  transition: border-color .15s ease, background .15s ease;
 }
-.relcard:hover { border-color: var(--green-line); box-shadow: var(--shadow-sm); }
+.relcard:hover { border-color: var(--sage); background: var(--bg-warm); }
 .relcard__swatch { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
 .relcard__name {
   display: block; font-weight: 700; color: var(--ink);
@@ -132,11 +126,6 @@
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .product__head { grid-template-columns: 1fr; }
   .product__grid { grid-template-columns: 1fr; }
-
   .related { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-
 }

@@ -48,7 +48,7 @@ Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). Wha
 | Button radius | `--radius` | `999px` (pill) |
 | Card radius | `--radius-card` | `20px` |
 
-PRD 5.6 adds: Ink Soft `#4A5C52`, Forest Deep `#14271F` (primary CTA hover), Sage Deep `#7FB995` (list markers, section tags, glossary underline), Sage Soft `#D4EAD8` (pills, chips, hover), Cream Soft `#FAF4DC` (dividers, footer bands). Naming collision with `--ink-soft`: see conflict 18.
+PRD 5.6 tokens, implemented in `:root` (task 03): `--bg-warm` `#F7F3EB`, `--ink-caption` `#4A5C52` (PRD "Ink Soft", captions and secondary text at ≥ 18 px only), `--forest-deep` `#14271F` (primary CTA hover), `--sage-deep` `#7FB995` (list markers, section tags, glossary underline), `--sage-soft` `#D4EAD8` (pills, chips, hover), `--cream-soft` `#FAF4DC` (dividers, footer bands). Flow pages carry `body.flow-body`, which scopes the PRD button and focus styles. Colour in flow files only via `var(--token)`.
 
 Fonts: **Inter** (UI / body / headlines), **Instrument Serif** italic (accent words, pull quotes), **Caveat** (signature phrases only) — all via Google Fonts.
 
@@ -180,6 +180,8 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 - 10.09.2026: Conflict 16: option B, one HTML page per stage. `quiz.html` hosts S2 to S7 as internal steps, `summary.html` is S8, `explore.html` S9, `portfolio.html` S10. `vercel.json` (`cleanUrls` + rewrites) maps the PRD paths; `history.pushState` sets the PRD path per quiz step (task 06).
 - 10.09.2026: Conflict 17: `product.html` stays for now, trimmed to public key facts (no chart, no own scores, no Four Capitals). Field migration `securities.json` → `products.json` in task 05 (see PROGRESS.md task 01 proposal for the field map).
 - 10.09.2026: Conflict 19: Four Capitals stays a content idea only (landing "A new definition of growth" section, this file). Removed from data and code; never an evaluation of products.
+- 10.09.2026: Conflict 18: repo token names stay (`--ink-soft` remains Forest, `--ink-mute`, `--bg-light`, `--bg-card` unchanged). PRD 5.6 tokens added alongside in `styles.css :root`: `--bg-warm`, `--ink-caption` (PRD "Ink Soft" #4A5C52), `--forest-deep`, `--sage-deep`, `--sage-soft`, `--cream-soft`, `--font-sans/serif/script` (aliases of `--ff*`). `--marigold` stays defined for the landing only, never in flow UI.
+- 10.09.2026: Scope of PRD 5.6 surface rules (no shadows, gradients, #fff): flow pages only — quiz, summary, explore, portfolio, product (`body.flow-body`) and the S0 hero block. The pre-registration pages keep their current shadows and gradients (open issue O15).
 
 ## Open PRD conflicts (ask before touching)
 1. Decided 10.09.2026 (S11 out of scope), see Decisions. Still open: no S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
@@ -199,5 +201,5 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 15. PRD 10 asks for schema validation in CI, E2E test, PDF snapshot test and an accessibility audit; the repo rule is no npm. Option A: zero dependency Node scripts and `node --test` only, no E2E. Option B: dev only packages (e.g. ajv, Playwright, axe) that are never shipped; check the Vercel deploy stays unaffected.
 16. Decided 10.09.2026 (option B, one page per stage), see Decisions.
 17. Partly decided 10.09.2026 (`product.html` stays for now), see Decisions. Still open: which `securities.json` fields move into `products.json` and the `Fund` type (PRD knows etf, stock, bond).
-18. Tokens: repo `--ink-soft` is `#1F3A2E` (Forest), PRD Ink Soft is `#4A5C52`. Repo `--marigold`, `--bg-dark`, `--ink-mute` are not in PRD 5.6. Resolve with `brand/BRAND_GUIDELINES.md`.
+18. Decided 10.09.2026 (repo names kept, PRD tokens added), see Decisions.
 19. Decided 10.09.2026 (content idea only, removed from data and code), see Decisions.

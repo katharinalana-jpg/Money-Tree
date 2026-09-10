@@ -25,7 +25,16 @@
   --sage-brush:   rgba(152, 189, 165, 0.65);  /* brush highlight, 65% */
   --cream:        #F5EFD7;
   --yellow:       #F2C94C;
-  --marigold:     #EAA221;
+  --marigold:     #EAA221;  /* logo only; not for UI (brand guidelines) */
+
+  /* PRD 5.6 tokens (decision 10.09.2026, conflict 18: repo names kept,
+     PRD tokens added alongside). Single source of colour for flow pages. */
+  --bg-warm:      #F7F3EB;  /* PRD Background Warm (= --bg-light) */
+  --ink-caption:  #4A5C52;  /* PRD "Ink Soft": captions and secondary text at >= 18 px only */
+  --forest-deep:  #14271F;  /* primary CTA hover */
+  --sage-deep:    #7FB995;  /* list markers, section tags, glossary underline */
+  --sage-soft:    #D4EAD8;  /* pills, chips, hover surfaces */
+  --cream-soft:   #FAF4DC;  /* dividers, footer bands */
 
   --nav-h: 72px;
   --radius: 999px;
@@ -35,6 +44,9 @@
   --ff: "Inter", -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
   --ff-serif: "Instrument Serif", "Times New Roman", serif;
   --ff-script: "Caveat", "Inter", cursive;
+  --font-sans: var(--ff);          /* PRD 5.6 names */
+  --font-serif: var(--ff-serif);
+  --font-script: var(--ff-script);
 
   --shadow-sm:    0 2px 8px rgba(31,58,46,0.04);
   --shadow-md:    0 8px 30px rgba(31,58,46,0.06);
@@ -1513,7 +1525,7 @@ input { font: inherit; }
   font-weight: 600; padding: 1.05rem 2.4rem;
 }
 .s0__cta:hover {
-  background: var(--forest-deep, #14271F); border-color: var(--forest-deep, #14271F);
+  background: var(--forest-deep); border-color: var(--forest-deep);
   transform: none; box-shadow: none;
 }
 .s0__cta:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
@@ -1527,7 +1539,7 @@ input { font: inherit; }
 .s0__checks li { display: inline-flex; align-items: center; gap: .5rem; }
 .s0__checks li::before {
   content: ""; width: .95rem; height: .95rem; flex: none;
-  background: var(--sage-deep, #7FB995);
+  background: var(--sage-deep);
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
           mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
 }
@@ -1538,7 +1550,7 @@ input { font: inherit; }
   border-radius: var(--radius); font-weight: 600; letter-spacing: .02em;
   color: var(--forest);
 }
-.s0__stages summary:hover { background: var(--sage-soft, #D4EAD8); }
+.s0__stages summary:hover { background: var(--sage-soft); }
 .s0__stages summary:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
 .s0__stages ol {
   display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem .5rem;
@@ -1547,7 +1559,7 @@ input { font: inherit; }
 .s0__stages li {
   counter-increment: stage;
   padding: .4rem .85rem; border-radius: var(--radius);
-  background: var(--sage-soft, #D4EAD8); color: var(--ink);
+  background: var(--sage-soft); color: var(--ink);
 }
 .s0__stages li::before { content: counter(stage) " · "; font-weight: 600; color: var(--forest); }
 
@@ -1562,7 +1574,33 @@ input { font: inherit; }
 .s0__link {
   background: none; border: 0; padding: .3rem .2rem; cursor: pointer;
   font: inherit; font-weight: 600; color: var(--forest);
-  text-decoration: underline dotted var(--sage-deep, #7FB995);
+  text-decoration: underline dotted var(--sage-deep);
   text-underline-offset: .2em; min-height: 44px;
 }
 .s0__link:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; border-radius: 6px; }
+
+/* =========================================================
+   Flow pages (quiz, summary, explore, portfolio, product):
+   PRD 5.6 button and focus styles. Scoped to body.flow-body so
+   the pre-registration pages keep their look (scope decision
+   10.09.2026). No shadows, no transforms, no gradients here.
+   ========================================================= */
+.flow-body { background: var(--bg); }
+.flow-body .btn { min-height: 44px; font-weight: 600; }
+.flow-body .btn--primary {
+  background: var(--forest); color: var(--bg); border: 1.5px solid var(--forest);
+}
+.flow-body .btn--primary:hover {
+  background: var(--forest-deep); border-color: var(--forest-deep); color: var(--bg);
+  transform: none; box-shadow: none;
+}
+.flow-body .btn--ghost {
+  background: transparent; color: var(--forest); border: 1.5px solid var(--forest);
+}
+.flow-body .btn--ghost:hover {
+  background: var(--sage-soft); color: var(--forest); border-color: var(--forest);
+  transform: none; box-shadow: none;
+}
+.flow-body :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--forest); outline-offset: 2px;
+}
