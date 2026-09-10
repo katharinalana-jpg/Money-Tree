@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="See what your money could grow into. Portemonnaie's investment calculator shows how a small monthly amount can build your future and close the gender pension gap." />
-  <title>Investment Calculator — Portemonnaie</title>
+  <meta name="description" content="Portemonnaie. Values aligned investing for women. Pre register for early access." />
+  <title>Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
-  <link rel="stylesheet" href="styles.css?v=9" />
-  <link rel="stylesheet" href="calculator.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=24" />
+  <link rel="stylesheet" href="calculator.css?v=13" />
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
   <!-- NAV -->
   <header class="nav" id="nav">
-    <a class="nav__brand" href="index.html">
+    <a class="nav__brand" href="#top">
       <img src="brand/logos/MAIN_logomark_wallet_color.png" alt="" class="nav__brand-mark" />
       <span class="nav__brand-text">
         Portemonnaie
@@ -26,12 +32,9 @@
       </span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-      <a href="explore.html" data-i18n="nav.explore">Explore</a>
-      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a href="prereg.html" data-i18n="nav.signup">Sign Up</a>
-      <a class="nav__cta" href="quiz.html" data-i18n="nav.start">Start investing</a>
+      <a href="#intro" data-nav data-i18n="nav.intro">Intro</a>
+      <a href="library.html" data-i18n="nav.library">Library</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -41,12 +44,9 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-      <a href="explore.html" data-i18n="nav.explore">Explore</a>
-      <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-      <a href="prereg.html" data-i18n="nav.signup">Sign Up</a>
-      <a class="nav__cta" href="quiz.html" data-i18n="nav.start">Start investing</a>
+      <a href="#intro" data-i18n="nav.intro">Intro</a>
+      <a href="library.html" data-i18n="nav.library">Library</a>
+      <a class="nav__cta" href="#signup" data-i18n="nav.signup">Sign Up</a>
       <div class="nav__lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
@@ -56,98 +56,126 @@
 
   <main id="top">
 
-    <!-- HERO + CALCULATOR -->
+    <!-- HERO -->
+    <section class="hero" id="intro">
+      <div class="container hero__inner">
+        <p class="eyebrow reveal" data-i18n="hero.eyebrow">Pre Launch. Early Access.</p>
+        <h1 class="h-display reveal">Start investing in<br/>what you <span class="brush"><em class="serif">support</em></span>.</h1>
+        <p class="hero__sub reveal" data-i18n-html="hero.sub">
+          Let your money work for you and your values.
+        </p>
+
+        <form class="hero__form reveal" data-signup>
+          <label class="sr-only" for="heroName" data-i18n="form.name_label">First name</label>
+          <input id="heroName" type="text" name="first_name" class="form__name"
+                 placeholder="First name" data-i18n-ph="form.name_ph" autocomplete="given-name" maxlength="60" />
+          <label class="sr-only" for="heroEmail" data-i18n="form.email_label">Email address</label>
+          <input id="heroEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <fieldset class="form__lang" role="radiogroup">
+            <legend class="form__lang-label" data-i18n="form.lang_label">Send me updates in</legend>
+            <label class="form__lang-opt"><input type="radio" name="language" value="en" id="heroLangEn" /><span>EN</span></label>
+            <label class="form__lang-opt"><input type="radio" name="language" value="de" id="heroLangDe" /><span>DE</span></label>
+            <label class="form__lang-opt"><input type="radio" name="language" value="fr" id="heroLangFr" /><span>FR</span></label>
+          </fieldset>
+          <label class="form__consent" for="heroConsent">
+            <input id="heroConsent" type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
+              <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--primary" data-i18n="form.cta_early">Get Early Access</button>
+          <p class="form__success" hidden data-i18n="form.success_hero">Check your inbox. Click the confirmation link to finish signing up.</p>
+        </form>
+      </div>
+
+      <div class="hero__stage reveal" aria-hidden="true">
+        <div class="hero__sticky" data-i18n-html="hero.sticky">
+          <strong>For women</strong>
+          <em>who build</em>
+          <em>their future.</em>
+        </div>
+        <img class="hero__plant" src="brand/illustrations/plant_full.svg" alt="" />
+        <span class="hero__signature">Learn. Invest. Grow.<br/>On <em>your</em> terms.</span>
+      </div>
+
+    </section>
+
+    <!-- CALCULATOR (cash vs investing — opportunity cost, real terms) -->
     <section class="calc-hero" id="calculator">
       <div class="container">
         <header class="calc-hero__head reveal">
-          <p class="eyebrow" data-i18n="calc.eyebrow">The cost of waiting</p>
-          <h1 class="h-display" data-i18n-html="calc.h1">See what your money could <span class="brush"><em class="serif">grow</em></span> into.</h1>
-          <p class="calc-hero__sub" data-i18n="calc.sub">
-            Saving keeps your money safe — but investing puts it to work. Move the
-            sliders to see the difference the same amount each month could make by
-            the time you retire.
-          </p>
+          <h2 class="h-display" data-i18n-html="calc.h1">See what your money could <span class="brush"><em class="serif">become</em></span>.</h2>
         </header>
 
         <div class="calc reveal">
           <!-- INPUTS -->
-          <div class="calc__panel calc__inputs">
+          <form class="calc__panel calc__inputs" id="calcForm" novalidate>
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inMonthly" data-i18n="calc.monthly">Monthly amount</label>
-                <output class="calc-field__val" id="outMonthly">€150</output>
+                <label for="inAge" data-i18n="calc.age">Your age today</label>
+                <output class="calc-field__val" id="outAge">30</output>
               </div>
-              <input type="range" id="inMonthly" min="25" max="2000" step="25" value="150" />
-              <div class="calc-field__scale"><span>€25</span><span>€2,000</span></div>
+              <input type="range" id="inAge" />
             </div>
 
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inAgeNow" data-i18n="calc.age_now">Your age today</label>
-                <output class="calc-field__val" id="outAgeNow">30</output>
+                <label for="inSaving" data-i18n="calc.saving">What you set aside each month</label>
+                <output class="calc-field__val" id="outSaving">€200</output>
               </div>
-              <input type="range" id="inAgeNow" min="18" max="60" step="1" value="30" />
-              <div class="calc-field__scale"><span>18</span><span>60</span></div>
+              <input type="range" id="inSaving" />
             </div>
 
             <div class="calc-field">
               <div class="calc-field__top">
-                <label for="inAgeRetire" data-i18n="calc.age_retire">Retirement age</label>
-                <output class="calc-field__val" id="outAgeRetire">67</output>
+                <label for="inStart" data-i18n="calc.start">How much you have now</label>
+                <output class="calc-field__val" id="outStart">€5,000</output>
               </div>
-              <input type="range" id="inAgeRetire" min="55" max="75" step="1" value="67" />
-              <div class="calc-field__scale"><span>55</span><span>75</span></div>
+              <input type="range" id="inStart" />
             </div>
 
-            <p class="calc-field__hint calc-field__assume" data-i18n="calc.assume">
-              Compares saving (1% a year) with investing (6% average a year),
-              putting away the same amount each month.
-            </p>
-          </div>
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label for="inHorizon" data-i18n="calc.horizon">The age you want to retire</label>
+                <output class="calc-field__val" id="outHorizon">67</output>
+              </div>
+              <input type="range" id="inHorizon" />
+            </div>
+          </form>
 
           <!-- RESULTS -->
           <div class="calc__panel calc__results">
-            <p class="calc-result__label">
-              <span data-i18n="calc.result.label">Possible difference by age</span>
-              <span id="outResultAge">67</span>
-            </p>
-            <p class="calc-result__value" id="outGap">€0</p>
-            <p class="calc-result__sub" data-i18n="calc.result.sub">
-              between saving and investing the same each month
-            </p>
+            <p class="calc-result__label" data-i18n="calc.diff">Potential difference</p>
+            <p class="calc-result__value calc-result__value--loss" id="outGap" aria-live="polite">€0</p>
 
             <div class="calc-chart" aria-hidden="true">
               <svg id="calcChart" viewBox="0 0 360 210">
                 <defs>
                   <linearGradient id="calcGap" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#D64545" stop-opacity="0.42" />
-                    <stop offset="100%" stop-color="#D64545" stop-opacity="0.06" />
+                    <stop offset="0%" stop-color="var(--marigold)" stop-opacity="0.38" />
+                    <stop offset="100%" stop-color="var(--marigold)" stop-opacity="0.05" />
                   </linearGradient>
                 </defs>
 
-                <!-- horizontal gridlines (fixed positions; curve grows against them) -->
                 <line class="calc-chart__grid" x1="46" y1="10" x2="352" y2="10" />
                 <line class="calc-chart__grid" x1="46" y1="53.5" x2="352" y2="53.5" />
                 <line class="calc-chart__grid" x1="46" y1="97" x2="352" y2="97" />
                 <line class="calc-chart__grid" x1="46" y1="140.5" x2="352" y2="140.5" />
 
-                <!-- axes -->
                 <line class="calc-chart__axis" x1="46" y1="10" x2="46" y2="184" />
                 <line class="calc-chart__axis" x1="46" y1="184" x2="352" y2="184" />
 
-                <!-- series: red gap fill between the two lines -->
+                <!-- gap fill = potential upside between cash and invested -->
                 <path id="calcGapArea" class="calc-chart__gap" d="" fill="url(#calcGap)" />
                 <path id="calcSave" class="calc-chart__save" d="" fill="none" />
                 <path id="calcInvest" class="calc-chart__invest" d="" fill="none" />
 
-                <!-- y-axis ticks (money) -->
                 <text id="calcYTop" class="calc-chart__tick calc-chart__tick--y" x="42" y="13"></text>
                 <text id="calcY75" class="calc-chart__tick calc-chart__tick--y" x="42" y="56.5"></text>
                 <text id="calcYMid" class="calc-chart__tick calc-chart__tick--y" x="42" y="100"></text>
                 <text id="calcY25" class="calc-chart__tick calc-chart__tick--y" x="42" y="143.5"></text>
                 <text id="calcYBot" class="calc-chart__tick calc-chart__tick--y" x="42" y="187"></text>
 
-                <!-- x-axis ticks (age) -->
                 <text id="calcXStart" class="calc-chart__tick calc-chart__tick--xstart" x="46" y="200"></text>
                 <text id="calcXEnd" class="calc-chart__tick calc-chart__tick--xend" x="352" y="200"></text>
               </svg>
@@ -155,161 +183,120 @@
 
             <div class="calc-legend">
               <span class="calc-legend__item calc-legend__item--invest">
-                <em data-i18n="calc.invest">If you invest</em>
-                <strong id="outInvest">€0</strong>
+                <em data-i18n="calc.invest.short">Invested</em>
               </span>
               <span class="calc-legend__item calc-legend__item--save">
-                <em data-i18n="calc.save">If you save</em>
-                <strong id="outSave">€0</strong>
+                <em data-i18n="calc.cash.short">Cash</em>
               </span>
             </div>
 
-            <a href="quiz.html" class="btn btn--primary calc-result__cta" data-i18n="calc.cta">
-              Start my plan
+            <a href="#signup" class="btn btn--primary calc-result__cta" data-i18n="calc.cta">
+              Put your money to work
             </a>
             <p class="calc-disclaimer" data-i18n="calc.disclaimer">
-              A simplified projection for educational purposes only. It assumes 1% a year on
-              savings and a 6% average on investments, and does not account for fees, taxes or
-              inflation. This is not investment advice.
+              A simplified projection shown in today's money, for learning only. Long-term
+              returns are assumptions, not guarantees, and this ignores fees and taxes.
+              This is not investment advice.
+            </p>
+            <p class="calc-source" data-i18n-html="calc.source">
+              The roughly 6% a year that investing has historically added over cash reflects long-run EU data.
+              <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Source: European Commission (2025)</a>.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FLOW (full 5-step interactive — shared with landing page) -->
-    <section class="section flow" id="flow">
+    <!-- MISSION (what we fight for) -->
+    <section class="section problem" id="mission">
       <div class="container">
         <header class="section__header reveal">
-          <p class="eyebrow" data-i18n="flow.eyebrow">The core experience</p>
-          <h2 class="h-section" data-i18n-html="flow.h2">Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.</h2>
-          <p class="section__lede" data-i18n="flow.lede">
-            We guide you in 5 easy steps.
-          </p>
+          <p class="eyebrow" data-i18n="problem.eyebrow">Why we exist</p>
+          <h2 class="h-section" data-i18n-html="problem.h2">At Portemonnaie, we are <em class="serif underline-marigold">fighting</em> to:</h2>
         </header>
 
-        <ol class="steps">
-          <!-- Step 1: Quiz -->
-          <li class="step step--interactive step--link reveal" data-step="quiz">
-            <a class="step__link" href="quiz.html" data-i18n-aria="step1.go" aria-label="Start the quiz"></a>
-            <span class="step__num">01</span>
-            <h3 class="step__title" data-i18n="step1.title">Take the quiz</h3>
-            <p data-i18n="step1.desc">Answer a few questions about your investing style, your goals, and the causes you care about.</p>
-            <div class="step__hover step__hover--quiz" aria-hidden="true">
-              <div class="quiz-card quiz-card--1">
-                <span class="quiz-card__q" data-i18n="quiz.q1">What is your risk tolerance?</span>
-                <span class="quiz-card__dot"></span>
-              </div>
-              <div class="quiz-card quiz-card--2">
-                <span class="quiz-card__q" data-i18n="quiz.q2">Which causes matter to you?</span>
-                <span class="quiz-card__dot"></span>
-              </div>
-              <div class="quiz-card quiz-card--3">
-                <span class="quiz-card__q" data-i18n="quiz.q3">What is your investment horizon?</span>
-                <span class="quiz-card__dot"></span>
-              </div>
-              <div class="quiz-card quiz-card--4">
-                <span class="quiz-card__q" data-i18n="quiz.q4">How much can you invest monthly?</span>
-                <span class="quiz-card__dot"></span>
-              </div>
-            </div>
-          </li>
+        <div class="problem__grid">
+          <article class="problem__card reveal">
+            <div class="problem__ordinal">01</div>
+            <h3 data-i18n="problem.c1.title">Close the gender wealth gap</h3>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__ordinal">02</div>
+            <h3 data-i18n="problem.c2.title">Close the gender pension gap</h3>
+          </article>
+          <article class="problem__card reveal">
+            <div class="problem__ordinal">03</div>
+            <h3 data-i18n="problem.c3.title">Close the gender confidence gap in finance</h3>
+          </article>
+        </div>
 
-          <!-- Step 2: Archetype -->
-          <li class="step step--interactive reveal" data-step="archetype">
-            <span class="step__num">02</span>
-            <h3 class="step__title" data-i18n="step2.title">Find your archetype</h3>
-            <div class="step__hover step__hover--archetype" aria-hidden="true">
-              <svg class="pie-chart" viewBox="0 0 120 120">
-                <circle class="pie-seg pie-seg--etf" cx="60" cy="60" r="50" />
-                <circle class="pie-seg pie-seg--stocks" cx="60" cy="60" r="50" />
-                <circle class="pie-seg pie-seg--bonds" cx="60" cy="60" r="50" />
-              </svg>
-              <div class="pie-legend">
-                <span class="pie-legend__item pie-legend__item--etf" data-i18n="pie.etf">60% ETFs</span>
-                <span class="pie-legend__item pie-legend__item--stocks" data-i18n="pie.stocks">30% Stocks</span>
-                <span class="pie-legend__item pie-legend__item--bonds" data-i18n="pie.bonds">10% Bonds</span>
-              </div>
-            </div>
-          </li>
+        <p class="problem__closing reveal" data-i18n-html="problem.closing">With our values. With our convictions. With <span class="underline-marigold">what we decide</span>. – For us and a better future.</p>
+      </div>
+    </section>
 
-          <!-- Step 3: Explore -->
-          <li class="step step--interactive reveal" data-step="explore">
-            <span class="step__num">03</span>
-            <h3 class="step__title" data-i18n="step3.title">Explore</h3>
-            <p data-i18n="step3.desc">Browse ETFs, stocks and bonds ranked by a sustainability score and a gender score.</p>
-            <div class="step__hover step__hover--explore" aria-hidden="true">
-              <div class="search-mock">
-                <div class="search-mock__bar">
-                  <svg class="search-mock__icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span class="search-mock__text" data-i18n="search.ph">Search ETFs, Stocks...</span>
-                </div>
-                <div class="search-mock__results">
-                  <span class="search-mock__row">iShares Global Clean Energy <em>ESG A+</em></span>
-                  <span class="search-mock__row">Xtrackers MSCI World ESG <em>ESG A</em></span>
-                  <span class="search-mock__row">Amundi Gender Equality <em>ESG B+</em></span>
-                </div>
-              </div>
-            </div>
-          </li>
 
-          <!-- Step 4: Basket -->
-          <li class="step step--interactive reveal" data-step="basket">
-            <span class="step__num">04</span>
-            <h3 class="step__title" data-i18n="step4.title">Fill your basket</h3>
-            <p data-i18n="step4.desc">Drag and drop to build your portfolio. Investing will feel like online shopping.</p>
-            <div class="step__hover step__hover--basket" aria-hidden="true">
-              <div class="basket-demo">
-                <div class="basket-demo__items">
-                  <span class="basket-demo__chip" draggable="true" data-type="stocks" data-i18n="basket.stocks">Stocks</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="esg" data-i18n="basket.esg">ESG</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="etf" data-i18n="basket.etf">ETF</span>
-                  <span class="basket-demo__chip" draggable="true" data-type="bonds" data-i18n="basket.bonds">Green Bonds</span>
-                </div>
-                <div class="basket-demo__drop" data-drop>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                  <span data-i18n="basket.drop">Drop here</span>
-                </div>
-              </div>
-            </div>
-          </li>
+    <!-- FOUR CAPITALS -->
+    <section class="section capitals">
+      <div class="container">
+        <div class="capitals__content">
+          <header class="section__header reveal">
+            <p class="eyebrow" data-i18n="capitals.eyebrow">A new definition of growth</p>
+            <h2 class="h-section">A <em class="serif">new era</em> of investing.</h2>
+          </header>
 
-          <!-- Step 5: Execute -->
-          <li class="step step--interactive reveal" data-step="execute">
-            <span class="step__num">05</span>
-            <h3 class="step__title" data-i18n="step5.title">Execute</h3>
-            <p data-i18n="step5.desc">Open your first depot with a trusted Wealth Manager or the Broker of your choice.</p>
-            <div class="step__hover step__hover--execute" aria-hidden="true">
-              <div class="execute-options">
-                <div class="execute-option">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                  <span data-i18n="exec.wealth">Wealth Manager</span>
-                </div>
-                <span class="execute-or" data-i18n="exec.or">or</span>
-                <div class="execute-option">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                  <span data-i18n="exec.broker">Broker of Your Choice</span>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ol>
-
-        <div class="flow__cta reveal">
-          <a href="quiz.html" class="btn btn--ghost" data-i18n="calc.cta">Start my plan</a>
+          <div class="capitals__body reveal">
+            <p data-i18n-html="capitals.body">
+              At Portemonnaie, we believe that growth must be measured across
+              four dimensions. Every company relies on
+              <span class="capital-word" data-color="gold">financial capital</span>,
+              <span class="capital-word" data-color="green">environmental capital</span>,
+              <span class="capital-word" data-color="rose">social capital</span>, and
+              <span class="capital-word" data-color="lavender">network capital</span>.
+              For decades, only the growth of financial capital has counted as
+              success. We believe that must change.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CLOSING CTA -->
-    <section class="section signup" id="start">
+    <!-- SIGN UP -->
+    <section class="section signup" id="signup">
       <div class="container signup__inner reveal">
-        <p class="eyebrow" data-i18n="cta.eyebrow">Your future, your terms</p>
-        <h2 class="h-section" data-i18n-html="cta.h2">Ready to start <em class="serif">investing</em>?</h2>
-        <p class="signup__lede" data-i18n="cta.lede">
-          Build a values-matched portfolio in minutes — guided every step of the way.
+        <p class="eyebrow" data-i18n="signup.eyebrow">Pre register</p>
+        <h2 class="h-section" data-i18n-html="signup.h2">Register <em class="serif">Now</em></h2>
+        <p class="signup__lede" data-i18n-html="signup.lede">Get notified when we <span class="pencil">go live</span>.</p>
+
+        <form class="signup__form" data-signup>
+          <label class="sr-only" for="finalName" data-i18n="form.name_label">First name</label>
+          <input id="finalName" type="text" name="first_name" class="form__name"
+                 placeholder="First name" data-i18n-ph="form.name_ph" autocomplete="given-name" maxlength="60" />
+          <label class="sr-only" for="finalEmail" data-i18n="form.email_label">Email address</label>
+          <input id="finalEmail" type="email" name="email" required
+                 placeholder="your@email.com" autocomplete="email" />
+          <fieldset class="form__lang" role="radiogroup">
+            <legend class="form__lang-label" data-i18n="form.lang_label">Send me updates in</legend>
+            <label class="form__lang-opt"><input type="radio" name="language" value="en" id="finalLangEn" /><span>EN</span></label>
+            <label class="form__lang-opt"><input type="radio" name="language" value="de" id="finalLangDe" /><span>DE</span></label>
+            <label class="form__lang-opt"><input type="radio" name="language" value="fr" id="finalLangFr" /><span>FR</span></label>
+          </fieldset>
+          <label class="form__consent" for="finalConsent">
+            <input id="finalConsent" type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">I agree to receive updates from Portemonnaie and accept the
+              <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--primary" data-i18n="signup.cta">Reserve my place</button>
+        </form>
+        <p class="signup__micro" data-i18n="signup.micro">
+          Private beta. Your email is only used for Portemonnaie updates.
+          Unsubscribe anytime.
         </p>
-        <a href="quiz.html" class="btn btn--primary" data-i18n="calc.cta">Start my plan</a>
+
+        <div class="form__success signup__success" hidden>
+          <h3 data-i18n="success.almost_title">Almost there.</h3>
+          <p data-i18n="success.almost_body">We just sent you a confirmation email. Click the link inside
+             to finalize your spot on the early access list.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -320,19 +307,18 @@
       <span class="footer__brand">Portemonnaie</span>
       <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
       <nav class="footer__links">
-        <a href="index.html" data-i18n="nav.home">Home</a>
-        <a href="quiz.html" data-i18n="nav.quiz">Quiz</a>
-        <a href="explore.html" data-i18n="nav.explore">Explore</a>
-        <a href="mission.html" data-i18n="nav.mission">Our Mission</a>
-        <a href="prereg.html" data-i18n="nav.signup">Sign Up</a>
+        <a href="#intro" data-i18n="nav.intro">Intro</a>
+        <a href="library.html" data-i18n="nav.library">Library</a>
+        <a href="#mission" data-i18n="nav.mission">Our Mission</a>
+        <a href="#signup" data-i18n="nav.signup">Sign Up</a>
         <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
         <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
       </nav>
     </div>
   </footer>
 
-  <script src="i18n.js?v=14"></script>
-  <script src="script.js?v=4"></script>
-  <script src="calculator.js?v=6"></script>
+  <script src="i18n.js?v=32"></script>
+  <script src="script.js?v=8"></script>
+  <script type="module" src="calculator.js?v=16"></script>
 </body>
 </html>
