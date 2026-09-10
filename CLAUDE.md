@@ -1,17 +1,35 @@
 # Money Tree – Project Context for Claude Code
 
 ## What is this?
-**Money Tree** is the internal / repo codename. The public brand is **Portemonnaie Finance** (`portemonnaie.finance`) — a bilingual (EN/DE), values-aligned investment-*literacy* platform for women. It guides users from first investment steps toward a values-matched portfolio via a guided investment flow (referred to internally as the "Robo Advisor"; in **user-facing copy** use *"guided investment flow"*, never "robo-advisor").
+**Money Tree** is the internal / repo codename. The public brand is **Portemonnaie Finance** (`portemonnaie.finance`) — a bilingual (EN/DE), values-aligned investment-*literacy* platform for women. It guides users from first investment steps toward a values-matched portfolio via a guided investment flow (referred to internally as the "Robo Advisor"; in **user-facing copy** use *"guided investment flow"* / *"geführter Anlageprozess"*, never "robo-advisor").
 
 Tagline (canonical): **"Invest in what you believe in."** Full brand voice + phrase rules live in **`brand/BRAND_GUIDELINES.md`** (the authoritative brand doc); resolve any wording questions there.
 
-## Regulatory Boundary — CRITICAL
-Financial literacy platform, NOT a licensed investment advisor.
-- Never output personalized buy/sell recommendations for specific securities
-- Quiz results and portfolio screens must carry: *"This is not investment advice. Content is for educational purposes only."*
+**Current work: Guidance Flow update.** Binding spec: `docs/PRD.md` (German, PRD of 09.09.2026). Progress log: `docs/PROGRESS.md`. Precedence: a line under "Decisions" > PRD > the rest of this file. For visual questions `brand/BRAND_GUIDELINES.md` overrides PRD 5.6.
+
+## How to work (every task)
+1. Read this file and `docs/PROGRESS.md`. Then read ONLY the PRD sections the task names: `grep -n '^#' docs/PRD.md`, then read by line range. Never load the whole PRD.
+2. Write the minimum code that meets the acceptance criteria ("Akzeptanz") of those sections. No speculative features, no refactors outside the task, no new dependency without a one line reason. Use the repo skills where they fit (`new-page`, `add-i18n`, `brand-ui`, `bump-cache`).
+3. PRD silent or contradictory and no line under "Decisions": stop and ask. Do not guess.
+4. Verify: schema validation, copy lint, tests for the change. For screens, check every "Akzeptanz" criterion. Loop until green; after two failed attempts on the same problem, stop and report. Bump `?v=N` after editing a shared file.
+5. Update `docs/PROGRESS.md`: one line per finished item, new open issues appended, copy typo fixes listed.
+6. Report in max 10 lines: files changed, verification result (criteria pass/fail), open issues. No code echo. Then stop.
+
+## Regulatory Boundary — CRITICAL (PRD 2.4, a violation is a bug)
+Financial literacy platform, NOT a licensed investment advisor. Portemonnaie is not a robo advisor and gives no financial advice.
+- Quiz answers (phase, amount, horizon, SDGs) never map to products, weights, portfolio types or sort order. No archetypes.
+- S5 example portfolios: always all three, label "Beispiel, keine Empfehlung" is part of the component and cannot be turned off.
+- Explorer is a catalog. Sorts: name A to Z (default), cost, sustainability score, gender score. S7 SDGs preselect a visible, removable filter only.
+- Forbidden for products or weights: empfehlen, raten, solltest, passt zu dir, optimal, ideal für dich. Allowed: so kann ein Portfolio aussehen, viele Anlegerinnen, typischerweise.
+- Portfolio feedback describes, never judges.
+- Disclaimer: text from PRD 2.4, footer on every screen from S5 on; S9 to S11 also as InfoNote.
+- Partner links: new tab, `rel="sponsored noopener"`, tracked, label "Werbung" directly at each link (§ 26 MedienG). No portfolio data to partners. Broker and wealth partner names appear only on S11, alphabetical, no highlight.
+- No personal data before S10. Email goes only to Brevo, never into analytics. Newsletter checkbox unticked, double opt in.
+- Scores are third party ratings: always show provider and asOf. Never compute or estimate own scores. No prices, no performance charts (PRD 7.7).
+- Never invent data: no invented ISINs, scores, fees or statistics. Placeholders use ids starting with `placeholder_` and must be gone before launch.
 
 ## Current Status
-Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). What began as a pre-registration landing page now also includes working **Phase-1 prototype screens** of the core flow: bilingual landing page, values & risk **quiz**, **Explore** basket-builder, **product detail** pages, plus mission / calculator / legal pages. Phase 2 brings React/Next.js with a tech co-founder.
+Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). What began as a pre-registration landing page now also includes working **Phase-1 prototype screens** of the core flow: bilingual landing page, values & risk **quiz**, **Explore** basket-builder, **product detail** pages, plus mission / calculator / legal pages. These prototype screens are now being rebuilt to `docs/PRD.md`. Phase 2 brings React/Next.js with a tech co-founder.
 
 ## Brand & Design
 **Authoritative source: `brand/BRAND_GUIDELINES.md`** (voice, colour, type, dos/don'ts). Implemented design tokens live in `styles.css` `:root`. The palette is a warm **forest / sage / cream** system — *not* monochrome (the earlier monochrome spec is obsolete).
@@ -30,35 +48,59 @@ Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). Wha
 | Button radius | `--radius` | `999px` (pill) |
 | Card radius | `--radius-card` | `20px` |
 
+PRD 5.6 adds: Ink Soft `#4A5C52`, Forest Deep `#14271F` (primary CTA hover), Sage Deep `#7FB995` (list markers, section tags, glossary underline), Sage Soft `#D4EAD8` (pills, chips, hover), Cream Soft `#FAF4DC` (dividers, footer bands). Naming collision with `--ink-soft`: see conflict 18.
+
 Fonts: **Inter** (UI / body / headlines), **Instrument Serif** italic (accent words, pull quotes), **Caveat** (signature phrases only) — all via Google Fonts.
 
 Style: minimal, editorial, warm, soft, handcrafted, premium and calm. Botanical line-art accents, generous whitespace. No emojis. No gradients / neon / dark-finance aesthetics. Marigold & lilac only inside the wallet logo, never as standalone UI colour.
 
-## Four Capitals Framework
-Core investment philosophy — every company is evaluated across:
-**Financial · Environmental · Social · Network**
+Flow rules (PRD 2.2, 5.6):
+- Page background `--bg`, never #FFFFFF. No shadows, glows, pink. Forest as full surface only for one reserved moment (e.g. S10 goals card). 90 % of every surface stays light.
+- One primary CTA per screen: Forest fill, #FAF8F3 text, hover Forest Deep. Secondary: Forest outline. Yellow is never a fill, only an underline, once per screen.
+- Instrument Serif, italic only: one accent word per headline, quotes, flashcard quotes, cream callouts. Caveat only for "Learn. Invest. Grow. On your terms." on S0 and S11.
+- Glossary underline dotted Sage Deep. InfoNote cream, no border, max two per screen, tilt ±2.5° only for "Gut zu wissen".
+- WCAG 2.1 AA, contrast ≥ 4.5:1, Ink Soft only at ≥ 18 px, focus 2 px Forest outline, targets ≥ 44×44 px, `prefers-reduced-motion` respected, drag and drop always has + and − buttons. Desktop first, no horizontal scroll from 375 px.
 
-## Investor Archetypes (Robo Advisor output)
-- **Cautious Starter** — low risk, short horizon, needs reassurance
-- **Steady Grower** — balanced growth, medium risk/horizon
-- **Impact Pioneer** — values-led, gender + sustainability lens first
-- **Bold Builder** — high risk tolerance, long horizon, growth-maximizing
+## Copy rules (PRD 2.3, 5.5)
+- Copy from PRD 6 and 8 is taken verbatim. Allowed: pure spelling and punctuation fixes, each logged in PROGRESS.md. Not allowed: wording changes. Conflicts go to open issues.
+- Copy lint: noch nicht, endlich, du musst, du solltest, du hast verpasst, fehlt, seamless, frictionless, intuitiv, Robo-Advisor (glossary only), return promises, guarantees, superlatives.
+- Du, singular. UI sentences max 15 words; S6 and glossary definitions max 20.
+- Numbers and currency by locale (`de-AT`: 1.500,00 €).
+- Every finance term renders as GlossaryTerm on its first occurrence per screen (auto marker, manual override). Missing entry: plain text plus dev warning, never an empty popover.
+- Where strings live: see conflict 14.
 
-Tie-break rule: Impact score always wins (aligns with mission).
+## Guidance Flow (PRD 4 to 7, replaces the former 5-step flow)
+Journey: Quiz → Zusammenfassung → Explorer → Portfolio → Weg wählen. Under 15 minutes, every screen teaches before it asks.
 
-## Scoring System
-- **Gender Score** (A+ to F) — % women in leadership, board diversity
-- **Sustainability Score** (0–100) — ESG / environmental metrics
-- **Impact** (High / Medium / Low) — composite
+| ID | PRD route | PRD heading | Progress stage |
+|---|---|---|---|
+| S0 | `/` | `## S0` | none |
+| S2 | `/quiz/traps` | `## S2`, 8.2 | Quiz |
+| S3 | `/quiz/phase` | `## S3` | Quiz |
+| S4 | `/quiz/situation` | `## S4` | Quiz |
+| S5 | `/quiz/portfolio` | `## S5` | Quiz |
+| S6 | `/quiz/impact` | `## S6` | Quiz |
+| S7 | `/quiz/values` | `## S7`, 8.3 | Quiz |
+| S8 | `/summary` | `## S8` | Zusammenfassung |
+| S9 | `/explore` | `## S9` | Explorer |
+| S10 | `/portfolio` | `## S10` | Portfolio |
+| S11 | `/execute` | `## S11` | Weg wählen |
 
-## 5-Step Core User Flow (guided investment flow, Phase 1)
-1. **Quiz** — investing style, goals, values (`quiz.html` / `quiz.js`, bilingual). Content spec: `features/portemonnaie_quiz_content.md`.
-2. **Archetype** — identity moment. NOTE: archetype scoring is a ready-to-activate **stub** (`computeArchetype()` returns null); today the result screen only confirms the profile was saved. Any computed output stays at **asset-class level**, never instrument/ISIN level.
-3. **Explore** — ETFs/stocks/funds ranked by sustainability + gender score (`explore.html` / `explore.js`, data from `data/securities.json`).
-4. **Basket** — drag-and-drop portfolio builder (within the Explore page).
-5. **Execute** — open depot or use a wealth manager (informational hand-off; no order placement).
+How PRD routes map to HTML pages: see conflict 16.
 
-Each product also has a **detail page** — `product.html?id=<id>` / `product.js` — with investment criteria and a price-history chart.
+- State: one object `pm_session` in localStorage (schema PRD 7.1, `schemaVersion`), saved on every input, discarded after 30 days, reset only by the user. Back navigation never changes values.
+- Data (target, PRD 7): `data/products.json`, `glossary.json`, `sdgs.json`, `partners.json`, each with a JSON Schema. Migration from `securities.json`: conflict 17.
+- Derived, never stored (PRD 7.6): portfolio score = Σ(weight × score) / 100. Mix by stock share: < 10 ruhig, 10 to 30 ausgewogen, > 30 mutig (constants). Amount split rounded to whole euros, remainder to the largest item. SDG coverage = chosen SDGs present in at least one item.
+- Analytics: one shared `track()` helper, only events from PRD 9, payload sessionId hash, screen, locale, timestamp. No emails, no free text.
+- Budgets: LCP < 2 s on S0, interactions < 100 ms, JS and CSS < 300 kB gzip per page without the lazy loaded PDF library.
+
+## Superseded by PRD 09.09.2026 (do not rebuild)
+- Investor archetypes (Cautious Starter, Steady Grower, Impact Pioneer, Bold Builder), the Impact tie-break rule and the `computeArchetype()` stub.
+- Own scores: Gender Score A+ to F, Sustainability Score 0 to 100, Impact High/Medium/Low. PRD: provider scores 0 to 10.
+- Explore ranked by score by default. PRD: neutral default sort, name A to Z.
+- Price history chart, `data/prices/`, and price data in the UI (PRD 7.7).
+- Disclaimer text "This is not investment advice. Content is for educational purposes only." PRD 2.4 text replaces it (EN version in the en locale).
+- `features/portemonnaie_quiz_content.md` as quiz spec. PRD 6 and 8 replace it.
 
 ## Platform Vision (Phase 2)
 Dashboard · Advisor · Academy · Community · Barometer · Shop
@@ -81,6 +123,9 @@ money-tree/
 ├── data/                     ← securities dataset + price snapshots (see data/README.md)
 │   ├── securities.json, securities.mock.json, securities.schema.json
 │   └── prices/<id>.json      ← static EOD price snapshots for the product chart
+├── docs/
+│   ├── PRD.md                ← binding spec for the Guidance Flow update
+│   └── PROGRESS.md           ← task log, open issues, typo fixes
 ├── scripts/
 │   └── fetch-prices.mjs      ← LOCAL Node tool to refresh price snapshots (not shipped)
 ├── brand/                    ← BRAND_GUIDELINES.md + logos / illustrations / reference
@@ -101,28 +146,55 @@ Assets are referenced with a `?v=N` cache-busting query; bump it after editing a
 - `BREVO_API_KEY` — Brevo API key (prefix `xkeysib-`). Must be enabled for Production. Adding/changing env vars requires a redeploy to take effect.
 
 ## Key Rules
-- Vanilla HTML/CSS/JS only for the shipped site — no npm, no framework (Phase 1). (`scripts/*.mjs` are local Node maintenance tools, not part of the deployed site.)
-- Bilingual **EN/DE** via `i18n.js` (`data-i18n` / `-html` / `-ph` / `-aria` hooks + the `pm:langchange` event). Brand slogans / display headlines stay English; explanatory copy & UI controls are translated. Page-specific copy (quiz/explore/product) lives in that page's own JS i18n block, not in `i18n.js`. See the `add-i18n` skill.
-- Disclaimer required on every quiz-result, archetype, explore/ranking, basket and product screen: *"This is not investment advice. Content is for educational purposes only."*
-- Displaying and ranking **specific named securities** by factual data / score is allowed (educational). Prohibited: personalized **buy/sell/hold** recommendations for a specific security. No recommendation field exists in the data, by design.
-- Anonymous flow: no forced login before a result.
+- Vanilla HTML/CSS/JS only for the shipped site — no npm, no framework (Phase 1). (`scripts/*.mjs` are local Node maintenance tools, not part of the deployed site.) Dev tooling for PRD 10 checks: see conflict 15.
+- Bilingual **EN/DE** via `i18n.js` (`data-i18n` / `-html` / `-ph` / `-aria` hooks + the `pm:langchange` event). Brand slogans / display headlines stay English; explanatory copy & UI controls are translated. Page-specific copy (quiz/explore/product) lives in that page's own JS i18n block, not in `i18n.js`. See the `add-i18n` skill. For the Guidance Flow this may change: see conflict 14.
+- Disclaimer: PRD 2.4 text and placement (see Regulatory Boundary).
+- Displaying and sorting **specific named securities** by factual data / provider score is allowed (educational), when the user chooses the sort. Prohibited: personalized **buy/sell/hold** recommendations for a specific security. No recommendation field exists in the data, by design.
+- Anonymous flow: no login, no account, no payment in Phase 1.
 - Buttons always pill-shaped (`border-radius: 999px`); cards `20px`.
 - No emojis anywhere in the UI.
 
-## Data Layer (Explore / Product)
+## Data Layer (Explore / Product) — current state
 - `data/securities.json` — curated securities: real names / tickers / ISINs / sectors / TERs, Money Tree-derived scores (gender, sustainability, impact, four capitals) and a `profile` block of investment criteria (AUM, replication, domicile, distribution, index, holdings; or exchange, market cap, P/E, dividend yield for stocks).
 - `data/securities.mock.json` — synthetic test fixtures (edge cases). `data/securities.schema.json` — JSON Schema for both. Validate after edits.
-- `data/prices/<id>.json` — static end-of-day price snapshots for the product chart. Regenerate with `TWELVE_DATA_API_KEY=… node scripts/fetch-prices.mjs`. Current snapshots are `placeholder: true` synthetic data until a real fetch is run.
-- All scores and the numeric `profile` fields are **estimates to verify against a licensed feed before launch** (see `data/README.md` and `meta.dataNote`).
+- `data/prices/<id>.json` — static end-of-day price snapshots for the product chart. Superseded, see above.
+- All scores and the numeric `profile` fields are **estimates to verify against a licensed feed before launch** (see `data/README.md` and `meta.dataNote`). Under PRD 7.7 Money Tree-derived scores are not shown; master data comes from KID, factsheet and EET.
 
 ## Tooling for Claude Code (this repo)
 - **`brand/BRAND_GUIDELINES.md`** — authoritative brand voice + visual system. Read before producing copy or UI.
 - **`.claude/skills/`** — `add-i18n`, `brand-ui`, `bump-cache`, `new-page` (project workflows).
-- **`.claude/agents/`** — `compliance-checker`, `brand-auditor`, `securities-data-validator` (read-only review agents; they load at session start, so restart Claude Code after adding/editing them).
-- **`features/`** — content specs (e.g. `portemonnaie_quiz_content.md`).
+- **`.claude/agents/`** — `compliance-checker`, `brand-auditor`, `securities-data-validator` (read-only review agents; they load at session start, so restart Claude Code after adding/editing them). They may still contain superseded rules until task 02 updates them.
+- **`features/`** — content specs (e.g. `portemonnaie_quiz_content.md`, superseded as quiz spec).
 
 ## Out of Scope for Phase 1
-Academy · Community Forum · AI Chat · Native App · Broker API sync · Robo auto-invest (requires license)
+Academy · Community Forum · AI Chat · Native App · Broker API sync · Robo auto-invest (requires license) · Login, account, payment · Live prices, live ESG API, portfolio tracker, shop · Automated depot opening or order transfer · English content (structure yes, texts later)
 
 ## Phase 2 Tech Stack (reference only)
 Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
+
+## Decisions
+<!-- One line per decision, date first. Move items here from "Open PRD conflicts" once Katharina decides. -->
+- 10.09.2026: The existing prototype is updated, the vanilla stack is kept. Archetypes and any answer to portfolio logic are removed (PRD 2.4).
+- 10.09.2026: Copy: typo fixes allowed and logged; wording and legal conflicts are flagged, not changed.
+- 10.09.2026: S0 lives on `index.html`. The pre-registration landing keeps signup, calculator and mission; the hero carries the S0 elements (CTA "Los geht's", checkmarks, stage overview, resume banner). Session helper: `session.js` (`window.pmSession`, key `pm_session`).
+
+## Open PRD conflicts (ask before touching)
+1. Scope: PRD 3.1 says S0 to S10, but S11 is fully specified. No S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
+2. Score shape: 7.2 flat `scores` plus `scoreSource` vs 7.7 per score `{ value, source, method, asOf }` plus a ScoreProvider adapter "ManualEET". Source of the six radar axes unclear.
+3. Lint vs final copy: "fehlt" in the Teilzeit card (8.2). "für dich" in S3 feedback and S8 phase block, while S5 lint forbids it. Proposal: apply the "für dich / passend" rule only to product related keys.
+4. Menopause card (8.2) contains the internal note "Euroraum-Zahl: noch offen". Must not ship.
+5. English lines in German UI: S8 "I AM READY.", "Now Let´s go build it yourslef", "No shame in not knowing"; S11 "Set it and forget it", "Minimal mental load". PRD 2.3: product copy German, taglines English.
+6. Figures: part time 27,9 % (S3) vs 27,8 % (8.2); share text "10 Minuten" vs 15; S2 headline figure 105 Bio. $ (Oxfam) or 100.000 € not chosen.
+7. S10: "Mitte der Range" undefined for "bis 50 €" and "über 300 €". PDF cover "dein Satz aus S3" has no source in S3.
+8. PDF client or server side (PRD 11). Server side in `api/` likely needs an npm package; client side needs a vendored library. Brevo transactional template and the newsletter list ID are not defined.
+9. Referral `ref` is stored as `referrer` (S8) but missing in the 7.1 schema.
+10. SDG tile tokens (S7) derive from "Peach Soft", which is not in the 5.6 palette.
+11. Glossary: A.3 says 48 required terms, 8.1 lists 51.
+12. Analytics tool not chosen (Plausible or Matomo, EU self hosted).
+13. Legal review, do not edit: S4b "wäre am Konto gut aufgehoben", S8 "Genau hier lohnt sich Vermögensaufbau am Meisten".
+14. i18n: PRD 5.5 wants `locales/de.json` (source) and `en.json` (empty), while the repo uses `i18n.js` plus page JS blocks with filled EN. Proposal: keep the `i18n.js` hooks, load Guidance Flow strings from `locales/*.json`.
+15. PRD 10 asks for schema validation in CI, E2E test, PDF snapshot test and an accessibility audit; the repo rule is no npm. Option A: zero dependency Node scripts and `node --test` only, no E2E. Option B: dev only packages (e.g. ajv, Playwright, axe) that are never shipped; check the Vercel deploy stays unaffected.
+16. Routes: PRD paths vs the repo's HTML pages. Option A: one HTML page per screen with clean URLs via `vercel.json`. Option B: one page per stage with internal steps.
+17. Data: which `securities.json` fields move into `products.json`; whether `product.html` stays, since PRD S9 uses a drawer.
+18. Tokens: repo `--ink-soft` is `#1F3A2E` (Forest), PRD Ink Soft is `#4A5C52`. Repo `--marigold`, `--bg-dark`, `--ink-mute` are not in PRD 5.6. Resolve with `brand/BRAND_GUIDELINES.md`.
+19. Four Capitals framework (Financial · Environmental · Social · Network) is not in the PRD. As an own evaluation it conflicts with PRD 7.7. Keep as content idea only, or drop?

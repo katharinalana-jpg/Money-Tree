@@ -42,6 +42,23 @@
       "hero.sticky": '<strong>For women</strong><em>who build</em><em>their future.</em>',
       "hero.sub": "Let your money work for you and your values.",
 
+      /* S0 · flow entry (PRD S0; EN is a structural placeholder, PRD 3.2) */
+      "s0.sub": "Your first portfolio in 15 minutes, built on your values. No prior knowledge, no minimum capital, no jargon.",
+      "s0.cta": "Let's go",
+      "s0.check1": "Every term is explained",
+      "s0.check2": "You decide, we guide",
+      "s0.check3": "No investment advice, no sales",
+      "s0.stages_label": "The five stages",
+      "s0.stage1": "Quiz",
+      "s0.stage2": "Summary",
+      "s0.stage3": "Explorer",
+      "s0.stage4": "Portfolio",
+      "s0.stage5": "Choose your path",
+      "s0.resume": "You were at step {step}.",
+      "s0.resume_continue": "Continue",
+      "s0.resume_restart": "Start over",
+      "s0.restart_confirm": "Your previous answers will be deleted.",
+
       /* calculator (cash vs investing) */
       "calc.eyebrow": "What could your money become?",
       "calc.h1": 'See what your money could <span class="brush"><em class="serif">become</em></span>.',
@@ -258,6 +275,23 @@
       "hero.eyebrow": "Pre-Launch Early Access",
       "hero.sticky": '<strong>Für Frauen,</strong><em>die ihre Zukunft</em><em>gestalten.</em>',
       "hero.sub": "Lass dein Geld für dich und deine Werte arbeiten.",
+
+      /* S0 · Einstieg (PRD S0, wörtlich) */
+      "s0.sub": "In 15 Minuten zu deinem ersten Portfolio – nach deinen Werten. Kein Vorwissen, kein Mindestkapital, kein Jargon.",
+      "s0.cta": "Los geht’s",
+      "s0.check1": "Jeder Fachbegriff wird erklärt",
+      "s0.check2": "Du entscheidest, wir begleiten",
+      "s0.check3": "Keine Anlageberatung, kein Verkauf",
+      "s0.stages_label": "Die fünf Etappen",
+      "s0.stage1": "Quiz",
+      "s0.stage2": "Zusammenfassung",
+      "s0.stage3": "Explorer",
+      "s0.stage4": "Portfolio",
+      "s0.stage5": "Weg wählen",
+      "s0.resume": "Du warst bei Schritt {step}.",
+      "s0.resume_continue": "Weitermachen",
+      "s0.resume_restart": "Neu starten",
+      "s0.restart_confirm": "Deine bisherigen Antworten werden gelöscht.",
 
       /* calculator (cash vs investing) */
       "calc.eyebrow": "Was kann aus deinem Geld werden?",
@@ -505,5 +539,10 @@
 
   apply(detectLang());
 
-  window.PMI18n = { setLang: setLang, apply: apply };
+  function t(key) {
+    const dict = I18N[document.documentElement.lang] || I18N.en;
+    return dict[key] != null ? dict[key] : null;
+  }
+
+  window.PMI18n = { setLang: setLang, apply: apply, t: t };
 })();

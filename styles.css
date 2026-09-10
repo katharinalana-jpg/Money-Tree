@@ -1872,3 +1872,72 @@ input { font: inherit; }
 @media (max-width: 640px) {
   .library__plant { width: 140px; }
 }
+
+/* =========================================================
+   S0 · Guidance Flow entry on the landing hero (PRD S0)
+   Tokens per PRD 5.6 with fallbacks until conflict 18 is
+   resolved. No shadows, no borders on the cream banner.
+   ========================================================= */
+.hero .s0.reveal { animation-delay: .75s; }
+.s0 {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.4rem; width: 100%;
+}
+.s0__cta {
+  background: var(--forest); color: var(--bg); border-color: var(--forest);
+  font-weight: 600; padding: 1.05rem 2.4rem;
+}
+.s0__cta:hover {
+  background: var(--forest-deep, #14271F); border-color: var(--forest-deep, #14271F);
+  transform: none; box-shadow: none;
+}
+.s0__cta:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
+
+.s0__checks {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .5rem 1.6rem;
+  font-size: .95rem; color: var(--ink);
+}
+.s0__checks li { display: inline-flex; align-items: center; gap: .5rem; }
+.s0__checks li::before {
+  content: ""; width: .95rem; height: .95rem; flex: none;
+  background: var(--sage-deep, #7FB995);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+}
+
+.s0__stages { font-size: .9rem; color: var(--ink-mute); text-align: center; }
+.s0__stages summary {
+  cursor: pointer; display: inline-block; padding: .5rem .9rem;
+  border-radius: var(--radius); font-weight: 600; letter-spacing: .02em;
+  color: var(--forest);
+}
+.s0__stages summary:hover { background: var(--sage-soft, #D4EAD8); }
+.s0__stages summary:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
+.s0__stages ol {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem .5rem;
+  margin: .8rem 0 0; padding: 0; counter-reset: stage; list-style: none;
+}
+.s0__stages li {
+  counter-increment: stage;
+  padding: .4rem .85rem; border-radius: var(--radius);
+  background: var(--sage-soft, #D4EAD8); color: var(--ink);
+}
+.s0__stages li::before { content: counter(stage) " · "; font-weight: 600; color: var(--forest); }
+
+.s0__resume {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: .4rem .9rem;
+  background: var(--cream); color: var(--ink);
+  border-radius: var(--radius-card); padding: .9rem 1.4rem;
+  font-size: .95rem; max-width: 560px;
+}
+.s0__resume-actions { display: inline-flex; align-items: center; gap: .6rem; }
+.s0__link {
+  background: none; border: 0; padding: .3rem .2rem; cursor: pointer;
+  font: inherit; font-weight: 600; color: var(--forest);
+  text-decoration: underline dotted var(--sage-deep, #7FB995);
+  text-underline-offset: .2em; min-height: 44px;
+}
+.s0__link:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; border-radius: 6px; }
