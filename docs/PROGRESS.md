@@ -375,6 +375,20 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 12 · S8 share card (13.09.2026)
+
+Done
+- `share.js`: the Werte-Karte is drawn on a `<canvas>` in both formats (1080 × 1350 feed, 1080 × 1920 story) with the page's web fonts (`document.fonts.load` before drawing, so the PNG carries Inter ExtraBold and Instrument Serif Italic as pixels — no fallback font, no image library needed and none vendored). Content: the three slogan lines from i18n keys, each with one serif accent word on a sage brush highlight; the chosen SDGs as chips (max 5) or "Ich fang an."; the cream sticky note "105 Billionen Dollar Unterschied. Jede von uns zählt. Du auch."; wallet mark + portemonnaie.finance; signature "Von Frauen. Für Frauen."; small print "Quelle: Oxfam 2020"; faint plant illustration on Background. No name, phase, amount or portfolio on the card.
+- Share sheet on `summary.html` (secondary "Teilen" button with share icon at the left card): preview with Feed / Story toggle, editable prefilled text (PRD text, 15 Minuten per decision 6, link with `?ref=<session id>`), "Bild speichern" (download), "Link kopieren", "Teilen" (`navigator.share` with the PNG file, fallback download + copy; shown only when the API exists), toast "Gespeichert. Jede geteilte Karte holt eine Frau mehr an den Tisch.", Esc / backdrop close. Events `share_open`, `share_action {channel: save | copy | native}`. The `?ref=` landing was built in task 06 (`referrer`, `referral_landing`).
+- Strings `share.*`; `summary.css` sheet styles (tokens only). Cache summary.css v3, share.js v1.
+
+Verification
+- Browser: sheet opens, both PNGs generated in 297 ms (< 2 s) at 1080 × 1350 (264 kB) and 1080 × 1920 (284 kB); fonts reported loaded; pixel sampling finds the Sage Soft chips and Forest text; text prefilled with the ref link; Story toggle; copy → toast "Link kopiert."; events `share_open`, `share_action {copy}`; Esc closes.
+- Manual checks (PRD S8 acceptance, listed for the launch-blocker list): iOS Safari system share dialog with the image; visual review of the card in both formats; `navigator.share` on Android Chrome.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

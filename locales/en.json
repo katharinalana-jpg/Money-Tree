@@ -494,5 +494,31 @@
     "questions": "",
     "glossary_title": "",
     "sources_note": ""
+  },
+  "share": {
+    "button": "",
+    "sheet_title": "",
+    "format_feed": "",
+    "format_story": "",
+    "save": "",
+    "copy": "",
+    "native": "",
+    "close": "",
+    "text_label": "",
+    "text": "",
+    "toast": "",
+    "toast_copied": "",
+    "line1": "",
+    "line1_accent": "",
+    "line2": "",
+    "line2_accent": "",
+    "line3": "",
+    "line3_accent": "",
+    "note": "",
+    "start": "",
+    "brand": "",
+    "signature": "",
+    "source": "",
+    "alt": ""
   }
 }

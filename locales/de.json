@@ -518,5 +518,31 @@
     ],
     "glossary_title": "Glossar",
     "sources_note": "Einstufungen sind Bewertungen des genannten Datenanbieters, nicht von Portemonnaie. Kennzahlen stammen aus dem Basisinformationsblatt und dem Factsheet des Anbieters."
+  },
+  "share": {
+    "button": "Teilen",
+    "sheet_title": "Deine Werte-Karte",
+    "format_feed": "Feed",
+    "format_story": "Story",
+    "save": "Bild speichern",
+    "copy": "Link kopieren",
+    "native": "Teilen",
+    "close": "Schließen",
+    "text_label": "Dein Text (kannst du ändern)",
+    "text": "Männer besitzen 105 Billionen Dollar mehr als Frauen. Ich hab heute angefangen, das zu ändern – mit meinem Geld, nach meinen Werten. 15 Minuten. Kein Vorwissen. Mach mit: {link} #InvestInWhatYouBelieveIn #VonFrauenFürFrauen",
+    "toast": "Gespeichert. Jede geteilte Karte holt eine Frau mehr an den Tisch.",
+    "toast_copied": "Link kopiert.",
+    "line1": "Sie sagten, Geld sei Männersache.",
+    "line1_accent": "Männersache",
+    "line2": "Wir sagen: Geld ist Haltung.",
+    "line2_accent": "Haltung",
+    "line3": "Ich investiere in das, wofür ich stehe.",
+    "line3_accent": "stehe",
+    "note": "105 Billionen Dollar Unterschied. Jede von uns zählt. Du auch.",
+    "start": "Ich fang an.",
+    "brand": "portemonnaie.finance",
+    "signature": "Von Frauen. Für Frauen.",
+    "source": "Quelle: Oxfam 2020",
+    "alt": "Werte-Karte mit drei Zeilen und deinen gewählten Zielen"
   }
 }

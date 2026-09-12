@@ -117,7 +117,8 @@ money-tree/
 ├── glossary.js               ← GlossaryTerm (PRD 5.2): auto marker + popover; core exported for tests
 ├── flow-ui.js                ← InfoNote (3 variants) + footer Disclaimer (PRD 5.3)
 ├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
-├── summary.html / summary.js / summary.css   ← S8 Zusammenfassung from pm_session (share card: task 12)
+├── summary.html / summary.js / summary.css   ← S8 Zusammenfassung from pm_session
+├── share.js                  ← S8 Werte-Karte on a canvas (feed + story PNG), share sheet, ?ref= link
 ├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)
 ├── portfolio.html / portfolio.js / portfolio.css ← S10: composition, goals card, amount split, PDF + e-mail
 ├── plan.js                   ← "Mein Portfolio-Plan": buildPlan() (pure, tested) + renderPdf() with jsPDF
