@@ -8,8 +8,8 @@
      S4  amount + horizon /quiz/situation (4a, 4b with "Gut zu wissen")
      S5  portfolio /quiz/portfolio   three building blocks, three example donuts
      S6  impact    /quiz/impact      full text + two flip cards
-     S7 values     /quiz/values     SDGs from data/sdgs.json
-     mirror/result /quiz/values     interim until task 11 (S8)
+     S7 values     /quiz/values     17 SDG tiles from data/sdgs.json, counters from products.json
+     → summary.html (S8)
    Strings from locales/*.json (locale.js); state in pm_session
    (session.js, saved on every input); progress via progress.js;
    glossary via glossary.js; events via track.js.
@@ -33,14 +33,10 @@
 
   /* ---- SDG options (data/sdgs.json, PRD 7.4) ------------------- */
   let SDGS = [];
+  let PRODUCTS = [];
+  function sdgCount(id) { return PRODUCTS.filter((p) => (p.sdgTags || []).includes(id)).length; }
+  const SDG_TOKENS = ["--sage-soft", "--cream", "--bg-warm", "--cream-soft", "--sage"]; // decision on conflict 10: muted cycle, Ink text
   function sdgTitle(s) { return isDe() ? s.title_de : (s.title_en || s.title_de); }
-  function sdgOptions() {
-    return SDGS.map((s) => ({
-      value: s.id,
-      label: t("quiz.values.sdg", { id: s.id, title: sdgTitle(s) }),
-      hint: s.hover_de
-    }));
-  }
 
   /* ---- screens (ordered) ---------------------------------------- */
   const SCREENS = [
@@ -53,11 +49,7 @@
       options: ["under_3y", "3_10y", "over_10y", "open"].map((v) => ({ value: v, label: "quiz.situation.horizon.options." + v })) },
     { id: "portfolio", route: "/quiz/portfolio", type: "learn" },
     { id: "impact", route: "/quiz/impact", type: "impact" },
-    { id: "values", route: "/quiz/values", type: "multi", dynamic: "sdg", max: 5,
-      intro: "quiz.values.intro", question: "quiz.values.question", help: "quiz.values.help" },
-    { id: "mirror", route: "/quiz/values", type: "mirror",
-      intro: "quiz.mirror.intro", title: "quiz.mirror.title", body: "quiz.mirror.body" },
-    { id: "result", route: "/quiz/values", type: "result" }
+    { id: "values", route: "/quiz/values", type: "values", max: 5, min: 1 }
   ];
 
   /* ---- state --------------------------------------------------- */
@@ -102,8 +94,7 @@
     else if (screen.type === "phase") renderPhase(screen);
     else if (screen.type === "learn") renderLearn(screen);
     else if (screen.type === "impact") renderImpact(screen);
-    else if (screen.type === "result") renderResult(screen);
-    else if (screen.type === "mirror") renderMirror(screen);
+    else if (screen.type === "values") renderValues(screen);
     else renderQuestion(screen);
     glossary(); // first occurrence per screen (PRD 5.2)
   }
@@ -380,7 +371,6 @@
   }
 
   function optionList(screen) {
-    if (screen.dynamic === "sdg") return sdgOptions();
     return screen.options.map((o) => ({ value: o.value, label: t(o.label) }));
   }
 
@@ -439,42 +429,76 @@
     render();
   }
 
-  function renderMirror(screen) {
-    const card = el("div", "quiz-mirror reveal-now");
-    const chosen = (state.answers.values || []).slice().sort((a, b) => a - b)
-      .map((id) => SDGS.find((s) => s.id === id)).filter(Boolean);
+  /* ---- S7 · Deine Werte (17 SDG tiles + info tile) ---------------- */
+  function renderValues(screen) {
+    const sel = state.answers.values || [];
+    const full = sel.length >= screen.max;
+    const card = el("div", "quiz-values reveal-now");
+    const head = el("div", "values__head");
+    head.appendChild(el("h1", "quiz-question", t("quiz.values.headline")));
+    head.appendChild(el("p", "quiz-help", t("quiz.values.help")));
+    card.appendChild(head);
 
-    card.appendChild(el("p", "quiz-intro", t(screen.intro)));
-    card.appendChild(el("h1", "quiz-question", t(screen.title)));
-    if (chosen.length) {
-      const tags = el("div", "quiz-tags");
-      chosen.forEach((s) => tags.appendChild(el("span", "quiz-tag", sdgTitle(s))));
-      card.appendChild(tags);
-    }
-    card.appendChild(el("p", "quiz-mirror__body", t(screen.body)));
-    mount(card, screen, { canNext: true });
-  }
+    const layout = el("div", "values__layout");
+    const grid = el("div", "sdg-grid");
+    grid.setAttribute("role", "group");
+    grid.setAttribute("aria-label", t("quiz.values.headline"));
+    SDGS.forEach((sdg, i) => {
+      const active = sel.includes(sdg.id);
+      const n = sdgCount(sdg.id);
+      const inactive = full && !active;
+      const tile = el("button", "sdg-tile" + (active ? " is-selected" : "") + (inactive ? " is-inactive" : ""));
+      tile.type = "button";
+      tile.setAttribute("role", "checkbox");
+      tile.setAttribute("aria-checked", String(active));
+      tile.setAttribute("aria-label", t("quiz.values.tile_aria", { id: sdg.id, title: sdgTitle(sdg) }));
+      if (inactive) tile.setAttribute("aria-disabled", "true");
+      tile.style.setProperty("--sdg-bg", "var(" + SDG_TOKENS[i % SDG_TOKENS.length] + ")");
+      tile.dataset.token = sdg.colorToken;
+      tile.title = t("quiz.values.hover", { title: sdgTitle(sdg), hover: sdg.hover_de, n: L().fmtNumber(n) });
+      tile.appendChild(el("span", "sdg-tile__num", String(sdg.id)));
+      tile.appendChild(el("span", "sdg-tile__title", sdgTitle(sdg)));
+      tile.appendChild(el("span", "sdg-tile__count", n ? L().tn("quiz.values.count", n) : t("quiz.values.none")));
+      if (inactive) tile.appendChild(el("span", "sdg-tile__hint", t("quiz.values.max_hint")));
+      tile.addEventListener("click", () => {
+        if (inactive) return;
+        let arr = sel.slice();
+        if (arr.includes(sdg.id)) arr = arr.filter((x) => x !== sdg.id); else arr.push(sdg.id);
+        state.answers.values = arr;
+        persist();
+        track("values_selected", { sdg_ids: arr, count: arr.length });
+        render();
+      });
+      grid.appendChild(tile);
+    });
+    // info tile (18th): opens the glossary entry for "SDG"
+    const info = el("div", "sdg-tile sdg-tile--info");
+    info.appendChild(el("span", "sdg-tile__title", t("quiz.values.info_title")));
+    const infoBody = el("span", "sdg-tile__info", t("quiz.values.info_body"));
+    info.appendChild(infoBody);
+    grid.appendChild(info);
+    layout.appendChild(grid);
 
-  /* Interim end of the quiz stage: no archetype, no allocation (PRD 2.4).
-     S8 (summary.html) replaces this screen. */
-  function renderResult() {
-    persist();
-    const sdgs = state.answers.values || [];
-    track("values_selected", { sdg_ids: sdgs, count: sdgs.length });
-    const card = el("div", "quiz-result reveal-now");
-    card.appendChild(el("p", "quiz-eyebrow", t("quiz.result.eyebrow")));
-    card.appendChild(el("h1", "quiz-result__title", t("quiz.result.title")));
-    card.appendChild(el("p", "quiz-result__lede", t("quiz.result.lede")));
-    const cta = el("a", "btn btn--primary", t("quiz.result.cta"));
-    cta.href = "summary.html";
-    cta.addEventListener("click", () => { if (S() && S().current()) S().setScreen("/summary"); });
-    card.appendChild(cta);
-    stage.innerHTML = "";
-    stage.appendChild(card);
+    const side = el("aside", "values__side");
+    side.setAttribute("aria-live", "polite");
+    side.appendChild(el("p", "values__side-title", t("quiz.values.selection", { n: sel.length })));
+    const chips = el("ul", "values__chips");
+    const chosen = sel.slice().sort((a, b) => a - b).map((id) => SDGS.find((x) => x.id === id)).filter(Boolean);
+    if (!chosen.length) chips.appendChild(el("li", "values__empty", t("quiz.values.selection_empty")));
+    chosen.forEach((x) => chips.appendChild(el("li", "quiz-tag", t("quiz.values.sdg", { id: x.id, title: sdgTitle(x) }))));
+    side.appendChild(chips);
+    layout.appendChild(side);
+    card.appendChild(layout);
+
+    mount(card, screen, { canNext: sel.length >= screen.min, nextLabel: t("quiz.values.cta"), forceNext: true, onNext: () => {
+      persist();
+      if (S() && S().current()) S().setScreen("/summary");
+      window.location.href = "summary.html";
+    } });
   }
 
   /* ---- navigation chrome --------------------------------------- */
-  function mount(card, screen, { canNext, nextLabel, forceNext }) {
+  function mount(card, screen, { canNext, nextLabel, forceNext, onNext }) {
     stage.innerHTML = "";
     stage.appendChild(card);
 
@@ -491,7 +515,7 @@
       fwd.type = "button";
       fwd.textContent = nextLabel || t("common.continue");
       fwd.disabled = !canNext;
-      fwd.addEventListener("click", next);
+      fwd.addEventListener("click", onNext || next);
       nav.appendChild(fwd);
     }
     card.appendChild(nav);
@@ -541,7 +565,9 @@
       .then((doc) => { SDGS = doc.sdgs || []; });
 
     const gl = window.pmGlossary ? window.pmGlossary.init() : Promise.resolve(0);
-    Promise.all([sdgs, gl, window.pmLocale.ready]).then(render);
+    const products = fetch("data/products.json").then((r) => (r.ok ? r.json() : { products: [] })).catch(() => ({ products: [] }))
+      .then((doc) => { PRODUCTS = doc.products || []; });
+    Promise.all([sdgs, gl, products, window.pmLocale.ready]).then(render);
     document.addEventListener("pm:localeready", () => { if (SDGS.length) render(); });
   }
 

@@ -117,7 +117,7 @@ money-tree/
 ├── glossary.js               ← GlossaryTerm (PRD 5.2): auto marker + popover; core exported for tests
 ├── flow-ui.js                ← InfoNote (3 variants) + footer Disclaimer (PRD 5.3)
 ├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
-├── summary.html                              ← S8 (empty until task 11)
+├── summary.html / summary.js / summary.css   ← S8 Zusammenfassung from pm_session (share card: task 12)
 ├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)
 ├── portfolio.html / portfolio.js / portfolio.css ← S10 (interim)
 ├── product.html / product.js / product.css   ← Product detail page (?id=<id>), kept for now (conflict 17)

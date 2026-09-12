@@ -30,9 +30,19 @@
   },
   "quiz": {
     "values": {
-      "intro": "Das sind die 17 Ziele der Vereinten Nationen für eine bessere Welt.",
-      "question": "Was ist dir persönlich wichtig?",
-      "help": "Wähle 1 bis 5.",
+      "headline": "Was ist dir persönlich wichtig?",
+      "help": "Wähle 1 bis 5. Die 17 Ziele sind die Nachhaltigkeitsziele der Vereinten Nationen entlang denen man seine Werte-Haltung ausrichten kann.",
+      "info_title": "Was sind SDGs?",
+      "info_body": "Die 17 Nachhaltigkeitsziele der Vereinten Nationen, 2015 von 193 Staaten beschlossen. Finanzprodukte knüpfen über Themen und Ausschlüsse an sie an.",
+      "tile_aria": "SDG {id}: {title}",
+      "hover": "{title} – {hover}. Im Explorer: {n} Produkte.",
+      "count_one": "{n} Produkt",
+      "count_other": "{n} Produkte",
+      "none": "Aktuell keine Produkte in unserer Liste",
+      "max_hint": "Bis zu 5 – tausche eine aus",
+      "selection": "Deine Auswahl ({n}/5)",
+      "selection_empty": "Noch keine Auswahl",
+      "cta": "Zusammenfassung ansehen",
       "sdg": "SDG {id} · {title}"
     },
     "mirror": {
@@ -311,5 +321,63 @@
     "know": "Gut zu wissen",
     "example": "Beispiel, keine Empfehlung",
     "stance": "Du entscheidest. Wir begleiten."
+  },
+  "summary": {
+    "headline": "Hier stehst du, das ist dir wichtig, so baust du.",
+    "left_title": "Das ist dir wichtig",
+    "right_title": "Das weißt du jetzt",
+    "phase": {
+      "title": "Deine Phase",
+      "template": "Du bist in der Phase {phase}. {core}",
+      "core": {
+        "berufseinstieg": "Im Euroraum verdienen Frauen pro Stunde 11,4 % weniger als Männer.",
+        "zusammenziehen": "Rechnet man Job und Haushalt zusammen, arbeiten Frauen in der EU pro Jahr acht Vollzeitwochen mehr als Männer.",
+        "mutterschaft": "Das erste Kind ist statistisch der größte Einkommensbruch – im deutschsprachigen Raum bis zu 61 %. Genau hier lohnt sich Vermögensaufbau am Meisten – für dich, für dein Kind und für eine gerechtere Zukunft.",
+        "teilzeit": "27,8 % der Frauen in der EU arbeiten Teilzeit – meist wegen Care-Arbeit.",
+        "pflege": "Betreuungspflichten halten rund 7,7 Millionen Frauen in Europa vom Arbeitsmarkt fern, gegenüber 450.000 Männern.",
+        "trennung": "In Großbritannien fällt das Haushaltseinkommen von Frauen im Jahr nach der Scheidung um 41 %, das von Männern um 21 %.",
+        "menopause": "Vier Jahre nach einer Menopause-Diagnose liegt das Einkommen betroffener Frauen um rund 10 % niedriger.",
+        "pension": "Frauen ab 65 erhalten in der EU im Schnitt 24,5 % weniger Pension als Männer."
+      },
+      "empty": "Deine Phase hast du offen gelassen."
+    },
+    "frame": {
+      "title": "Deine Rahmenbedingungen",
+      "template": "Du denkst an {amount} im Monat, für {horizon}.",
+      "long_horizon": "Das ist ein Sparplan mit langem Horizont.",
+      "empty": "Betrag und Horizont hast du offen gelassen. Beides kannst du am Ende ergänzen.",
+      "amount": {
+        "under_50": "bis 50 €",
+        "50_150": "50–150 €",
+        "150_300": "150–300 €",
+        "over_300": "über 300 €"
+      },
+      "horizon": {
+        "under_3y": "unter 3 Jahre",
+        "3_10y": "3–10 Jahre",
+        "over_10y": "mehr als 10 Jahre"
+      }
+    },
+    "values": {
+      "title": "Deine Werte",
+      "template": "Deine Ziele: {list}",
+      "empty": "Du hast noch kein Ziel gewählt."
+    },
+    "knows": [
+      "Portfolios können aus ETFs, Aktien und Anleihen bestehen.",
+      "Mehr Aktien heißt natürlich mehr Schwankung, mehr ETFs und Anleihen heißt mehr Ruhe.",
+      "Acht Lebensphasen kosten Frauen systematisch Vermögen – eigenes Investieren heißt vorbeugen.",
+      "Zeit investiert schlägt Timing – historisch, ohne Garantie."
+    ],
+    "next_title": "So geht es weiter",
+    "next_steps": [
+      "Explorer",
+      "Portfolio",
+      "Plan sichern"
+    ],
+    "build": "Now let's go build it yourself. Stell dir dein Portfolio zusammen! (Du bekommst deinen Plan auch als PDF – für den Broker oder ein Beratungsgespräch.)",
+    "glossary_note": "Ab hier ist jeder unterstrichene Begriff erklärbar. Fahr einfach darüber. No shame in not knowing.",
+    "cta": "I AM READY.",
+    "change": "Antworten ändern"
   }
 }

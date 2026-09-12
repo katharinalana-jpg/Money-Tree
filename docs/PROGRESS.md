@@ -291,6 +291,23 @@ Copy typo fixes
 - S5 spectrum: "timing the markte" → "timing the market", "Anlagehorziont" → "Anlagehorizont".
 - S6 body: "entweder Ein Windrad" → "entweder ein Windrad".
 
+## Task 11 · Screens S7 and S8 without sharing (12.09.2026)
+
+Decisions taken first: conflict 5 (English lines stay, spelling fixed), conflict 10 (SDG tile tokens from Sage / Cream only).
+
+Done
+- S7 `/quiz/values` in `quiz.js`: 17 tiles from `data/sdgs.json` plus an info tile "Was sind SDGs?"; tile = number (ExtraBold), short title, product counter from `products.json` `sdgTags` ("{n} Produkte" or "Aktuell keine Produkte in unserer Liste"), hover text "{title} – {hover}. Im Explorer: {n} Produkte."; background cycles `--sage-soft`, `--cream`, `--bg-warm`, `--cream-soft`, `--sage` with Ink text; selected tiles get a check badge; min 1, max 5, at 5 the others turn inactive with "Bis zu 5 – tausche eine aus"; right side "Deine Auswahl ({n}/5)" with chips; `values.sdgs`, `values_selected {sdg_ids, count}`; CTA "Zusammenfassung ansehen" → `summary.html`. The interim mirror/result screens are gone.
+- S8 `summary.html` + `summary.js` + `summary.css`: two columns — "Das ist dir wichtig" (Deine Phase · Deine Rahmenbedingungen · Deine Werte as chips, each with "Antworten ändern" back to its quiz screen) and "Das weißt du jetzt" (four checkmarks, "So geht es weiter" with three steps); below the build line, the glossary InfoNote and the CTA "I AM READY." → Explorer. Every text renders from `pm_session` through templates (`summary.phase.template` with the 8.2 core sentence of the first chosen phase, `summary.frame.template` with amount and horizon, "Das ist ein Sparplan mit langem Horizont." only for > 10 years, the "offen gelassen" fallback), no interpretation, no portfolio type, no weights. Events `summary_view`, `summary_cta_click`. Share card: task 12.
+- Strings `quiz.values.*`, `summary.*`; copy lint: `summary.phase.core.*` under the 20-word rule (8.2 content), exemption for the verbatim S7 help text (16 words). Cache quiz.js v13, quiz.css v14, summary.css v2.
+
+Verification
+- Browser S7 (1280 px): 17 tiles + info tile, tile 145 × 146 px (≥ 140 × 120), counters e.g. SDG 5 "7 Produkte", SDG 7 "5 Produkte", hover text for SDG 7 per 8.3, five muted backgrounds, five selections → "Deine Auswahl (5/5)", 12 inactive tiles with the hint, `values.sdgs` [5, 13, 4, 7, 1], `values_selected` count 5, glossary marks SDG and Ausschlusskriterien, "Schritt 6 von 6".
+- Browser S8: headline; phase block "Du bist in der Phase Teilzeit. 27,8 % …"; frame block "Du denkst an 50–150 € im Monat, für mehr als 10 Jahre. Das ist ein Sparplan mit langem Horizont."; five value chips; four checkmarks; three next steps; build line; glossary InfoNote (one cream card); CTA "I AM READY." ends at 698 px (< 800); `summary_view` event; 11 glossary terms marked; disclaimer footer; ProgressBar with Quiz clickable.
+- compliance-checker on S7/S8: PASS, no blocker. Two warnings, both known: `common.disclaimer` in en.json is empty (German fallback by decision on conflict 14, EN text before an EN launch) and the English lines on S8 (decision on conflict 5). Copy lint 0, tests 29 pass.
+
+Copy typo fixes
+- S8: "Now Let´s go build it yourslef" → "Now let's go build it yourself."; closing parenthesis added after "Beratungsgespräch".
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -308,6 +325,8 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O27 · S8 "So geht es weiter": the PRD names three steps with mini icons but gives no texts; the stage names Explorer · Portfolio · Plan sichern are used. S8 frame block: the PRD example sentence "Das ist ein Sparplan mit langem Horizont." is shown only for > 10 years; no sentence exists for the other horizons.
+- O28 · S8 Mutterschaft block carries the PRD sentence "Genau hier lohnt sich Vermögensaufbau am Meisten …" (legal review, conflict 13; "am Meisten" left as written).
 - O24 · Sentence length: the S5 spectrum text (30 words in one sentence) and one S6 body sentence (24 words) exceed the PRD's own limits (15 / 20). Shipped verbatim under lint exemptions; the S6 acceptance "Kein Satz über 20 Wörter" therefore fails on PRD copy. Wording decision needed.
 - O25 · S6 illustration "Wurzeln → Baum" does not exist; the landing plant illustration is used as a placeholder.
 - O26 · S4b note contains "wäre am Konto gut aufgehoben" (legal review, conflict 13); shipped verbatim, must be released before launch.

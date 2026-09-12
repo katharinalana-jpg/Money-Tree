@@ -338,3 +338,38 @@
 .impact__closing { margin: 1.8rem auto 0; font-family: var(--ff-serif); font-style: italic; font-size: 1.15rem; color: var(--forest); max-width: 40rem; }
 @media (max-width: 560px) { .traps__grid--two { grid-template-columns: 1fr; } }
 
+/* ── S7 · Deine Werte (17 SDG tiles + info tile) ──────────────── */
+/* SDG tile tokens (decision on conflict 10): muted cycle of --sage-soft, --cream,
+   --bg-warm, --cream-soft, --sage; Ink text on every tile (≥ 4.5:1). */
+.quiz-values { width: min(1180px, 92vw); margin-inline: auto; text-align: center; }
+.values__layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 1.2rem; align-items: start; margin-top: 1.4rem; text-align: left; }
+.sdg-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem; }
+.sdg-tile {
+  position: relative; min-width: 140px; min-height: 120px; padding: .7rem .75rem;
+  background: var(--sdg-bg, var(--sage-soft)); color: var(--ink); border: 2px solid transparent; border-radius: var(--radius-card);
+  font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: .25rem;
+  transition: border-color .15s ease;
+}
+.sdg-tile:hover { border-color: var(--sage-deep); }
+.sdg-tile.is-selected { border-color: var(--forest); }
+.sdg-tile.is-selected::after {
+  content: ""; position: absolute; top: .5rem; right: .5rem; width: 18px; height: 18px; border-radius: 999px; background: var(--forest);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='black'/><path d='M4.5 8.5l2.5 2.5L11.5 6' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='black'/><path d='M4.5 8.5l2.5 2.5L11.5 6' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+}
+.sdg-tile.is-inactive { opacity: .5; cursor: not-allowed; }
+.sdg-tile.is-inactive:hover { border-color: transparent; }
+.sdg-tile__num { font-weight: 800; font-size: 1.2rem; color: var(--forest); line-height: 1; }
+.sdg-tile__title { font-weight: 600; font-size: .85rem; line-height: 1.25; }
+.sdg-tile__count { margin-top: auto; font-size: .74rem; color: var(--ink-mute); }
+.sdg-tile__hint { font-size: .72rem; color: var(--forest); }
+.sdg-tile--info { background: var(--bg-warm); border-color: var(--line); cursor: default; }
+.sdg-tile__info { font-size: .78rem; line-height: 1.35; color: var(--ink); }
+.values__side { position: sticky; top: calc(var(--nav-h) + 4.5rem); background: var(--bg-warm); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 1rem 1.1rem; }
+.values__side-title { font-weight: 600; color: var(--forest); margin: 0 0 .6rem; font-size: .92rem; }
+.values__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+.values__chips .quiz-tag { display: inline-block; text-align: left; font-size: .82rem; }
+.values__empty { font-size: .85rem; color: var(--ink-mute); }
+@media (max-width: 1100px) { .sdg-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .values__layout { grid-template-columns: 1fr; } .values__side { position: static; } }
+@media (max-width: 640px) { .sdg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sdg-tile { min-width: 0; } }
+
