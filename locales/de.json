@@ -56,6 +56,74 @@
       "title": "Deine Antworten sind gespeichert.",
       "lede": "Weiter geht es mit der Zusammenfassung und dem Explorer.",
       "cta": "Zur Zusammenfassung"
+    },
+    "traps": {
+      "headline": "Männer besitzen weltweit 105 Billionen Dollar mehr als Frauen. Acht Fallen machen diese Lücke jedes Jahr größer.",
+      "headline_figure": "105 Billionen Dollar",
+      "headline_source": "Oxfam, Time to Care, 2020",
+      "source_prefix": "Quelle der Zahl:",
+      "counter": "{n} von {total} angesehen",
+      "flip_aria": "Karte umdrehen",
+      "flip_back": "Zurückdrehen",
+      "prev_aria": "Vorherige Karte",
+      "next_aria": "Nächste Karte",
+      "card": {
+        "berufseinstieg": {
+          "title": "Berufseinstieg",
+          "body": "Die erste Vermögenslücke entsteht mit dem ersten Gehalt. Im Euroraum verdienen Frauen pro Stunde 11,4 % weniger als Männer (Eurostat 2024, sdg_05_20). Der Abstand beginnt früh: In Deutschland lag er in den ersten drei Berufsjahren bei 18,7 % (WSI-Lohnspiegel, zitiert nach Eurofound 2010). Diese Basis überträgt sich auf jede spätere Gehaltserhöhung in Prozent.",
+          "source": "Eurostat 2024 · WSI-Lohnspiegel / Eurofound 2010"
+        },
+        "zusammenziehen": {
+          "title": "Zusammenziehen und Heiraten",
+          "body": "Mit dem gemeinsamen Haushalt beginnt die unsichtbare Umverteilung. Frauen übernehmen mehr unbezahlte Arbeit und teilen die Kosten trotzdem oft zur Hälfte. Rechnet man Job und Haushalt zusammen, arbeiten Frauen in der EU pro Jahr acht Vollzeitwochen mehr als Männer (Europäisches Parlament, A10-0021/2026, Erwägung H).",
+          "source": "Europäisches Parlament, A10-0021/2026"
+        },
+        "mutterschaft": {
+          "title": "Mutterschaft",
+          "body": "Das erste Kind ist einer der schönsten Momente im Leben. Finanziell ist es zugleich der größte Einbruch, den das System für Frauen bereithält. Langfristig verdienen Mütter in Österreich und Deutschland 51–61 % weniger als vor der Geburt – der Wert der Väter bleibt fast unverändert. In Skandinavien sind es 21–26 %, in englischsprachigen Ländern 31–44 % (Kleven et al. 2019, NBER Working Paper 25524; Registerdaten u. a. aus AT und DE).",
+          "source": "Kleven et al. 2019, NBER Working Paper 25524"
+        },
+        "teilzeit": {
+          "title": "Teilzeit",
+          "body": "Nach der Karenz bleibt Teilzeit für viele dauerhaft. Jede Teilzeitstunde fehlt doppelt: heute im Gehalt, später in der Pension. 2024 arbeiteten in der EU 27,8 % der Frauen in Teilzeit, aber nur 7,7 % der Männer (Eurostat, lfsi_pt_a). Häufigster Grund bei Frauen ist die Betreuung von Kindern oder pflegebedürftigen Erwachsenen: 29,6 % nennen ihn, gegenüber 8,7 % der Männer (Eurostat, lfsa_epgar).",
+          "source": "Eurostat, lfsi_pt_a · Eurostat, lfsa_epgar"
+        },
+        "pflege": {
+          "title": "Pflege von Angehörigen",
+          "body": "In der Lebensmitte kommt die zweite Care-Welle, meist Eltern oder Schwiegereltern. Sie trifft Frauen genau in den Jahren, in denen Männer ihre höchsten Gehälter und Vorsorgebeiträge erreichen. Betreuungspflichten halten rund 7,7 Millionen Frauen in Europa vom Arbeitsmarkt fern, gegenüber 450.000 Männern (EIGE, zitiert in Europäische Kommission, COM(2022) 442).",
+          "source": "EIGE / Europäische Kommission, COM(2022) 442"
+        },
+        "trennung": {
+          "title": "Trennung und Scheidung",
+          "body": "Die Scheidung macht die stille Umverteilung früherer Phasen auf einen Schlag sichtbar. In Großbritannien fällt das Haushaltseinkommen von Frauen im Jahr danach um 41 %, das von Männern um 21 % (Legal & General 2024). Deutsche Paneldaten zeigen dasselbe Muster für den Euroraum: Frauen verlieren dauerhaft Haushaltseinkommen, bei Männern ist die Belastung vorübergehend (Leopold 2018, Demography; SOEP 1984–2015).",
+          "source": "Legal & General 2024 · Leopold 2018, Demography (SOEP)"
+        },
+        "menopause": {
+          "title": "Menopause",
+          "body": "Die Wechseljahre wirken wie ein zweiter Karriereknick, der in keiner Finanzplanung vorkommt. Vier Jahre nach einer Menopause-Diagnose liegt das Einkommen betroffener Frauen um rund 10 % niedriger. Beschäftigung und Arbeitsstunden sinken dauerhaft (Conti, Ginja, Persson & Willage 2025, NBER Working Paper 33621; Registerdaten Norwegen und Schweden).",
+          "source": "Conti, Ginja, Persson & Willage 2025, NBER Working Paper 33621"
+        },
+        "pension": {
+          "title": "Pension, höhere Lebenserwartung und Verwitwung",
+          "body": "Für die höhere Lebenserwartung gibt es am Ende dann auch noch Einbußen: Frauen ab 65 erhalten in der EU im Schnitt 24,5 % weniger Pension als Männer (Eurostat 2024, ilc_pnp13). Gleichzeitig leben sie nach dem Erwerbsaustritt 22,8 Jahre, Männer 18,6 Jahre – also rund vier Jahre länger (OECD, Pensions at a Glance 2025). Nach dem Tod des Partners bleiben oft dessen Fixkosten, aber nur ein Einkommen.",
+          "source": "Eurostat 2024, ilc_pnp13 · OECD, Pensions at a Glance 2025"
+        }
+      }
+    },
+    "phase": {
+      "question": "Wo stehst du gerade?",
+      "help": "Wähle bis zu zwei. Es gibt keine falsche Antwort.",
+      "cta": "Weiter",
+      "feedback": {
+        "berufseinstieg": "Im Euroraum verdienen Frauen pro Stunde 11,4 % weniger als Männer. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "zusammenziehen": "Rechnet man Job und Haushalt zusammen, arbeiten Frauen in der EU pro Jahr acht Vollzeitwochen mehr als Männer. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "mutterschaft": "Langfristig verdienen Mütter in Österreich und Deutschland 51–61 % weniger als vor der Geburt. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "teilzeit": "27,8 % der Frauen in der EU arbeiten Teilzeit – meist wegen Care-Arbeit. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "pflege": "Betreuungspflichten halten rund 7,7 Millionen Frauen in Europa vom Arbeitsmarkt fern, gegenüber 450.000 Männern. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "trennung": "In Großbritannien fällt das Haushaltseinkommen von Frauen im Jahr nach der Scheidung um 41 %, das von Männern um 21 %. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "menopause": "Vier Jahre nach einer Menopause-Diagnose liegt das Einkommen betroffener Frauen um rund 10 % niedriger. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
+        "pension": "Frauen ab 65 erhalten in der EU im Schnitt 24,5 % weniger Pension als Männer. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten."
+      }
     }
   },
   "explore": {

@@ -253,6 +253,25 @@ Process note
 Copy typo fixes
 - None.
 
+## Task 09 · Screens S0, S2, S3 (12.09.2026)
+
+Decisions taken first: conflict 4 (Menopause note dropped), conflict 6 (8.2 figures, 105 Bio. $, 15 Minuten). S0 was built in task 01b (index.html); unchanged here.
+
+Done
+- `quiz.js`: S2 `/quiz/traps` — headline with the figure as a tooltip button (source "Oxfam, Time to Care, 2020", also as visible caption), counter "{n} von 8 angesehen", 4 × 2 grid (2 × 4 on mobile), 3D flip 400 ms (fade with `prefers-reduced-motion`), front Cream with line icon and title, back Background Warm with the first sentence as serif quote (16 px), text 14 px, source 12 px in Ink Caption, "Zurückdrehen" and arrows to the neighbouring cards, checkmark badge on viewed cards, Enter / Space / Esc; a flipped card grows to its text (min 360 px) so the back never scrolls. State `traps.viewed[]`, event `trap_card_flip {trap_id}`. All cards optional, CTA always visible.
+- S3 `/quiz/phase` — question and help text verbatim, eight cards with the S2 titles, multi-select up to 2 (further cards inactive), min 1 to continue, feedback of the first chosen phase as "Gut zu wissen" InfoNote with fade-in; State `phase.selected[]`, event `phase_selected {phase_ids}`. Resume lands on the last quiz screen.
+- Strings `quiz.traps.*`, `quiz.phase.*` in `locales/de.json`: the eight 8.2 texts verbatim (Menopause without the internal note), a `source` line per card (short form of the citations), S3 feedback per phase = the card's core figure sentence + the two fixed sentences of the PRD example. Cache: quiz.js v11, quiz.css v12.
+- Copy lint: citations in parentheses no longer count towards sentence length and a colon clause counts as its own sentence (how 8.2 counts); 20-word limit also for `quiz.traps.card.*` and `quiz.phase.feedback.*`; per-key exemption list `KEY_EXEMPT` with one entry: "fehlt" in the Teilzeit card (verbatim PRD copy, conflict 3).
+
+Verification
+- Browser (1280 px): headline and tooltip, 8 cards, counter 0 → 1 → 8, Enter flips, Esc closes and focuses the front, badge set, `traps.viewed` persisted, `trap_card_flip` event; every back fits (`scrollHeight ≤ clientHeight`), card width 280 px; S3: 8 cards, CTA disabled until one is chosen, third choice inactive, feedback InfoNote rendered, `phase.selected` persisted, `phase_selected` event; glossary marks "Care-Arbeit" in the feedback.
+- compliance-checker on the new copy and logic: PASS, no findings (no answer-to-product mapping, no forbidden words, no derived type, disclaimer present, no personal data).
+- Copy lint 0 findings, tests 29 pass, `node --check` pass.
+
+Copy typo fixes
+- S2 headline: "Acht Fallen, machen diese Lücke" → "Acht Fallen machen diese Lücke" (comma).
+- 8.2 Berufseinstieg: "übertragt sich" → "überträgt sich".
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -270,6 +289,9 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O21 · S2 card size: PRD says 280 × 360 px at ≥ 1280 px; with the verbatim 8.2 text at 14 px the Trennung card needs 379 px, so a flipped card grows to its text. Either accept or shorten that card.
+- O22 · S2 "Zitat" on the back: the PRD asks for a serif quote and a separate source; the 8.2 texts carry their citations inline, so the first sentence is shown as the quote and a short-form citation line was added per card (derived, not PRD copy).
+- O23 · Copy lint exemption for "fehlt" in `quiz.traps.card.teilzeit.body` (verbatim PRD 8.2); wording decision still open (conflict 3).
 - O20 · Glossary content review (Katharina, `docs/glossary-review.md`) and legal review (PRD A.2, focus "Wirkung" and "Wege" plus all figures) are open; the figures in the examples (e.g. Gender Pay Gap 18 %, Pension Gap 40 %, Care-Arbeit 66 %) need their sources confirmed before launch.
 - O19 · `fundSizeMeur` is not converted to EUR (`fundSizeCurrency` carries USD for most ETFs); `sdgTags` derived from themes need EET confirmation. Both flagged in `meta.dataNote`.
 - O3 · `explore.js` radar uses 6 axes from Four Capitals + own scores; PRD radar axes (climate, social, governance, gender, biodiversity, transparency) have no data source (conflict 2, 19).

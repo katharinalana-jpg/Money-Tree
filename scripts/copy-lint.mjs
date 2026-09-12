@@ -27,7 +27,14 @@ const DEFAULT_FILE = resolve(HERE, "..", "locales", "de.json");
 /* ---- rules --------------------------------------------------- */
 export const PRODUCT_KEYS = /^(explore|portfolio|summary\.products|quiz\.portfolio)(\.|$)/;
 export const LENGTH_EXEMPT = [/^common\.disclaimer$/, /\.disclaimer$/];
-const LONG_SENTENCE_KEYS = /^(quiz\.impact|glossary)(\.|$)/;
+/* 20-word limit: S6 (PRD 2.3), glossary definitions (5.2), the S2 flashcards
+   (8.2 states "alle Sätze ≤ 20 Wörter") and the S3 feedback built from them */
+const LONG_SENTENCE_KEYS = /^(quiz\.impact|quiz\.traps\.card|quiz\.phase\.feedback|glossary)(\.|$)/;
+/* Per-key exemptions for verbatim PRD copy that the lint would flag; each one is
+   an open conflict in CLAUDE.md, never a silent change of the copy. */
+export const KEY_EXEMPT = [
+  { key: /^quiz\.traps\.card\.teilzeit\.body$/, rule: "deficit-word", match: "fehlt", why: "PRD 8.2 verbatim, conflict 3" }
+];
 const GLOSSARY_KEYS = /^glossary(\.|$)/;
 
 const DEFICIT = [
@@ -64,8 +71,13 @@ const PRODUCT_FAMILY = [
 
 function stripTags(s) { return String(s).replace(/<[^>]+>/g, " "); }
 
+/* Sentences for the length rule: source citations in parentheses do not count
+   (PRD 8.2 counts "alle Sätze ≤ 20 Wörter" without them) and a colon clause
+   counts as its own sentence. */
 function sentences(s) {
-  return stripTags(s).split(/(?<=[.!?…])\s+/).map((x) => x.trim()).filter(Boolean);
+  let text = stripTags(s);
+  for (let i = 0; i < 3; i++) text = text.replace(/\([^()]*\)/g, " ");
+  return text.split(/(?<=[.!?…])\s+|:\s+/).map((x) => x.trim()).filter(Boolean);
 }
 function wordCount(s) {
   return s.replace(/[„“"‚‘’()·]/g, " ").trim().split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
@@ -86,7 +98,10 @@ export function flatten(obj, prefix = "", out = {}) {
 export function lint(doc) {
   const flat = flatten(doc);
   const findings = [];
-  const add = (key, rule, match, text) => findings.push({ key, rule, match, text: String(text).slice(0, 90) });
+  const add = (key, rule, match, text) => {
+    if (KEY_EXEMPT.some((x) => x.key.test(key) && x.rule === rule && x.match === match)) return;
+    findings.push({ key, rule, match, text: String(text).slice(0, 90) });
+  };
 
   for (const [key, val] of Object.entries(flat)) {
     if (typeof val !== "string" || !val.trim()) continue;

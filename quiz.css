@@ -223,3 +223,80 @@
   .quiz-stage { padding-top: 2rem; }
 }
 
+/* ── S2 · Lifetime Traps (flashcards, PRD S2 / 8.2) ───────────── */
+.quiz-traps { width: min(1180px, 92vw); margin-inline: auto; text-align: center; }
+.traps__headline { max-width: 52rem; margin-inline: auto; }
+.traps__figure {
+  display: inline; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: help;
+  text-decoration: underline dotted var(--sage-deep); text-decoration-thickness: 2px; text-underline-offset: .12em;
+}
+.traps__source { font-size: .78rem; color: var(--ink-mute); margin: .5rem 0 0; }
+.traps__counter { font-size: .9rem; font-weight: 600; color: var(--forest); margin: 1.2rem 0 1.4rem; }
+
+.traps__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem;
+  justify-items: center;
+}
+.trap { width: 100%; max-width: 280px; height: 360px; perspective: 1200px; }
+.trap__inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .4s cubic-bezier(.4, 0, .2, 1); }
+.trap.is-flipped .trap__inner { transform: rotateY(180deg); }
+.trap__inner--fade { transition: none; }
+.trap__face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-card); padding: 1.1rem 1rem; text-align: left;
+  display: flex; flex-direction: column;
+}
+.trap__front {
+  background: var(--cream); color: var(--ink); border: 0; cursor: pointer; font: inherit;
+  align-items: center; justify-content: center; text-align: center; gap: .9rem; width: 100%;
+}
+.trap__front:hover { background: var(--sage-soft); }
+.trap__icon svg { width: 44px; height: 44px; color: var(--forest); }
+.trap__title { font-size: 1.05rem; font-weight: 600; color: var(--forest); line-height: 1.25; }
+.trap__badge {
+  position: absolute; top: .7rem; right: .7rem; width: 22px; height: 22px; border-radius: 999px;
+  background: var(--forest); color: var(--bg); display: none; place-items: center;
+}
+.trap__badge svg { width: 13px; height: 13px; }
+.trap.is-viewed .trap__badge { display: grid; }
+/* back: 14 px Inter, quote 16 px serif, source 12 px. A flipped card grows to
+   its text (min 360 px) so the back never scrolls (PRD S2 acceptance). */
+.trap__back { background: var(--bg-warm); color: var(--ink); transform: rotateY(180deg); font-size: 14px; line-height: 1.34; padding: .85rem .9rem .7rem; }
+.trap__back-title { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--forest); margin: 0 0 .25rem; }
+.trap__quote { font-family: var(--ff-serif); font-style: italic; font-size: 16px; line-height: 1.25; color: var(--forest); margin: 0 0 .3rem; }
+.trap__text { margin: 0; flex: 1; }
+.trap__src { font-size: 12px; line-height: 1.3; color: var(--ink-caption); margin: .35rem 0 0; }
+.trap__nav { display: flex; align-items: center; justify-content: space-between; gap: .4rem; margin-top: .45rem; }
+.trap__arrow, .trap__close {
+  background: none; border: 1px solid var(--line-strong); color: var(--forest); border-radius: var(--radius);
+  font: inherit; font-size: .82rem; padding: .25rem .65rem; min-height: 32px; cursor: pointer;
+}
+.trap__arrow { width: 32px; padding: 0; font-size: 1.15rem; line-height: 1; }
+.trap__arrow:hover, .trap__close:hover { background: var(--sage-soft); }
+@media (prefers-reduced-motion: reduce) {
+  .trap__inner { transition: none; }
+  .trap__face { transition: opacity .25s ease; }
+}
+@media (max-width: 1100px) { .traps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .trap { height: 380px; } }
+
+/* ── S3 · Deine Phase ─────────────────────────────────────────── */
+.quiz-phase { width: min(980px, 92vw); }
+.phase__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; margin-top: 1.6rem; }
+.phase__card {
+  position: relative; min-height: 96px; padding: 1rem 2.4rem 1rem 1rem;
+  background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--radius-card);
+  font: inherit; color: var(--ink); text-align: left; cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+.phase__card:hover { border-color: var(--forest); background: var(--sage-soft); }
+.phase__card.is-selected { border-color: var(--forest); background: var(--sage-soft); }
+.phase__card.is-inactive { opacity: .45; cursor: not-allowed; }
+.phase__card.is-inactive:hover { border-color: var(--line); background: var(--bg-card); }
+.phase__title { font-weight: 600; font-size: .95rem; line-height: 1.25; color: var(--forest); }
+.phase__card .quiz-opt__check { right: .8rem; }
+.phase__feedback { margin: 1.6rem auto 0; display: flex; justify-content: center; }
+.phase__feedback .pm-note { text-align: left; }
+@media (max-width: 860px) { .phase__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+

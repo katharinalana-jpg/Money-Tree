@@ -210,7 +210,7 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 ## Open PRD conflicts (ask before touching)
 1. Decided 10.09.2026 (S11 out of scope), see Decisions. Still open: no S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
 2. Score shape: 7.2 flat `scores` plus `scoreSource` vs 7.7 per score `{ value, source, method, asOf }` plus a ScoreProvider adapter "ManualEET". Source of the six radar axes unclear.
-3. Decided 10.09.2026 (product related keys only), see Decisions. Still open: "fehlt" in the Teilzeit card (8.2) will fail the deficit rule; needs a wording decision or a per-key exemption before task 09.
+3. Decided 10.09.2026 (product related keys only), see Decisions. Still open: "fehlt" in the Teilzeit card (8.2) is shipped verbatim under a per-key lint exemption (`KEY_EXEMPT` in `scripts/copy-lint.mjs`, task 09); a wording decision would remove the exemption.
 4. Menopause card (8.2) contains the internal note "Euroraum-Zahl: noch offen". Must not ship.
 5. English lines in German UI: S8 "I AM READY.", "Now Let´s go build it yourslef", "No shame in not knowing"; S11 "Set it and forget it", "Minimal mental load". PRD 2.3: product copy German, taglines English.
 6. Figures: part time 27,9 % (S3) vs 27,8 % (8.2); share text "10 Minuten" vs 15; S2 headline figure 105 Bio. $ (Oxfam) or 100.000 € not chosen.

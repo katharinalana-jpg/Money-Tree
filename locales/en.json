@@ -56,6 +56,74 @@
       "title": "",
       "lede": "",
       "cta": ""
+    },
+    "traps": {
+      "headline": "",
+      "headline_figure": "",
+      "headline_source": "",
+      "source_prefix": "",
+      "counter": "",
+      "flip_aria": "",
+      "flip_back": "",
+      "prev_aria": "",
+      "next_aria": "",
+      "card": {
+        "berufseinstieg": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "zusammenziehen": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "mutterschaft": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "teilzeit": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "pflege": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "trennung": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "menopause": {
+          "title": "",
+          "body": "",
+          "source": ""
+        },
+        "pension": {
+          "title": "",
+          "body": "",
+          "source": ""
+        }
+      }
+    },
+    "phase": {
+      "question": "",
+      "help": "",
+      "cta": "",
+      "feedback": {
+        "berufseinstieg": "",
+        "zusammenziehen": "",
+        "mutterschaft": "",
+        "teilzeit": "",
+        "pflege": "",
+        "trennung": "",
+        "menopause": "",
+        "pension": ""
+      }
     }
   },
   "explore": {

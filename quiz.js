@@ -2,12 +2,15 @@
    Portemonnaie — Quiz stage (S2 to S7 live here, PRD 6).
    Vanilla JS, no dependencies. One screen at a time.
 
+   Screens (route = PRD path, sub step of the ProgressBar):
+     S2 traps      /quiz/traps      eight flashcards (8.2)
+     S3 phase      /quiz/phase      choose up to two phases
+     S4b horizon   /quiz/situation  interim until task 10
+     S7 values     /quiz/values     SDGs from data/sdgs.json
+     mirror/result /quiz/values     interim until task 11 (S8)
    Strings from locales/*.json (locale.js); state in pm_session
    (session.js, saved on every input); progress via progress.js;
-   events via track.js. Screens are interim placeholders until
-   tasks 09 to 11 build S2 to S7 from PRD 6:
-     · values  (SDGs from data/sdgs.json)  → S7  route /quiz/values
-     · horizon                             → S4b route /quiz/situation
+   glossary via glossary.js; events via track.js.
    Regulatory: quiz answers never map to products, weights or
    portfolio types (PRD 2.4).
    ============================================================= */
@@ -21,6 +24,10 @@
   const track = (name, payload) => { if (window.pmTrack) window.pmTrack.track(name, payload); };
   const glossary = () => { if (window.pmGlossary) { window.pmGlossary.reset(); window.pmGlossary.mark(stage); } };
   const isDe = () => L().lang() === "de";
+  const reducedMotion = () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- content ids ---------------------------------------------- */
+  const TRAPS = ["berufseinstieg", "zusammenziehen", "mutterschaft", "teilzeit", "pflege", "trennung", "menopause", "pension"];
 
   /* ---- SDG options (data/sdgs.json, PRD 7.4) ------------------- */
   let SDGS = [];
@@ -33,8 +40,10 @@
     }));
   }
 
-  /* ---- screens (ordered); route = PRD path, step = quiz sub step ---- */
+  /* ---- screens (ordered) ---------------------------------------- */
   const SCREENS = [
+    { id: "traps", route: "/quiz/traps", type: "traps" },
+    { id: "phase", route: "/quiz/phase", type: "phase", max: 2, min: 1 },
     { id: "horizon", route: "/quiz/situation", type: "single", question: "quiz.situation.horizon.question",
       options: ["under_3y", "3_10y", "over_10y", "open"].map((v) => ({ value: v, label: "quiz.situation.horizon.options." + v })) },
     { id: "values", route: "/quiz/values", type: "multi", dynamic: "sdg", max: 5,
@@ -45,7 +54,7 @@
   ];
 
   /* ---- state --------------------------------------------------- */
-  const state = { i: 0, answers: {} };
+  const state = { i: 0, answers: {}, traps: { viewed: [], flipped: null } };
   let stage;
 
   function hasAnswer(screen) {
@@ -58,6 +67,8 @@
     const Sx = S();
     if (!Sx || !Sx.current()) return;
     Sx.update({
+      traps: { viewed: state.traps.viewed.slice() },
+      phase: { selected: (state.answers.phase || []).slice() },
       values: { sdgs: (state.answers.values || []).slice() },
       situation: { horizon: state.answers.horizon || null }
     });
@@ -78,10 +89,169 @@
     const screen = SCREENS[state.i];
     setRoute(screen.route);
     if (window.pmProgress && S()) window.pmProgress.setSub(S().quizStepIndex(screen.route), S().QUIZ_STEPS.length);
-    if (screen.type === "result") renderResult(screen);
+    if (screen.type === "traps") renderTraps(screen);
+    else if (screen.type === "phase") renderPhase(screen);
+    else if (screen.type === "result") renderResult(screen);
     else if (screen.type === "mirror") renderMirror(screen);
     else renderQuestion(screen);
     glossary(); // first occurrence per screen (PRD 5.2)
+  }
+
+  /* ---- S2 · Lifetime Traps (flashcards) ------------------------- */
+  function renderTraps(screen) {
+    const card = el("div", "quiz-traps reveal-now");
+    const head = el("div", "traps__head");
+    const h1 = el("h1", "quiz-question traps__headline");
+    // headline figure carries its source as a tooltip (PRD S2)
+    const text = t("quiz.traps.headline");
+    const figure = t("quiz.traps.headline_figure");
+    const idx = text.indexOf(figure);
+    if (idx >= 0) {
+      h1.appendChild(document.createTextNode(text.slice(0, idx)));
+      const fig = el("button", "traps__figure", figure);
+      fig.type = "button";
+      fig.setAttribute("aria-describedby", "trapsSource");
+      fig.title = t("quiz.traps.headline_source");
+      h1.appendChild(fig);
+      h1.appendChild(document.createTextNode(text.slice(idx + figure.length)));
+    } else h1.textContent = text;
+    head.appendChild(h1);
+    const src = el("p", "traps__source", t("quiz.traps.source_prefix") + " " + t("quiz.traps.headline_source"));
+    src.id = "trapsSource";
+    head.appendChild(src);
+    const counter = el("p", "traps__counter");
+    counter.setAttribute("aria-live", "polite");
+    head.appendChild(counter);
+    card.appendChild(head);
+
+    const grid = el("ul", "traps__grid");
+    grid.setAttribute("role", "list");
+    TRAPS.forEach((id, i) => grid.appendChild(trapCard(id, i, counter)));
+    card.appendChild(grid);
+    updateCounter(counter);
+    mount(card, screen, { canNext: true, nextLabel: t("common.continue") });
+  }
+
+  function updateCounter(counter) {
+    counter.textContent = t("quiz.traps.counter", { n: state.traps.viewed.length, total: TRAPS.length });
+  }
+
+  function trapCard(id, i, counter) {
+    const li = el("li", "trap" + (state.traps.viewed.includes(id) ? " is-viewed" : ""));
+    li.dataset.trap = id;
+    const inner = el("div", "trap__inner" + (reducedMotion() ? " trap__inner--fade" : ""));
+    // front
+    const front = el("button", "trap__face trap__front");
+    front.type = "button";
+    front.setAttribute("aria-expanded", "false");
+    front.setAttribute("aria-label", t("quiz.traps.card." + id + ".title") + " – " + t("quiz.traps.flip_aria"));
+    front.appendChild(trapIcon(i));
+    front.appendChild(el("span", "trap__title", t("quiz.traps.card." + id + ".title")));
+    const badge = el("span", "trap__badge");
+    badge.setAttribute("aria-hidden", "true");
+    badge.innerHTML = `<svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    front.appendChild(badge);
+    // back
+    const back = el("div", "trap__face trap__back");
+    back.hidden = true;
+    const body = t("quiz.traps.card." + id + ".body");
+    const firstEnd = body.indexOf(". ");
+    const quote = firstEnd > 0 ? body.slice(0, firstEnd + 1) : body;
+    const rest = firstEnd > 0 ? body.slice(firstEnd + 2) : "";
+    back.appendChild(el("p", "trap__back-title", t("quiz.traps.card." + id + ".title")));
+    back.appendChild(el("p", "trap__quote", quote));
+    if (rest) back.appendChild(el("p", "trap__text", rest));
+    back.appendChild(el("p", "trap__src", t("quiz.traps.card." + id + ".source")));
+    const nav = el("div", "trap__nav");
+    const prevBtn = el("button", "trap__arrow", "‹"); prevBtn.type = "button"; prevBtn.setAttribute("aria-label", t("quiz.traps.prev_aria"));
+    const closeBtn = el("button", "trap__close", t("quiz.traps.flip_back")); closeBtn.type = "button";
+    const nextBtn = el("button", "trap__arrow", "›"); nextBtn.type = "button"; nextBtn.setAttribute("aria-label", t("quiz.traps.next_aria"));
+    nav.appendChild(prevBtn); nav.appendChild(closeBtn); nav.appendChild(nextBtn);
+    back.appendChild(nav);
+    inner.appendChild(front); inner.appendChild(back);
+    li.appendChild(inner);
+
+    const flip = (open) => {
+      li.classList.toggle("is-flipped", open);
+      front.setAttribute("aria-expanded", String(open));
+      back.hidden = !open;
+      // never scroll inside the card: grow the flipped card to its back text (min 360 px)
+      li.style.height = open ? Math.max(360, back.scrollHeight) + "px" : "";
+      if (open) {
+        if (!state.traps.viewed.includes(id)) { state.traps.viewed.push(id); li.classList.add("is-viewed"); persist(); updateCounter(counter); }
+        track("trap_card_flip", { trap_id: id });
+        closeBtn.focus();
+      } else front.focus();
+    };
+    front.addEventListener("click", () => flip(true));
+    front.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(true); } });
+    closeBtn.addEventListener("click", () => flip(false));
+    back.addEventListener("keydown", (e) => { if (e.key === "Escape") flip(false); });
+    const go = (delta) => {
+      flip(false);
+      const target = li.parentElement.children[(i + delta + TRAPS.length) % TRAPS.length];
+      target.querySelector(".trap__front").click();
+    };
+    prevBtn.addEventListener("click", () => go(-1));
+    nextBtn.addEventListener("click", () => go(1));
+    return li;
+  }
+
+  /* simple line icons (no emoji): eight botanical/abstract marks */
+  function trapIcon(i) {
+    const marks = [
+      "M4 20 L12 4 L20 20", "M4 12 A8 8 0 1 0 20 12 A8 8 0 1 0 4 12", "M12 4 C6 10 6 16 12 20 C18 16 18 10 12 4",
+      "M4 12 H20 M12 4 V20", "M4 18 C8 6 16 6 20 18", "M6 4 L18 20 M18 4 L6 20", "M4 16 Q12 4 20 16", "M12 4 L20 12 L12 20 L4 12 Z"
+    ];
+    const wrap = el("span", "trap__icon");
+    wrap.setAttribute("aria-hidden", "true");
+    wrap.innerHTML = `<svg viewBox="0 0 24 24"><path d="${marks[i % marks.length]}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    return wrap;
+  }
+
+  /* ---- S3 · Deine Phase ----------------------------------------- */
+  function renderPhase(screen) {
+    const sel = state.answers.phase || [];
+    const card = el("div", "quiz-card-screen quiz-phase reveal-now");
+    card.appendChild(el("h1", "quiz-question", t("quiz.phase.question")));
+    card.appendChild(el("p", "quiz-help", t("quiz.phase.help")));
+
+    const grid = el("div", "phase__grid");
+    grid.setAttribute("role", "group");
+    grid.setAttribute("aria-label", t("quiz.phase.question"));
+    TRAPS.forEach((id) => {
+      const active = sel.includes(id);
+      const full = !active && sel.length >= screen.max;
+      const btn = el("button", "phase__card" + (active ? " is-selected" : "") + (full ? " is-inactive" : ""));
+      btn.type = "button";
+      btn.setAttribute("role", "checkbox");
+      btn.setAttribute("aria-checked", String(active));
+      if (full) btn.setAttribute("aria-disabled", "true");
+      btn.appendChild(el("span", "phase__title", t("quiz.traps.card." + id + ".title")));
+      btn.appendChild(el("span", "quiz-opt__check", ""));
+      btn.addEventListener("click", () => {
+        if (full) return;
+        let arr = sel.slice();
+        if (arr.includes(id)) arr = arr.filter((x) => x !== id); else arr.push(id);
+        state.answers.phase = arr;
+        persist();
+        track("phase_selected", { phase_ids: arr });
+        render();
+      });
+      grid.appendChild(btn);
+    });
+    card.appendChild(grid);
+
+    // feedback of the first chosen phase (PRD S3), fade-in
+    if (sel.length) {
+      const fb = el("div", "phase__feedback reveal-now");
+      fb.setAttribute("role", "status");
+      fb.innerHTML = window.pmInfoNote
+        ? window.pmInfoNote.html("know", "", { bodyText: t("quiz.phase.feedback." + sel[0]) })
+        : "";
+      card.appendChild(fb);
+    }
+    mount(card, screen, { canNext: sel.length >= screen.min, nextLabel: t("quiz.phase.cta") });
   }
 
   function optionList(screen) {
@@ -174,7 +344,7 @@
   }
 
   /* ---- navigation chrome --------------------------------------- */
-  function mount(card, screen, { canNext }) {
+  function mount(card, screen, { canNext, nextLabel }) {
     stage.innerHTML = "";
     stage.appendChild(card);
 
@@ -189,7 +359,7 @@
     if (screen.type !== "single") {
       const fwd = el("button", "btn btn--primary quiz-nav__next");
       fwd.type = "button";
-      fwd.textContent = t("common.continue");
+      fwd.textContent = nextLabel || t("common.continue");
       fwd.disabled = !canNext;
       fwd.addEventListener("click", next);
       nav.appendChild(fwd);
@@ -223,6 +393,8 @@
     let saved = Sx && Sx.current();
     if (Sx && !saved) { saved = Sx.create({ locale: L().lang() }); track("session_start"); }
     if (saved) {
+      if (saved.traps && Array.isArray(saved.traps.viewed)) state.traps.viewed = saved.traps.viewed.slice();
+      if (saved.phase && saved.phase.selected && saved.phase.selected.length) state.answers.phase = saved.phase.selected.slice();
       if (saved.values && saved.values.sdgs && saved.values.sdgs.length) state.answers.values = saved.values.sdgs.slice();
       if (saved.situation && saved.situation.horizon) state.answers.horizon = saved.situation.horizon;
       // resume at the last quiz screen when the user comes back
