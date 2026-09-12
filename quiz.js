@@ -5,7 +5,9 @@
    Screens (route = PRD path, sub step of the ProgressBar):
      S2 traps      /quiz/traps      eight flashcards (8.2)
      S3 phase      /quiz/phase      choose up to two phases
-     S4b horizon   /quiz/situation  interim until task 10
+     S4  amount + horizon /quiz/situation (4a, 4b with "Gut zu wissen")
+     S5  portfolio /quiz/portfolio   three building blocks, three example donuts
+     S6  impact    /quiz/impact      full text + two flip cards
      S7 values     /quiz/values     SDGs from data/sdgs.json
      mirror/result /quiz/values     interim until task 11 (S8)
    Strings from locales/*.json (locale.js); state in pm_session
@@ -44,8 +46,13 @@
   const SCREENS = [
     { id: "traps", route: "/quiz/traps", type: "traps" },
     { id: "phase", route: "/quiz/phase", type: "phase", max: 2, min: 1 },
-    { id: "horizon", route: "/quiz/situation", type: "single", question: "quiz.situation.horizon.question",
+    { id: "amount", route: "/quiz/situation", type: "single", question: "quiz.situation.amount.question", know: "quiz.situation.amount.know",
+      options: ["under_50", "50_150", "150_300", "over_300", "later"].map((v) => ({ value: v, label: "quiz.situation.amount.options." + v })) },
+    { id: "horizon", route: "/quiz/situation", type: "single", question: "quiz.situation.horizon.question", know: "quiz.situation.horizon.know",
+      manualNext: true, cta: "quiz.situation.cta",
       options: ["under_3y", "3_10y", "over_10y", "open"].map((v) => ({ value: v, label: "quiz.situation.horizon.options." + v })) },
+    { id: "portfolio", route: "/quiz/portfolio", type: "learn" },
+    { id: "impact", route: "/quiz/impact", type: "impact" },
     { id: "values", route: "/quiz/values", type: "multi", dynamic: "sdg", max: 5,
       intro: "quiz.values.intro", question: "quiz.values.question", help: "quiz.values.help" },
     { id: "mirror", route: "/quiz/values", type: "mirror",
@@ -54,7 +61,7 @@
   ];
 
   /* ---- state --------------------------------------------------- */
-  const state = { i: 0, answers: {}, traps: { viewed: [], flipped: null } };
+  const state = { i: 0, answers: {}, traps: { viewed: [], flipped: null }, viewed: { portfolio: false, impact: false } };
   let stage;
 
   function hasAnswer(screen) {
@@ -70,7 +77,9 @@
       traps: { viewed: state.traps.viewed.slice() },
       phase: { selected: (state.answers.phase || []).slice() },
       values: { sdgs: (state.answers.values || []).slice() },
-      situation: { horizon: state.answers.horizon || null }
+      situation: { monthlyRange: state.answers.amount || null, horizon: state.answers.horizon || null },
+      portfolioEducation: { viewed: !!state.viewed.portfolio },
+      impact: { viewed: !!state.viewed.impact }
     });
   }
   function setRoute(route) {
@@ -91,6 +100,8 @@
     if (window.pmProgress && S()) window.pmProgress.setSub(S().quizStepIndex(screen.route), S().QUIZ_STEPS.length);
     if (screen.type === "traps") renderTraps(screen);
     else if (screen.type === "phase") renderPhase(screen);
+    else if (screen.type === "learn") renderLearn(screen);
+    else if (screen.type === "impact") renderImpact(screen);
     else if (screen.type === "result") renderResult(screen);
     else if (screen.type === "mirror") renderMirror(screen);
     else renderQuestion(screen);
@@ -254,6 +265,120 @@
     mount(card, screen, { canNext: sel.length >= screen.min, nextLabel: t("quiz.phase.cta") });
   }
 
+  /* ---- S5 · Portfolio-Bausteine (pure learning screen) ------------ */
+  const EXAMPLES = [
+    { key: "calm", etf: 70, stock: 0, bond: 30 },
+    { key: "balanced", etf: 60, stock: 20, bond: 20 },
+    { key: "bold", etf: 50, stock: 40, bond: 10 }
+  ];
+  const BLOCK_COLOR = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" };
+
+  /* Example donut: three segments, hover shows percent + block; the label
+     "Beispiel, keine Empfehlung" is part of the component (PRD S5 / 2.4). */
+  function exampleDonut(ex) {
+    const R = 40, C = 50, circ = 2 * Math.PI * R;
+    let acc = 0;
+    const segs = ["etf", "stock", "bond"].filter((k) => ex[k] > 0).map((k) => {
+      const frac = ex[k] / 100, len = frac * circ, rot = -90 + acc * 360;
+      acc += frac;
+      const label = t("quiz.portfolio.legend." + k) + " " + L().fmtPercent(ex[k], 0);
+      return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:${BLOCK_COLOR[k]}" stroke-width="16"
+        stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}" transform="rotate(${rot.toFixed(2)} ${C} ${C})"
+        tabindex="0" role="img" aria-label="${label}"><title>${label}</title></circle>`;
+    }).join("");
+    const legend = ["etf", "stock", "bond"].map((k) =>
+      `<li><span class="donut-ex__dot" style="background:${BLOCK_COLOR[k]}"></span>${t("quiz.portfolio.legend." + k)} <strong>${L().fmtPercent(ex[k], 0)}</strong></li>`).join("");
+    return `<figure class="donut-ex" data-example="${ex.key}">
+      <figcaption class="donut-ex__title">${t("quiz.portfolio.examples." + ex.key)}</figcaption>
+      <svg viewBox="0 0 100 100" class="donut-ex__svg" aria-label="${t("quiz.portfolio.examples." + ex.key)}">${segs}</svg>
+      <ul class="donut-ex__legend">${legend}</ul>
+      <span class="donut-ex__label">${t("note.example")}</span>
+    </figure>`;
+  }
+
+  function renderLearn(screen) {
+    state.viewed.portfolio = true;
+    persist();
+    const card = el("div", "quiz-learn reveal-now");
+    card.appendChild(el("h1", "quiz-question", t("quiz.portfolio.headline")));
+    card.appendChild(el("p", "quiz-intro", t("quiz.portfolio.intro")));
+
+    const blocks = el("div", "blocks");
+    ["etf", "stock", "bond"].forEach((k) => {
+      const d = document.createElement("details");
+      d.className = "block";
+      const sum = document.createElement("summary");
+      sum.className = "block__title";
+      sum.innerHTML = `<span class="block__dot" style="background:${BLOCK_COLOR[k]}"></span>${t("quiz.portfolio.blocks." + k + ".title")}`;
+      d.appendChild(sum);
+      d.appendChild(el("p", "block__body", t("quiz.portfolio.blocks." + k + ".body")));
+      blocks.appendChild(d);
+    });
+    card.appendChild(blocks);
+
+    card.appendChild(el("h2", "quiz-learn__h2", t("quiz.portfolio.spectrum_title")));
+    card.appendChild(el("p", "quiz-learn__text", t("quiz.portfolio.spectrum")));
+    const axis = el("div", "spectrum");
+    axis.innerHTML = `<span class="spectrum__end">${t("quiz.portfolio.axis.calm")}</span><span class="spectrum__line" aria-hidden="true"></span><span class="spectrum__end">${t("quiz.portfolio.axis.bold")}</span>`;
+    card.appendChild(axis);
+    const row = el("div", "donut-row");
+    row.innerHTML = EXAMPLES.map(exampleDonut).join("");
+    card.appendChild(row);
+    mount(card, screen, { canNext: true, nextLabel: t("quiz.portfolio.cta") });
+  }
+
+  /* ---- S6 · Dein Geld bewegt etwas -------------------------------- */
+  function renderImpact(screen) {
+    state.viewed.impact = true;
+    persist();
+    const card = el("div", "quiz-impact reveal-now");
+    const fig = el("div", "impact__illustration");
+    fig.setAttribute("aria-hidden", "true");
+    fig.innerHTML = '<img src="brand/illustrations/plant_full.svg" alt="" />';
+    card.appendChild(fig);
+    card.appendChild(el("h1", "quiz-question", t("quiz.impact.headline")));
+    card.appendChild(el("p", "quiz-learn__text impact__body", t("quiz.impact.body")));
+    const row = el("ul", "traps__grid traps__grid--two");
+    row.setAttribute("role", "list");
+    ["exclude", "strengthen"].forEach((k, i) => row.appendChild(impactCard(k, i)));
+    card.appendChild(row);
+    card.appendChild(el("p", "impact__closing", t("quiz.impact.closing")));
+    mount(card, screen, { canNext: true, nextLabel: t("quiz.impact.cta") });
+  }
+
+  function impactCard(k, i) {
+    const li = el("li", "trap trap--impact");
+    const inner = el("div", "trap__inner" + (reducedMotion() ? " trap__inner--fade" : ""));
+    const front = el("button", "trap__face trap__front");
+    front.type = "button";
+    front.setAttribute("aria-expanded", "false");
+    front.setAttribute("aria-label", t("quiz.impact.cards." + k + ".title") + " – " + t("quiz.traps.flip_aria"));
+    front.appendChild(trapIcon(i + 2));
+    front.appendChild(el("span", "trap__title", t("quiz.impact.cards." + k + ".title")));
+    const back = el("div", "trap__face trap__back");
+    back.hidden = true;
+    back.appendChild(el("p", "trap__back-title", t("quiz.impact.cards." + k + ".title")));
+    back.appendChild(el("p", "trap__text", t("quiz.impact.cards." + k + ".body")));
+    const nav = el("div", "trap__nav");
+    const closeBtn = el("button", "trap__close", t("quiz.traps.flip_back")); closeBtn.type = "button";
+    nav.appendChild(closeBtn);
+    back.appendChild(nav);
+    inner.appendChild(front); inner.appendChild(back);
+    li.appendChild(inner);
+    const flip = (open) => {
+      li.classList.toggle("is-flipped", open);
+      front.setAttribute("aria-expanded", String(open));
+      back.hidden = !open;
+      li.style.height = open ? Math.max(260, back.scrollHeight) + "px" : "";
+      if (open) closeBtn.focus(); else front.focus();
+    };
+    front.addEventListener("click", () => flip(true));
+    front.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(true); } });
+    closeBtn.addEventListener("click", () => flip(false));
+    back.addEventListener("keydown", (e) => { if (e.key === "Escape") flip(false); });
+    return li;
+  }
+
   function optionList(screen) {
     if (screen.dynamic === "sdg") return sdgOptions();
     return screen.options.map((o) => ({ value: o.value, label: t(o.label) }));
@@ -285,16 +410,21 @@
       list.appendChild(btn);
     });
     card.appendChild(list);
+    if (screen.know && window.pmInfoNote) {
+      const note = el("div", "quiz-know");
+      note.innerHTML = window.pmInfoNote.html("know", "", { bodyText: t(screen.know) });
+      card.appendChild(note);
+    }
 
-    mount(card, screen, { canNext: screen.optional ? true : hasAnswer(screen) });
+    mount(card, screen, { canNext: screen.optional ? true : hasAnswer(screen), nextLabel: screen.cta ? t(screen.cta) : null, forceNext: !!screen.manualNext });
   }
 
   function toggle(screen, opt) {
     if (screen.type === "single") {
       state.answers[screen.id] = opt.value;
       persist();
-      if (screen.id === "horizon") track("situation_answered", { horizon: opt.value });
-      next();
+      if (screen.id === "horizon") track("situation_answered", { monthlyRange: state.answers.amount || null, horizon: opt.value });
+      if (screen.manualNext) render(); else next();
       return;
     }
     let arr = state.answers[screen.id] ? state.answers[screen.id].slice() : [];
@@ -344,7 +474,7 @@
   }
 
   /* ---- navigation chrome --------------------------------------- */
-  function mount(card, screen, { canNext, nextLabel }) {
+  function mount(card, screen, { canNext, nextLabel, forceNext }) {
     stage.innerHTML = "";
     stage.appendChild(card);
 
@@ -356,7 +486,7 @@
     back.addEventListener("click", prev);
     nav.appendChild(back);
 
-    if (screen.type !== "single") {
+    if (screen.type !== "single" || forceNext) {
       const fwd = el("button", "btn btn--primary quiz-nav__next");
       fwd.type = "button";
       fwd.textContent = nextLabel || t("common.continue");
@@ -397,9 +527,12 @@
       if (saved.phase && saved.phase.selected && saved.phase.selected.length) state.answers.phase = saved.phase.selected.slice();
       if (saved.values && saved.values.sdgs && saved.values.sdgs.length) state.answers.values = saved.values.sdgs.slice();
       if (saved.situation && saved.situation.horizon) state.answers.horizon = saved.situation.horizon;
+      if (saved.situation && saved.situation.monthlyRange) state.answers.amount = saved.situation.monthlyRange;
+      state.viewed.portfolio = !!(saved.portfolioEducation && saved.portfolioEducation.viewed);
+      state.viewed.impact = !!(saved.impact && saved.impact.viewed);
       // resume at the last quiz screen when the user comes back
       const idx = SCREENS.findIndex((sc) => sc.route === saved.lastScreen && sc.type !== "result" && sc.type !== "mirror");
-      if (idx > 0) state.i = idx;
+      if (idx > 0) state.i = (SCREENS[idx].id === "amount" && state.answers.amount) ? idx + 1 : idx;
     }
 
     const sdgs = fetch("data/sdgs.json")

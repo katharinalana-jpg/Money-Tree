@@ -29,11 +29,13 @@ export const PRODUCT_KEYS = /^(explore|portfolio|summary\.products|quiz\.portfol
 export const LENGTH_EXEMPT = [/^common\.disclaimer$/, /\.disclaimer$/];
 /* 20-word limit: S6 (PRD 2.3), glossary definitions (5.2), the S2 flashcards
    (8.2 states "alle Sätze ≤ 20 Wörter") and the S3 feedback built from them */
-const LONG_SENTENCE_KEYS = /^(quiz\.impact|quiz\.traps\.card|quiz\.phase\.feedback|glossary)(\.|$)/;
+const LONG_SENTENCE_KEYS = /^(quiz\.impact|quiz\.traps\.card|quiz\.phase\.feedback|quiz\.situation\.(amount|horizon)\.know|glossary)(\.|$)/;
 /* Per-key exemptions for verbatim PRD copy that the lint would flag; each one is
-   an open conflict in CLAUDE.md, never a silent change of the copy. */
+   an open issue in PROGRESS.md, never a silent change of the copy. match: null = any. */
 export const KEY_EXEMPT = [
-  { key: /^quiz\.traps\.card\.teilzeit\.body$/, rule: "deficit-word", match: "fehlt", why: "PRD 8.2 verbatim, conflict 3" }
+  { key: /^quiz\.traps\.card\.teilzeit\.body$/, rule: "deficit-word", match: "fehlt", why: "PRD 8.2 verbatim, conflict 3" },
+  { key: /^quiz\.portfolio\.spectrum$/, rule: "sentence-length", match: null, why: "PRD S5 spectrum text verbatim (30 words), O24" },
+  { key: /^quiz\.impact\.body$/, rule: "sentence-length", match: null, why: "PRD S6 body verbatim (24 words), O24" }
 ];
 const GLOSSARY_KEYS = /^glossary(\.|$)/;
 
@@ -99,7 +101,7 @@ export function lint(doc) {
   const flat = flatten(doc);
   const findings = [];
   const add = (key, rule, match, text) => {
-    if (KEY_EXEMPT.some((x) => x.key.test(key) && x.rule === rule && x.match === match)) return;
+    if (KEY_EXEMPT.some((x) => x.key.test(key) && x.rule === rule && (x.match == null || x.match === match))) return;
     findings.push({ key, rule, match, text: String(text).slice(0, 90) });
   };
 

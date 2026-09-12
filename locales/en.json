@@ -41,6 +41,17 @@
       "body": ""
     },
     "situation": {
+      "amount": {
+        "question": "",
+        "options": {
+          "under_50": "",
+          "50_150": "",
+          "150_300": "",
+          "over_300": "",
+          "later": ""
+        },
+        "know": ""
+      },
       "horizon": {
         "question": "",
         "options": {
@@ -48,8 +59,10 @@
           "3_10y": "",
           "over_10y": "",
           "open": ""
-        }
-      }
+        },
+        "know": ""
+      },
+      "cta": ""
     },
     "result": {
       "eyebrow": "",
@@ -124,6 +137,57 @@
         "menopause": "",
         "pension": ""
       }
+    },
+    "portfolio": {
+      "headline": "",
+      "intro": "",
+      "blocks": {
+        "etf": {
+          "title": "",
+          "body": ""
+        },
+        "stock": {
+          "title": "",
+          "body": ""
+        },
+        "bond": {
+          "title": "",
+          "body": ""
+        }
+      },
+      "spectrum_title": "",
+      "spectrum": "",
+      "axis": {
+        "calm": "",
+        "bold": ""
+      },
+      "examples": {
+        "calm": "",
+        "balanced": "",
+        "bold": ""
+      },
+      "legend": {
+        "etf": "",
+        "stock": "",
+        "bond": ""
+      },
+      "cta": ""
+    },
+    "impact": {
+      "headline": "",
+      "body": "",
+      "cards": {
+        "exclude": {
+          "title": "",
+          "body": ""
+        },
+        "strengthen": {
+          "title": "",
+          "body": ""
+        }
+      },
+      "closing": "",
+      "cta": ""
     }
   },
   "explore": {

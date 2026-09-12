@@ -272,6 +272,25 @@ Copy typo fixes
 - S2 headline: "Acht Fallen, machen diese Lücke" → "Acht Fallen machen diese Lücke" (comma).
 - 8.2 Berufseinstieg: "übertragt sich" → "überträgt sich".
 
+## Task 10 · Screens S4, S5, S6 (12.09.2026)
+
+Done
+- S4 `/quiz/situation` (two views): 4a amount with the five options (`monthlyRange` enum `under_50 / 50_150 / 150_300 / over_300 / later`) and a "Gut zu wissen" InfoNote, auto-advance; 4b horizon with its InfoNote, explicit CTA "Alles klar!"; both persisted at once; event `situation_answered {monthlyRange, horizon}`; resume lands on 4b when 4a is answered. Neither answer touches Explorer content or sorting (PRD 2.4).
+- S5 `/quiz/portfolio` (pure learning screen): headline, intro, three building-block cards as accordions (ETF, Aktie, Anleihe), spectrum text and ruhig → mutig axis, three example donuts (70/0/30, 60/20/20, 50/40/10) always shown regardless of answers, hover and focus on a segment shows block + percent, the label "Beispiel, keine Empfehlung" is part of the donut component; `portfolioEducation.viewed`; CTA "Verstanden, weiter". No cream card on this screen (the legal label is a section tag, so the two-card limit holds).
+- S6 `/quiz/impact`: illustration, headline, body, two flip cards "Ausschließen" / "Gezielt stärken" (reuse of the S2 card component), closing line, CTA "Meine Werte wählen"; `impact.viewed`.
+- Strings `quiz.situation.*`, `quiz.portfolio.*`, `quiz.impact.*` verbatim; `quiz.css` blocks for S4 note, S5 blocks / spectrum / donuts, S6. Cache quiz.js v12, quiz.css v13.
+- Copy lint: 20-word limit also for the two S4 "Gut zu wissen" notes (learning text); per-key exemptions for the S5 spectrum text (30 words) and the S6 body sentence (24 words), both verbatim PRD copy (O24).
+
+Verification
+- Browser (1280 px): 4a options and note, auto-advance to 4b, `monthlyRange` = `50_150`, 4b note marks Kurs, Schwankung, Inflation, Kaufkraft, CTA "Alles klar!" after a choice, `situation_answered {50_150, over_10y}`; S5 three blocks (accordion opens), three donuts each with the legal label, legend "ETFs 70 % · Aktien 0 % · Anleihen 30 %", `portfolioEducation.viewed` true, 12 glossary terms incl. ETF, Aktie, Anleihe, Green Bond, Streuung, Schwankung, Zinsen (PRD S5 list); S6 two cards flip and fit, closing line, `impact.viewed` true, glossary marks Divesting, wertebasiertes Investieren, Ausschlusskriterien, Themen-ETF (PRD S6 list); sub steps 3 → 6 of 6.
+- compliance-checker on S4–S6 copy and logic: PASS (all three examples always shown with the baked-in label; no forbidden words in `quiz.portfolio.*`; `monthlyRange` / `horizon` stored raw only; no archetype; disclaimer footer; no personal data). Copy lint 0 findings, tests 29 pass.
+
+Copy typo fixes
+- S5 ETF card: closing period added after "eine breite Streuung".
+- S5 Aktie card: "Große Rendite Chance aber auch größeres Risiko." → "Große Renditechance, aber auch größeres Risiko."
+- S5 spectrum: "timing the markte" → "timing the market", "Anlagehorziont" → "Anlagehorizont".
+- S6 body: "entweder Ein Windrad" → "entweder ein Windrad".
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -289,6 +308,9 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O24 · Sentence length: the S5 spectrum text (30 words in one sentence) and one S6 body sentence (24 words) exceed the PRD's own limits (15 / 20). Shipped verbatim under lint exemptions; the S6 acceptance "Kein Satz über 20 Wörter" therefore fails on PRD copy. Wording decision needed.
+- O25 · S6 illustration "Wurzeln → Baum" does not exist; the landing plant illustration is used as a placeholder.
+- O26 · S4b note contains "wäre am Konto gut aufgehoben" (legal review, conflict 13); shipped verbatim, must be released before launch.
 - O21 · S2 card size: PRD says 280 × 360 px at ≥ 1280 px; with the verbatim 8.2 text at 14 px the Trennung card needs 379 px, so a flipped card grows to its text. Either accept or shorten that card.
 - O22 · S2 "Zitat" on the back: the PRD asks for a serif quote and a separate source; the 8.2 texts carry their citations inline, so the first sentence is shown as the quote and a short-form citation line was added per card (derived, not PRD copy).
 - O23 · Copy lint exemption for "fehlt" in `quiz.traps.card.teilzeit.body` (verbatim PRD 8.2); wording decision still open (conflict 3).

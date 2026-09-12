@@ -41,6 +41,17 @@
       "body": "Was davon wirklich ins Portfolio kommt, entscheidest du später. Frei."
     },
     "situation": {
+      "amount": {
+        "question": "Welchen Betrag könntest du dir vorstellen, monatlich anzulegen?",
+        "options": {
+          "under_50": "bis 50 €",
+          "50_150": "50–150 €",
+          "150_300": "150–300 €",
+          "over_300": "über 300 €",
+          "later": "Sage ich später"
+        },
+        "know": "Ein Sparplan legt jeden Monat automatisch einen festen Betrag an. Bei Neobrokern ab 1 €. Bei einer Vermögensverwaltung gibt es Mindestbeträge. Du kannst ihn jederzeit ändern oder stoppen. Dein Betrag hier rechnet am Ende deinen Plan in Euro aus – und zeigt dir, welche Wege dir offenstehen."
+      },
       "horizon": {
         "question": "Wann möchtest du voraussichtlich auf das Geld zugreifen?",
         "options": {
@@ -48,8 +59,10 @@
           "3_10y": "in 3–10 Jahren",
           "over_10y": "in mehr als 10 Jahren",
           "open": "Das ist offen"
-        }
-      }
+        },
+        "know": "Kurse schwanken. Über längere Zeiträume haben sich Schwankungen historisch häufig ausgeglichen – time in the market beats timing the market. Die Vergangenheit ist aber keine Garantie. Geld, das du bald brauchst, wäre am Konto gut aufgehoben. Geld für dein Zukunfts-Ich könnte am Konto durch Inflation an Kaufkraft verlieren."
+      },
+      "cta": "Alles klar!"
     },
     "result": {
       "eyebrow": "Gespeichert",
@@ -124,6 +137,57 @@
         "menopause": "Vier Jahre nach einer Menopause-Diagnose liegt das Einkommen betroffener Frauen um rund 10 % niedriger. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten.",
         "pension": "Frauen ab 65 erhalten in der EU im Schnitt 24,5 % weniger Pension als Männer. Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten."
       }
+    },
+    "portfolio": {
+      "headline": "So kann ein Portfolio aufgebaut sein.",
+      "intro": "Ein Portfolio ist die Summe deiner Anlagen.",
+      "blocks": {
+        "etf": {
+          "title": "ETF",
+          "body": "ETF bündelt viele Aktien oder Anleihen in einem Produkt. Ein Welt-ETF enthält z. B. über 1.500 Unternehmen. Du kaufst mit einem Klick eine breite Streuung."
+        },
+        "stock": {
+          "title": "Aktie",
+          "body": "Ein Anteil an einem einzelnen Unternehmen. Alles hängt an diesem einen. Große Renditechance, aber auch größeres Risiko."
+        },
+        "bond": {
+          "title": "Anleihe",
+          "body": "Du leihst einem Staat oder Unternehmen Geld und bekommst dafür Zinsen. Davon gibt es unterschiedliche Arten – ein Green Bond zum Beispiel finanziert Umweltprojekte. Welche das sind, legt der Emittent offen."
+        }
+      },
+      "spectrum_title": "So unterschiedlich können Portfolios aussehen",
+      "spectrum": "Grundsätzlich gilt Time in the market beats timing the market – heißt je länger dein Anlagehorizont desto besser kann dein Portfolio Schwankungen am Markt ausgleichen – das sagt die Historie aber ist natürlich keine Garantie. Heißt konkret: mehr Aktien, wenn du Schwankung aushalten kannst. Mehr ETFs und Anleihen, wenn du ruhiger schlafen willst. Beides ist legitim.",
+      "axis": {
+        "calm": "ruhig",
+        "bold": "mutig"
+      },
+      "examples": {
+        "calm": "Beispiel ruhig",
+        "balanced": "Beispiel ausgewogen",
+        "bold": "Beispiel mutig"
+      },
+      "legend": {
+        "etf": "ETFs",
+        "stock": "Aktien",
+        "bond": "Anleihen"
+      },
+      "cta": "Verstanden, weiter"
+    },
+    "impact": {
+      "headline": "Dein Geld arbeitet – egal ob du anlegst oder nicht. Die Frage ist: wofür?",
+      "body": "Die acht Falltüren von vorhin zeigen, wo das System Frauen Geld kostet. Das betrifft uns individuell, aber eigentlich betrifft unser Geld uns alle, denn auch wenn wir nichts tun, landet unser Geld im Geldkreislauf. Es finanziert dann entweder ein Windrad oder ein Kohlekraftwerk. Ein Unternehmen mit Frauen im Vorstand oder eines ohne. Wer das eigene Geld anderen überlässt, überlässt auch diese Entscheidung. Sobald du selbst anlegst, entscheidest du.",
+      "cards": {
+        "exclude": {
+          "title": "Ausschließen",
+          "body": "Divesting heißt: Du nimmst Branchen oder Unternehmen bewusst aus deinem Portfolio heraus – etwa Waffen, Kohle oder Tabak. Viele ETFs machen das über Ausschlusskriterien."
+        },
+        "strengthen": {
+          "title": "Gezielt stärken",
+          "body": "Wertebasiertes Investieren heißt: Du lenkst dein Geld gezielt dorthin, was du stärken willst – erneuerbare Energien, Bildung, Unternehmen mit fairer Bezahlung. Dafür gibt es Themen-ETFs, Green Bonds und einzelne Aktien."
+        }
+      },
+      "closing": "Beides zusammen macht aus Vorsorge eine Haltung. Invest in what you believe in.",
+      "cta": "Meine Werte wählen"
     }
   },
   "explore": {
