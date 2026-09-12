@@ -176,6 +176,27 @@ Verification
 Copy typo fixes
 - None (interim strings moved verbatim).
 
+## Task 05 · Data layer (12.09.2026)
+
+Decisions taken first (CLAUDE.md Decisions): conflict 2 per-score objects · conflict 17 migrate 22, scores null, funds as `etf` with note · partners.json not created (S11 out of scope), schema only.
+
+Done
+- Schemas: `data/products.schema.json` (PRD 7.2 + `fundSizeCurrency`, `notes`; region enum extended by `us`, see O17), `glossary.schema.json`, `sdgs.schema.json`, `partners.schema.json`.
+- `scripts/validate-data.mjs`: zero-dependency validator for the schema subset used (types, required, enum, pattern, ranges, items, additionalProperties, `$ref`, duplicate ids); CLI validates every `data/<name>.json` with a schema. `scripts/validate-data.test.mjs` covers the live files, seven error classes and a valid score object.
+- `scripts/migrate-products.mjs` ran once: 22 products in `data/products.json`; `securities.json` deleted. German two-sentence descriptions written for all 22 (translations of the former English texts, no judgements); `sdgTags` derived from stated themes (verify against EET); provider from the fund name; subtype `equity_world` for the two broad ETFs, otherwise `equity_theme` / `single_stock`.
+- `scripts/data-check.mjs`: lists placeholders and unsourced fields per product; exit 1 on any own-score field; `--strict` as launch gate.
+- `derive.js` (PRD 7.6): `portfolioScore`, `typeShare`, `mixLabel` (constants 10 / 30), `splitAmount` (whole euros, remainder to the largest weight), `sdgCoverage`, `weightsComplete`, `evenWeights` (5 % steps), `defaultAmount` (range edges). `scripts/derive.test.mjs` with 6 tests.
+- Pages on the PRD shape: `explore.js`, `portfolio.js` (types `etf / stock / bond`, `ter` decimal, `description_de`), `product.js` key facts (provider, TER, SRI from KID, fund size, holdings, distribution, inception) plus a scores block that shows "Keine Einstufung vorhanden." until a provider score exists and otherwise provider + asOf. Locale keys added; en.json synced.
+- `data/README.md` rewritten; CLAUDE.md data layer and folder structure; `securities-data-validator` agent pointed at the new files and tools.
+
+Verification
+- `node scripts/validate-data.mjs`: products.json valid, sdgs.json valid.
+- `node scripts/data-check.mjs`: 22 products, 22 with gaps (scores, SRI, holdings, KID link everywhere; ISIN missing on 3; sdgTags empty on 5), no own-score field.
+- `node --test scripts/*.test.mjs`: 14 tests, 14 pass. Copy lint 0 findings, en.json in sync, `node --check` pass. Not run in a browser.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -191,6 +212,9 @@ Copy typo fixes
 - O14 · `.claude/settings.local.json` still allows commands referencing `product.html`, `data/prices` and `securities.schema.json` (local file, not tracked).
 - O15 · Pre-registration pages (landing incl. calculator, mission, library, legal) keep shadows, gradients, `#fff` surfaces and marigold by the scope decision of task 03. `styles.css` outside the `.s0` / `.flow-body` blocks and `calculator.css` are not on PRD 5.6. Revisit before launch or when the landing becomes S0 in full.
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
+- O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
+- O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O19 · `fundSizeMeur` is not converted to EUR (`fundSizeCurrency` carries USD for most ETFs); `sdgTags` derived from themes need EET confirmation. Both flagged in `meta.dataNote`.
 - O3 · `explore.js` radar uses 6 axes from Four Capitals + own scores; PRD radar axes (climate, social, governance, gender, biodiversity, transparency) have no data source (conflict 2, 19).
 - O4 · Shadows: `--shadow-*` tokens are used by the prereg site too; the no-shadow rule applies to the flow screens, keep the tokens for the landing unless the brand doc says otherwise.
 - O5 · Landing copy `platform.lede` / `pill1` use "Robo Advisor" in user-facing text on the live site; outside this task's scope but violates the copy lint.

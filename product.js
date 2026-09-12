@@ -1,7 +1,7 @@
 /* =============================================================
    Portemonnaie — Product detail page (kept for now, decision
    10.09.2026 on conflict 17). Reads ?id=<security-id> from the
-   URL, loads data/securities.json and renders identity, key
+   URL, loads data/products.json and renders identity, key
    facts from public documents, top holdings and related products.
 
    Strings come from locales/*.json through locale.js (task 04);
@@ -18,7 +18,7 @@
   const query = new URLSearchParams(location.search);
   const ID = query.get("id");
 
-  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
+  const TYPE_SWATCH = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" }; // tokens, task 03
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -34,32 +34,58 @@
     const rows = [];
     const add = (label, val) => { if (val != null && val !== "") rows.push([label, val]); };
 
-    add(t("product.facts.isin"), SEC.isin);
+    const na = t("product.na");
+    add(t("product.facts.isin"), SEC.isin || na);
     add(t("product.facts.type"), t("explore.type." + SEC.type));
+    add(t("product.facts.provider"), SEC.provider || na);
     add(t("product.facts.region"), SEC.region);
     add(t("product.facts.currency"), SEC.currency);
-    if (SEC.ter != null) add(t("product.facts.ter"), L().fmtPercent(SEC.ter));
-    add(t("product.facts.aum"), p.aum);
-    if (p.distribution) {
-      const key = "product.distribution." + p.distribution;
-      add(t("product.facts.distribution"), L().has(key) ? t(key) : p.distribution);
+    if (SEC.type !== "stock") {
+      add(t("product.facts.ter"), SEC.ter != null ? L().fmtPercent(SEC.ter * 100) : na);
+      add(t("product.facts.sri"), SEC.sri != null ? L().fmtNumber(SEC.sri) : na); // from the KID, never own (PRD 7.7)
+      add(t("product.facts.fund_size"), SEC.fundSizeMeur != null
+        ? t("product.fund_size_value", { n: L().fmtNumber(SEC.fundSizeMeur), currency: SEC.fundSizeCurrency || "" }).trim() : na);
+      add(t("product.facts.holdings"), SEC.holdingsCount != null ? L().fmtNumber(SEC.holdingsCount) : na);
+      if (SEC.distribution) {
+        const key = "product.distribution." + SEC.distribution;
+        add(t("product.facts.distribution"), L().has(key) ? t(key) : SEC.distribution);
+      }
+      add(t("product.facts.inception"), SEC.inceptionDate || na);
     }
-    add(t("product.facts.inception"), p.inception);
-    add(t("product.facts.as_of"), SEC.asOf);
+    add(t("product.facts.as_of"), SEC.asOf || na);
 
     return rows.map(([l, v]) =>
       `<div class="critrow"><span class="critrow__k">${esc(l)}</span><span class="critrow__v">${esc(v)}</span></div>`).join("");
   }
 
+  /* Provider scores (PRD 7.7): always with provider and asOf; a missing
+     score is stated, never estimated. */
+  function scoreRow(labelKey, score) {
+    const label = esc(t(labelKey));
+    if (!score || typeof score.value !== "number") {
+      return `<div class="critrow"><span class="critrow__k">${label}</span><span class="critrow__v">${esc(t("product.score_missing"))}</span></div>`;
+    }
+    const val = L().fmtNumber(score.value, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " / 10";
+    const src = esc(t("product.score_source", { source: score.source, asOf: score.asOf }));
+    return `<div class="critrow"><span class="critrow__k">${label}<br><small>${src}</small></span><span class="critrow__v">${esc(val)}</span></div>`;
+  }
+  function scoresBlock() {
+    const s = SEC.scores || {};
+    return `<section class="pcard">
+      <h2 class="pcard__title">${t("product.scores_title")}</h2>
+      <div class="critlist">${scoreRow("product.score_sustainability", s.sustainability)}${scoreRow("product.score_gender", s.gender)}</div>
+    </section>`;
+  }
+
   function relatedCards() {
     const related = DATA.filter((s) =>
-      s.id !== SEC.id && (s.themes || []).some((th) => (SEC.themes || []).includes(th))).slice(0, 3);
+      s.id !== SEC.id && (s.sdgTags || []).some((id) => (SEC.sdgTags || []).includes(id))).slice(0, 3);
     if (!related.length) return "";
     return `<section class="pcard">
       <h2 class="pcard__title">${t("product.related_title")}</h2>
       <div class="related">${related.map((s) => `
         <a class="relcard" href="product.html?id=${encodeURIComponent(s.id)}">
-          <span class="relcard__swatch" style="background:${TYPE_SWATCH[s.type] || TYPE_SWATCH.Fund}"></span>
+          <span class="relcard__swatch" style="background:${TYPE_SWATCH[s.type] || TYPE_SWATCH.bond}"></span>
           <span class="relcard__name">${esc(s.name)}</span>
           <span class="relcard__meta">${t("explore.type." + s.type)} · ${esc(s.region)}</span>
         </a>`).join("")}</div>
@@ -68,10 +94,10 @@
 
   /* ── full render ────────────────────────────────────────── */
   function render() {
-    const holdings = (SEC.profile && SEC.profile.topHoldings && SEC.profile.topHoldings.length)
+    const holdings = (SEC.topHoldings && SEC.topHoldings.length)
       ? `<section class="pcard">
            <h2 class="pcard__title">${t("product.holdings_title")}</h2>
-           <div class="holdings">${SEC.profile.topHoldings.map((h) => `<span class="tag">${esc(h)}</span>`).join("")}</div>
+           <div class="holdings">${SEC.topHoldings.map((h) => `<span class="tag">${esc(h)}</span>`).join("")}</div>
          </section>`
       : "";
 
@@ -83,7 +109,7 @@
           <span class="product__type">${t("explore.type." + SEC.type)}</span>
           <h1 class="product__name">${esc(SEC.name)}</h1>
           <p class="product__meta">${[SEC.isin, SEC.region].filter(Boolean).map(esc).join(" · ")}</p>
-          <p class="product__desc">${esc(SEC.description || "")}</p>
+          <p class="product__desc">${esc(SEC.description_de || "")}</p>
         </div>
       </header>
 
@@ -92,8 +118,9 @@
           <h2 class="pcard__title">${t("product.facts_title")}</h2>
           <div class="critlist">${critRows()}</div>
         </section>
-        ${holdings}
+        ${scoresBlock()}
       </div>
+      ${holdings}
 
       ${relatedCards()}
 
@@ -114,11 +141,11 @@
   /* ── boot ───────────────────────────────────────────────── */
   if (!window.pmLocale) return;
   Promise.all([
-    fetch("data/securities.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
     window.pmLocale.ready
   ])
     .then(([doc]) => {
-      DATA = doc.securities || [];
+      DATA = doc.products || [];
       SEC = DATA.find((s) => s.id === ID) || null;
       if (!SEC) { renderError(t("product.not_found"), t("product.not_found_sub")); return; }
       document.title = `${SEC.name} — Portemonnaie`;

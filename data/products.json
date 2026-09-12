@@ -1,0 +1,1035 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generated": "2026-09-12",
+    "disclaimer": "Die Informationen stellen keine Anlageberatung, keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur Vornahme bestimmter Investitionen dar.",
+    "dataNote": "Migrated once from securities.json (scripts/migrate-products.mjs). Master data from public issuer documents. scores, sri, holdingsCount, exclusions and kidUrl are null or empty until sourced from KID, factsheet, EET or a licensed provider (PRD 7.7) and are listed by scripts/data-check.mjs. fundSizeMeur is the published figure in fundSizeCurrency, not converted. sdgTags derive from the stated fund or company theme; verify against the EET before launch."
+  },
+  "products": [
+    {
+      "id": "etf-she",
+      "isin": "US78468R7474",
+      "name": "State Street SPDR MSCI USA Gender Diversity ETF",
+      "provider": "State Street Global Advisors",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "us",
+      "currency": "USD",
+      "ter": 0.002,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2016",
+      "fundSizeMeur": 200,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "Microsoft",
+        "NVIDIA",
+        "Mastercard",
+        "Procter & Gamble",
+        "Home Depot"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "US-Großunternehmen, die in ihrer Branche bei der Geschlechtervielfalt in Führung und Aufsichtsrat vorne liegen. Ein ETF auf den SSGA Gender Diversity Index.",
+      "description_en": "US large-cap companies ranking highest in their sector on gender-diversity ratios across senior leadership and board.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "us-equity",
+        "large-cap"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-ubs-gender-equality",
+      "isin": "IE00BDR5GV14",
+      "name": "UBS Global Gender Equality UCITS ETF (USD acc)",
+      "provider": "UBS Asset Management",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.002,
+      "sri": null,
+      "distribution": "accumulating",
+      "inceptionDate": "2018",
+      "fundSizeMeur": 800,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "Bildet den Solactive Equileap Global Gender Equality 100 Leaders Index ab. 100 Unternehmen weltweit mit guten Werten bei Geschlechtervielfalt und Nachhaltigkeit.",
+      "description_en": "Tracks the Solactive Equileap Global Gender Equality 100 Leaders index - 100 global companies with strong records in gender diversity and sustainability.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "global-equity",
+        "sustainability"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-womn-ywca",
+      "isin": null,
+      "name": "Impact Shares YWCA Women's Empowerment ETF",
+      "provider": "Impact Shares",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "us",
+      "currency": "USD",
+      "ter": 0.0075,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2018",
+      "fundSizeMeur": 100,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "US-Unternehmen, die die YWCA-Standards zu Gleichstellung und Stärkung von Frauen erfüllen. Ein Themen-ETF aus den USA.",
+      "description_en": "US companies that meet YWCA standards on advancing gender equality and women's empowerment.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "us-equity",
+        "empowerment"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-fdwm-fidelity-women",
+      "isin": null,
+      "name": "Fidelity Women's Leadership ETF",
+      "provider": "Fidelity",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "us",
+      "currency": "USD",
+      "ter": 0.0059,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2021",
+      "fundSizeMeur": 50,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "Aktiv verwalteter ETF, der Unternehmen bevorzugt, die Frauen in Führung fördern. Aufgelegt in den USA.",
+      "description_en": "Actively managed ETF favouring companies that prioritise and advance women's leadership and development.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "us-equity",
+        "active"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-inrg-clean-energy-ucits",
+      "isin": "IE00B1XNHC34",
+      "name": "iShares Global Clean Energy Transition UCITS ETF (USD Dist)",
+      "provider": "iShares (BlackRock)",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.0065,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2007",
+      "fundSizeMeur": 4000,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "First Solar",
+        "Iberdrola",
+        "Vestas Wind Systems",
+        "Enphase Energy",
+        "Orsted"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        7,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Bildet den S&P Global Clean Energy Transition Index führender Unternehmen für saubere Energie ab. Kohle, Ölsande, Schiefer und arktisches Öl und Gas sind ausgeschlossen.",
+      "description_en": "Tracks the S&P Global Clean Energy Transition index of leading global clean-energy companies; screens out coal, oil sands, shale and arctic oil & gas.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "clean-energy",
+        "climate",
+        "global-equity"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-icln-clean-energy-us",
+      "isin": "US4642882819",
+      "name": "iShares Global Clean Energy ETF",
+      "provider": "iShares (BlackRock)",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.0041,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2008",
+      "fundSizeMeur": 2500,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "First Solar",
+        "Enphase Energy",
+        "Iberdrola",
+        "Vestas Wind Systems",
+        "Consolidated Edison"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        7,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "US-notierte Variante mit weltweiten Aktien aus Solar, Wind und verwandten Technologien. Ein Themen-ETF für saubere Energie.",
+      "description_en": "US-listed version tracking global clean-energy equities across solar, wind and related technologies.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "clean-energy",
+        "climate",
+        "global-equity"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-amundi-world-esg",
+      "isin": "IE00016PSX47",
+      "name": "Amundi MSCI World ESG Selection UCITS ETF (Acc)",
+      "provider": "Amundi",
+      "type": "etf",
+      "subtype": "equity_world",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.0018,
+      "sri": null,
+      "distribution": "accumulating",
+      "inceptionDate": "2018",
+      "fundSizeMeur": 500,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "Apple",
+        "Microsoft",
+        "NVIDIA",
+        "Tesla",
+        "Home Depot"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [],
+      "exclusions": [],
+      "description_de": "Große und mittlere Unternehmen aus Industrieländern mit hoher ESG-Bewertung im Branchenvergleich. Ein breiter, günstiger Baustein.",
+      "description_en": "Developed-market large/mid caps with high ESG ratings versus sector peers; broad, low-cost core ESG building block.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "esg",
+        "global-equity",
+        "core",
+        "low-cost"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-ishares-world-sri",
+      "isin": "IE00BYX2JD69",
+      "name": "iShares MSCI World SRI UCITS ETF (Acc)",
+      "provider": "iShares (BlackRock)",
+      "type": "etf",
+      "subtype": "equity_world",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.002,
+      "sri": null,
+      "distribution": "accumulating",
+      "inceptionDate": "2017",
+      "fundSizeMeur": 6000,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "Microsoft",
+        "NVIDIA",
+        "Tesla",
+        "Home Depot",
+        "Visa"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [],
+      "exclusions": [],
+      "description_de": "Sozial verantwortliche Variante des MSCI World. Kontroverse Branchen sind ausgeschlossen, die Unternehmen mit den höchsten ESG-Bewertungen bleiben.",
+      "description_en": "Socially responsible version of MSCI World - excludes controversial sectors and keeps the highest ESG-rated companies.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "sri",
+        "esg",
+        "global-equity",
+        "core"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "etf-ishares-global-water",
+      "isin": "IE00B1TXK627",
+      "name": "iShares Global Water UCITS ETF (Dist)",
+      "provider": "iShares (BlackRock)",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "USD",
+      "ter": 0.0065,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2007",
+      "fundSizeMeur": 2000,
+      "fundSizeCurrency": "USD",
+      "holdingsCount": null,
+      "topHoldings": [
+        "American Water Works",
+        "Xylem",
+        "Veolia Environnement",
+        "Ecolab",
+        "Geberit"
+      ],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        6,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Unternehmen weltweit aus Wasserversorgung, Infrastruktur und Aufbereitung. Ein Themen-ETF rund um Wasser.",
+      "description_en": "Global companies in water utilities, infrastructure and treatment - a thematic environmental play on water scarcity.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "water",
+        "infrastructure",
+        "environment"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-unilever",
+      "isin": "GB00B10RZP78",
+      "name": "Unilever PLC",
+      "provider": "Unilever PLC",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "europe",
+      "currency": "GBP",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "Konsumgüterkonzern mit langjährigen Zielen zu Geschlechterbalance und nachhaltigem Konsum. Sitz in Großbritannien.",
+      "description_en": "Global consumer-goods group with long-standing gender-balance and sustainable-living commitments.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "consumer-staples",
+        "sustainability"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-orsted",
+      "isin": "DK0060094928",
+      "name": "Orsted A/S",
+      "provider": "Orsted A/S",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "europe",
+      "currency": "DKK",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        7,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Entwickler von Offshore-Windparks, weltweit führend. Vom fossilen Energieversorger zum Anbieter erneuerbarer Energie gewandelt.",
+      "description_en": "World-leading offshore-wind developer; transitioned from fossil fuels to renewables.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "clean-energy",
+        "offshore-wind",
+        "climate"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-vestas",
+      "isin": "DK0061539921",
+      "name": "Vestas Wind Systems A/S",
+      "provider": "Vestas Wind Systems A/S",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "europe",
+      "currency": "DKK",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        7
+      ],
+      "exclusions": [],
+      "description_de": "Größter Hersteller von Windturbinen weltweit. Ein zentraler Lieferant der Energiewende.",
+      "description_en": "World's largest wind-turbine manufacturer; core enabler of the renewable transition.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "clean-energy",
+        "wind",
+        "industrials"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-accenture",
+      "isin": "IE00B4BNMY34",
+      "name": "Accenture plc",
+      "provider": "Accenture plc",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "world",
+      "currency": "USD",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5,
+        9
+      ],
+      "exclusions": [],
+      "description_de": "Beratungs- und Dienstleistungsunternehmen mit dem öffentlichen Ziel einer geschlechterausgewogenen Belegschaft. Weltweit tätig.",
+      "description_en": "Global professional-services firm with a public goal of a gender-balanced workforce.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "technology",
+        "services"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-loreal",
+      "isin": "FR0000120321",
+      "name": "L'Oreal S.A.",
+      "provider": "L'Oreal S.A.",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "europe",
+      "currency": "EUR",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        5
+      ],
+      "exclusions": [],
+      "description_de": "Kosmetikkonzern mit hohem Frauenanteil in Belegschaft und Management. Sitz in Frankreich.",
+      "description_en": "Global beauty leader with high female representation across its workforce and management.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "gender-diversity",
+        "consumer-staples"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-microsoft",
+      "isin": "US5949181045",
+      "name": "Microsoft Corporation",
+      "provider": "Microsoft Corporation",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "us",
+      "currency": "USD",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        9,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Software- und Cloud-Anbieter mit dem Ziel, bis 2030 CO₂-negativ zu sein. Sitz in den USA.",
+      "description_en": "Global software and cloud leader with carbon-negative-by-2030 commitments.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "technology",
+        "cloud",
+        "climate-commitments"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-nvidia",
+      "isin": "US67066G1040",
+      "name": "NVIDIA Corporation",
+      "provider": "NVIDIA Corporation",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "us",
+      "currency": "USD",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        9
+      ],
+      "exclusions": [],
+      "description_de": "Entwickler von Grafikprozessoren und Plattformen für KI-Berechnungen. Sitz in den USA.",
+      "description_en": "Leading designer of GPUs and AI computing platforms.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "technology",
+        "semiconductors",
+        "ai"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-adidas",
+      "isin": "DE000A1EWWW0",
+      "name": "adidas AG",
+      "provider": "adidas AG",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "europe",
+      "currency": "EUR",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [],
+      "exclusions": [],
+      "description_de": "Sportartikelhersteller mit Programmen für recycelte Materialien und nachhaltige Lieferketten. Sitz in Deutschland.",
+      "description_en": "Global sportswear group with recycled-materials and supply-chain sustainability programmes.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "consumer-discretionary",
+        "apparel",
+        "sustainability"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-tesla",
+      "isin": "US88160R1014",
+      "name": "Tesla, Inc.",
+      "provider": "Tesla, Inc.",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "us",
+      "currency": "USD",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        7
+      ],
+      "exclusions": [],
+      "description_de": "Hersteller von Elektroautos und Energiespeichern. Sitz in den USA.",
+      "description_en": "Electric-vehicle and energy-storage maker; strong environmental product, weaker governance profile.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "electric-vehicles",
+        "clean-energy",
+        "automotive"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "stock-intel",
+      "isin": "US4581401001",
+      "name": "Intel Corporation",
+      "provider": "Intel Corporation",
+      "type": "stock",
+      "subtype": "single_stock",
+      "region": "us",
+      "currency": "USD",
+      "ter": null,
+      "sri": null,
+      "distribution": null,
+      "inceptionDate": null,
+      "fundSizeMeur": null,
+      "fundSizeCurrency": null,
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        9
+      ],
+      "exclusions": [],
+      "description_de": "Halbleiterhersteller mit etablierter Diversitätsberichterstattung und Zielen für Wasser und Emissionen. Sitz in den USA.",
+      "description_en": "Semiconductor manufacturer with established diversity reporting and water/emissions targets.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "technology",
+        "semiconductors"
+      ],
+      "asOf": "2025-Q4",
+      "notes": null
+    },
+    {
+      "id": "fund-nordea-climate-environment",
+      "isin": "LU0348926287",
+      "name": "Nordea 1 - Global Climate and Environment Fund (BP-EUR)",
+      "provider": "Nordea Asset Management",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "EUR",
+      "ter": 0.019,
+      "sri": null,
+      "distribution": "accumulating",
+      "inceptionDate": "2008",
+      "fundSizeMeur": 8000,
+      "fundSizeCurrency": "EUR",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        12,
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Aktiv verwalteter Fonds mit Unternehmen, die Lösungen für Klima und Ressourceneffizienz anbieten. Kein ETF, nicht börsengehandelt.",
+      "description_en": "Actively managed fund investing in companies offering climate and resource-efficiency solutions.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "climate",
+        "resource-efficiency",
+        "active-fund"
+      ],
+      "asOf": "2025-Q4",
+      "notes": "Offener Investmentfonds, nicht börsengehandelt (Typ etf per Entscheidung 12.09.2026, Konflikt 17)."
+    },
+    {
+      "id": "fund-pictet-global-environmental",
+      "isin": "LU0503631805",
+      "name": "Pictet - Global Environmental Opportunities (P EUR)",
+      "provider": "Pictet Asset Management",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "EUR",
+      "ter": 0.016,
+      "sri": null,
+      "distribution": "accumulating",
+      "inceptionDate": "2010",
+      "fundSizeMeur": 9000,
+      "fundSizeCurrency": "EUR",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [
+        13
+      ],
+      "exclusions": [],
+      "description_de": "Investiert in Unternehmen entlang der Umwelt-Wertschöpfungskette innerhalb der planetaren Grenzen. Kein ETF, nicht börsengehandelt.",
+      "description_en": "Invests in companies operating within the planetary boundaries across the environmental value chain.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "environment",
+        "planetary-boundaries",
+        "active-fund"
+      ],
+      "asOf": "2025-Q4",
+      "notes": "Offener Investmentfonds, nicht börsengehandelt (Typ etf per Entscheidung 12.09.2026, Konflikt 17)."
+    },
+    {
+      "id": "fund-triodos-global-equities-impact",
+      "isin": null,
+      "name": "Triodos Global Equities Impact Fund",
+      "provider": "Triodos Investment Management",
+      "type": "etf",
+      "subtype": "equity_theme",
+      "region": "world",
+      "currency": "EUR",
+      "ter": 0.015,
+      "sri": null,
+      "distribution": "distributing",
+      "inceptionDate": "2018",
+      "fundSizeMeur": 1500,
+      "fundSizeCurrency": "EUR",
+      "holdingsCount": null,
+      "topHoldings": [],
+      "scores": {
+        "sustainability": null,
+        "gender": null,
+        "radar": {
+          "climate": null,
+          "social": null,
+          "governance": null,
+          "gender": null,
+          "biodiversity": null,
+          "transparency": null
+        }
+      },
+      "sdgTags": [],
+      "exclusions": [],
+      "description_de": "Impact-Fonds, der nur in Unternehmen investiert, die die Nachhaltigkeits-Mindeststandards von Triodos erfüllen. Kein ETF, nicht börsengehandelt.",
+      "description_en": "Impact fund investing only in companies meeting Triodos's strict minimum sustainability standards.",
+      "kidUrl": null,
+      "themes_de": [],
+      "themes_en": [
+        "impact",
+        "sustainability",
+        "active-fund"
+      ],
+      "asOf": "2025-Q4",
+      "notes": "Offener Investmentfonds, nicht börsengehandelt (Typ etf per Entscheidung 12.09.2026, Konflikt 17)."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portemonnaie.finance/data/partners.schema.json",
+  "title": "Portemonnaie partners (PRD 7.5). S11 is out of scope (decision 10.09.2026); the schema is kept for later.",
+  "type": "object",
+  "required": ["meta", "partners"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": { "type": "object", "additionalProperties": true },
+    "partners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "name", "country", "depositProtection_de", "fees", "sustainabilityFilter", "setupMinutes", "minInvestmentEur", "feePaText_de", "affiliateUrl", "asOf"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+          "kind": { "type": "string", "enum": ["broker", "wealth"] },
+          "name": { "type": "string", "minLength": 2 },
+          "country": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "depositProtection_de": { "type": "string" },
+          "fees": {
+            "type": "object",
+            "required": ["savingsPlan_de", "order_de", "custody_de", "minSavingsPlanEur"],
+            "additionalProperties": false,
+            "properties": {
+              "savingsPlan_de": { "type": "string" },
+              "order_de": { "type": "string" },
+              "custody_de": { "type": "string" },
+              "minSavingsPlanEur": { "type": ["number", "null"], "minimum": 0 }
+            }
+          },
+          "sustainabilityFilter": { "type": "boolean" },
+          "setupMinutes": { "type": ["integer", "null"], "minimum": 1 },
+          "minInvestmentEur": { "type": ["number", "null"], "minimum": 0 },
+          "feePaText_de": { "type": ["string", "null"] },
+          "affiliateUrl": { "type": "string", "pattern": "^https://" },
+          "asOf": { "type": "string", "pattern": "^\\d{4}-\\d{2}$" }
+        }
+      }
+    }
+  }
+}

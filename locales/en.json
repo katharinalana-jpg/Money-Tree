@@ -82,14 +82,14 @@
       "add": ""
     },
     "type": {
-      "ETF": "",
-      "Stock": "",
-      "Fund": ""
+      "etf": "",
+      "stock": "",
+      "bond": ""
     },
     "category": {
-      "ETF": "",
-      "Stock": "",
-      "Fund": ""
+      "etf": "",
+      "stock": "",
+      "bond": ""
     },
     "basket": {
       "eyebrow": "",
@@ -119,17 +119,17 @@
       "cta": ""
     },
     "type_label": {
-      "ETF": "",
-      "Stock": "",
-      "Fund": ""
+      "etf": "",
+      "stock": "",
+      "bond": ""
     },
     "type_count": {
-      "ETF_one": "",
-      "ETF_other": "",
-      "Stock_one": "",
-      "Stock_other": "",
-      "Fund_one": "",
-      "Fund_other": ""
+      "etf_one": "",
+      "etf_other": "",
+      "stock_one": "",
+      "stock_other": "",
+      "bond_one": "",
+      "bond_other": ""
     }
   },
   "product": {
@@ -138,8 +138,11 @@
     "facts": {
       "isin": "",
       "type": "",
+      "provider": "",
       "ter": "",
-      "aum": "",
+      "sri": "",
+      "fund_size": "",
+      "holdings": "",
       "distribution": "",
       "inception": "",
       "region": "",
@@ -147,14 +150,20 @@
       "as_of": ""
     },
     "distribution": {
-      "Accumulating": "",
-      "Distributing": ""
+      "accumulating": "",
+      "distributing": ""
     },
     "holdings_title": "",
     "related_title": "",
     "not_found": "",
     "not_found_sub": "",
     "load_error": "",
-    "na": ""
+    "na": "",
+    "fund_size_value": "",
+    "scores_title": "",
+    "score_missing": "",
+    "score_source": "",
+    "score_sustainability": "",
+    "score_gender": ""
   }
 }

@@ -124,9 +124,13 @@ money-tree/
 ├── i18n.js                   ← shared EN/DE i18n (data-i18n hooks + pm:langchange)
 ├── api/
 │   └── subscribe.js          ← Vercel serverless fn — adds email to Brevo list
-├── data/                     ← static JSON (see data/README.md)
-│   ├── securities.json       ← interim product list, replaced by products.json in task 05
-│   └── sdgs.json             ← 17 SDGs (PRD 7.4 / 8.3)
+├── derive.js                 ← PRD 7.6 derivations (pure functions, browser + node)
+├── locale.js / locales/      ← flow strings (de.json source, en.json empty) + de-AT formatting
+├── scripts/                  ← zero-dependency Node tools: copy-lint, validate-data, data-check, locales-sync, migrate-products, *.test.mjs
+├── data/                     ← static JSON + schemas (see data/README.md)
+│   ├── products.json         ← 22 products (PRD 7.2), scores null until sourced
+│   ├── sdgs.json             ← 17 SDGs (PRD 7.4 / 8.3)
+│   └── *.schema.json         ← products, glossary, sdgs, partners
 ├── docs/
 │   ├── PRD.md                ← binding spec for the Guidance Flow update
 │   └── PROGRESS.md           ← task log, open issues, typo fixes
@@ -155,10 +159,11 @@ Assets are referenced with a `?v=N` cache-busting query; bump it after editing a
 - Buttons always pill-shaped (`border-radius: 999px`); cards `20px`.
 - No emojis anywhere in the UI.
 
-## Data Layer (Explore / Product) — current state
-- `data/securities.json` — interim list of 22 securities: names, ISINs, types (ETF / Stock / Fund), regions, currencies, TERs, an English description and a `profile` block (AUM, distribution, inception, top holdings) from public issuer documents. No scores. Replaced by `data/products.json` with schema in task 05.
-- `data/sdgs.json` — the 17 SDGs per PRD 7.4, German texts verbatim from 8.3.
-- Numeric `profile` fields are **approximate until verified against KID and factsheet** (see `data/README.md` and `meta.dataNote`). Master data comes from KID, factsheet and EET; scores come from a licensed provider with `scoreSource` (PRD 7.7).
+## Data Layer — current state
+- `data/products.json` (PRD 7.2, schema `products.schema.json`): 22 migrated products; type `etf | stock | bond`, `ter` as decimal, per-score objects `{ value, source, method, asOf }` or `null`. Scores, `sri`, `holdingsCount`, `exclusions`, `kidUrl` are still null → `node scripts/data-check.mjs` lists them; `--strict` is the launch gate.
+- `data/sdgs.json` (PRD 7.4, schema): the 17 SDGs, German texts verbatim from 8.3. `data/glossary.schema.json` and `data/partners.schema.json` exist; the data files come with task 08 (glossary) and never for partners (S11 out of scope).
+- Validation: `node scripts/validate-data.mjs` (zero-dependency validator for the schema subset used). Derivations of PRD 7.6 live in `derive.js` (`window.pmDerive`, also `require`-able), tested in `scripts/derive.test.mjs`.
+- Numeric snapshot fields are **approximate until verified against KID and factsheet** (see `data/README.md`). Never add an own score; the data check fails on it.
 
 ## Tooling for Claude Code (this repo)
 - **`brand/BRAND_GUIDELINES.md`** — authoritative brand voice + visual system. Read before producing copy or UI.
@@ -185,6 +190,18 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 - 10.09.2026: Conflict 14: Guidance Flow strings (incl. S0) live in `locales/de.json` (source) and `locales/en.json` (identical keys, empty values fall back to German; `scripts/locales-sync.mjs` keeps them in sync). `locale.js` loads them, reuses the `data-i18n*` hooks, offers `pmLocale.t / tn / fmtNumber / fmtCurrency / fmtPercent` (Intl, de-AT) and fires `pm:localeready`. The landing keeps `i18n.js` for its own copy. No copy in flow JS.
 - 10.09.2026: Conflict 3: the product / weight word family (empfehlen, raten, solltest, passt zu dir, optimal, ideal für dich, für dich, passend) is linted on product related keys only (`explore.*`, `portfolio.*`, `summary.products.*`, `quiz.portfolio.*`). Deficit words, jargon, promises, guarantees, superlatives and sentence length apply to every key; legal disclaimer keys are exempt from the length rule.
 - 10.09.2026: Conflict 15: option A, zero-dependency Node scripts and `node --test` (`scripts/*.test.mjs`). No npm, no package.json. E2E and accessibility audits are manual checks listed in PROGRESS.md.
+- 12.09.2026: Conflict 2: per-score objects `{ value, source, method, asOf }` for `scores.sustainability`, `scores.gender` and each of the six radar axes (PRD 7.7). A score without a licensed provider is `null` and counts as a placeholder.
+- 12.09.2026: Conflict 17 (rest): the 22 `securities.json` entries are migrated once by `scripts/migrate-products.mjs` into `data/products.json` (PRD 7.2 shape: `ter` as decimal, region re-keyed, `description_de`). Scores, `sri`, `sdgTags`, `exclusions`, `kidUrl` are null or empty until sourced and are listed by `scripts/data-check.mjs`. The three open-ended funds become `type: "etf"` with a `notes` field saying they are not exchange traded. `securities.json` is deleted.
+- 12.09.2026: Conflict 9: `referrer` (optional string, anonymous session id from `?ref=`) is added to the 7.1 schema; `schemaVersion` stays 1.
+- 12.09.2026: Conflict 11: all 51 terms of PRD 8.1 go into `glossary.json`; A.3's 48 is a minimum.
+- 12.09.2026: Conflict 4: the Menopause card ships without the internal note "Euroraum-Zahl: noch offen"; the missing Euro-area figure is an open issue.
+- 12.09.2026: Conflict 6: figures from 8.2 win (part time 27,8 %), S2 headline uses 105 Billionen Dollar (Oxfam 2020) with the source tooltip, share text says 15 Minuten.
+- 12.09.2026: Conflict 5: the English lines on S8 stay English taglines with spelling fixed ("I AM READY.", "Now let's go build it yourself.", "No shame in not knowing."), logged as typo fixes.
+- 12.09.2026: Conflict 10: SDG tile tokens `sdg-01` … `sdg-17` are built only from `--sage`, `--sage-soft`, `--cream`, `--cream-soft`, `--bg-warm`; Ink text on every tile. No Peach Soft.
+- 12.09.2026: Task 13: Explorer and Portfolio are built on the migrated `products.json` with placeholders; missing scores render as "Keine Einstufung vorhanden" with no provider line.
+- 12.09.2026: Conflict 7: S10 default amount = range edges: bis 50 € → 50, 50–150 € → 100, 150–300 € → 225, über 300 € → 300, "Sage ich später" → empty. Constants in `derive.js`.
+- 12.09.2026: Conflict 8: PDF client-side with a vendored single-file library, lazy loaded. Email via a serverless stub in `api/` that answers "not configured" until the Brevo transactional template id and newsletter list id exist.
+- 12.09.2026: Conflict 12: `track()` uses a no-op transport (in-memory buffer, console in dev). Plausible or Matomo is wired later without changing call sites.
 
 ## Open PRD conflicts (ask before touching)
 1. Decided 10.09.2026 (S11 out of scope), see Decisions. Still open: no S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.

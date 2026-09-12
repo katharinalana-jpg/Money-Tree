@@ -11,14 +11,18 @@ read-only: report findings, never edit the data.
 
 ## Files (in `data/`)
 
-- `securities.json` — interim product list (until `products.json` exists).
-  Names, ISINs, types, regions, currencies, TERs, an English description and a
-  `profile` block from public issuer documents. **No score fields of any kind.**
-- `sdgs.json` — the 17 SDGs (PRD 7.4): `id` 1–17, `title_de`, `title_en`,
-  `hover_de`, `colorToken` `sdg-01` … `sdg-17`, `themes_de`.
-- `products.json`, `glossary.json`, `partners.json` — PRD 7.2, 7.3, 7.5. Not
-  created yet; when they exist, validate them against `data/*.schema.json`.
-- `README.md` — documents the files and the PRD 7.7 rules.
+- `products.json` — PRD 7.2 products; schema `products.schema.json`. Scores are
+  per-score objects `{ value, source, method, asOf }` or `null` (decision on
+  conflict 2). **No own score fields of any kind** (`genderScore`,
+  `sustainabilityScore`, `impact`, `fourCapitals`, `facts`).
+- `sdgs.json` — the 17 SDGs (PRD 7.4); schema `sdgs.schema.json`.
+- `glossary.json` (task 08) and `partners.json` (S11 out of scope) — schemas
+  exist; validate the data when present.
+- `README.md` — documents the files, the record shape and the PRD 7.7 rules.
+
+Tools you can run (zero dependencies): `node scripts/validate-data.mjs`
+(schema validation, exit 1 on errors), `node scripts/data-check.mjs`
+(placeholders and own-score fields), `node --test scripts/*.test.mjs`.
 
 ## What to validate
 

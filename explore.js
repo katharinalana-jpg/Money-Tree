@@ -1,6 +1,6 @@
 /* =============================================================
    Portemonnaie — Explorer (S9 catalog, interim).
-   Vanilla JS, no dependencies. Loads data/securities.json and
+   Vanilla JS, no dependencies. Loads data/products.json and
    renders: type filter + search, a sortable list of product
    cards, and the portfolio panel (right).
 
@@ -19,8 +19,8 @@
   const t = (key, params) => L().t(key, params);
 
   const STORE_KEY = "pm_basket";
-  const TYPES = ["ETF", "Stock", "Fund"];
-  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
+  const TYPES = ["etf", "stock", "bond"];
+  const TYPE_SWATCH = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" }; // tokens, task 03
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -46,7 +46,7 @@
     const out = DATA.filter((s) => {
       if (filters.types.size && !filters.types.has(s.type)) return false;
       if (q) {
-        const hay = (s.name + " " + (s.isin || "") + " " + (s.themes || []).join(" ")).toLowerCase();
+        const hay = (s.name + " " + (s.isin || "") + " " + (s.themes_de || []).concat(s.themes_en || []).join(" ")).toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
@@ -92,7 +92,7 @@
 
     $("#cards").innerHTML = list.map((s) => {
       const inBasket = basket.includes(s.id);
-      const terStr = s.ter != null ? ` · ${t("explore.card.ter")} ${L().fmtPercent(s.ter)}` : "";
+      const terStr = s.ter != null ? ` · ${t("explore.card.ter")} ${L().fmtPercent(s.ter * 100)}` : "";
       const addIcon = inBasket
         ? `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l3.8 3.8L16 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
         : `<svg viewBox="0 0 20 20" aria-hidden="true"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
@@ -101,7 +101,7 @@
         <div class="card__main">
           <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}">${esc(s.name)}</a>
           <div class="card__meta">${t("explore.type." + s.type)} · ${esc(s.region)}${terStr}${s.isin ? " · " + esc(s.isin) : ""}</div>
-          <div class="card__stats">${esc(s.description || "")}</div>
+          <div class="card__stats">${esc(s.description_de || "")}</div>
         </div>
         <div class="card__right">
           <button type="button" class="addbtn ${inBasket ? "is-added" : ""}" data-add="${esc(s.id)}" aria-label="${esc(t("explore.card.add"))}" aria-pressed="${inBasket}">${addIcon}</button>
@@ -136,7 +136,7 @@
 
     $("#basketList").innerHTML = items.map((s) =>
       `<li class="basket-item" data-id="${esc(s.id)}">
-        <span class="basket-item__swatch" style="background:${TYPE_SWATCH[s.type] || TYPE_SWATCH.Fund}"></span>
+        <span class="basket-item__swatch" style="background:${TYPE_SWATCH[s.type] || TYPE_SWATCH.bond}"></span>
         <span class="basket-item__name">${esc(s.name)}</span>
         <button type="button" class="basket-item__remove" data-remove="${esc(s.id)}" aria-label="${esc(t("common.remove"))}">
           <svg viewBox="0 0 16 16" aria-hidden="true"><line x1="4" y1="4" x2="12" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="4" x2="4" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -158,7 +158,7 @@
     const n = items.length;
     $("#portfolioProgress").textContent = L().tn("explore.panel.count", n);
 
-    const counts = { ETF: 0, Stock: 0, Fund: 0 };
+    const counts = { etf: 0, stock: 0, bond: 0 };
     items.forEach((s) => { counts[s.type] = (counts[s.type] || 0) + 1; });
     const total = n || 1;
     const seg = TYPES.map((ty) => ({ key: ty, label: t("portfolio.type_label." + ty), val: counts[ty], color: TYPE_SWATCH[ty] }));
@@ -263,11 +263,11 @@
 
   if (!window.pmLocale) return;
   Promise.all([
-    fetch("data/securities.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
     window.pmLocale.ready
   ])
     .then(([doc]) => {
-      DATA = doc.securities || [];
+      DATA = doc.products || [];
       basket = basket.filter((id) => DATA.some((s) => s.id === id));
       wireDropZone();
       wireChrome();

@@ -1,7 +1,7 @@
 /* =============================================================
    Portemonnaie — Portfolio (S10, interim).
    Vanilla JS, no dependencies. Reads the basket from
-   localStorage ("pm_basket"), loads data/securities.json, and
+   localStorage ("pm_basket"), loads data/products.json, and
    renders composition by type and a donut. S10 per PRD (weights,
    goals card, amount split, PDF, email) comes with tasks 15/16.
 
@@ -18,9 +18,9 @@
 
   const STORE_KEY = "pm_basket";
   // CSS variables: applied through inline style so SVG resolves them
-  const TYPE_SWATCH = { ETF: "var(--sage-deep)", Stock: "var(--forest)", Fund: "var(--sage)" }; // tokens, task 03
+  const TYPE_SWATCH = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" }; // tokens, task 03
   const TRACK_STROKE = "var(--line)";
-  const TYPE_ORDER = ["ETF", "Stock", "Fund"];
+  const TYPE_ORDER = ["etf", "stock", "bond"];
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
@@ -37,7 +37,7 @@
 
   /* ── composition ────────────────────────────────────────── */
   function counts() {
-    const c = { ETF: 0, Stock: 0, Fund: 0 };
+    const c = { etf: 0, stock: 0, bond: 0 };
     ITEMS.forEach((s) => { c[s.type] = (c[s.type] || 0) + 1; });
     return c;
   }
@@ -124,10 +124,10 @@
   /* ── boot ───────────────────────────────────────────────── */
   if (!window.pmLocale) return;
   Promise.all([
-    fetch("data/securities.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => ({ securities: [] })),
+    fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => ({ products: [] })),
     window.pmLocale.ready
   ]).then(([doc]) => {
-    DATA = doc.securities || [];
+    DATA = doc.products || [];
     const basket = loadBasket().filter((id) => DATA.some((s) => s.id === id));
     ITEMS = basket.map((id) => DATA.find((s) => s.id === id)).filter(Boolean);
     renderAll();

@@ -66,7 +66,7 @@
     },
     "search_placeholder": "Suche nach Name, ISIN oder Thema…",
     "results": {
-      "title": "ETFs, Aktien & Fonds",
+      "title": "ETFs, Aktien & Anleihen",
       "count_one": "{n} Ergebnis",
       "count_other": "{n} Ergebnisse",
       "empty": "Für diese Kombination gibt es in unserer Liste aktuell keine Produkte. Nimm einen Filter heraus oder suche nach einem Thema.",
@@ -82,14 +82,14 @@
       "add": "In mein Portfolio"
     },
     "type": {
-      "ETF": "ETF",
-      "Stock": "Aktie",
-      "Fund": "Fonds"
+      "etf": "ETF",
+      "stock": "Aktie",
+      "bond": "Anleihe"
     },
     "category": {
-      "ETF": "ETFs",
-      "Stock": "Aktien",
-      "Fund": "Fonds"
+      "etf": "ETFs",
+      "stock": "Aktien",
+      "bond": "Anleihen"
     },
     "basket": {
       "eyebrow": "Dein Portfolio",
@@ -119,17 +119,17 @@
       "cta": "Zum Explorer"
     },
     "type_label": {
-      "ETF": "ETFs",
-      "Stock": "Aktien",
-      "Fund": "Fonds"
+      "etf": "ETFs",
+      "stock": "Aktien",
+      "bond": "Anleihen"
     },
     "type_count": {
-      "ETF_one": "{n} ETF",
-      "ETF_other": "{n} ETFs",
-      "Stock_one": "{n} Einzeltitel",
-      "Stock_other": "{n} Einzeltitel",
-      "Fund_one": "{n} Fonds",
-      "Fund_other": "{n} Fonds"
+      "etf_one": "{n} ETF",
+      "etf_other": "{n} ETFs",
+      "stock_one": "{n} Einzeltitel",
+      "stock_other": "{n} Einzeltitel",
+      "bond_one": "{n} Anleihe",
+      "bond_other": "{n} Anleihen"
     }
   },
   "product": {
@@ -138,8 +138,11 @@
     "facts": {
       "isin": "ISIN",
       "type": "Typ",
+      "provider": "Anbieter",
       "ter": "Laufende Kosten (TER)",
-      "aum": "Fondsvolumen (AUM)",
+      "sri": "Risikoklasse laut Basisinformationsblatt",
+      "fund_size": "Fondsvolumen",
+      "holdings": "Positionen",
       "distribution": "Ertragsverwendung",
       "inception": "Auflage",
       "region": "Region",
@@ -147,14 +150,20 @@
       "as_of": "Stand"
     },
     "distribution": {
-      "Accumulating": "Thesaurierend",
-      "Distributing": "Ausschüttend"
+      "accumulating": "Thesaurierend",
+      "distributing": "Ausschüttend"
     },
     "holdings_title": "Größte Positionen",
     "related_title": "Mehr aus diesem Thema",
     "not_found": "Produkt nicht gefunden.",
     "not_found_sub": "Wir konnten kein Wertpapier mit dieser ID finden. Geh zurück zum Explorer, um die Liste zu durchstöbern.",
     "load_error": "Der Datensatz konnte nicht geladen werden. Öffne die Seite über einen Webserver oder die veröffentlichte Seite.",
-    "na": "k. A."
+    "na": "keine Angabe",
+    "fund_size_value": "{n} Mio. {currency}",
+    "scores_title": "Einstufungen",
+    "score_missing": "Keine Einstufung vorhanden.",
+    "score_source": "laut {source}, Stand {asOf}",
+    "score_sustainability": "Sustainability-Score",
+    "score_gender": "Gender-Score"
   }
 }
