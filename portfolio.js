@@ -1,6 +1,7 @@
 /* =============================================================
    Portemonnaie — S10 Dein Portfolio & Plan sichern (/portfolio,
-   PRD S10, screen only; PDF and e-mail come with task 16).
+   PRD S10). PDF via plan.js + vendored jsPDF (lazy), e-mail via
+   api/plan-email.js (Brevo template, double opt-in; 501 until configured).
 
    Renders from pm_session.portfolio.items and data/products.json:
    composition with weight and monthly amount (derive.splitAmount:
@@ -27,6 +28,71 @@
   let DATA = [];
   let ITEMS = [];   // session items with product
   let SDGS = [];
+  let GLOSSARY = [];
+
+  /* ── plan (PDF) ─────────────────────────────────────────── */
+  let jsPdfPromise = null;
+  function loadJsPdf() {
+    if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
+    if (!jsPdfPromise) jsPdfPromise = new Promise((resolve, reject) => {
+      const sc = document.createElement("script");
+      sc.src = "vendor/jspdf.umd.min.js";             // vendored, lazy loaded (decision on conflict 8)
+      sc.onload = () => resolve(window.jspdf.jsPDF);
+      sc.onerror = () => { jsPdfPromise = null; reject(new Error("jspdf")); };
+      document.head.appendChild(sc);
+    });
+    return jsPdfPromise;
+  }
+  function planData() {
+    return window.pmPlan.buildPlan({ session: session(), products: DATA, sdgs: SDGS, glossary: GLOSSARY, t, date: new Date() });
+  }
+  const fmt = () => ({
+    pct: (v) => L().fmtPercent(Number(v), Number.isInteger(Number(v)) ? 0 : 2),
+    eur: (v) => L().fmtCurrency(v, { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
+    num: (v) => L().fmtNumber(v, { maximumFractionDigits: 2 }),
+    date: (d) => d.toLocaleDateString("de-AT")
+  });
+  function makePdf() {
+    return loadJsPdf().then((jsPDF) => {
+      const plan = planData();
+      const doc = window.pmPlan.renderPdf(plan, jsPDF, fmt());
+      return { doc, plan };
+    });
+  }
+  function setStatus(key) { const el = $("#planStatus"); el.textContent = key ? t("portfolio." + key) : ""; }
+
+  function downloadPdf() {
+    setStatus("plan_pdf_loading");
+    return makePdf().then(({ doc, plan }) => {
+      doc.save(plan.fileName);
+      S().update({ checkout: { pdfDownloaded: true } });
+      track("plan_download");
+      setStatus("plan_pdf_done");
+    }).catch(() => setStatus("plan_failed"));
+  }
+
+  function sendEmail(e) {
+    e.preventDefault();
+    const email = $("#planEmailInput").value.trim();
+    const optIn = $("#planNewsletter").checked;      // unticked by default (PRD 2.4)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { setStatus("plan_invalid_email"); return; }
+    setStatus("plan_sending");
+    makePdf().then(({ doc, plan }) => {
+      const pdfBase64 = doc.output("datauristring").split(",")[1];
+      return fetch("/api/plan-email", { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, pdfBase64, fileName: plan.fileName, newsletterOptIn: optIn }) });
+    }).then((r) => {
+      if (r.status === 501) { setStatus("plan_not_configured"); return; }
+      if (r.status === 400) { setStatus("plan_invalid_email"); return; }
+      if (!r.ok) { setStatus("plan_failed"); return; }
+      return r.json().then((j) => {
+        S().update({ checkout: { emailSent: true, newsletterOptIn: optIn } });
+        track("plan_email_sent");                     // no address in the payload (track.js whitelist)
+        track("newsletter_optin", { optIn });
+        setStatus(j && j.newsletter === "doi_sent" ? "plan_sent_doi" : "plan_sent");
+      });
+    }).catch(() => setStatus("plan_failed"));
+  }
 
   const session = () => S().current();
   function amount() {
@@ -105,7 +171,9 @@
     $("#planEmailLabel").textContent = t("portfolio.plan_email_label");
     $("#planEmailInput").placeholder = t("portfolio.plan_email_label");
     $("#planNewsletterLabel").textContent = t("portfolio.plan_newsletter");
-    $("#planSoon").textContent = t("portfolio.plan_soon");
+    $("#planPdf").disabled = false; $("#planPdf").removeAttribute("aria-disabled");
+    $("#planEmail").disabled = false; $("#planEmail").removeAttribute("aria-disabled");
+    $("#planEmailInput").disabled = false; $("#planNewsletter").disabled = false;
     $("#pfNote").innerHTML = window.pmInfoNote ? window.pmInfoNote.html("stance", "", { bodyText: t("portfolio.note") }) : "";
   }
 
@@ -137,14 +205,18 @@
   track("screen_view", { screen: "/portfolio" });
 
   $("#amountInput").addEventListener("change", (e) => setAmount(e.target.value));
+  $("#planPdf").addEventListener("click", downloadPdf);
+  $("#planForm").addEventListener("submit", sendEmail);
   document.addEventListener("pm:localeready", () => { if (DATA.length) renderAll(); });
 
   Promise.all([
     fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => ({ products: [] })),
     fetch("data/sdgs.json").then((r) => (r.ok ? r.json() : { sdgs: [] })).catch(() => ({ sdgs: [] })),
     window.pmLocale.ready,
-    window.pmGlossary ? window.pmGlossary.init() : null
-  ]).then(([doc, sd]) => {
+    window.pmGlossary ? window.pmGlossary.init() : null,
+    fetch("data/glossary.json").then((r) => (r.ok ? r.json() : { terms: [] })).catch(() => ({ terms: [] }))
+  ]).then(([doc, sd, , , gl]) => {
+    GLOSSARY = gl.terms || [];
     DATA = doc.products || [];
     SDGS = sd.sdgs || [];
     const s = session();

@@ -119,7 +119,9 @@ money-tree/
 ├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
 ├── summary.html / summary.js / summary.css   ← S8 Zusammenfassung from pm_session (share card: task 12)
 ├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)
-├── portfolio.html / portfolio.js / portfolio.css ← S10 (interim)
+├── portfolio.html / portfolio.js / portfolio.css ← S10: composition, goals card, amount split, PDF + e-mail
+├── plan.js                   ← "Mein Portfolio-Plan": buildPlan() (pure, tested) + renderPdf() with jsPDF
+├── vendor/jspdf.umd.min.js   ← vendored jsPDF 2.5.1 (MIT), lazy loaded on S10 only
 ├── product.html / product.js / product.css   ← Product detail page (?id=<id>), kept for now (conflict 17)
 ├── vercel.json               ← cleanUrls + rewrites of the PRD routes to the stage pages
 ├── mission.html, collabs.html, confirmed.html, impressum.html, privacy.html
@@ -127,7 +129,8 @@ money-tree/
 ├── script.js                 ← shared: nav, mobile menu, signup form POST
 ├── i18n.js                   ← shared EN/DE i18n (data-i18n hooks + pm:langchange)
 ├── api/
-│   └── subscribe.js          ← Vercel serverless fn — adds email to Brevo list
+│   ├── subscribe.js          ← Vercel serverless fn — adds email to Brevo list
+│   └── plan-email.js         ← Vercel serverless fn — S10 plan PDF by Brevo template, DOI newsletter (501 until configured)
 ├── derive.js                 ← PRD 7.6 derivations (pure functions, browser + node)
 ├── locale.js / locales/      ← flow strings (de.json source, en.json empty) + de-AT formatting
 ├── scripts/                  ← zero-dependency Node tools: copy-lint, validate-data, data-check, locales-sync, migrate-products, *.test.mjs
@@ -153,6 +156,7 @@ Assets are referenced with a `?v=N` cache-busting query; bump it after editing a
 
 ## Environment Variables (Vercel)
 - `BREVO_API_KEY` — Brevo API key (prefix `xkeysib-`). Must be enabled for Production. Adding/changing env vars requires a redeploy to take effect.
+- `api/plan-email.js` (S10 plan by e-mail) additionally needs `BREVO_PLAN_TEMPLATE_ID` (transactional template with attachment) and, for the newsletter double opt-in, `BREVO_NEWSLETTER_LIST_ID`, `BREVO_DOI_TEMPLATE_ID`, `BREVO_DOI_REDIRECT_URL`. Without them the function answers 501 and the UI says the sending is being set up.
 
 ## Key Rules
 - Vanilla HTML/CSS/JS only for the shipped site — no npm, no framework (Phase 1). (`scripts/*.mjs` are local Node maintenance tools, not part of the deployed site.) Dev tooling for PRD 10 checks: see conflict 15.

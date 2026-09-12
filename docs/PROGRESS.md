@@ -358,6 +358,23 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 16 · PDF plan and e-mail (13.09.2026)
+
+Decision taken first: conflict 8 (client-side PDF with a vendored library, e-mail deferred behind a serverless stub).
+
+Done
+- `plan.js` (shared, testable): `buildPlan()` turns session + products + SDGs + glossary + strings into the seven PRD sections — cover (title, date, value chips, the S3 core sentence as "dein Satz aus S3"), portfolio table (Produkt · ISIN · Typ · Anbieter · Gewichtung · monatlicher Betrag · TER · Risikoklasse · Sustainability · Gender), goals (weighted provider scores with source and asOf, SDG coverage), broker to-do (6 steps), the 7 questions, glossary of every term used in the plan, disclaimer plus score sources. `renderPdf()` writes A4 pages with the vendored jsPDF 2.5.1 (`vendor/jspdf.umd.min.js`, 356 kB, lazy loaded on click). File name `Portemonnaie_Plan_JJJJ-MM-TT.pdf`. Without an amount the € column is empty.
+- `portfolio.js`: "Als PDF herunterladen" (`plan_download`, `checkout.pdfDownloaded`) and "Per E-Mail schicken" (POST `/api/plan-email` with the PDF as base64; `plan_email_sent`, `newsletter_optin {optIn}`, `checkout.emailSent / newsletterOptIn`); status line for sending, sent, double opt-in, not configured, invalid address, failure. Newsletter checkbox unticked.
+- `api/plan-email.js`: Brevo transactional template with attachment; newsletter via Brevo double opt-in only when the checkbox was ticked; answers `501 not_configured` until `BREVO_PLAN_TEMPLATE_ID` (and for the newsletter `BREVO_NEWSLETTER_LIST_ID`, `BREVO_DOI_TEMPLATE_ID`, `BREVO_DOI_REDIRECT_URL`) exist; validates address and size; never logs the address. Strings `plan.*` (PRD S10 PDF texts verbatim) and `portfolio.plan_*`.
+
+Verification
+- `scripts/plan.test.mjs` (4 tests): plan weights equal the session weights and the euro split equals `derive.splitAmount`; file name; 6 to-do steps, 7 questions, disclaimer; glossary contains Depot, Sparplan, ISIN, Ausführungstag, Provision; empty amount and null scores. 33 tests pass.
+- Browser: buttons enabled; plan weights 35 / 35 / 30 and amounts 88 / 87 / 75 identical to the screen; 16 glossary entries; PDF 4 pages, 18 kB, rendered in 41 ms; simulated API 501 → "wird gerade eingerichtet" status; simulated 200 → "Dein Plan ist unterwegs.", `checkout.emailSent` true, events `plan_email_sent {}` and `newsletter_optin {optIn: false}`; the address appears nowhere in the analytics buffer.
+- Not verified: a real Brevo send (no template ids yet, O32); the PDF was not opened in a viewer (O33). Copy lint 0 (one own status string reworded away from "noch nicht").
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -375,6 +392,8 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O32 · E-mail sending needs the Brevo transactional template with attachment, the newsletter list id, the double-opt-in template and redirect URL as Vercel env vars (`BREVO_PLAN_TEMPLATE_ID`, `BREVO_NEWSLETTER_LIST_ID`, `BREVO_DOI_TEMPLATE_ID`, `BREVO_DOI_REDIRECT_URL`); until then the button reports "wird gerade eingerichtet". Redeploy after adding them.
+- O33 · PDF typography is jsPDF Helvetica (no Inter embedding); manual check of the PDF in a viewer and on iOS still open. PRD 11 asks legal to confirm that the amount split (Betrag × Gewichtung) is not a recommendation.
 - O31 · S10 ends the flow (S11 out of scope): the PRD CTA "Weg wählen" is not rendered. PDF and e-mail buttons are visible but disabled until task 16.
 - O29 · PRD S9 acceptance "every card has at least 6 glossary terms" holds for ETFs; single stocks show 5 because TER and Positionen do not apply. Accept or add a term to stock cards.
 - O30 · The six radar axes have no data source yet (conflict 2); cards show a dashed placeholder until a provider delivers them. The score sliders currently exclude every product above 0 for the same reason.

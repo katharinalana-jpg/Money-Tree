@@ -367,7 +367,15 @@
       "etf": "",
       "stock": "",
       "bond": ""
-    }
+    },
+    "plan_sending": "",
+    "plan_sent": "",
+    "plan_sent_doi": "",
+    "plan_not_configured": "",
+    "plan_invalid_email": "",
+    "plan_failed": "",
+    "plan_pdf_loading": "",
+    "plan_pdf_done": ""
   },
   "product": {
     "back": "",
@@ -465,5 +473,26 @@
     "glossary_note": "",
     "cta": "",
     "change": ""
+  },
+  "plan": {
+    "title": "",
+    "cover_subtitle": "",
+    "col_product": "",
+    "col_isin": "",
+    "col_type": "",
+    "col_provider": "",
+    "col_weight": "",
+    "col_amount": "",
+    "col_ter": "",
+    "col_sri": "",
+    "col_sus": "",
+    "col_gen": "",
+    "goals_title": "",
+    "todo_title": "",
+    "todo": "",
+    "questions_title": "",
+    "questions": "",
+    "glossary_title": "",
+    "sources_note": ""
   }
 }

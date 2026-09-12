@@ -60,7 +60,7 @@
 .pf-plan__email input[type="email"] { padding: .6rem .8rem; border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg); font: inherit; min-height: 44px; }
 .pf-plan__newsletter { font-size: .85rem; color: var(--ink); display: flex; gap: .4rem; align-items: flex-start; }
 .pf-plan__actions .btn[disabled] { opacity: .5; cursor: not-allowed; }
-.pf-plan__soon { margin: .7rem 0 0; font-size: .8rem; color: var(--ink-mute); }
+.pf-plan__status { margin: .7rem 0 0; font-size: .85rem; color: var(--forest); min-height: 1.2em; }
 .pf-note-wrap { margin-top: 1.4rem; display: flex; justify-content: center; }
 
 /* empty / incomplete */

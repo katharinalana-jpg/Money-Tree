@@ -345,7 +345,7 @@
     "plan_email": "Per E-Mail schicken",
     "plan_email_label": "deine E-Mail",
     "plan_newsletter": "Ja, ich möchte den Portemonnaie-Newsletter",
-    "plan_soon": "Kommt mit dem nächsten Schritt.",
+    "plan_soon": "",
     "note": "Dieser Plan ist deine To-do-Liste – für den Broker oder das Gespräch mit deiner Beraterin.",
     "mix": "Dein Mix: {etf} % ETFs · {stock} % Aktien · {bond} % Anleihen. Im Spektrum aus Schritt 5 liegt das bei „{label}“.",
     "mix_label": {
@@ -367,7 +367,15 @@
       "etf": "ETFs",
       "stock": "Aktien",
       "bond": "Anleihen"
-    }
+    },
+    "plan_sending": "Wird gesendet …",
+    "plan_sent": "Dein Plan ist unterwegs. Sieh in deinem Postfach nach.",
+    "plan_sent_doi": "Für den Newsletter bekommst du eine extra E-Mail zum Bestätigen.",
+    "plan_not_configured": "Der E-Mail-Versand wird gerade eingerichtet. Lade den Plan als PDF herunter.",
+    "plan_invalid_email": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "plan_failed": "Das hat nicht geklappt. Versuch es bitte noch einmal oder lade das PDF herunter.",
+    "plan_pdf_loading": "PDF wird erstellt …",
+    "plan_pdf_done": "PDF gespeichert."
   },
   "product": {
     "back": "Zurück zum Explorer",
@@ -474,5 +482,41 @@
     "glossary_note": "Ab hier ist jeder unterstrichene Begriff erklärbar. Fahr einfach darüber. No shame in not knowing.",
     "cta": "I AM READY.",
     "change": "Antworten ändern"
+  },
+  "plan": {
+    "title": "Mein Portfolio-Plan",
+    "cover_subtitle": "Dein Plan aus dem geführten Anlageprozess von Portemonnaie.",
+    "col_product": "Produkt",
+    "col_isin": "ISIN",
+    "col_type": "Typ",
+    "col_provider": "Anbieter",
+    "col_weight": "Gewichtung",
+    "col_amount": "Monatlicher Betrag",
+    "col_ter": "TER",
+    "col_sri": "Risikoklasse",
+    "col_sus": "Sustainability",
+    "col_gen": "Gender",
+    "goals_title": "Deine Ziele im Portfolio",
+    "todo_title": "So setzt du es um – Broker-To-do",
+    "todo": [
+      "Depot eröffnen (Ausweis, 10–20 Min.)",
+      "Sparplan anlegen",
+      "ISIN in die Suche kopieren",
+      "Betrag und Ausführungstag wählen",
+      "Für jedes Produkt wiederholen",
+      "Fertig"
+    ],
+    "questions_title": "Gesprächsleitfaden für Bankberater:in oder Wealth Manager",
+    "questions": [
+      "Gesamtkosten pro Jahr in €?",
+      "Bekommen Sie Provisionen für dieses Produkt?",
+      "Gibt es eine günstigere ETF-Alternative?",
+      "Wie wird meine Nachhaltigkeitspräferenz umgesetzt?",
+      "Wie komme ich wieder heraus, was kostet das?",
+      "Wer trägt das Risiko?",
+      "Kann ich mir das drei Tage überlegen?"
+    ],
+    "glossary_title": "Glossar",
+    "sources_note": "Einstufungen sind Bewertungen des genannten Datenanbieters, nicht von Portemonnaie. Kennzahlen stammen aus dem Basisinformationsblatt und dem Factsheet des Anbieters."
   }
 }
