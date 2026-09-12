@@ -233,6 +233,26 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 08 · Glossary content (12.09.2026)
+
+Decision taken first: conflict 11, all 51 terms of PRD 8.1.
+
+Done
+- `data/glossary.json`: 56 entries, sorted by id — all 51 terms of 8.1 plus five from the screen copy of PRD 6: `care-arbeit`, `einmalanlage`, `emittent`, `kaufkraft`, `ordergebuehr`. Austrian German, "du", one sentence each for definition (≤ 20 words), "Warum wichtig" and example with a € or % figure; return figures only as "Annahme, keine Garantie" and ≤ 5 %; "Robo-Advisor" introduces "geführter Anlageprozess"; scores name the data provider and asOf pattern. English fields empty (PRD A.2).
+- `scripts/lint-glossary.mjs` (PRD A.1 b): reuses the copy lint and the glossary schema; adds word count, one-sentence, number-and-unit, A.1 extra words (einfach, !, sicher, ideal, optimal, empfehlen, raten, passt zu dir), relatedIds exist, ids unique, 8.1 coverage; prints the id · word count · status table; `--review` writes `docs/glossary-review.md` (A.1 d) with the five sample entries first.
+- Copy lint refined: "ohne Garantie" counts as a negated guarantee; a return figure is allowed only with "Annahme" and "keine/ohne Garantie" in the same string. Glossary unit rule accepts "x von 10" / "x von 7" scales for score and risk-class examples.
+- The flow pages already load `data/glossary.json`; terms now render as popovers.
+
+Verification
+- `node scripts/lint-glossary.mjs`: schema 0 errors, 56 terms, 0 findings. `node scripts/validate-data.mjs`: glossary, products, sdgs valid. `node --test`: 29 pass. Copy lint on locales: 0.
+- Browser (quiz.html, real glossary): 56 entries loaded, "Portfolio" in the mirror body rendered once as a term, focus opens the popover with the definition, `glossary_open {term_id: "portfolio", screen: "/quiz/values"}` recorded.
+
+Process note
+- The A.1 gate "first 5 entries, wait for approval" was skipped on the instruction to work through the tasks unattended; the review file lists the five samples first. Katharina's content review and the legal review (A.2) remain open (O20).
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -250,6 +270,7 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O20 · Glossary content review (Katharina, `docs/glossary-review.md`) and legal review (PRD A.2, focus "Wirkung" and "Wege" plus all figures) are open; the figures in the examples (e.g. Gender Pay Gap 18 %, Pension Gap 40 %, Care-Arbeit 66 %) need their sources confirmed before launch.
 - O19 · `fundSizeMeur` is not converted to EUR (`fundSizeCurrency` carries USD for most ETFs); `sdgTags` derived from themes need EET confirmation. Both flagged in `meta.dataNote`.
 - O3 · `explore.js` radar uses 6 axes from Four Capitals + own scores; PRD radar axes (climate, social, governance, gender, biodiversity, transparency) have no data source (conflict 2, 19).
 - O4 · Shadows: `--shadow-*` tokens are used by the prereg site too; the no-shadow rule applies to the flow screens, keep the tokens for the landing unless the brand doc says otherwise.

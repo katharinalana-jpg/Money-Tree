@@ -1,0 +1,1177 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generated": "2026-09-12",
+    "source": "PRD 8.1 (51 terms) plus terms from the screen copy of PRD 6 (marked source: screens). Austrian German. English fields empty until the German version is approved (PRD A.2).",
+    "review": "docs/glossary-review.md — content review by Katharina and legal review (PRD 2.4) before production."
+  },
+  "terms": [
+    {
+      "id": "affiliate-link",
+      "term_de": "Affiliate-Link",
+      "term_en": "Affiliate link",
+      "aliases_de": [
+        "Werbelink",
+        "Affiliate-Links",
+        "Werbelinks",
+        "Affiliate"
+      ],
+      "definition_de": "Ein Affiliate-Link führt zu einem Partner und bringt Portemonnaie eine Provision, wenn du dort ein Konto eröffnest.",
+      "why_de": "Du erkennst am Wort Werbung, wann wir an einem Link verdienen, und zahlst dafür keinen Cent mehr.",
+      "example_de": "Eröffnest du über unseren Link ein Depot, erhält Portemonnaie zum Beispiel 30 € vom Broker, dein Preis bleibt gleich.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "provision",
+        "broker"
+      ]
+    },
+    {
+      "id": "aktie",
+      "term_de": "Aktie",
+      "term_en": "Share",
+      "aliases_de": [
+        "Aktien",
+        "Einzelaktie",
+        "Einzelaktien",
+        "Einzeltitel"
+      ],
+      "definition_de": "Eine Aktie ist ein kleiner Anteil an einem einzelnen Unternehmen, den du an der Börse kaufen kannst.",
+      "why_de": "Alles hängt an diesem einen Unternehmen, deshalb schwankt eine einzelne Aktie stärker als ein breiter ETF.",
+      "example_de": "Mit 100 € kaufst du bei einem Kurs von 50 € zwei Aktien und bist damit Miteigentümerin.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "kurs",
+        "risiko"
+      ]
+    },
+    {
+      "id": "anlageberatung",
+      "term_de": "Anlageberatung",
+      "term_en": "Investment advice",
+      "aliases_de": [
+        "Beratung",
+        "Finanzberatung",
+        "Anlageberaterin"
+      ],
+      "definition_de": "Anlageberatung ist ein persönlicher Vorschlag zu konkreten Wertpapieren, den nur Anbieter mit Konzession machen dürfen.",
+      "why_de": "Portemonnaie erklärt und begleitet, gibt aber keine Anlageberatung, die Entscheidung bleibt bei dir.",
+      "example_de": "Eine Beraterin bei einer Bank darf sagen, welchen Fonds du kaufen sollst, und verdient dabei oft 1 % bis 5 % Provision.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "provision",
+        "vermoegensverwaltung"
+      ]
+    },
+    {
+      "id": "anlagehorizont",
+      "term_de": "Anlagehorizont",
+      "term_en": "Investment horizon",
+      "aliases_de": [
+        "Zeithorizont",
+        "Horizont"
+      ],
+      "definition_de": "Der Anlagehorizont ist die Zeit, die du dein Geld voraussichtlich angelegt lässt, bevor du es brauchst.",
+      "why_de": "Je länger dein Horizont, desto mehr Zeit hat dein Portfolio, Schwankungen auszugleichen, historisch, ohne Garantie.",
+      "example_de": "Wer mit 30 monatlich 100 € für die Pension anlegt, hat einen Anlagehorizont von rund 35 Jahren.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "schwankung",
+        "sparplan"
+      ]
+    },
+    {
+      "id": "anleihe",
+      "term_de": "Anleihe",
+      "term_en": "Bond",
+      "aliases_de": [
+        "Anleihen",
+        "Bond",
+        "Bonds",
+        "Staatsanleihe",
+        "Unternehmensanleihe"
+      ],
+      "definition_de": "Mit einer Anleihe leihst du einem Staat oder Unternehmen Geld und bekommst dafür Zinsen und dein Geld zurück.",
+      "why_de": "Anleihen schwanken meist weniger als Aktien und bringen Ruhe in ein Portfolio.",
+      "example_de": "Eine Anleihe über 1.000 € mit 3 % Zinsen zahlt dir 30 € im Jahr, bis sie zurückgezahlt wird.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "zinsen",
+        "green-bond",
+        "emittent"
+      ]
+    },
+    {
+      "id": "ausfuehrungstag",
+      "term_de": "Ausführungstag",
+      "term_en": "Execution date",
+      "aliases_de": [
+        "Ausführungstermin",
+        "Ausführung"
+      ],
+      "definition_de": "Der Ausführungstag ist der Tag im Monat, an dem dein Broker den Sparplan automatisch ausführt.",
+      "why_de": "Du legst ihn nach deinem Gehaltseingang, damit das Geld am Konto ist, wenn gekauft wird.",
+      "example_de": "Kommt dein Gehalt am 1., ist der 5. ein typischer Ausführungstag für 100 € im Monat.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "sparplan",
+        "order"
+      ]
+    },
+    {
+      "id": "ausschlusskriterien",
+      "term_de": "Ausschlusskriterien",
+      "term_en": "Exclusion criteria",
+      "aliases_de": [
+        "Ausschlusskriterium",
+        "Ausschlüsse",
+        "Ausschluss"
+      ],
+      "definition_de": "Ausschlusskriterien sind Regeln, nach denen ein Fonds bestimmte Branchen oder Unternehmen bewusst nicht kauft.",
+      "why_de": "Du siehst auf einen Blick, ob zum Beispiel Waffen, Kohle oder Tabak aus einem Produkt draußen bleiben.",
+      "example_de": "Ein ETF mit dem Ausschluss Kohle lässt Unternehmen weg, die mehr als 5 % ihres Umsatzes mit Kohle machen.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "divesting",
+        "esg"
+      ]
+    },
+    {
+      "id": "ausschuettend-thesaurierend",
+      "term_de": "Ausschüttend / Thesaurierend",
+      "term_en": "Distributing / Accumulating",
+      "aliases_de": [
+        "ausschüttend",
+        "thesaurierend",
+        "Ausschüttung",
+        "Thesaurierung",
+        "Ertragsverwendung"
+      ],
+      "definition_de": "Ausschüttend heißt, ein Fonds zahlt dir Erträge aus, thesaurierend heißt, er legt sie automatisch wieder an.",
+      "why_de": "Thesaurierend lässt dein Geld ohne dein Zutun weiterwachsen, ausschüttend bringt regelmäßig Geld aufs Konto.",
+      "example_de": "Bei 5.000 € und 2 % Ertrag bekommst du ausschüttend 100 € aufs Konto, thesaurierend bleiben sie im Fonds.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "fonds",
+        "zinsen"
+      ]
+    },
+    {
+      "id": "broker",
+      "term_de": "Broker",
+      "term_en": "Broker",
+      "aliases_de": [
+        "Online-Broker",
+        "Brokerin",
+        "Bank"
+      ],
+      "definition_de": "Ein Broker ist ein Anbieter, über den du Wertpapiere kaufst und verkaufst und der dein Depot führt.",
+      "why_de": "Ohne Broker kein Depot, und seine Gebühren entscheiden mit, wie viel von deiner Anlage bei dir bleibt.",
+      "example_de": "Ein Broker verlangt zum Beispiel 1 € pro Sparplan-Ausführung, ein anderer 0 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "depot",
+        "neobroker",
+        "depotgebuehr"
+      ]
+    },
+    {
+      "id": "care-arbeit",
+      "term_de": "Care-Arbeit",
+      "term_en": "Care work",
+      "aliases_de": [
+        "Sorgearbeit",
+        "Betreuungsarbeit",
+        "unbezahlte Arbeit"
+      ],
+      "definition_de": "Care-Arbeit ist die meist unbezahlte Betreuung von Kindern, Angehörigen und Haushalt, die überwiegend Frauen leisten.",
+      "why_de": "Jede Stunde Care-Arbeit ist eine Stunde ohne Gehalt und ohne Pensionsbeitrag, das kostet dich Vermögen.",
+      "example_de": "In Österreich leisten Frauen rund 66 % der unbezahlten Arbeit, laut Zeitverwendungserhebung 2022.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "gender-pension-gap",
+        "gender-wealth-gap"
+      ]
+    },
+    {
+      "id": "depot",
+      "term_de": "Depot",
+      "term_en": "Securities account",
+      "aliases_de": [
+        "Depots",
+        "Wertpapierdepot",
+        "Depotkonto"
+      ],
+      "definition_de": "Ein Depot ist das Konto bei einem Broker, in dem deine ETFs, Aktien und Anleihen verwahrt werden.",
+      "why_de": "Die Wertpapiere im Depot gehören dir, auch wenn der Broker pleitegeht.",
+      "example_de": "Ein Depot bei einem Neobroker ist in rund 15 Minuten eröffnet und kostet oft 0 € im Jahr.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "broker",
+        "depotgebuehr",
+        "einlagensicherung"
+      ]
+    },
+    {
+      "id": "depotgebuehr",
+      "term_de": "Depotgebühr",
+      "term_en": "Custody fee",
+      "aliases_de": [
+        "Depotgebühren",
+        "Depotkosten",
+        "Kontoführung"
+      ],
+      "definition_de": "Die Depotgebühr ist der Preis, den ein Broker dafür verlangt, dein Depot zu führen.",
+      "why_de": "Eine feste Gebühr im Jahr frisst bei kleinen Beträgen einen großen Teil deiner Rendite.",
+      "example_de": "Bei 20 € Depotgebühr im Jahr und 1.000 € Anlage sind das 2 % Kosten, bei 0 € Gebühr bleibt alles bei dir.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "depot",
+        "ter",
+        "ordergebuehr"
+      ]
+    },
+    {
+      "id": "divesting",
+      "term_de": "Divesting",
+      "term_en": "Divestment",
+      "aliases_de": [
+        "Divestment",
+        "ausschließen",
+        "Desinvestition"
+      ],
+      "definition_de": "Divesting heißt, du nimmst Branchen oder Unternehmen bewusst aus deinem Portfolio heraus, etwa Waffen, Kohle oder Tabak.",
+      "why_de": "Dein Geld finanziert dann nicht mehr, was du ablehnst, und viele ETFs setzen das über Ausschlusskriterien um.",
+      "example_de": "Ein ETF ohne fossile Energie lässt typischerweise rund 5 % bis 10 % der Unternehmen eines Weltindex weg.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "ausschlusskriterien",
+        "wertebasiertes-investieren"
+      ]
+    },
+    {
+      "id": "einlagensicherung",
+      "term_de": "Einlagensicherung",
+      "term_en": "Deposit guarantee",
+      "aliases_de": [
+        "Einlagenschutz",
+        "Einlagensicherungsfonds"
+      ],
+      "definition_de": "Die Einlagensicherung schützt dein Guthaben am Konto, wenn eine Bank in der EU zahlungsunfähig wird.",
+      "why_de": "Bargeld am Verrechnungskonto ist bis zur Grenze geschützt, deine Wertpapiere im Depot gehören ohnehin dir.",
+      "example_de": "In der EU sind pro Person und Bank bis zu 100.000 € Einlagen gesichert.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "depot",
+        "broker"
+      ]
+    },
+    {
+      "id": "einmalanlage",
+      "term_de": "Einmalanlage",
+      "term_en": "Lump-sum investment",
+      "aliases_de": [
+        "Einmalzahlung",
+        "Einmalbetrag",
+        "einmalig anlegen"
+      ],
+      "definition_de": "Eine Einmalanlage ist ein Betrag, den du auf einmal investierst statt monatlich über einen Sparplan.",
+      "why_de": "Bei einer Vermögensverwaltung ist eine Einmalanlage oft die Eintrittskarte, bei einem Neobroker geht es auch ohne.",
+      "example_de": "Viele Vermögensverwaltungen starten ab 5.000 € Einmalanlage, ein Sparplan beim Neobroker ab 1 € im Monat.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "sparplan",
+        "vermoegensverwaltung"
+      ]
+    },
+    {
+      "id": "emittent",
+      "term_de": "Emittent",
+      "term_en": "Issuer",
+      "aliases_de": [
+        "Emittentin",
+        "Emittenten",
+        "Herausgeber",
+        "Anbieter"
+      ],
+      "definition_de": "Der Emittent ist die Gesellschaft, die ein Wertpapier herausgibt, etwa ein Fondsanbieter oder ein Staat bei Anleihen.",
+      "why_de": "Der Emittent veröffentlicht die Pflichtdokumente, aus denen Kosten, Risikoklasse und Ausschlüsse stammen.",
+      "example_de": "Bei einem Green Bond legt der Emittent offen, welche Projekte er mit den zum Beispiel 500 Millionen € finanziert.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anleihe",
+        "kid",
+        "fonds"
+      ]
+    },
+    {
+      "id": "esg",
+      "term_de": "ESG",
+      "term_en": "ESG",
+      "aliases_de": [
+        "ESG-Kriterien",
+        "ESG-Rating",
+        "Umwelt, Soziales und Unternehmensführung"
+      ],
+      "definition_de": "ESG steht für Umwelt, Soziales und Unternehmensführung, drei Bereiche, nach denen Unternehmen bewertet werden.",
+      "why_de": "Ein ESG-Rating zeigt, wie ein Anbieter Klima, Arbeitsbedingungen und Kontrolle im Unternehmen einschätzt, nicht ob es Gewinn macht.",
+      "example_de": "Ein ESG-Rating erfasst zum Beispiel, ob ein Unternehmen seinen CO₂-Ausstoß um 10 % im Jahr senkt und wer im Aufsichtsrat sitzt.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "sustainability-score",
+        "ausschlusskriterien"
+      ]
+    },
+    {
+      "id": "etf",
+      "term_de": "ETF",
+      "term_en": "ETF",
+      "aliases_de": [
+        "ETFs",
+        "Indexfonds",
+        "börsengehandelter Fonds",
+        "Exchange Traded Fund"
+      ],
+      "definition_de": "Ein ETF bündelt viele Aktien oder Anleihen in einem Produkt, das du wie eine Aktie an der Börse kaufst.",
+      "why_de": "Mit einem Kauf bist du breit gestreut, statt an einem einzelnen Unternehmen zu hängen.",
+      "example_de": "Ein Welt-ETF enthält über 1.500 Unternehmen und kostet oft nur 0,2 % im Jahr.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "streuung",
+        "index",
+        "ter"
+      ]
+    },
+    {
+      "id": "fonds",
+      "term_de": "Fonds",
+      "term_en": "Fund",
+      "aliases_de": [
+        "Investmentfonds",
+        "Fondsanteil",
+        "Fondsanteile"
+      ],
+      "definition_de": "Ein Fonds sammelt das Geld vieler Anlegerinnen und legt es gebündelt in viele Wertpapiere an.",
+      "why_de": "Ein ETF ist ein Fonds, der einen Index abbildet, ein aktiver Fonds wird von Menschen gemanagt und kostet meist mehr.",
+      "example_de": "Ein aktiver Fonds verlangt typischerweise 1,5 % im Jahr, ein ETF auf denselben Markt 0,2 %.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "ter",
+        "fondsvolumen"
+      ]
+    },
+    {
+      "id": "fondsvolumen",
+      "term_de": "Fondsvolumen",
+      "term_en": "Fund size",
+      "aliases_de": [
+        "Fondsgröße",
+        "verwaltetes Vermögen",
+        "AUM"
+      ],
+      "definition_de": "Das Fondsvolumen ist das gesamte Geld, das Anlegerinnen in einen Fonds oder ETF eingezahlt haben.",
+      "why_de": "Sehr kleine Fonds werden öfter geschlossen oder mit anderen zusammengelegt, große laufen meist stabil weiter.",
+      "example_de": "Ein ETF mit 6 Milliarden € Fondsvolumen gilt als groß, unter 50 Millionen € als klein.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "fonds",
+        "etf"
+      ]
+    },
+    {
+      "id": "gender-pay-gap",
+      "term_de": "Gender Pay Gap",
+      "term_en": "Gender pay gap",
+      "aliases_de": [
+        "Lohnlücke",
+        "Einkommenslücke",
+        "Pay Gap"
+      ],
+      "definition_de": "Der Gender Pay Gap ist der Unterschied zwischen dem Bruttostundenlohn von Männern und Frauen in Prozent.",
+      "why_de": "Weniger Lohn heißt weniger Sparrate, weniger Pensionsbeiträge und über Jahrzehnte weniger Vermögen.",
+      "example_de": "In Österreich verdienen Frauen laut Statistik Austria rund 18 % weniger pro Stunde als Männer.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "gender-pension-gap",
+        "gender-wealth-gap"
+      ]
+    },
+    {
+      "id": "gender-pension-gap",
+      "term_de": "Gender Pension Gap",
+      "term_en": "Gender pension gap",
+      "aliases_de": [
+        "Pensionslücke",
+        "Pension Gap",
+        "Rentenlücke"
+      ],
+      "definition_de": "Der Gender Pension Gap ist der Unterschied zwischen den Pensionen von Männern und Frauen in Prozent.",
+      "why_de": "Teilzeit, Karenz und Care-Arbeit summieren sich bis zur Pension, eigenes Investieren ist ein Ausgleich, den du selbst steuerst.",
+      "example_de": "Frauen in Österreich bekommen im Schnitt rund 40 % weniger Pension als Männer.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "gender-pay-gap",
+        "care-arbeit"
+      ]
+    },
+    {
+      "id": "gender-score",
+      "term_de": "Gender-Score",
+      "term_en": "Gender score",
+      "aliases_de": [
+        "Gender Score",
+        "Gender-Scores",
+        "Gleichstellungs-Score"
+      ],
+      "definition_de": "Der Gender-Score ist die Einstufung eines Datenanbieters, wie ein Unternehmen bei Frauen in Führung und fairer Bezahlung steht.",
+      "why_de": "Du siehst, ob dein Geld in Unternehmen fließt, die Gleichstellung leben, und wer diese Einstufung vergibt.",
+      "example_de": "Ein Gender-Score von 8,9 von 10 laut Datenanbieter, Stand 08/2026, heißt, das Unternehmen liegt weit über dem Schnitt.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "sustainability-score",
+        "gender-pay-gap"
+      ]
+    },
+    {
+      "id": "gender-wealth-gap",
+      "term_de": "Gender Wealth Gap",
+      "term_en": "Gender wealth gap",
+      "aliases_de": [
+        "Vermögenslücke",
+        "Wealth Gap"
+      ],
+      "definition_de": "Der Gender Wealth Gap ist der Unterschied im Vermögen von Männern und Frauen, also bei Ersparnissen, Immobilien und Anlagen.",
+      "why_de": "Die Lücke entsteht an acht Stationen im Leben, und an jeder kannst du mit eigenem Vermögensaufbau gegensteuern.",
+      "example_de": "Weltweit besitzen Männer laut Oxfam 2020 rund 105 Billionen Dollar mehr als Frauen.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "gender-pay-gap",
+        "gender-pension-gap",
+        "vermoegen"
+      ]
+    },
+    {
+      "id": "green-bond",
+      "term_de": "Green Bond",
+      "term_en": "Green bond",
+      "aliases_de": [
+        "Green Bonds",
+        "grüne Anleihe",
+        "grüne Anleihen",
+        "Klimaanleihe"
+      ],
+      "definition_de": "Ein Green Bond ist eine Anleihe, deren Geld der Emittent nur für Umweltprojekte wie Solar, Wind oder Sanierung einsetzt.",
+      "why_de": "Du bekommst Zinsen und weißt, welche Projekte dein Geld finanziert, weil der Emittent das offenlegt.",
+      "example_de": "Ein Green Bond über 1.000 € mit 3 % Zinsen bringt 30 € im Jahr und finanziert etwa einen Windpark.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anleihe",
+        "emittent",
+        "zinsen"
+      ]
+    },
+    {
+      "id": "impact",
+      "term_de": "Impact",
+      "term_en": "Impact",
+      "aliases_de": [
+        "Wirkung",
+        "Impact-Fonds",
+        "Impact Investing"
+      ],
+      "definition_de": "Impact ist die messbare Wirkung, die ein Unternehmen oder Fonds auf Umwelt und Gesellschaft hat.",
+      "why_de": "Ein Impact-Anspruch ist nur so gut wie die Zahl dahinter, deshalb zeigen wir die Quelle jeder Einstufung.",
+      "example_de": "Ein Fonds berichtet zum Beispiel, dass seine Unternehmen 2025 rund 2 Millionen Tonnen CO₂ vermieden haben.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "esg",
+        "sdg",
+        "wertebasiertes-investieren"
+      ]
+    },
+    {
+      "id": "index",
+      "term_de": "Index",
+      "term_en": "Index",
+      "aliases_de": [
+        "Indizes",
+        "Aktienindex",
+        "Börsenindex",
+        "MSCI World"
+      ],
+      "definition_de": "Ein Index ist eine Liste von Wertpapieren nach festen Regeln, die zeigt, wie sich ein Markt entwickelt.",
+      "why_de": "Ein ETF bildet einen Index ab, deshalb sagt dir der Index, was genau im ETF steckt.",
+      "example_de": "Der MSCI World enthält rund 1.500 Unternehmen aus 23 Industrieländern und deckt etwa 85 % ihres Börsenwerts ab.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "welt-etf"
+      ]
+    },
+    {
+      "id": "inflation",
+      "term_de": "Inflation",
+      "term_en": "Inflation",
+      "aliases_de": [
+        "Teuerung",
+        "Geldentwertung",
+        "Inflationsrate"
+      ],
+      "definition_de": "Inflation heißt, dass Preise steigen und dein Geld jedes Jahr etwas weniger kaufen kann.",
+      "why_de": "Geld, das jahrelang am Konto liegt, verliert leise an Kaufkraft, auch wenn die Zahl gleich bleibt.",
+      "example_de": "Bei 3 % Inflation kaufen 1.000 € nach 10 Jahren nur noch so viel wie heute rund 740 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "kaufkraft",
+        "zinsen"
+      ]
+    },
+    {
+      "id": "investieren",
+      "term_de": "Investieren",
+      "term_en": "Investing",
+      "aliases_de": [
+        "Anlegen",
+        "investiert",
+        "anlegen",
+        "Geldanlage",
+        "Investment",
+        "Investments"
+      ],
+      "definition_de": "Investieren heißt, Geld in Wertpapiere wie ETFs, Aktien oder Anleihen zu stecken, damit es wachsen kann.",
+      "why_de": "Am Konto verliert Geld durch Inflation an Wert, investiert kann es über Jahre mitwachsen, ohne Garantie.",
+      "example_de": "100 € im Monat über 20 Jahre sind 24.000 € eingezahlt, mit 4 % Annahme, keine Garantie, rund 36.000 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "vermoegen",
+        "sparplan",
+        "rendite"
+      ]
+    },
+    {
+      "id": "isin",
+      "term_de": "ISIN",
+      "term_en": "ISIN",
+      "aliases_de": [
+        "ISINs",
+        "Wertpapierkennnummer",
+        "Kennnummer"
+      ],
+      "definition_de": "Die ISIN ist die zwölfstellige Kennnummer, mit der du ein Wertpapier weltweit eindeutig findest.",
+      "why_de": "Beim Broker suchst du ein Produkt über die ISIN, dann erwischst du genau die richtige Variante.",
+      "example_de": "IE00BYX2JD69 steht für genau einen ETF, ein Sparplan über 50 € landet damit im richtigen Produkt.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "order",
+        "kid"
+      ]
+    },
+    {
+      "id": "kaufkraft",
+      "term_de": "Kaufkraft",
+      "term_en": "Purchasing power",
+      "aliases_de": [
+        "Kaufkraftverlust",
+        "realer Wert"
+      ],
+      "definition_de": "Kaufkraft ist die Menge an Waren und Leistungen, die du dir mit einem Betrag tatsächlich leisten kannst.",
+      "why_de": "Dein Zukunfts-Ich zählt nicht die Euro am Konto, sondern was sie dann noch kaufen.",
+      "example_de": "Ein Einkauf, der heute 100 € kostet, kostet bei 2 % Inflation in 20 Jahren rund 149 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "inflation"
+      ]
+    },
+    {
+      "id": "kid",
+      "term_de": "KID / Basisinformationsblatt",
+      "term_en": "Key information document (KID)",
+      "aliases_de": [
+        "KID",
+        "Basisinformationsblatt",
+        "Basisinformationsblätter",
+        "PRIIPs-KID"
+      ],
+      "definition_de": "Das Basisinformationsblatt ist ein Pflichtdokument mit Kosten, Risikoklasse und Funktionsweise eines Produkts auf wenigen Seiten.",
+      "why_de": "Alle Kennzahlen im Explorer stammen aus solchen Pflichtdokumenten, nicht aus unserer eigenen Bewertung.",
+      "example_de": "Im KID steht zum Beispiel: laufende Kosten 0,2 % im Jahr, Risikoklasse 4 von 7.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "ter",
+        "risikoklasse",
+        "emittent"
+      ]
+    },
+    {
+      "id": "kurs",
+      "term_de": "Kurs",
+      "term_en": "Price",
+      "aliases_de": [
+        "Kurse",
+        "Aktienkurs",
+        "Börsenkurs",
+        "Kursverlauf"
+      ],
+      "definition_de": "Der Kurs ist der aktuelle Preis, zu dem ein Wertpapier an der Börse gekauft und verkauft wird.",
+      "why_de": "Kurse schwanken täglich, was zählt, ist der Kurs an dem Tag, an dem du wirklich verkaufst.",
+      "example_de": "Steht ein ETF bei 80 € und du legst 100 € an, bekommst du 1,25 Anteile.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "schwankung",
+        "aktie"
+      ]
+    },
+    {
+      "id": "nachhaltigkeitspraeferenz",
+      "term_de": "Nachhaltigkeitspräferenz",
+      "term_en": "Sustainability preference (MiFID II)",
+      "aliases_de": [
+        "Nachhaltigkeitspräferenzen",
+        "MiFID II"
+      ],
+      "definition_de": "Die Nachhaltigkeitspräferenz ist deine Angabe bei einer Beratung, wie wichtig dir Nachhaltigkeit bei der Anlage ist.",
+      "why_de": "Seit 2022 muss eine Beraterin danach fragen und darf sie nicht ignorieren, du setzt damit den Rahmen.",
+      "example_de": "Du kannst zum Beispiel verlangen, dass mindestens 50 % deiner Anlage nachhaltig im Sinne der EU-Regeln ist.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anlageberatung",
+        "esg"
+      ]
+    },
+    {
+      "id": "neobroker",
+      "term_de": "Neobroker",
+      "term_en": "Neobroker",
+      "aliases_de": [
+        "Neobrokern",
+        "App-Broker",
+        "Smartphone-Broker"
+      ],
+      "definition_de": "Ein Neobroker ist ein Broker ohne Filialen, den du per App nutzt, mit Sparplänen meist ab 1 €.",
+      "why_de": "Der Einstieg braucht kein Mindestkapital, dafür berät dich niemand, du entscheidest selbst.",
+      "example_de": "Bei vielen Neobrokern startet ein Sparplan ab 1 € im Monat und das Depot kostet 0 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "broker",
+        "sparplan",
+        "depot"
+      ]
+    },
+    {
+      "id": "order",
+      "term_de": "Order",
+      "term_en": "Order",
+      "aliases_de": [
+        "Orders",
+        "Kauforder",
+        "Verkaufsorder",
+        "Kaufauftrag"
+      ],
+      "definition_de": "Eine Order ist dein Auftrag an den Broker, ein Wertpapier zu kaufen oder zu verkaufen.",
+      "why_de": "Jede Order kann Gebühren kosten, ein Sparplan bündelt Käufe und ist oft günstiger als viele Einzelorders.",
+      "example_de": "Eine Order über 500 € kostet je nach Broker 0 € bis 10 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "ordergebuehr",
+        "sparplan",
+        "broker"
+      ]
+    },
+    {
+      "id": "ordergebuehr",
+      "term_de": "Ordergebühr",
+      "term_en": "Order fee",
+      "aliases_de": [
+        "Ordergebühren",
+        "Orderkosten",
+        "Transaktionskosten"
+      ],
+      "definition_de": "Die Ordergebühr ist der Preis, den ein Broker für jeden einzelnen Kauf oder Verkauf verlangt.",
+      "why_de": "Wer oft kauft und verkauft, zahlt oft, deshalb lohnt sich Ruhe im Depot auch bei den Kosten.",
+      "example_de": "Zehn Orders zu je 5 € kosten 50 €, bei 1.000 € Anlage sind das 5 %.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "order",
+        "depotgebuehr"
+      ]
+    },
+    {
+      "id": "portfolio",
+      "term_de": "Portfolio",
+      "term_en": "Portfolio",
+      "aliases_de": [
+        "Portfolios",
+        "Anlageportfolio",
+        "Musterportfolio"
+      ],
+      "definition_de": "Dein Portfolio ist die Summe aller Anlagen, die du besitzt, zum Beispiel ETFs, Aktien und Anleihen.",
+      "why_de": "Nicht das einzelne Produkt zählt, sondern wie dein Portfolio als Ganzes gestreut ist.",
+      "example_de": "Ein Beispielportfolio: 60 % ETFs, 20 % Aktien, 20 % Anleihen, bei 100 € im Monat also 60, 20 und 20 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "streuung",
+        "etf",
+        "depot"
+      ]
+    },
+    {
+      "id": "positionen",
+      "term_de": "Positionen (Holdings)",
+      "term_en": "Holdings",
+      "aliases_de": [
+        "Positionen",
+        "Holdings",
+        "Position",
+        "Einzelpositionen"
+      ],
+      "definition_de": "Positionen sind die einzelnen Wertpapiere, die in einem Fonds oder in deinem Depot enthalten sind.",
+      "why_de": "Die Zahl der Positionen zeigt dir, wie breit ein ETF streut, und die Top-Positionen, wer am meisten Gewicht hat.",
+      "example_de": "Ein Welt-ETF hält rund 1.500 Positionen, dein Sparplan über 100 € verteilt sich also auf alle davon.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "streuung",
+        "etf"
+      ]
+    },
+    {
+      "id": "provision",
+      "term_de": "Provision",
+      "term_en": "Commission",
+      "aliases_de": [
+        "Provisionen",
+        "Vertriebsprovision",
+        "Kickback"
+      ],
+      "definition_de": "Eine Provision ist Geld, das ein Anbieter dafür bekommt, dass er dir ein bestimmtes Produkt verkauft.",
+      "why_de": "Provisionen erklären, warum dir manche Produkte angeboten werden, frag deshalb immer danach.",
+      "example_de": "Bei einem Fonds mit 5 % Ausgabeaufschlag gehen von 1.000 € gleich 50 € an den Vertrieb.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anlageberatung",
+        "affiliate-link"
+      ]
+    },
+    {
+      "id": "rendite",
+      "term_de": "Rendite",
+      "term_en": "Return",
+      "aliases_de": [
+        "Renditen",
+        "Ertrag",
+        "Wertentwicklung"
+      ],
+      "definition_de": "Die Rendite ist der Gewinn oder Verlust deiner Anlage in Prozent des eingesetzten Geldes.",
+      "why_de": "Rendite und Schwankung gehören zusammen, mehr mögliche Rendite bedeutet historisch auch mehr Auf und Ab.",
+      "example_de": "Aus 1.000 € werden bei 4 % Rendite in einem Jahr 1.040 €, Annahme, keine Garantie.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "schwankung",
+        "risiko",
+        "zinsen"
+      ]
+    },
+    {
+      "id": "risiko",
+      "term_de": "Risiko",
+      "term_en": "Risk",
+      "aliases_de": [
+        "Risiken",
+        "Anlagerisiko",
+        "Verlustrisiko"
+      ],
+      "definition_de": "Risiko heißt beim Anlegen, dass der Wert deiner Anlage schwanken und zeitweise unter deinen Einsatz fallen kann.",
+      "why_de": "Risiko lässt sich nicht abschalten, aber durch Streuung und einen langen Anlagehorizont verteilen.",
+      "example_de": "Ein Welt-ETF verlor 2008 rund 40 %, hatte den Verlust aber nach etwa 5 Jahren wieder aufgeholt.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "schwankung",
+        "streuung",
+        "risikoklasse"
+      ]
+    },
+    {
+      "id": "risikoklasse",
+      "term_de": "Risikoklasse (SRI)",
+      "term_en": "Risk class (SRI)",
+      "aliases_de": [
+        "Risikoklasse",
+        "Risikoklassen",
+        "SRI",
+        "Risikoindikator"
+      ],
+      "definition_de": "Die Risikoklasse ist eine Stufe von 1 bis 7 aus dem Basisinformationsblatt, die zeigt, wie stark ein Produkt schwankt.",
+      "why_de": "Die Stufe kommt vom Emittent nach EU-Regeln, nicht von uns, und macht Produkte vergleichbar.",
+      "example_de": "Ein Welt-ETF hat meist Risikoklasse 4 von 7, eine Staatsanleihe 2 von 7.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "kid",
+        "risiko",
+        "schwankung"
+      ]
+    },
+    {
+      "id": "robo-advisor",
+      "term_de": "Robo-Advisor",
+      "term_en": "Robo-advisor",
+      "aliases_de": [
+        "Robo Advisor",
+        "Robo-Advisors",
+        "Robo"
+      ],
+      "definition_de": "Ein Robo-Advisor ist eine digitale Vermögensverwaltung, die dein Geld nach Algorithmus anlegt, Portemonnaie ist dagegen ein geführter Anlageprozess.",
+      "why_de": "Ein Robo-Advisor entscheidet für dich und braucht eine Konzession, bei uns lernst und entscheidest du selbst.",
+      "example_de": "Robo-Advisors verlangen typischerweise 0,5 % bis 1 % im Jahr zusätzlich zu den Kosten der ETFs.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "vermoegensverwaltung",
+        "anlageberatung"
+      ]
+    },
+    {
+      "id": "schwankung",
+      "term_de": "Schwankung (Volatilität)",
+      "term_en": "Volatility",
+      "aliases_de": [
+        "Schwankung",
+        "Schwankungen",
+        "Volatilität",
+        "schwankt",
+        "schwanken"
+      ],
+      "definition_de": "Schwankung ist das Auf und Ab des Kurses, also wie stark sich der Wert einer Anlage kurzfristig ändert.",
+      "why_de": "Über längere Zeiträume haben sich Schwankungen historisch häufig ausgeglichen, die Vergangenheit ist aber keine Garantie.",
+      "example_de": "Ein Welt-ETF schwankt in einem Jahr typischerweise um 10 % bis 20 % nach oben oder unten.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "kurs",
+        "risiko",
+        "anlagehorizont"
+      ]
+    },
+    {
+      "id": "sdg",
+      "term_de": "SDG",
+      "term_en": "SDG",
+      "aliases_de": [
+        "SDGs",
+        "Nachhaltigkeitsziele",
+        "UN-Nachhaltigkeitsziele",
+        "Sustainable Development Goals"
+      ],
+      "definition_de": "Die SDGs sind die 17 Nachhaltigkeitsziele der Vereinten Nationen, an denen du deine Werte ausrichten kannst.",
+      "why_de": "Deine gewählten SDGs werden im Explorer zu einem Filter, den du jederzeit siehst und ändern kannst.",
+      "example_de": "Alle 193 UN-Staaten, also 100 %, haben die 17 Ziele 2015 beschlossen, zum Beispiel Ziel 5, Geschlechtergleichheit.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "wertebasiertes-investieren",
+        "impact"
+      ]
+    },
+    {
+      "id": "sparplan",
+      "term_de": "Sparplan",
+      "term_en": "Savings plan",
+      "aliases_de": [
+        "Sparpläne",
+        "ETF-Sparplan",
+        "Sparplans"
+      ],
+      "definition_de": "Ein Sparplan legt jeden Monat automatisch einen festen Betrag in ein Wertpapier an, das du ausgewählt hast.",
+      "why_de": "Du kaufst regelmäßig ohne nachzudenken, kannst jederzeit ändern oder stoppen und bist nicht auf den perfekten Moment angewiesen.",
+      "example_de": "Ein Sparplan über 50 € im Monat kauft bei vielen Neobrokern ab 1 € und ohne Ordergebühr.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "ausfuehrungstag",
+        "neobroker",
+        "einmalanlage"
+      ]
+    },
+    {
+      "id": "streuung",
+      "term_de": "Streuung (Diversifikation)",
+      "term_en": "Diversification",
+      "aliases_de": [
+        "Streuung",
+        "Diversifikation",
+        "breit gestreut",
+        "gestreut",
+        "diversifiziert"
+      ],
+      "definition_de": "Streuung heißt, dein Geld auf viele Unternehmen, Branchen und Länder zu verteilen statt auf ein einziges.",
+      "why_de": "Fällt ein Unternehmen aus, trägt es nicht dein ganzes Portfolio mit sich.",
+      "example_de": "Mit einem Welt-ETF bist du mit 25 € im Monat an über 1.500 Unternehmen beteiligt.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "risiko",
+        "positionen"
+      ]
+    },
+    {
+      "id": "sustainability-score",
+      "term_de": "Sustainability-Score",
+      "term_en": "Sustainability score",
+      "aliases_de": [
+        "Sustainability Score",
+        "Nachhaltigkeits-Score",
+        "Nachhaltigkeitsscore"
+      ],
+      "definition_de": "Der Sustainability-Score ist die Einstufung eines lizenzierten Datenanbieters, wie nachhaltig ein Produkt oder Unternehmen wirtschaftet.",
+      "why_de": "Wir berechnen keine eigenen Scores, deshalb steht bei jedem Wert, wer ihn vergibt und von wann er ist.",
+      "example_de": "Ein Score von 8,7 von 10 laut Datenanbieter, Stand 08/2026, liegt deutlich über dem Durchschnitt aller bewerteten Produkte.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "esg",
+        "gender-score"
+      ]
+    },
+    {
+      "id": "ter",
+      "term_de": "TER (laufende Kosten)",
+      "term_en": "TER (ongoing charges)",
+      "aliases_de": [
+        "TER",
+        "Gesamtkostenquote",
+        "laufende Kosten",
+        "Kostenquote"
+      ],
+      "definition_de": "Die TER zeigt, wie viel Prozent deiner Anlage pro Jahr als Kosten an den Fonds abgehen.",
+      "why_de": "Kosten wirken jedes Jahr, 0,2 % statt 1,5 % machen über 20 Jahre tausende Euro aus.",
+      "example_de": "Bei 1.000 € und 0,2 % TER zahlst du 2 € im Jahr, bei 1,5 % sind es 15 €.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "depotgebuehr",
+        "kid"
+      ]
+    },
+    {
+      "id": "themen-etf",
+      "term_de": "Themen-ETF",
+      "term_en": "Thematic ETF",
+      "aliases_de": [
+        "Themen-ETFs",
+        "Themenfonds",
+        "thematischer ETF"
+      ],
+      "definition_de": "Ein Themen-ETF bündelt Unternehmen aus einem bestimmten Bereich, zum Beispiel saubere Energie oder Frauen in Führung.",
+      "why_de": "Du lenkst dein Geld gezielt in ein Thema, streust aber weniger breit als mit einem Welt-ETF.",
+      "example_de": "Ein ETF für saubere Energie kostet typischerweise 0,4 % bis 0,65 % im Jahr, ein Welt-ETF 0,2 %.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "welt-etf",
+        "wertebasiertes-investieren"
+      ]
+    },
+    {
+      "id": "vermoegen",
+      "term_de": "Vermögen",
+      "term_en": "Wealth",
+      "aliases_de": [
+        "Vermögensaufbau",
+        "Ersparnisse",
+        "Vermögenswerte"
+      ],
+      "definition_de": "Vermögen ist alles, was du besitzt und was Wert hat, abzüglich deiner Schulden.",
+      "why_de": "Vermögen entsteht nicht nur durch Gehalt, sondern durch das, was du davon behältst und anlegst.",
+      "example_de": "Wer 20 Jahre lang 100 € im Monat anlegt, hat 24.000 € eingezahlt, plus mögliche Erträge.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "investieren",
+        "gender-wealth-gap"
+      ]
+    },
+    {
+      "id": "vermoegensverwaltung",
+      "term_de": "Vermögensverwaltung",
+      "term_en": "Wealth management",
+      "aliases_de": [
+        "Vermögensverwalterin",
+        "Vermögensverwalter",
+        "Wealth Manager",
+        "digitale Vermögensverwaltung"
+      ],
+      "definition_de": "Bei einer Vermögensverwaltung legt ein Anbieter mit Konzession dein Geld nach einem vereinbarten Rahmen für dich an.",
+      "why_de": "Du gibst Arbeit ab und zahlst dafür Gebühren im Jahr, meist ab einer Mindestanlage.",
+      "example_de": "Viele Anbieter starten ab 5.000 € Einmalanlage oder 100 € im Monat und verlangen rund 0,5 % bis 1 % im Jahr.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anlageberatung",
+        "robo-advisor",
+        "einmalanlage"
+      ]
+    },
+    {
+      "id": "welt-etf",
+      "term_de": "Welt-ETF",
+      "term_en": "World ETF",
+      "aliases_de": [
+        "Welt-ETFs",
+        "Weltportfolio",
+        "globaler ETF"
+      ],
+      "definition_de": "Ein Welt-ETF bildet einen Index mit Unternehmen aus vielen Ländern und Branchen ab, oft über 1.500.",
+      "why_de": "Mit einem einzigen Produkt bist du weltweit gestreut, das ist der Grundbaustein vieler Portfolios.",
+      "example_de": "Ein Welt-ETF kostet typischerweise 0,2 % im Jahr, bei 100 € im Monat also rund 1,20 € im ersten Jahr.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "etf",
+        "index",
+        "streuung"
+      ]
+    },
+    {
+      "id": "wertebasiertes-investieren",
+      "term_de": "Wertebasiertes Investieren",
+      "term_en": "Values-based investing",
+      "aliases_de": [
+        "wertebasiert",
+        "nach deinen Werten",
+        "werteorientiert"
+      ],
+      "definition_de": "Wertebasiertes Investieren heißt, du lenkst dein Geld gezielt dorthin, was du stärken willst.",
+      "why_de": "Dein Geld arbeitet immer für irgendetwas, so entscheidest du, wofür.",
+      "example_de": "Wer 50 € im Monat in einen ETF für erneuerbare Energie legt, finanziert damit rund 100 Unternehmen aus Wind und Solar.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "divesting",
+        "themen-etf",
+        "sdg"
+      ]
+    },
+    {
+      "id": "zinsen",
+      "term_de": "Zinsen",
+      "term_en": "Interest",
+      "aliases_de": [
+        "Zins",
+        "Zinssatz",
+        "Zinseszins"
+      ],
+      "definition_de": "Zinsen sind das Geld, das du dafür bekommst, dass du jemandem Geld leihst, etwa über eine Anleihe.",
+      "why_de": "Zinsen auf Zinsen lassen dein Geld über Jahre schneller wachsen, je früher du beginnst, desto stärker.",
+      "example_de": "1.000 € mit 3 % Zinsen bringen 30 € im ersten Jahr und mit Zinseszins rund 344 € nach 10 Jahren.",
+      "definition_en": "",
+      "why_en": "",
+      "example_en": "",
+      "relatedIds": [
+        "anleihe",
+        "rendite",
+        "inflation"
+      ]
+    }
+  ]
+}

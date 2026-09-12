@@ -44,8 +44,9 @@ const DEFICIT = [
 const JARGON_ROBO = [/robo[- ]?advisor/i, "Robo-Advisor (glossary only)"];
 const PROMISES = [
   // third element: "allowed" predicate — a negated guarantee ("keine Garantie") is fine
-  [/\bgarantier|\bgarantie\b/i, "guarantee", (s) => /\bkeine?\s+garantie/i.test(s)],
-  [/\bsichere?\s+rendite|\brendite\s+von\s+\d|\d\s?%\s+(rendite|gewinn)|\bgewinn\s+garantiert/i, "return promise"],
+  [/\bgarantier|\bgarantie\b/i, "guarantee", (s) => /\b(keine?|ohne)\s+garantie/i.test(s)],
+  // a return figure is allowed only when marked as an assumption ("Annahme, keine Garantie")
+  [/\bsichere?\s+rendite|\brendite\s+von\s+\d|\d\s?%\s+(rendite|gewinn)|\bgewinn\s+garantiert/i, "return promise", (s) => /\bannahme\b/i.test(s) && /\b(keine?|ohne)\s+garantie/i.test(s)],
   [/\b(die|der|das|am)\s+beste[nrs]?\b|\beinzigartig|\brevolutionär|\bperfekt\b|\bbeste[nrs]?\s+(wahl|weg|lösung)\b/i, "superlative"]
 ];
 const PRODUCT_FAMILY = [
