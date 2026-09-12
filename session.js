@@ -84,8 +84,10 @@
     return STAGES.find((st) => typeof route === "string" && route.startsWith(st.prefix)) || STAGES[0];
   }
 
+  /* strings: locales/*.json via locale.js (task 04) */
   function t(key) {
-    return (window.PMI18n && typeof window.PMI18n.t === "function") ? window.PMI18n.t(key) : null;
+    const Lc = window.pmLocale;
+    return (Lc && Lc.has(key)) ? Lc.t(key) : null;
   }
 
   window.pmSession = { KEY, SCHEMA_VERSION, read, write, isValid, create, reset, stageOf, FIRST_SCREEN };
@@ -148,6 +150,6 @@
     window.location.href = stageOf(FIRST_SCREEN).page;
   });
 
-  renderBanner();
-  document.addEventListener("pm:langchange", renderBanner);
+  if (window.pmLocale) window.pmLocale.ready.then(renderBanner); else renderBanner();
+  document.addEventListener("pm:localeready", renderBanner);
 })();

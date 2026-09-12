@@ -1,0 +1,160 @@
+{
+  "common": {
+    "disclaimer": "",
+    "back": "",
+    "continue": "",
+    "remove": "",
+    "question": "",
+    "stages": {
+      "quiz": "",
+      "summary": "",
+      "explore": "",
+      "portfolio": ""
+    }
+  },
+  "s0": {
+    "sub": "",
+    "cta": "",
+    "check1": "",
+    "check2": "",
+    "check3": "",
+    "stages_label": "",
+    "stage1": "",
+    "stage2": "",
+    "stage3": "",
+    "stage4": "",
+    "resume": "",
+    "resume_continue": "",
+    "resume_restart": "",
+    "restart_confirm": ""
+  },
+  "quiz": {
+    "values": {
+      "intro": "",
+      "question": "",
+      "help": "",
+      "sdg": ""
+    },
+    "mirror": {
+      "intro": "",
+      "title": "",
+      "body": ""
+    },
+    "situation": {
+      "horizon": {
+        "question": "",
+        "options": {
+          "under_3y": "",
+          "3_10y": "",
+          "over_10y": "",
+          "open": ""
+        }
+      }
+    },
+    "result": {
+      "eyebrow": "",
+      "title": "",
+      "lede": "",
+      "cta": ""
+    }
+  },
+  "explore": {
+    "filter": {
+      "eyebrow": "",
+      "lede": "",
+      "categories": ""
+    },
+    "search_placeholder": "",
+    "results": {
+      "title": "",
+      "count_one": "",
+      "count_other": "",
+      "empty": "",
+      "load_error": ""
+    },
+    "sort": {
+      "label": "",
+      "name": "",
+      "cost": ""
+    },
+    "card": {
+      "ter": "",
+      "add": ""
+    },
+    "type": {
+      "ETF": "",
+      "Stock": "",
+      "Fund": ""
+    },
+    "category": {
+      "ETF": "",
+      "Stock": "",
+      "Fund": ""
+    },
+    "basket": {
+      "eyebrow": "",
+      "empty_title": "",
+      "empty_sub": "",
+      "title": "",
+      "sub": ""
+    },
+    "panel": {
+      "title": "",
+      "count_one": "",
+      "count_other": "",
+      "next": ""
+    }
+  },
+  "portfolio": {
+    "eyebrow": "",
+    "title": "",
+    "sub": "",
+    "composition": "",
+    "invested": "",
+    "note_strong": "",
+    "note_soft": "",
+    "empty": {
+      "title": "",
+      "sub": "",
+      "cta": ""
+    },
+    "type_label": {
+      "ETF": "",
+      "Stock": "",
+      "Fund": ""
+    },
+    "type_count": {
+      "ETF_one": "",
+      "ETF_other": "",
+      "Stock_one": "",
+      "Stock_other": "",
+      "Fund_one": "",
+      "Fund_other": ""
+    }
+  },
+  "product": {
+    "back": "",
+    "facts_title": "",
+    "facts": {
+      "isin": "",
+      "type": "",
+      "ter": "",
+      "aum": "",
+      "distribution": "",
+      "inception": "",
+      "region": "",
+      "currency": "",
+      "as_of": ""
+    },
+    "distribution": {
+      "Accumulating": "",
+      "Distributing": ""
+    },
+    "holdings_title": "",
+    "related_title": "",
+    "not_found": "",
+    "not_found_sub": "",
+    "load_error": "",
+    "na": ""
+  }
+}

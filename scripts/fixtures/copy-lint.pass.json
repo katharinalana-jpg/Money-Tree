@@ -1,0 +1,25 @@
+{
+  "common": {
+    "disclaimer": "Die Informationen stellen keine Anlageberatung, keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur Vornahme bestimmter Investitionen dar."
+  },
+  "quiz": {
+    "phase": {
+      "question": "Wo stehst du gerade?",
+      "help": "Wähle bis zu zwei. Es gibt keine falsche Antwort.",
+      "feedback": "Du bist in guter Gesellschaft. Und dein Geld kann trotzdem für dich UND deine Werte arbeiten."
+    },
+    "impact": {
+      "body": "Die acht Falltüren von vorhin zeigen, wo das System Frauen Geld kostet."
+    }
+  },
+  "explore": {
+    "empty": "Zieh Produkte hierher oder tipp auf „+“. Dein Portfolio baut sich unten auf.",
+    "mix": "Dein Mix: 60 % ETFs · 20 % Aktien · 20 % Anleihen."
+  },
+  "glossary": {
+    "robo": {
+      "term_de": "Robo-Advisor",
+      "definition_de": "Ein Robo-Advisor legt Geld automatisiert nach einem Algorithmus an."
+    }
+  }
+}

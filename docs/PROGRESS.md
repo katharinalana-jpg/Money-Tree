@@ -156,6 +156,26 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 04 · i18n and copy lint (10.09.2026)
+
+Decisions taken first (CLAUDE.md Decisions): conflict 14 `locales/*.json` + `locale.js`, `i18n.js` hooks kept · conflict 3 product family on product keys only · conflict 15 zero-dependency Node scripts and `node --test`.
+
+Done
+- `locales/de.json` (German source, 106 keys, screen-based dotted keys: `common.*`, `s0.*`, `quiz.*`, `explore.*`, `portfolio.*`, `product.*`) and `locales/en.json` (identical structure, all values empty → German fallback). `scripts/locales-sync.mjs` regenerates en.json and has a `--check` mode.
+- `locale.js` (shared loader): fetches de.json plus the active language, reuses the `data-i18n / -html / -ph / -aria` hooks after `i18n.js`, `t(key, params)` with `{name}` placeholders, `tn(key, n)` plural (`_one` / `_other`), `fmtNumber` / `fmtCurrency` / `fmtPercent` via `Intl.NumberFormat("de-AT")` (`1.500,00 €`, `0,20 %`), reloads on `pm:langchange` and fires `pm:localeready`. Missing key → console warning, key shown.
+- `quiz.js`, `explore.js`, `portfolio.js`, `product.js`, `session.js`: all inline EN/DE dictionaries removed; copy by key only; TER and percentages through `fmtPercent`; pages render after `pmLocale.ready`. S0 keys moved from `i18n.js` to `locales/de.json` (`index.html` loads `locale.js`).
+- `scripts/copy-lint.mjs` (zero dependencies, exported `lint()` + CLI, exit 1 on findings): deficit words, jargon (Robo-Advisor outside `glossary.*`), guarantees (negated "keine Garantie" allowed), return promises, superlatives, product family on product keys, sentence length 15 / 20 (`quiz.impact.*`, `glossary.*`) with disclaimer keys exempt. `scripts/copy-lint.test.mjs` with fixtures `scripts/fixtures/copy-lint.pass.json` and `copy-lint.fail.json`.
+- Cache: `i18n.js?v=34` on all pages, `locale.js?v=1`, `session.js?v=3`, quiz.js v7, explore.js v9, portfolio.js v5, product.js v8.
+
+Verification
+- `node scripts/copy-lint.mjs` on `locales/de.json`: 0 findings, exit 0. On the fail fixture: 9 findings (every rule at least once), exit 1.
+- `node --test scripts/*.test.mjs`: 5 tests, 5 pass.
+- `node scripts/locales-sync.mjs --check`: in sync. Every literal key used in the flow scripts exists in de.json (dynamic keys checked by prefix).
+- `node --check` on all scripts: pass. Not run in a browser.
+
+Copy typo fixes
+- None (interim strings moved verbatim).
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

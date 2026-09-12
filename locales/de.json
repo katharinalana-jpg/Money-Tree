@@ -1,0 +1,160 @@
+{
+  "common": {
+    "disclaimer": "Die Informationen stellen keine Anlageberatung, keine sonstige Empfehlung und kein Angebot zum Kauf von Wertpapieren oder zur Vornahme bestimmter Investitionen dar.",
+    "back": "Zurück",
+    "continue": "Weiter",
+    "remove": "Entfernen",
+    "question": "Frage",
+    "stages": {
+      "quiz": "Quiz",
+      "summary": "Zusammenfassung",
+      "explore": "Explorer",
+      "portfolio": "Portfolio"
+    }
+  },
+  "s0": {
+    "sub": "In 15 Minuten zu deinem ersten Portfolio – nach deinen Werten. Kein Vorwissen, kein Mindestkapital, kein Jargon.",
+    "cta": "Los geht’s",
+    "check1": "Jeder Fachbegriff wird erklärt",
+    "check2": "Du entscheidest, wir begleiten",
+    "check3": "Keine Anlageberatung, kein Verkauf",
+    "stages_label": "Die vier Etappen",
+    "stage1": "Quiz",
+    "stage2": "Zusammenfassung",
+    "stage3": "Explorer",
+    "stage4": "Portfolio",
+    "resume": "Du warst bei Schritt {step}.",
+    "resume_continue": "Weitermachen",
+    "resume_restart": "Neu starten",
+    "restart_confirm": "Deine bisherigen Antworten werden gelöscht."
+  },
+  "quiz": {
+    "values": {
+      "intro": "Das sind die 17 Ziele der Vereinten Nationen für eine bessere Welt.",
+      "question": "Was ist dir persönlich wichtig?",
+      "help": "Wähle 1 bis 5.",
+      "sdg": "SDG {id} · {title}"
+    },
+    "mirror": {
+      "intro": "Gut.",
+      "title": "Das ist dir wichtig.",
+      "body": "Was davon wirklich ins Portfolio kommt, entscheidest du später. Frei."
+    },
+    "situation": {
+      "horizon": {
+        "question": "Wann möchtest du voraussichtlich auf das Geld zugreifen?",
+        "options": {
+          "under_3y": "in unter 3 Jahren",
+          "3_10y": "in 3–10 Jahren",
+          "over_10y": "in mehr als 10 Jahren",
+          "open": "Das ist offen"
+        }
+      }
+    },
+    "result": {
+      "eyebrow": "Gespeichert",
+      "title": "Deine Antworten sind gespeichert.",
+      "lede": "Weiter geht es mit der Zusammenfassung und dem Explorer.",
+      "cta": "Zur Zusammenfassung"
+    }
+  },
+  "explore": {
+    "filter": {
+      "eyebrow": "Katalog",
+      "lede": "Filter, die du selbst setzt.",
+      "categories": "Kategorien"
+    },
+    "search_placeholder": "Suche nach Name, ISIN oder Thema…",
+    "results": {
+      "title": "ETFs, Aktien & Fonds",
+      "count_one": "{n} Ergebnis",
+      "count_other": "{n} Ergebnisse",
+      "empty": "Für diese Kombination gibt es in unserer Liste aktuell keine Produkte. Nimm einen Filter heraus oder suche nach einem Thema.",
+      "load_error": "Der Datensatz konnte nicht geladen werden. Öffne die Seite über einen Webserver oder die veröffentlichte Seite."
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "name": "Sortieren: Name A–Z",
+      "cost": "Sortieren: Kosten aufsteigend"
+    },
+    "card": {
+      "ter": "TER",
+      "add": "In mein Portfolio"
+    },
+    "type": {
+      "ETF": "ETF",
+      "Stock": "Aktie",
+      "Fund": "Fonds"
+    },
+    "category": {
+      "ETF": "ETFs",
+      "Stock": "Aktien",
+      "Fund": "Fonds"
+    },
+    "basket": {
+      "eyebrow": "Dein Portfolio",
+      "empty_title": "Zieh Produkte hierher oder tipp auf „+“.",
+      "empty_sub": "Dein Portfolio baut sich unten auf.",
+      "title": "Dein Portfolio",
+      "sub": "Zieh eine Karte hierher oder nutze das + am Produkt."
+    },
+    "panel": {
+      "title": "Dein Portfolio",
+      "count_one": "{n} Produkt",
+      "count_other": "{n} Produkte",
+      "next": "Zum Portfolio"
+    }
+  },
+  "portfolio": {
+    "eyebrow": "Dein Portfolio",
+    "title": "Dein <em class=\"serif\">Portfolio</em>.",
+    "sub": "Das hast du gebaut. Du entscheidest, wir begleiten.",
+    "composition": "Zusammensetzung",
+    "invested": "deines Portfolios",
+    "note_strong": "Du entscheidest.",
+    "note_soft": "Wir begleiten.",
+    "empty": {
+      "title": "Dein Portfolio ist leer.",
+      "sub": "Bau es zuerst im Explorer auf.",
+      "cta": "Zum Explorer"
+    },
+    "type_label": {
+      "ETF": "ETFs",
+      "Stock": "Aktien",
+      "Fund": "Fonds"
+    },
+    "type_count": {
+      "ETF_one": "{n} ETF",
+      "ETF_other": "{n} ETFs",
+      "Stock_one": "{n} Einzeltitel",
+      "Stock_other": "{n} Einzeltitel",
+      "Fund_one": "{n} Fonds",
+      "Fund_other": "{n} Fonds"
+    }
+  },
+  "product": {
+    "back": "Zurück zum Explorer",
+    "facts_title": "Kennzahlen",
+    "facts": {
+      "isin": "ISIN",
+      "type": "Typ",
+      "ter": "Laufende Kosten (TER)",
+      "aum": "Fondsvolumen (AUM)",
+      "distribution": "Ertragsverwendung",
+      "inception": "Auflage",
+      "region": "Region",
+      "currency": "Währung",
+      "as_of": "Stand"
+    },
+    "distribution": {
+      "Accumulating": "Thesaurierend",
+      "Distributing": "Ausschüttend"
+    },
+    "holdings_title": "Größte Positionen",
+    "related_title": "Mehr aus diesem Thema",
+    "not_found": "Produkt nicht gefunden.",
+    "not_found_sub": "Wir konnten kein Wertpapier mit dieser ID finden. Geh zurück zum Explorer, um die Liste zu durchstöbern.",
+    "load_error": "Der Datensatz konnte nicht geladen werden. Öffne die Seite über einen Webserver oder die veröffentlichte Seite.",
+    "na": "k. A."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "deficit": {
+    "a": "Du hast noch nicht investiert.",
+    "b": "Du musst jetzt anfangen."
+  },
+  "jargon": {
+    "a": "Unser Robo-Advisor baut dein Depot."
+  },
+  "promise": {
+    "a": "Wir garantieren dir Wachstum.",
+    "b": "Das ist die beste Wahl für Anlegerinnen."
+  },
+  "explore": {
+    "card": {
+      "a": "Dieser ETF ist genau richtig für dich."
+    }
+  },
+  "portfolio": {
+    "b": "Wir empfehlen 60 % ETFs."
+  },
+  "length": {
+    "a": "Dieser Satz ist absichtlich viel zu lang, weil er mehr als fünfzehn Wörter enthält und damit die Regel verletzt."
+  },
+  "quiz": {
+    "impact": {
+      "long": "Dieser Satz ist absichtlich noch länger, weil er für den Impact-Screen mehr als zwanzig Wörter enthalten muss, damit die längere Grenze ebenfalls geprüft wird."
+    }
+  }
+}

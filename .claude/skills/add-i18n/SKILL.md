@@ -1,17 +1,34 @@
 ---
 name: add-i18n
-description: Add or update EN/DE translation keys in i18n.js for the Money Tree
-  / Portemonnaie site. Use when the user adds user-facing copy, asks to
+description: Add or update EN/DE strings for the Money Tree / Portemonnaie site —
+  locales/de.json + en.json for Guidance Flow pages and S0, i18n.js for the
+  pre-registration pages. Use when the user adds user-facing copy, asks to
   translate text, mentions i18n / the EN-DE toggle / German, or when a new
-  data-i18n key is needed. Keeps the en and de dictionaries in sync.
-tools: Read, Grep, Edit
+  data-i18n key is needed. Runs the copy lint and keeps de/en in sync.
+tools: Read, Grep, Edit, Bash
 ---
 
 # Add i18n
 
-The site is bilingual EN/DE via `i18n.js` — a dependency-free IIFE holding one
-dictionary: `const I18N = { en: { ... }, de: { ... } }`. Language is stored in
-`localStorage` under `pm_lang` and applied at end of `<body>`.
+Two string stores (decision 10.09.2026 on conflict 14):
+
+- **Guidance Flow pages and S0** (quiz, summary, explore, portfolio, product,
+  the S0 hero block): `locales/de.json` is the source (PRD copy verbatim),
+  `locales/en.json` has identical keys with empty values (German fallback) until
+  English content exists. `locale.js` loads them, applies the same `data-i18n*`
+  hooks, and exposes `pmLocale.t(key, params)`, `tn(key, n)` (`key_one` /
+  `key_other`), `fmtNumber`, `fmtCurrency`, `fmtPercent` (Intl, `de-AT`).
+  Pages render on the `pm:localeready` event. **No copy in flow JS.**
+  After every change: `node scripts/locales-sync.mjs` (regenerates en.json
+  structure), `node scripts/copy-lint.mjs` (must exit 0), `node --test scripts/*.test.mjs`.
+  Keys are screen-based and dotted: `quiz.traps.card.berufseinstieg.title`.
+  Placeholders use `{name}`.
+
+- **Pre-registration pages** (index apart from S0, mission, library, collabs,
+  legal): `i18n.js` — a dependency-free IIFE holding one dictionary:
+  `const I18N = { en: { ... }, de: { ... } }`. Language is stored in
+  `localStorage` under `pm_lang` and applied at end of `<body>`. The rules
+  below apply to this store.
 
 ## Markup hooks
 | Attribute | Effect |

@@ -67,7 +67,7 @@ Flow rules (PRD 2.2, 5.6):
 - Du, singular. UI sentences max 15 words; S6 and glossary definitions max 20.
 - Numbers and currency by locale (`de-AT`: 1.500,00 €).
 - Every finance term renders as GlossaryTerm on its first occurrence per screen (auto marker, manual override). Missing entry: plain text plus dev warning, never an empty popover.
-- Where strings live: see conflict 14.
+- Where strings live: `locales/de.json` for the flow (decision on conflict 14); lint with `node scripts/copy-lint.mjs` after every copy change.
 
 ## Guidance Flow (PRD 4 to 7, replaces the former 5-step flow)
 Journey: Quiz → Zusammenfassung → Explorer → Portfolio → Weg wählen. Under 15 minutes, every screen teaches before it asks.
@@ -148,7 +148,7 @@ Assets are referenced with a `?v=N` cache-busting query; bump it after editing a
 
 ## Key Rules
 - Vanilla HTML/CSS/JS only for the shipped site — no npm, no framework (Phase 1). (`scripts/*.mjs` are local Node maintenance tools, not part of the deployed site.) Dev tooling for PRD 10 checks: see conflict 15.
-- Bilingual **EN/DE** via `i18n.js` (`data-i18n` / `-html` / `-ph` / `-aria` hooks + the `pm:langchange` event). Brand slogans / display headlines stay English; explanatory copy & UI controls are translated. Page-specific copy (quiz/explore/product) lives in that page's own JS i18n block, not in `i18n.js`. See the `add-i18n` skill. For the Guidance Flow this may change: see conflict 14.
+- Bilingual **EN/DE**. Landing pages: `i18n.js` (`data-i18n` / `-html` / `-ph` / `-aria` hooks + the `pm:langchange` event), brand slogans stay English, explanatory copy is translated. Guidance Flow pages and S0: `locales/de.json` (source, verbatim PRD copy) and `locales/en.json` (same keys, empty until EN content exists), loaded by `locale.js`; no copy in flow JS. Copy lint: `node scripts/copy-lint.mjs`; structure check: `node scripts/locales-sync.mjs --check`; tests: `node --test scripts/*.test.mjs`. See the `add-i18n` skill.
 - Disclaimer: PRD 2.4 text and placement (see Regulatory Boundary).
 - Displaying and sorting **specific named securities** by factual data / provider score is allowed (educational), when the user chooses the sort. Prohibited: personalized **buy/sell/hold** recommendations for a specific security. No recommendation field exists in the data, by design.
 - Anonymous flow: no login, no account, no payment in Phase 1.
@@ -182,11 +182,14 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 - 10.09.2026: Conflict 19: Four Capitals stays a content idea only (landing "A new definition of growth" section, this file). Removed from data and code; never an evaluation of products.
 - 10.09.2026: Conflict 18: repo token names stay (`--ink-soft` remains Forest, `--ink-mute`, `--bg-light`, `--bg-card` unchanged). PRD 5.6 tokens added alongside in `styles.css :root`: `--bg-warm`, `--ink-caption` (PRD "Ink Soft" #4A5C52), `--forest-deep`, `--sage-deep`, `--sage-soft`, `--cream-soft`, `--font-sans/serif/script` (aliases of `--ff*`). `--marigold` stays defined for the landing only, never in flow UI.
 - 10.09.2026: Scope of PRD 5.6 surface rules (no shadows, gradients, #fff): flow pages only — quiz, summary, explore, portfolio, product (`body.flow-body`) and the S0 hero block. The pre-registration pages keep their current shadows and gradients (open issue O15).
+- 10.09.2026: Conflict 14: Guidance Flow strings (incl. S0) live in `locales/de.json` (source) and `locales/en.json` (identical keys, empty values fall back to German; `scripts/locales-sync.mjs` keeps them in sync). `locale.js` loads them, reuses the `data-i18n*` hooks, offers `pmLocale.t / tn / fmtNumber / fmtCurrency / fmtPercent` (Intl, de-AT) and fires `pm:localeready`. The landing keeps `i18n.js` for its own copy. No copy in flow JS.
+- 10.09.2026: Conflict 3: the product / weight word family (empfehlen, raten, solltest, passt zu dir, optimal, ideal für dich, für dich, passend) is linted on product related keys only (`explore.*`, `portfolio.*`, `summary.products.*`, `quiz.portfolio.*`). Deficit words, jargon, promises, guarantees, superlatives and sentence length apply to every key; legal disclaimer keys are exempt from the length rule.
+- 10.09.2026: Conflict 15: option A, zero-dependency Node scripts and `node --test` (`scripts/*.test.mjs`). No npm, no package.json. E2E and accessibility audits are manual checks listed in PROGRESS.md.
 
 ## Open PRD conflicts (ask before touching)
 1. Decided 10.09.2026 (S11 out of scope), see Decisions. Still open: no S1 exists; section 4 says twelve screens, eleven are listed. Quiz has 6 sub steps (5.1) but S4 has two views.
 2. Score shape: 7.2 flat `scores` plus `scoreSource` vs 7.7 per score `{ value, source, method, asOf }` plus a ScoreProvider adapter "ManualEET". Source of the six radar axes unclear.
-3. Lint vs final copy: "fehlt" in the Teilzeit card (8.2). "für dich" in S3 feedback and S8 phase block, while S5 lint forbids it. Proposal: apply the "für dich / passend" rule only to product related keys.
+3. Decided 10.09.2026 (product related keys only), see Decisions. Still open: "fehlt" in the Teilzeit card (8.2) will fail the deficit rule; needs a wording decision or a per-key exemption before task 09.
 4. Menopause card (8.2) contains the internal note "Euroraum-Zahl: noch offen". Must not ship.
 5. English lines in German UI: S8 "I AM READY.", "Now Let´s go build it yourslef", "No shame in not knowing"; S11 "Set it and forget it", "Minimal mental load". PRD 2.3: product copy German, taglines English.
 6. Figures: part time 27,9 % (S3) vs 27,8 % (8.2); share text "10 Minuten" vs 15; S2 headline figure 105 Bio. $ (Oxfam) or 100.000 € not chosen.
@@ -197,8 +200,8 @@ Next.js · Tailwind CSS · Supabase · Stripe · Vercel · Anthropic Claude API
 11. Glossary: A.3 says 48 required terms, 8.1 lists 51.
 12. Analytics tool not chosen (Plausible or Matomo, EU self hosted).
 13. Legal review, do not edit: S4b "wäre am Konto gut aufgehoben", S8 "Genau hier lohnt sich Vermögensaufbau am Meisten".
-14. i18n: PRD 5.5 wants `locales/de.json` (source) and `en.json` (empty), while the repo uses `i18n.js` plus page JS blocks with filled EN. Proposal: keep the `i18n.js` hooks, load Guidance Flow strings from `locales/*.json`.
-15. PRD 10 asks for schema validation in CI, E2E test, PDF snapshot test and an accessibility audit; the repo rule is no npm. Option A: zero dependency Node scripts and `node --test` only, no E2E. Option B: dev only packages (e.g. ajv, Playwright, axe) that are never shipped; check the Vercel deploy stays unaffected.
+14. Decided 10.09.2026 (`locales/*.json` + `locale.js`, `i18n.js` hooks kept), see Decisions.
+15. Decided 10.09.2026 (option A, zero dependencies), see Decisions.
 16. Decided 10.09.2026 (option B, one page per stage), see Decisions.
 17. Partly decided 10.09.2026 (`product.html` stays for now), see Decisions. Still open: which `securities.json` fields move into `products.json` and the `Fund` type (PRD knows etf, stock, bond).
 18. Decided 10.09.2026 (repo names kept, PRD tokens added), see Decisions.
