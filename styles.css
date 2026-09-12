@@ -1604,3 +1604,32 @@ input { font: inherit; }
 .flow-body :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--forest); outline-offset: 2px;
 }
+
+/* ProgressBar (PRD 5.1): four stages, active highlighted, sub fill,
+   reached stages clickable, unreached disabled. Tokens only. */
+.pm-progress {
+  position: sticky; top: var(--nav-h); z-index: 20;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.pm-progress__list {
+  display: flex; gap: .5rem; list-style: none; margin: 0 auto; padding: .55rem 1rem .5rem;
+  width: min(1180px, 100%);
+}
+.pm-progress__item { flex: 1; min-width: 0; }
+.pm-progress__stage {
+  display: flex; flex-direction: column; gap: .35rem; width: 100%; min-height: 44px;
+  padding: .3rem .4rem; border-radius: var(--radius-sm); text-align: left;
+  font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute);
+}
+.pm-progress__stage:not([disabled]):hover { background: var(--sage-soft); color: var(--forest); }
+.pm-progress__stage[disabled] { cursor: default; opacity: .6; }
+.pm-progress__item.is-active .pm-progress__stage { color: var(--forest); font-weight: 600; }
+.pm-progress__item.is-done .pm-progress__stage { color: var(--forest); }
+.pm-progress__sub { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink-mute); }
+.pm-progress__track { display: block; height: 4px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.pm-progress__fill { display: block; height: 100%; background: var(--forest); transition: width .45s cubic-bezier(.4, 0, .2, 1); }
+@media (prefers-reduced-motion: reduce) { .pm-progress__fill { transition: none; } }
+@media (max-width: 560px) {
+  .pm-progress__stage { font-size: .68rem; padding: .3rem .2rem; }
+  .pm-progress__sub { display: none; }
+}

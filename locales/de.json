@@ -165,5 +165,9 @@
     "score_source": "laut {source}, Stand {asOf}",
     "score_sustainability": "Sustainability-Score",
     "score_gender": "Gender-Score"
+  },
+  "progress": {
+    "label": "Fortschritt",
+    "step_of": "Schritt {n} von {total}"
   }
 }

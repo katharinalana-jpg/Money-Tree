@@ -111,7 +111,9 @@ money-tree/
 ├── index.html                ← Home: pre-registration landing page (mirrors main) with signup form + cash-vs-investing calculator
 ├── calculator.js / calculator.css            ← calculator logic + styles (used by index; engine in calc-engine.mjs / calc-config.mjs)
 ├── library.html                              ← Library coming-soon page
-├── session.js                ← shared pm_session helper (PRD 7.1) + S0 wiring
+├── session.js                ← pm_session factory + singleton (PRD 5.4 / 7.1) + S0 wiring; testable via require
+├── track.js                  ← track() with PRD 9 event whitelist, hashed session id, no-op transport
+├── progress.js               ← ProgressBar (PRD 5.1) for <nav id="pmProgress" data-stage>
 ├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
 ├── summary.html                              ← S8 (empty until task 11)
 ├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)

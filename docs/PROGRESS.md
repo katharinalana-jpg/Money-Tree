@@ -197,6 +197,26 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 06 · Session state, progress bar, tracking (12.09.2026)
+
+Decision taken first: conflict 9, `referrer` added to the 7.1 schema.
+
+Done
+- `session.js` rewritten as a factory (`createSession({ storage, now })`, `window.pmSession` in the browser): `create` (schema 7.1 incl. `referrer`), `current` (valid only: `schemaVersion` = 1 and `startedAt` within 30 days), `update` (deep merge, saved immediately = every input), `setScreen`, explicit `reset`, `pageFor / stageOf / quizStepIndex / reachedIndex`, `onChange`. S0 wiring: start creates a fresh session (`session_start`), continue resumes to `lastScreen` (`session_resume`), restart confirms and resets (`session_reset`); `?ref=` is stored as `referrer` and fires `referral_landing`.
+- `track.js` (`createTracker`, `window.pmTrack`): PRD 9 event names with per-event payload whitelist; every event carries an FNV-1a hash of the session id, screen, locale, timestamp; e-mail-shaped values and unknown keys are dropped, strings capped at 64 chars; no-op buffer transport, `setTransport(fn)` for Plausible or Matomo later; console output only on localhost or `pm_debug=1`.
+- `progress.js` (PRD 5.1): shared ProgressBar on quiz, summary, explore, portfolio, product (`<nav id="pmProgress" data-stage>`); four stages, active highlighted, sub fill (quiz 6 sub steps), reached stages are buttons that navigate back, unreached disabled; re-renders on locale change and on every session write without reload; keyboard reachable (native buttons). Old `flowsteps` strips and the quiz-only bar removed from markup, CSS and scripts.
+- `quiz.js`: every answer persists into `pm_session` at once; screen route per sub step via `history.replaceState` (PRD path on clean URLs, hash on plain files) with `screen_view`; `situation_answered`, `values_selected` events; resume lands on the last quiz screen; back only moves the index.
+- `explore.js` / `portfolio.js`: `pm_basket` gone; the portfolio is `pm_session.portfolio.items [{ productId, weight }]` with even 5 % weights from `derive.js` until task 14; portfolio page renders shares by weight; events `explore_filter_change`, `product_open`, `product_add`, `product_remove`, `screen_view`.
+- Locale keys `progress.*`; en.json synced; `styles.css` ProgressBar rules (tokens only); cache bumps (`styles.css?v=27`, `session.js?v=4`, quiz.js v8, explore.js v11, portfolio.js v7, explore.css v8, quiz.css v10, `track.js`, `derive.js`, `progress.js` v1).
+
+Verification
+- `node --test scripts/*.test.mjs`: 24 tests, 24 pass — incl. session expiry (valid on day 30, discarded after), schema mismatch (invalid and replaced on create), back navigation keeps values, explicit reset, reached index; tracker event whitelist, hashed session id, payload hygiene, transport swap.
+- PRD 5.1 acceptance: bar present on all flow pages (markup check), updates without reload (session `onChange`), keyboard reachable (buttons). Not run in a browser.
+- Copy lint 0 findings, en.json in sync, `node --check` pass, no `pm_basket` / `flowsteps` left in shipped code.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

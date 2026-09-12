@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
-  <link rel="stylesheet" href="styles.css?v=26" />
-  <link rel="stylesheet" href="explore.css?v=7" />
-  <link rel="stylesheet" href="quiz.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=27" />
+  <link rel="stylesheet" href="explore.css?v=8" />
+  <link rel="stylesheet" href="quiz.css?v=10" />
 </head>
 <body class="flow-body">
 
@@ -49,15 +49,10 @@
     </div>
   </header>
 
-  <main class="quiz-main" id="top">
-    <!-- progress -->
-    <div class="quiz-progress" aria-hidden="false">
-      <div class="quiz-progress__track">
-        <div class="quiz-progress__bar"></div>
-      </div>
-      <span class="quiz-progress__label" aria-live="polite"></span>
-    </div>
 
+  <nav class="pm-progress" id="pmProgress" data-stage="quiz" aria-label="Fortschritt"></nav>
+
+  <main class="quiz-main" id="top">
     <!-- the engine renders one screen at a time into here -->
     <div class="quiz-stage">
       <div id="quizStage">
@@ -73,7 +68,10 @@
   <script src="i18n.js?v=34"></script>
   <script src="locale.js?v=1"></script>
   <script src="script.js?v=8"></script>
-  <script src="session.js?v=3"></script>
-  <script src="quiz.js?v=7"></script>
+  <script src="session.js?v=4"></script>
+  <script src="track.js?v=1"></script>
+  <script src="derive.js?v=1"></script>
+  <script src="progress.js?v=1"></script>
+  <script src="quiz.js?v=8"></script>
 </body>
 </html>

@@ -165,5 +165,9 @@
     "score_source": "",
     "score_sustainability": "",
     "score_gender": ""
+  },
+  "progress": {
+    "label": "",
+    "step_of": ""
   }
 }

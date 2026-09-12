@@ -4,10 +4,11 @@
    renders: type filter + search, a sortable list of product
    cards, and the portfolio panel (right).
 
-   Strings come from locales/*.json through locale.js (task 04);
-   numbers are formatted with pmLocale (de-AT). Default sort is
+   Strings from locales/*.json (locale.js); the portfolio lives in
+   pm_session.portfolio.items [{ productId, weight }] (PRD 7.1),
+   weights distributed evenly in 5 % steps (derive.js) until the
+   weighting UI of task 14; events via track.js. Default sort is
    name A to Z; the user chooses any other sort (PRD 2.4).
-   Weights and the PRD product drawer come with tasks 13/14.
    ============================================================= */
 
 (function () {
@@ -16,28 +17,31 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const L = () => window.pmLocale;
+  const S = () => window.pmSession;
+  const D = () => window.pmDerive;
   const t = (key, params) => L().t(key, params);
+  const track = (name, payload) => { if (window.pmTrack) window.pmTrack.track(name, payload); };
 
-  const STORE_KEY = "pm_basket";
   const TYPES = ["etf", "stock", "bond"];
   const TYPE_SWATCH = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" }; // tokens, task 03
 
   /* ── state ──────────────────────────────────────────────── */
   let DATA = [];
   const filters = { types: new Set(), q: "", sort: "name" }; // PRD S9: neutral default sort
-  let basket = loadBasket();
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
 
-  /* ── persistence ────────────────────────────────────────── */
-  function loadBasket() {
-    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-    catch (e) { return []; }
+  /* ── portfolio items in the session ─────────────────────── */
+  function items() {
+    const s = S() && S().current();
+    return (s && s.portfolio && s.portfolio.items) ? s.portfolio.items : [];
   }
-  function saveBasket() {
-    localStorage.setItem(STORE_KEY, JSON.stringify(basket));
+  function ids() { return items().map((it) => it.productId); }
+  function saveIds(list) {
+    const weights = D() ? D().evenWeights(list.length) : list.map(() => Math.round(100 / (list.length || 1)));
+    S().update({ portfolio: { items: list.map((id, i) => ({ productId: id, weight: weights[i] })) } });
   }
 
   /* ── filtering + sorting (pure set operations, PRD S9) ─── */
@@ -74,7 +78,11 @@
       </div>`;
 
     $$("#filters .pill[data-type]").forEach((b) =>
-      b.addEventListener("click", () => { toggle(filters.types, b.dataset.type); renderFilters(); renderCards(); })
+      b.addEventListener("click", () => {
+        toggle(filters.types, b.dataset.type);
+        track("explore_filter_change", { filterType: "type", value: b.dataset.type });
+        renderFilters(); renderCards();
+      })
     );
   }
   function toggle(set, v) { set.has(v) ? set.delete(v) : set.add(v); }
@@ -82,6 +90,7 @@
   /* ── render: cards ──────────────────────────────────────── */
   function renderCards() {
     const list = visible();
+    const chosen = ids();
     $("#resultsTitle").textContent = t("explore.results.title");
     $("#resultsCount").textContent = L().tn("explore.results.count", list.length);
 
@@ -91,7 +100,7 @@
     }
 
     $("#cards").innerHTML = list.map((s) => {
-      const inBasket = basket.includes(s.id);
+      const inBasket = chosen.includes(s.id);
       const terStr = s.ter != null ? ` · ${t("explore.card.ter")} ${L().fmtPercent(s.ter * 100)}` : "";
       const addIcon = inBasket
         ? `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l3.8 3.8L16 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
@@ -99,7 +108,7 @@
 
       return `<li class="card ${inBasket ? "is-selected" : ""}" draggable="true" data-id="${esc(s.id)}">
         <div class="card__main">
-          <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}">${esc(s.name)}</a>
+          <a class="card__name" href="product.html?id=${encodeURIComponent(s.id)}" data-open="${esc(s.id)}">${esc(s.name)}</a>
           <div class="card__meta">${t("explore.type." + s.type)} · ${esc(s.region)}${terStr}${s.isin ? " · " + esc(s.isin) : ""}</div>
           <div class="card__stats">${esc(s.description_de || "")}</div>
         </div>
@@ -110,26 +119,30 @@
     }).join("");
 
     $$("#cards .addbtn").forEach((b) =>
-      b.addEventListener("click", (e) => { e.stopPropagation(); toggleBasket(b.dataset.add); })
+      b.addEventListener("click", (e) => { e.stopPropagation(); toggleItem(b.dataset.add); })
+    );
+    $("#cards [data-open]").forEach((a) =>
+      a.addEventListener("click", () => track("product_open", { product_id: a.dataset.open }))
     );
     wireDragSources();
   }
 
-  /* ── basket ─────────────────────────────────────────────── */
-  function toggleBasket(id) {
-    const i = basket.indexOf(id);
-    if (i >= 0) basket.splice(i, 1);
-    else if (!basket.includes(id)) basket.push(id);
-    saveBasket();
+  /* ── portfolio items: add / remove ───────────────────────── */
+  function toggleItem(id) {
+    const list = ids();
+    const i = list.indexOf(id);
+    if (i >= 0) { list.splice(i, 1); track("product_remove", { product_id: id }); }
+    else { list.push(id); track("product_add", { product_id: id }); }
+    saveIds(list);
     renderCards();
     renderBasket();
   }
-  function addToBasket(id) {
-    if (!basket.includes(id)) { basket.push(id); saveBasket(); renderCards(); renderBasket(); }
+  function addItem(id) {
+    if (!ids().includes(id)) { saveIds(ids().concat(id)); track("product_add", { product_id: id }); renderCards(); renderBasket(); }
   }
 
   function renderBasket() {
-    const items = basket.map((id) => DATA.find((s) => s.id === id)).filter(Boolean);
+    const items = ids().map((id) => DATA.find((s) => s.id === id)).filter(Boolean);
     $("#basketEyebrow").textContent = t("explore.basket.eyebrow");
     $("#basketTitle").textContent = items.length ? t("explore.basket.title") : t("explore.basket.empty_title");
     $("#basketSub").textContent = items.length ? t("explore.basket.sub") : t("explore.basket.empty_sub");
@@ -145,7 +158,7 @@
     ).join("");
 
     $$("#basketList .basket-item__remove").forEach((b) =>
-      b.addEventListener("click", () => toggleBasket(b.dataset.remove))
+      b.addEventListener("click", () => toggleItem(b.dataset.remove))
     );
 
     $("#autofill").innerHTML = "";
@@ -215,7 +228,7 @@
       e.preventDefault();
       zone.classList.remove("is-drop");
       const id = e.dataTransfer.getData("text/plain");
-      if (id) addToBasket(id);
+      if (id) addItem(id);
     });
   }
 
@@ -229,25 +242,18 @@
       .map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
     sort.value = filters.sort;
 
-    const steps = ["quiz", "summary", "explore", "portfolio"].map((k) => t("common.stages." + k));
-    $("#flowsteps").innerHTML = steps.map((name, i) => {
-      const cls = i < 2 ? "is-done" : (i === 2 ? "is-active" : "");
-      return `<div class="flowstep ${cls}">
-        <span class="flowstep__dot"></span><span class="flowstep__name">${name}</span>
-        ${i < steps.length - 1 ? '<span class="flowstep__line"></span>' : ""}
-      </div>`;
-    }).join("");
   }
 
   function wireChrome() {
     let deb;
     $("#search").addEventListener("input", (e) => {
       clearTimeout(deb);
-      deb = setTimeout(() => { filters.q = e.target.value; renderCards(); }, 120);
+      deb = setTimeout(() => { filters.q = e.target.value; track("explore_filter_change", { filterType: "search", value: filters.q ? "q" : "" }); renderCards(); }, 120);
     });
-    $("#sort").addEventListener("change", (e) => { filters.sort = e.target.value; renderCards(); });
+    $("#sort").addEventListener("change", (e) => { filters.sort = e.target.value; track("explore_filter_change", { filterType: "sort", value: filters.sort }); renderCards(); });
     $("#checkoutBtn").addEventListener("click", () => {
-      if (!basket.length) return;
+      if (!ids().length) return;
+      S().setScreen("/portfolio");
       location.href = "portfolio.html";
     });
   }
@@ -261,14 +267,19 @@
     $("#cards").innerHTML = `<li class="empty">${t("explore.results.load_error")}</li>`;
   }
 
-  if (!window.pmLocale) return;
+  if (!window.pmLocale || !window.pmSession) return;
+  if (!S().current()) { S().create({ locale: L().lang() }); track("session_start"); }
+  S().setScreen("/explore");
+  track("screen_view", { screen: "/explore" });
+
   Promise.all([
     fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
     window.pmLocale.ready
   ])
     .then(([doc]) => {
       DATA = doc.products || [];
-      basket = basket.filter((id) => DATA.some((s) => s.id === id));
+      const known = ids().filter((id) => DATA.some((s) => s.id === id));
+      if (known.length !== ids().length) saveIds(known);
       wireDropZone();
       wireChrome();
       renderAll();
