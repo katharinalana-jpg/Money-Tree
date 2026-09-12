@@ -420,3 +420,17 @@
 .portfolio__sum.is-complete { color: var(--forest); font-weight: 600; }
 .portfolio__feedback { font-size: .84rem; line-height: 1.45; color: var(--ink); background: var(--cream); border-radius: var(--radius-sm); padding: .6rem .75rem; margin: 0 0 .8rem; }
 .portfolio__feedback:empty { display: none; }
+
+/* ── Task 18 · mobile card layout (the desktop 3-column grid was overriding the 820 px rule) ── */
+@media (max-width: 820px) {
+  .card { grid-template-columns: minmax(0, 1fr); }
+  .card__scores { flex-direction: row; flex-wrap: wrap; gap: .8rem; }
+  .card__right { flex-direction: row; justify-content: space-between; width: 100%; }
+}
+@media (max-width: 820px) {
+  .explore__grid { grid-template-columns: minmax(0, 1fr); }
+  .results, .filters { min-width: 0; }
+  .results__head { flex-wrap: wrap; }
+  .results__sort { margin-left: 0; width: 100%; }
+  .results__bar { flex-wrap: wrap; }
+}

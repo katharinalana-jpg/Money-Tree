@@ -48,7 +48,10 @@
     const t = input.t || ((k) => k);
     const date = input.date instanceof Date ? input.date : new Date(input.date || Date.now());
     const items = ((s.portfolio && s.portfolio.items) || []).filter((it) => products.some((p) => p.id === it.productId));
-    const amount = s.situation && (s.situation.monthlyAmount != null ? s.situation.monthlyAmount : null);
+    // the amount the screen shows: an explicit input.amount (screen value incl. the
+    // range default) wins, otherwise the user-entered session amount
+    const amount = input.amount !== undefined ? input.amount
+      : (s.situation && s.situation.monthlyAmount != null ? s.situation.monthlyAmount : null);
     const amounts = split(amount, items);
     const chosenSdgs = (s.values && s.values.sdgs) || [];
     const sdgTitle = (id) => { const x = sdgs.find((y) => y.id === id); return x ? x.title_de : String(id); };
@@ -130,7 +133,7 @@
       if (k === "type") return { etf: "ETF", stock: "Aktie", bond: "Anleihe" }[r.type] || r.type;
       if (k === "weight") return f.pct(r.weight);
       if (k === "amount") return r.amount != null ? f.eur(r.amount) : "-";
-      if (k === "ter") return r.ter != null ? f.pct(f.num(Math.round(r.ter * 10000) / 100)) : "-";
+      if (k === "ter") return r.ter != null ? f.pct(Math.round(r.ter * 10000) / 100) : "-";
       if (k === "sri") return r.sri != null ? String(r.sri) : "-";
       if (k === "sus") return r.sustainability ? f.num(r.sustainability.value) : "-";
       if (k === "gen") return r.gender ? f.num(r.gender.value) : "-";

@@ -389,6 +389,31 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 18 · Final check (13.09.2026)
+
+Decision taken first: conflict 12 (no-op analytics transport, event log only). Tooling per conflict 15: node scripts and Playwright driven from the session (no npm in the repo).
+
+Checks
+- Event coverage (PRD 9): 25 event names in the `track.js` whitelist; 23 emitted from the flow scripts. Not emitted: `execute_view`, `partner_click` (S11 out of scope). `glossary_open` from glossary.js, `referral_landing` / `session_*` from session.js, `portfolio_complete`, `plan_*`, `newsletter_optin`, `share_*` verified live in the browser during tasks 07 to 16.
+- Accessibility (automated part): every flow page has no image without `alt` and no button without an accessible name (the share-sheet buttons are now labelled before opening); focus 2 px Forest outline via `.flow-body`; glossary popover with `aria-describedby`; ProgressBar and card flips keyboard operable; touch targets ≥ 44 px on +, weight buttons, tiles ≥ 140 × 120. Contrast and screen-reader runs remain manual (below).
+- 375 px, no horizontal scroll: index, quiz (all 6 sub steps incl. a flipped card), summary (with share sheet), explore (filters sheet, panel, drawer), portfolio, product — `scrollWidth` 360 ≤ 375 on all; two overflow defects found and fixed in explore.css (the desktop 3-column card grid and the min-content width of the results header on mobile).
+- Size budget (PRD 10, < 300 kB gzip per page without the lazy PDF library): index 37 kB · quiz 56 kB · summary 55 kB · explore 52 kB · portfolio 53 kB · product 47 kB gzip; jsPDF 114 kB gzip lazy on S10 only.
+- End to end (1280 × 800, fresh session): S0 "Los geht's" → quiz S2 (flip) → S3 (Mutterschaft) → S4a (150–300 €) → S4b (> 10 J.) → S5 → S6 → S7 (3 SDGs) → S8 (mirror correct, CTA at 777 px) → S9 (SDG filter preselected 5/7/13, 16 products, 3 added, 35/35/30, sum 100 %) → S10 (amount 225 € default, split 80/78/67, coverage 1 of 3, `portfolio_complete`) → PDF downloaded (4 pages, opened and reviewed; weights and amounts identical to the screen). Session state after the run carries every field of PRD 7.1. Found and fixed: the PDF took no amount when the user kept the range default (now the screen amount is passed to the builder; new test), TER "NaN %" in the PDF table.
+- Data gates: `validate-data` all valid, `lint-glossary` 0 findings, copy lint 0, `locales-sync --check` in sync, 34 node tests pass, `data-check --strict` fails as expected (placeholders remain, see blockers).
+
+Launch blockers
+1. Data (PRD 7.7): no licensed provider scores yet — `products.json` has `scores` null on all 22 products; SRI, holdings count, KID links null everywhere; 3 products without ISIN (S10 requires one); 22 < 30 products; `fundSizeMeur` not converted, `sdgTags` derived from themes and unverified against EET (O18, O19, O30). `node scripts/data-check.mjs --strict` is the gate.
+2. Legal review (PRD 2.4, milestone 15.11.2026): glossary "Wirkung" and "Wege" groups plus all figures (O20); S4b "wäre am Konto gut aufgehoben" and S8 "Genau hier lohnt sich Vermögensaufbau am Meisten" (conflict 13, O26, O28); amount split not a recommendation (PRD 11); mix feedback "ruhig/ausgewogen/mutig" (flag `PM_FLAGS.mixFeedback`); S5 spectrum and S4b learning texts.
+3. Copy conflicts on PRD text: "fehlt" in the Teilzeit card (lint exemption, conflict 3, O23); sentences over the limit in S5, S6, S7, S9 (O24); Menopause card without a Euro-area figure (conflict 4); Scheidung Euro-area figure open (8.2 note).
+4. E-mail: Brevo transactional template with attachment, newsletter list, DOI template and redirect URL not configured (O32); until then the button reports "wird gerade eingerichtet".
+5. Analytics: transport is a no-op (conflict 12); choose Plausible or Matomo (EU) and wire `pmTrack.setTransport`.
+6. Manual checks not done in this environment: iOS Safari system share with image (task 12), `navigator.share` on Android, PDF in Acrobat / iOS viewers, screen-reader run (NVDA / VoiceOver) of the glossary popover and the ProgressBar, contrast audit on Cream and Sage Soft tiles, LCP < 2 s on S0 on a real connection (local DOMContentLoaded 134 ms), Vercel deploy with `vercel.json` rewrites (`/quiz/:step` etc.) and the two serverless functions.
+7. Open PRD conflicts without a decision: 1 (no S1, "twelve screens"), 2 (score shape decided; radar axes have no source), 13 (legal texts).
+8. Pre-registration pages keep shadows, gradients and Marigold by the scope decision (O15); the landing headline is not the PRD tagline (O2).
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

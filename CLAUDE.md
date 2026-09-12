@@ -29,7 +29,7 @@ Financial literacy platform, NOT a licensed investment advisor. Portemonnaie is 
 - Never invent data: no invented ISINs, scores, fees or statistics. Placeholders use ids starting with `placeholder_` and must be gone before launch.
 
 ## Current Status
-Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). What began as a pre-registration landing page now also includes working **Phase-1 prototype screens** of the core flow: bilingual landing page, values & risk **quiz**, **Explore** basket-builder, **product detail** pages, plus mission / calculator / legal pages. These prototype screens are now being rebuilt to `docs/PRD.md`. Phase 2 brings React/Next.js with a tech co-founder.
+Pre-launch, solo founder. Vanilla HTML/CSS/JS (no build step, no framework). The pre-registration landing page (index) doubles as S0; the Guidance Flow S2 to S10 is built to `docs/PRD.md` (tasks 01 to 18, see `docs/PROGRESS.md`): quiz stage (S2–S7), summary with share card (S8), Explorer with product drawer and weighted portfolio panel (S9), portfolio screen with PDF plan and e-mail stub (S10). S11 is out of scope. Launch blockers (data, legal review, Brevo, analytics, manual checks) are listed at the end of task 18 in PROGRESS.md. Phase 2 brings React/Next.js with a tech co-founder.
 
 ## Brand & Design
 **Authoritative source: `brand/BRAND_GUIDELINES.md`** (voice, colour, type, dos/don'ts). Implemented design tokens live in `styles.css` `:root`. The palette is a warm **forest / sage / cream** system — *not* monochrome (the earlier monochrome spec is obsolete).

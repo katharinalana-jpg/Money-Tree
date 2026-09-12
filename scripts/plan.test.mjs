@@ -51,6 +51,14 @@ test("glossary section contains every term used in the plan", () => {
   assert.ok(plan.glossary.every((g) => g.definition && g.why));
 });
 
+test("the screen's default amount (range edge) reaches the PDF when nothing was typed", () => {
+  const s = Object.assign({}, session, { situation: { monthlyRange: "150_300", monthlyAmount: null, horizon: "over_10y" } });
+  const screenAmount = D.defaultAmount(s.situation.monthlyRange); // 225, what portfolio.js shows
+  const plan = P.buildPlan({ session: s, products, sdgs, glossary, t, amount: screenAmount });
+  assert.deepEqual(plan.table.map((r) => r.amount), D.splitAmount(225, s.portfolio.items).map((x) => x.amount));
+  assert.equal(plan.table.reduce((a, r) => a + r.amount, 0), 225);
+});
+
 test("without amount the euro column is empty; missing scores stay null", () => {
   const plan = P.buildPlan({ session: Object.assign({}, session, { situation: { monthlyRange: "later", monthlyAmount: null, horizon: "open" } }), products, sdgs, glossary, t });
   assert.deepEqual(plan.table.map((r) => r.amount), [null, null, null]);

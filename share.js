@@ -198,7 +198,15 @@
     $("#shareNative").addEventListener("click", native);
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#shareSheet").hidden) close(); });
     fetch("data/sdgs.json").then((r) => (r.ok ? r.json() : { sdgs: [] })).catch(() => ({ sdgs: [] })).then((d) => { SDGS = d.sdgs || []; });
-    if (L()) L().ready.then(() => { btn.textContent = t("share.button"); });
-    document.addEventListener("pm:localeready", () => { btn.textContent = t("share.button"); });
+    const labels = () => {
+      btn.querySelector("span").textContent = t("share.button");
+      $("#shareTitle").textContent = t("share.sheet_title");
+      $("#shareSave").textContent = t("share.save"); $("#shareCopy").textContent = t("share.copy"); $("#shareNative").textContent = t("share.native");
+      $("#shareClose").setAttribute("aria-label", t("share.close"));
+      $("#shareFeed").textContent = t("share.format_feed"); $("#shareStory").textContent = t("share.format_story");
+      $("#shareTextLabel").textContent = t("share.text_label");
+    };
+    if (L()) L().ready.then(labels);
+    document.addEventListener("pm:localeready", labels);
   });
 })();

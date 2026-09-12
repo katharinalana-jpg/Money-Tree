@@ -44,7 +44,8 @@
     return jsPdfPromise;
   }
   function planData() {
-    return window.pmPlan.buildPlan({ session: session(), products: DATA, sdgs: SDGS, glossary: GLOSSARY, t, date: new Date() });
+    // amount() is what the screen shows (entered value or the S4 range default) → PDF = screen
+    return window.pmPlan.buildPlan({ session: session(), products: DATA, sdgs: SDGS, glossary: GLOSSARY, t, date: new Date(), amount: amount() });
   }
   const fmt = () => ({
     pct: (v) => L().fmtPercent(Number(v), Number.isInteger(Number(v)) ? 0 : 2),
