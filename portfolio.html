@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Your portfolio: composition by type, built by you. Portemonnaie." />
-  <title>Your Portfolio — Portemonnaie</title>
+  <meta name="description" content="Dein Portfolio: Zusammensetzung, monatliche Verteilung, Einstufungen des Datenanbieters und deine Ziele. Portemonnaie." />
+  <title>Dein Portfolio — Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,8 @@
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
   <link rel="stylesheet" href="styles.css?v=28" />
-  <link rel="stylesheet" href="explore.css?v=8" />
-  <link rel="stylesheet" href="portfolio.css?v=4" />
+  <link rel="stylesheet" href="explore.css?v=10" />
+  <link rel="stylesheet" href="portfolio.css?v=5" />
 </head>
 <body class="flow-body explore-body portfolio-body">
 
@@ -49,37 +49,61 @@
     </div>
   </header>
 
-
   <nav class="pm-progress" id="pmProgress" data-stage="portfolio" aria-label="Fortschritt"></nav>
 
+  <!-- S10 · Dein Portfolio & Plan sichern (/portfolio) -->
   <main class="pf" id="top">
-    <noscript>This page needs JavaScript enabled.</noscript>
+    <h1 class="pf__headline" id="pfHeadline"></h1>
 
-    <header class="pf__intro">
-      <p class="pf__eyebrow" id="pfEyebrow"></p>
-      <h1 class="pf__title" id="pfTitle"></h1>
-      <p class="pf__sub" id="pfSub"></p>
-    </header>
+    <div class="pf-empty" id="pfEmpty" hidden></div>
 
-    <div class="pf__stage" id="pfStage">
-      <!-- LEFT: composition + sticky note -->
-      <div class="pf__col pf__col--left">
-        <section class="pf-card pf-comp" aria-label="Composition">
+    <div id="pfStage" hidden>
+      <div class="pf__stage">
+        <!-- LEFT: composition -->
+        <section class="pf-card pf-comp" aria-labelledby="compEyebrow">
           <p class="pf-card__eyebrow" id="compEyebrow"></p>
+          <div class="pf-row pf-row--head" id="compHead" aria-hidden="true"></div>
           <ul class="pf-comp__list" id="compList"></ul>
+          <p class="pf-comp__mix" id="compMix"></p>
+          <a class="pf__edit" href="explore.html" data-edit></a>
         </section>
-        <div class="pf-note">
-          <p class="pf-note__strong" id="noteStrong"></p>
-          <p class="pf-note__soft" id="noteSoft"></p>
+
+        <!-- CENTER: donut -->
+        <div class="pf__col pf__col--center">
+          <div class="pf-donut"><svg viewBox="0 0 240 240" id="pfDonut" aria-hidden="true"></svg></div>
+          <ul class="portfolio__legend pf-legend" id="pfLegend"></ul>
         </div>
+
+        <!-- RIGHT: goals (the one reserved Forest surface, PRD 5.6) -->
+        <section class="pf-card pf-goals" aria-labelledby="goalsEyebrow">
+          <p class="pf-card__eyebrow pf-card__eyebrow--light" id="goalsEyebrow"></p>
+          <div id="goalsList"></div>
+        </section>
       </div>
 
-      <!-- CENTER: donut -->
-      <div class="pf__col pf__col--center">
-        <div class="pf-donut">
-          <svg viewBox="0 0 240 240" id="pfDonut" aria-hidden="true"></svg>
+      <!-- amount + split -->
+      <section class="pf-amount" aria-labelledby="amountLabel">
+        <label class="pf-amount__label" for="amountInput" id="amountLabel"></label>
+        <span class="pf-amount__field"><input type="number" id="amountInput" min="0" step="1" inputmode="numeric" /><span>€</span></span>
+        <p class="pf-amount__hint" id="amountHint"></p>
+      </section>
+
+      <!-- plan (PDF / e-mail: task 16) -->
+      <section class="pf-plan" aria-labelledby="planTitle">
+        <h2 class="pf-plan__title" id="planTitle"></h2>
+        <div class="pf-plan__actions">
+          <button type="button" class="btn btn--primary" id="planPdf" disabled aria-disabled="true"></button>
+          <form class="pf-plan__email" id="planForm" novalidate>
+            <label class="sr-only" for="planEmailInput" id="planEmailLabel"></label>
+            <input type="email" id="planEmailInput" name="email" autocomplete="email" disabled />
+            <button type="submit" class="btn btn--primary" id="planEmail" disabled aria-disabled="true"></button>
+            <label class="pf-plan__newsletter"><input type="checkbox" id="planNewsletter" name="newsletter" disabled /> <span id="planNewsletterLabel"></span></label>
+          </form>
         </div>
-      </div>
+        <p class="pf-plan__soon" id="planSoon"></p>
+      </section>
+
+      <div class="pf-note-wrap" id="pfNote"></div>
     </div>
   </main>
 
@@ -94,6 +118,6 @@
   <script src="progress.js?v=1"></script>
   <script src="glossary.js?v=1"></script>
   <script src="flow-ui.js?v=1"></script>
-  <script src="portfolio.js?v=8"></script>
+  <script src="portfolio.js?v=9"></script>
 </body>
 </html>

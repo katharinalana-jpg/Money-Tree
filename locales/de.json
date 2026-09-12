@@ -322,30 +322,51 @@
     }
   },
   "portfolio": {
-    "eyebrow": "Dein Portfolio",
-    "title": "Dein <em class=\"serif\">Portfolio</em>.",
-    "sub": "Das hast du gebaut. Du entscheidest, wir begleiten.",
+    "headline": "Dein Portfolio.",
     "composition": "Zusammensetzung",
-    "invested": "deines Portfolios",
-    "note_strong": "Du entscheidest.",
-    "note_soft": "Wir begleiten.",
+    "col_product": "Produkt",
+    "col_weight": "Gewichtung",
+    "col_amount": "Monatlich",
+    "goals_title": "Deine Ziele",
+    "goals_score": "Ziele-Score",
+    "goals_gender": "Gender-Score",
+    "goals_of10": "{n} von 10",
+    "goals_missing": "Keine Einstufung vorhanden.",
+    "goals_partial": "auf Basis von {n} % deines Portfolios",
+    "goals_sources": "laut {sources}",
+    "goals_coverage": "Deine Ziele: {n} von {total} abgedeckt",
+    "goals_coverage_none": "Im Quiz hast du keine Ziele gewählt.",
+    "amount_label": "Monatlicher Betrag",
+    "amount_hint": "Vorbelegt aus deiner Antwort in Schritt 4. Du kannst ihn ändern.",
+    "amount_none": "Ohne Betrag zeigen wir nur die Gewichtung.",
+    "amount_split_title": "So verteilt sich dein Betrag",
+    "plan_title": "Plan sichern",
+    "plan_pdf": "Als PDF herunterladen",
+    "plan_email": "Per E-Mail schicken",
+    "plan_email_label": "deine E-Mail",
+    "plan_newsletter": "Ja, ich möchte den Portemonnaie-Newsletter",
+    "plan_soon": "Kommt mit dem nächsten Schritt.",
+    "note": "Dieser Plan ist deine To-do-Liste – für den Broker oder das Gespräch mit deiner Beraterin.",
+    "mix": "Dein Mix: {etf} % ETFs · {stock} % Aktien · {bond} % Anleihen. Im Spektrum aus Schritt 5 liegt das bei „{label}“.",
+    "mix_label": {
+      "ruhig": "ruhig",
+      "ausgewogen": "ausgewogen",
+      "mutig": "mutig"
+    },
     "empty": {
       "title": "Dein Portfolio ist leer.",
       "sub": "Bau es zuerst im Explorer auf.",
       "cta": "Zum Explorer"
     },
+    "incomplete": {
+      "title": "Deine Gewichtung ergibt noch keine 100 %.",
+      "cta": "Im Explorer anpassen"
+    },
+    "edit": "Im Explorer anpassen",
     "type_label": {
       "etf": "ETFs",
       "stock": "Aktien",
       "bond": "Anleihen"
-    },
-    "type_count": {
-      "etf_one": "{n} ETF",
-      "etf_other": "{n} ETFs",
-      "stock_one": "{n} Einzeltitel",
-      "stock_other": "{n} Einzeltitel",
-      "bond_one": "{n} Anleihe",
-      "bond_other": "{n} Anleihen"
     }
   },
   "product": {

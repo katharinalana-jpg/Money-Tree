@@ -322,30 +322,51 @@
     }
   },
   "portfolio": {
-    "eyebrow": "",
-    "title": "",
-    "sub": "",
+    "headline": "",
     "composition": "",
-    "invested": "",
-    "note_strong": "",
-    "note_soft": "",
+    "col_product": "",
+    "col_weight": "",
+    "col_amount": "",
+    "goals_title": "",
+    "goals_score": "",
+    "goals_gender": "",
+    "goals_of10": "",
+    "goals_missing": "",
+    "goals_partial": "",
+    "goals_sources": "",
+    "goals_coverage": "",
+    "goals_coverage_none": "",
+    "amount_label": "",
+    "amount_hint": "",
+    "amount_none": "",
+    "amount_split_title": "",
+    "plan_title": "",
+    "plan_pdf": "",
+    "plan_email": "",
+    "plan_email_label": "",
+    "plan_newsletter": "",
+    "plan_soon": "",
+    "note": "",
+    "mix": "",
+    "mix_label": {
+      "ruhig": "",
+      "ausgewogen": "",
+      "mutig": ""
+    },
     "empty": {
       "title": "",
       "sub": "",
       "cta": ""
     },
+    "incomplete": {
+      "title": "",
+      "cta": ""
+    },
+    "edit": "",
     "type_label": {
       "etf": "",
       "stock": "",
       "bond": ""
-    },
-    "type_count": {
-      "etf_one": "",
-      "etf_other": "",
-      "stock_one": "",
-      "stock_other": "",
-      "bond_one": "",
-      "bond_other": ""
     }
   },
   "product": {

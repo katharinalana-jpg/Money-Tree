@@ -1,123 +1,75 @@
 /* =============================================================
-   Portemonnaie — Portfolio (S10, interim).
-   Composition card, a big donut (100 %) and the sticky note.
-   Colour only via PRD 5.6 tokens in styles.css (task 03): no
-   shadows, no gradients, no white surfaces. Builds on
-   explore.css (flow-nav underline, --green alias).
+   Portemonnaie — S10 Dein Portfolio & Plan sichern (PRD S10).
+   Tokens only, no shadows. The goals card is the one reserved
+   Forest surface of the flow (PRD 5.6).
    ============================================================= */
 
-.pf {
-  width: min(1200px, 92%);
-  margin-inline: auto;
-  padding-top: calc(var(--nav-h) + 2.6rem);
-  padding-bottom: 3rem;
-}
+.pf { width: min(1180px, 92%); margin-inline: auto; padding-top: calc(var(--nav-h) + 3.4rem); padding-bottom: 2.5rem; }
+.pf__headline { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 300; letter-spacing: -0.03em; color: var(--forest); margin: 0 0 1.2rem; }
 
-/* ── Intro ────────────────────────────────────────────────── */
-.pf__intro { text-align: center; max-width: 640px; margin: 0 auto 2.8rem; }
-.pf__eyebrow {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--sage-deep);
-}
-.pf__eyebrow::before {
-  content: ""; display: block;
-  width: 26px; height: 2px; margin: 0 auto 0.9rem;
-  background: var(--sage-deep); border-radius: 2px;
-}
-.pf__title {
-  font-size: clamp(2rem, 4vw, 2.9rem);
-  font-weight: 700; letter-spacing: -0.02em;
-  color: var(--forest);
-  margin: 0.7rem 0 0.5rem;
-}
-.pf__title .serif { font-weight: 400; }
-.pf__sub { color: var(--ink-mute); font-size: 1rem; }
+/* ── stage: composition · donut · goals ─────────────────── */
+.pf__stage { display: grid; grid-template-columns: 1.2fr auto 1fr; gap: 1.2rem; align-items: start; }
+.pf__col { display: flex; flex-direction: column; gap: 1rem; }
+.pf__col--center { align-items: center; }
+.pf-card { border-radius: var(--radius-card); padding: 1.2rem 1.3rem 1.3rem; }
+.pf-comp { background: var(--bg-warm); border: 1px solid var(--line); }
+.pf-card__eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sage-deep); margin: 0 0 .8rem; }
+.pf-card__eyebrow--light { color: var(--sage); }
 
-/* ── Stage: composition · donut ───────────────────────────── */
-.pf__stage {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
-  align-items: center;
-}
-.pf__col { display: flex; flex-direction: column; gap: 1.4rem; }
-.pf__col--center { align-items: center; gap: 2rem; }
-.pf__col--left { align-items: stretch; }
+.pf-row { display: grid; grid-template-columns: minmax(0, 1fr) 4.5rem 5.5rem; gap: .6rem; align-items: center; padding: .5rem 0; border-top: 1px solid var(--line); font-size: .9rem; }
+.pf-row--head { border-top: 0; padding-top: 0; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); }
+.pf-comp__list { list-style: none; margin: 0; padding: 0; }
+.pf-row__name { display: flex; align-items: center; gap: .5rem; min-width: 0; color: var(--ink); font-weight: 600; }
+.pf-row__name small { display: block; font-weight: 400; font-size: .72rem; color: var(--ink-mute); }
+.pf-comp__swatch { width: 12px; height: 12px; border-radius: 4px; flex: none; }
+.pf-row__weight, .pf-row__amount { text-align: right; font-weight: 700; color: var(--ink); }
+.pf-comp__mix { margin: .9rem 0 .6rem; font-size: .85rem; line-height: 1.45; color: var(--ink); }
+.pf__edit { font-size: .82rem; color: var(--forest); text-decoration: underline; text-underline-offset: .15em; }
 
-/* Cards */
-.pf-card {
-  border-radius: var(--radius-card);
-  padding: 1.6rem 1.6rem 1.7rem;
-}
-.pf-comp {
-  background: var(--bg-warm);
-  border: 1px solid var(--line);
-}
-
-.pf-card__eyebrow {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--sage-deep);
-  margin-bottom: 1.2rem;
-}
-.pf-card__eyebrow::before {
-  content: ""; width: 22px; height: 2px; background: var(--sage-deep); border-radius: 2px;
-}
-
-/* Composition rows */
-.pf-comp__list { display: flex; flex-direction: column; gap: 1.15rem; }
-.pf-comp__row { display: flex; align-items: center; gap: 0.8rem; }
-.pf-comp__swatch { width: 14px; height: 14px; border-radius: 4px; flex: none; }
-.pf-comp__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.pf-comp__name { font-weight: 700; color: var(--ink); font-size: 1.05rem; }
-.pf-comp__sub { color: var(--ink-mute); font-size: 0.82rem; margin-top: 0.1rem; }
-.pf-comp__pct { font-weight: 700; color: var(--ink); font-size: 1.05rem; }
-
-/* Sticky note (InfoNote "Du entscheidest. Wir begleiten.", PRD 5.3: cream,
-   no border, no shadow, no tilt for this variant) */
-.pf-note {
-  align-self: flex-start;
-  background: var(--cream);
-  border-radius: var(--radius-sm);
-  padding: 1rem 1.2rem;
-}
-.pf-note__strong { font-weight: 700; color: var(--ink); }
-.pf-note__soft {
-  font-family: var(--ff-serif); font-style: italic;
-  font-size: 1.15rem; color: var(--forest);
-  margin-top: 0.1rem;
-}
-
-/* Donut */
-.pf-donut { width: min(340px, 72vw); }
+.pf-donut { width: min(300px, 70vw); }
 .pf-donut svg { width: 100%; height: auto; display: block; }
-.pf-donut__pct { fill: var(--forest); font-weight: 700; font-size: 42px; }
-.pf-donut__word {
-  fill: var(--ink-caption); font-size: 18px;
-  font-family: var(--ff-serif); font-style: italic;
-}
+.pf-donut__pct { fill: var(--forest); font-weight: 700; font-size: 40px; }
+.pf-legend { list-style: none; margin: 0; padding: 0; width: 100%; max-width: 260px; display: flex; flex-direction: column; gap: .4rem; font-size: .9rem; }
+.pf-legend .legend-row { display: flex; align-items: center; gap: .5rem; }
+.pf-legend .legend-row__val { margin-left: auto; font-weight: 700; }
 
-/* ── Empty state ──────────────────────────────────────────── */
-.pf-empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 3rem 1rem;
-}
-.pf-empty__title { font-size: 1.4rem; font-weight: 700; color: var(--ink); }
-.pf-empty__sub { color: var(--ink-mute); margin: 0.5rem 0 1.4rem; }
+/* goals card: Forest surface, light text */
+.pf-goals { background: var(--forest); color: var(--bg); }
+.pf-goal { display: flex; justify-content: space-between; gap: .8rem; align-items: baseline; padding: .55rem 0; border-top: 1px solid rgba(250, 248, 243, 0.18); }
+.pf-goal:first-child { border-top: 0; padding-top: 0; }
+.pf-goal__k { font-size: .9rem; }
+.pf-goal__k small { display: block; font-size: .72rem; opacity: .8; }
+.pf-goal__v { font-weight: 700; font-size: 1.15rem; white-space: nowrap; }
+.pf-goal__v--na { font-weight: 400; font-size: .82rem; white-space: normal; text-align: right; opacity: .9; }
+.pf-goal__chips { display: flex; flex-wrap: wrap; gap: .3rem; justify-content: flex-end; }
+.pf-goal__chips .tag { background: rgba(250, 248, 243, 0.12); border-color: transparent; color: var(--bg); }
+.pf-goal__muted { font-size: .85rem; opacity: .85; margin: 0; }
 
-/* ── Disclaimer ───────────────────────────────────────────── */
-.pf__disclaimer {
-  text-align: center;
-  margin-top: 2.4rem;
-  color: var(--ink-mute);
-  font-size: 0.72rem;
-}
+/* amount */
+.pf-amount { margin-top: 1.4rem; display: grid; grid-template-columns: auto auto; gap: .3rem 1rem; align-items: center; justify-content: start; }
+.pf-amount__label { font-weight: 600; color: var(--forest); }
+.pf-amount__field { display: inline-flex; align-items: center; gap: .4rem; }
+.pf-amount__field input { width: 7rem; padding: .55rem .7rem; border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg); font: inherit; font-size: 1.05rem; font-weight: 600; color: var(--ink); text-align: right; min-height: 44px; }
+.pf-amount__hint { grid-column: 1 / -1; margin: 0; font-size: .82rem; color: var(--ink-mute); }
 
-/* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .pf__stage { grid-template-columns: 1fr; gap: 2rem; justify-items: center; }
-  .pf__col { width: min(420px, 100%); }
-  .pf__col--center { order: -1; }   /* donut first on mobile */
-  .pf-note { align-self: center; }
+/* plan */
+.pf-plan { margin-top: 1.6rem; background: var(--bg-warm); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 1.2rem 1.3rem; }
+.pf-plan__title { font-size: 1.05rem; font-weight: 700; color: var(--forest); margin: 0 0 .8rem; }
+.pf-plan__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.pf-plan__email { display: grid; gap: .5rem; }
+.pf-plan__email input[type="email"] { padding: .6rem .8rem; border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg); font: inherit; min-height: 44px; }
+.pf-plan__newsletter { font-size: .85rem; color: var(--ink); display: flex; gap: .4rem; align-items: flex-start; }
+.pf-plan__actions .btn[disabled] { opacity: .5; cursor: not-allowed; }
+.pf-plan__soon { margin: .7rem 0 0; font-size: .8rem; color: var(--ink-mute); }
+.pf-note-wrap { margin-top: 1.4rem; display: flex; justify-content: center; }
+
+/* empty / incomplete */
+.pf-empty { text-align: center; padding: 3rem 1rem; }
+.pf-empty__title { font-size: 1.4rem; font-weight: 700; color: var(--ink); margin: 0 0 .4rem; }
+.pf-empty__sub { color: var(--ink-mute); margin: 0 0 1.4rem; }
+
+@media (max-width: 960px) {
+  .pf__stage { grid-template-columns: 1fr; }
+  .pf__col--center { order: -1; }
+  .pf-plan__actions { grid-template-columns: 1fr; }
 }

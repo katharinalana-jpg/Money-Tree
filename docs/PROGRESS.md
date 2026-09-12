@@ -343,6 +343,21 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 15 · S10 Portfolio screen (12.09.2026)
+
+Decision taken first: conflict 7 (default amount = range edges: 50 / 100 / 225 / 300 €, "Sage ich später" → empty).
+
+Done
+- `portfolio.html`, `portfolio.js`, `portfolio.css` rebuilt (PRD S10, screen only): headline "Dein Portfolio."; left "Zusammensetzung" table with product, ISIN, weight and monthly amount (`derive.splitAmount`: whole euros, remainder to the largest weight), the descriptive mix line, link back to the Explorer; centre donut by weight with legend; right "Deine Ziele" card on the one reserved Forest surface: weighted Sustainability- and Gender-Score via `derive.portfolioScore` with provider and asOf (and "auf Basis von n % deines Portfolios" when not every item carries a score) or "Keine Einstufung vorhanden.", SDG coverage "{n} von {total} abgedeckt" with chips; monthly amount field prefilled from the S4 range and editable (`situation.monthlyAmount`, split recalculates at once; without amount the € column is hidden); "Plan sichern" block with the two equal buttons "Als PDF herunterladen" · "Per E-Mail schicken", e-mail field and the unticked newsletter checkbox, all disabled until task 16; InfoNote "Du entscheidest. Wir begleiten." with the PRD text; empty and "not yet 100 %" states with a link to the Explorer. `portfolio_complete` event with aggregated mix, scores and coverage (no product ids); `portfolio.completedAt` set once. S11 is out of scope, so no "Weg wählen" CTA (O31).
+- Strings `portfolio.*` (PRD S10 verbatim). Cache portfolio.js v9, portfolio.css v5, explore.css v10 link.
+
+Verification
+- Browser: 3 products 35 / 35 / 30 → default 100 € → € 35 · € 35 · € 30 (sum 100); amount 250 → 88 · 87 · 75 (sum 250, remainder to the first largest weight), `situation.monthlyAmount` 250; mix line "… bei „mutig“"; donut 100 %; goals card Forest `rgb(31, 58, 46)`, both scores "Keine Einstufung vorhanden.", "Deine Ziele: 1 von 5 abgedeckt" with the SDG 5 chip; plan buttons disabled, newsletter unticked; one cream card; `portfolio_complete {itemCount 3, mix, null scores, sdgCoverage 1}`; 8 glossary terms; ProgressBar with the earlier stages clickable.
+- `node --test`: `splitAmount` rounding and remainder, `defaultAmount` range edges (scripts/derive.test.mjs) — 29 tests pass. Copy lint 0.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -360,6 +375,7 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O31 · S10 ends the flow (S11 out of scope): the PRD CTA "Weg wählen" is not rendered. PDF and e-mail buttons are visible but disabled until task 16.
 - O29 · PRD S9 acceptance "every card has at least 6 glossary terms" holds for ETFs; single stocks show 5 because TER and Positionen do not apply. Accept or add a term to stock cards.
 - O30 · The six radar axes have no data source yet (conflict 2); cards show a dashed placeholder until a provider delivers them. The score sliders currently exclude every product above 0 for the same reason.
 - O27 · S8 "So geht es weiter": the PRD names three steps with mini icons but gives no texts; the stage names Explorer · Portfolio · Plan sichern are used. S8 frame block: the PRD example sentence "Das ist ein Sparplan mit langem Horizont." is shown only for > 10 years; no sentence exists for the other horizons.
