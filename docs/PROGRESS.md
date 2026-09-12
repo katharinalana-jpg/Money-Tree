@@ -308,6 +308,26 @@ Verification
 Copy typo fixes
 - S8: "Now Let´s go build it yourslef" → "Now let's go build it yourself."; closing parenthesis added after "Beratungsgespräch".
 
+## Task 13 · S9 Explorer, catalog (12.09.2026)
+
+Decision taken first: build on the migrated `products.json` with placeholders (scores null).
+
+Done
+- `explore.js` rewritten (PRD S9 catalog): filter panel with category (ETF · Aktie · Anleihe / Green Bond), the 17 SDG chips (the S7 choice preselected, every chip removable, OR filter), minimum Sustainability and Gender score sliders 0–10 (a product without a provider score cannot pass a minimum > 0), region chips; search over name, ISIN and themes; sorts Name A–Z (default), Kosten aufsteigend, Sustainability-Score, Gender-Score (never by quiz answers); reset. Filters are pure set operations.
+- Product card: name (opens the drawer), type badge, region, TER, Positionen, "Risikoklasse laut Basisinformationsblatt: n / keine Angabe", Sustainability- and Gender-Score each with "laut {source}, Stand {asOf}" or "Keine Einstufung vorhanden", six-axis radar (drawn only when all six provider axes exist, otherwise a dashed placeholder with the hint), up to three SDG tags, "+" button and drag handle. Glossary marks each card.
+- Drawer from the right (`role="dialog"`, backdrop, Esc, focus to close and back to the card): description, "Was ist drin" (top 5), KID figures (Risikoklasse, laufende Kosten, Ausschüttung ja/nein, Auflagedatum, Fondsvolumen), scores with the scale note and provider + asOf, contributions to the chosen SDGs, KID link or "Link folgt", "In mein Portfolio". Deep link `/explore?product=<id>` opens it (conflict 17). `product_open` event.
+- Empty states with the PRD texts; mobile: filters as a bottom sheet (`Filter` button, close, Esc), portfolio as a sticky bar with mini donut and count that opens the full panel; no drag and drop needed on mobile (the + button remains).
+- `explore.html` rewritten (drawer, toggles), `explore.css` extended (tokens only), strings `explore.*` reorganised (filter, region, card, radar, drawer, panel). Cache explore.js v15, explore.css v9. en.json re-synced (the sync had been skipped by the aborted task 11 patch).
+
+Verification
+- Browser (1280 px): 22 products, default sort name, four sort options; S7 choice preselects 5 SDG chips → 16 products; reset → 22; cost sort puts the two 0,18 % / 0,20 % ETFs first; min-score 5 → empty state with the PRD text (no provider scores yet); ISIN search finds exactly one product; drawer opens with the four sections, "Link folgt" for the missing KID, add from the drawer writes `portfolio.items`, Esc closes; events `explore_filter_change`, `product_open`, `product_add`.
+- Performance (PRD S9): 60 products re-rendered after a filter change in 9 to 17 ms (five runs, `window.__pmRenderMs`).
+- Glossary: an ETF card carries TER, Risikoklasse, ISIN, Sustainability-Score, Gender-Score, Positionen as terms; a stock card has 5 (no TER, no Positionen by data), see O29.
+- Copy lint 0, tests 29 pass, `node --check` pass.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
@@ -325,6 +345,8 @@ Copy typo fixes
 - O16 · Fonts: PRD 5.6 wants no Arial/Helvetica/Calibri fallbacks; repo stacks fall back to system-ui / Times New Roman / Inter. Left unchanged (fallback only shows while Google Fonts load).
 - O17 · PRD 7.2 region enum (world, europe, emerging, austria) has no value for the eight US-listed products; `us` added to the schema enum. Confirm or re-key.
 - O18 · `products.json` has 22 entries, below the PRD minimum of 30; three lack an ISIN (PRD S10: no product without ISIN). Data work, not code.
+- O29 · PRD S9 acceptance "every card has at least 6 glossary terms" holds for ETFs; single stocks show 5 because TER and Positionen do not apply. Accept or add a term to stock cards.
+- O30 · The six radar axes have no data source yet (conflict 2); cards show a dashed placeholder until a provider delivers them. The score sliders currently exclude every product above 0 for the same reason.
 - O27 · S8 "So geht es weiter": the PRD names three steps with mini icons but gives no texts; the stage names Explorer · Portfolio · Plan sichern are used. S8 frame block: the PRD example sentence "Das ist ein Sparplan mit langem Horizont." is shown only for > 10 years; no sentence exists for the other horizons.
 - O28 · S8 Mutterschaft block carries the PRD sentence "Genau hier lohnt sich Vermögensaufbau am Meisten …" (legal review, conflict 13; "am Meisten" left as written).
 - O24 · Sentence length: the S5 spectrum text (30 words in one sentence) and one S6 body sentence (24 words) exceed the PRD's own limits (15 / 20). Shipped verbatim under lint exemptions; the S6 acceptance "Kein Satz über 20 Wörter" therefore fails on PRD copy. Wording decision needed.

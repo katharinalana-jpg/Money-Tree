@@ -30,9 +30,19 @@
   },
   "quiz": {
     "values": {
-      "intro": "",
-      "question": "",
+      "headline": "",
       "help": "",
+      "info_title": "",
+      "info_body": "",
+      "tile_aria": "",
+      "hover": "",
+      "count_one": "",
+      "count_other": "",
+      "none": "",
+      "max_hint": "",
+      "selection": "",
+      "selection_empty": "",
+      "cta": "",
       "sdg": ""
     },
     "mirror": {
@@ -194,7 +204,15 @@
     "filter": {
       "eyebrow": "",
       "lede": "",
-      "categories": ""
+      "categories": "",
+      "goals": "",
+      "goals_hint": "",
+      "min_sus": "",
+      "min_gen": "",
+      "region": "",
+      "reset": "",
+      "open": "",
+      "close": ""
     },
     "search_placeholder": "",
     "results": {
@@ -207,11 +225,25 @@
     "sort": {
       "label": "",
       "name": "",
-      "cost": ""
+      "cost": "",
+      "sustainability": "",
+      "gender": ""
     },
     "card": {
       "ter": "",
-      "add": ""
+      "holdings": "",
+      "holdings_na": "",
+      "sri": "",
+      "sri_na": "",
+      "score_sus": "",
+      "score_gen": "",
+      "score_source": "",
+      "score_missing": "",
+      "radar_missing": "",
+      "add": "",
+      "added": "",
+      "drag": "",
+      "open": ""
     },
     "type": {
       "etf": "",
@@ -234,7 +266,46 @@
       "title": "",
       "count_one": "",
       "count_other": "",
-      "next": ""
+      "next": "",
+      "open": "",
+      "close": ""
+    },
+    "region": {
+      "world": "",
+      "europe": "",
+      "emerging": "",
+      "austria": "",
+      "us": ""
+    },
+    "radar": {
+      "climate": "",
+      "social": "",
+      "governance": "",
+      "gender": "",
+      "biodiversity": "",
+      "transparency": ""
+    },
+    "drawer": {
+      "close": "",
+      "inside": "",
+      "kid": "",
+      "kid_sri": "",
+      "kid_ter": "",
+      "kid_distribution": "",
+      "kid_distribution_yes": "",
+      "kid_distribution_no": "",
+      "kid_inception": "",
+      "kid_size": "",
+      "scores": "",
+      "scale": "",
+      "goals": "",
+      "goals_none": "",
+      "goals_unset": "",
+      "kid_link": "",
+      "kid_link_na": "",
+      "na": "",
+      "add": "",
+      "added": ""
     }
   },
   "portfolio": {
@@ -311,5 +382,54 @@
     "know": "",
     "example": "",
     "stance": ""
+  },
+  "summary": {
+    "headline": "",
+    "left_title": "",
+    "right_title": "",
+    "phase": {
+      "title": "",
+      "template": "",
+      "core": {
+        "berufseinstieg": "",
+        "zusammenziehen": "",
+        "mutterschaft": "",
+        "teilzeit": "",
+        "pflege": "",
+        "trennung": "",
+        "menopause": "",
+        "pension": ""
+      },
+      "empty": ""
+    },
+    "frame": {
+      "title": "",
+      "template": "",
+      "long_horizon": "",
+      "empty": "",
+      "amount": {
+        "under_50": "",
+        "50_150": "",
+        "150_300": "",
+        "over_300": ""
+      },
+      "horizon": {
+        "under_3y": "",
+        "3_10y": "",
+        "over_10y": ""
+      }
+    },
+    "values": {
+      "title": "",
+      "template": "",
+      "empty": ""
+    },
+    "knows": "",
+    "next_title": "",
+    "next_steps": "",
+    "build": "",
+    "glossary_note": "",
+    "cta": "",
+    "change": ""
   }
 }

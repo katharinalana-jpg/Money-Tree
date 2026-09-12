@@ -202,26 +202,48 @@
   },
   "explore": {
     "filter": {
-      "eyebrow": "Katalog",
+      "eyebrow": "Explorer",
       "lede": "Filter, die du selbst setzt.",
-      "categories": "Kategorien"
+      "categories": "Kategorie",
+      "goals": "Deine Ziele",
+      "goals_hint": "Aus deinem Quiz. Jeder Chip lässt sich abwählen.",
+      "min_sus": "Mindest-Score Sustainability",
+      "min_gen": "Mindest-Score Gender",
+      "region": "Region",
+      "reset": "Filter zurücksetzen",
+      "open": "Filter",
+      "close": "Filter schließen"
     },
-    "search_placeholder": "Suche nach Name, ISIN oder Thema…",
+    "search_placeholder": "Suche nach Name, ISIN oder Thema",
     "results": {
-      "title": "ETFs, Aktien & Anleihen",
-      "count_one": "{n} Ergebnis",
-      "count_other": "{n} Ergebnisse",
+      "title": "Produkte",
+      "count_one": "{n} Produkt",
+      "count_other": "{n} Produkte",
       "empty": "Für diese Kombination gibt es in unserer Liste aktuell keine Produkte. Nimm einen Filter heraus oder suche nach einem Thema.",
       "load_error": "Der Datensatz konnte nicht geladen werden. Öffne die Seite über einen Webserver oder die veröffentlichte Seite."
     },
     "sort": {
-      "label": "Sortieren nach",
-      "name": "Sortieren: Name A–Z",
-      "cost": "Sortieren: Kosten aufsteigend"
+      "label": "Sortieren",
+      "name": "Name A–Z",
+      "cost": "Kosten aufsteigend",
+      "sustainability": "Sustainability-Score",
+      "gender": "Gender-Score"
     },
     "card": {
       "ter": "TER",
-      "add": "In mein Portfolio"
+      "holdings": "{n} Positionen",
+      "holdings_na": "Positionen: keine Angabe",
+      "sri": "Risikoklasse laut Basisinformationsblatt: {n}",
+      "sri_na": "Risikoklasse laut Basisinformationsblatt: keine Angabe",
+      "score_sus": "Sustainability-Score",
+      "score_gen": "Gender-Score",
+      "score_source": "laut {source}, Stand {asOf}",
+      "score_missing": "Keine Einstufung vorhanden",
+      "radar_missing": "Spinnennetz folgt mit den Einstufungen des Datenanbieters",
+      "add": "In mein Portfolio",
+      "added": "Im Portfolio",
+      "drag": "Ziehen",
+      "open": "Details zu {name}"
     },
     "type": {
       "etf": "ETF",
@@ -229,9 +251,9 @@
       "bond": "Anleihe"
     },
     "category": {
-      "etf": "ETFs",
-      "stock": "Aktien",
-      "bond": "Anleihen"
+      "etf": "ETF",
+      "stock": "Aktie",
+      "bond": "Anleihe / Green Bond"
     },
     "basket": {
       "eyebrow": "Dein Portfolio",
@@ -244,7 +266,46 @@
       "title": "Dein Portfolio",
       "count_one": "{n} Produkt",
       "count_other": "{n} Produkte",
-      "next": "Zum Portfolio"
+      "next": "Zum Portfolio",
+      "open": "Portfolio öffnen",
+      "close": "Portfolio schließen"
+    },
+    "region": {
+      "world": "Welt",
+      "europe": "Europa",
+      "emerging": "Schwellenländer",
+      "austria": "Österreich",
+      "us": "USA"
+    },
+    "radar": {
+      "climate": "Klima",
+      "social": "Soziales",
+      "governance": "Governance",
+      "gender": "Gender",
+      "biodiversity": "Biodiversität",
+      "transparency": "Transparenz"
+    },
+    "drawer": {
+      "close": "Schließen",
+      "inside": "Was ist drin",
+      "kid": "Kennzahlen aus dem Basisinformationsblatt",
+      "kid_sri": "Risikoklasse",
+      "kid_ter": "Laufende Kosten",
+      "kid_distribution": "Ausschüttung",
+      "kid_distribution_yes": "ja",
+      "kid_distribution_no": "nein",
+      "kid_inception": "Auflagedatum",
+      "kid_size": "Fondsvolumen",
+      "scores": "Einstufungen",
+      "scale": "Skala 0 bis 10, vergeben vom genannten Datenanbieter, nicht von Portemonnaie.",
+      "goals": "Beiträge zu deinen Zielen",
+      "goals_none": "Keines deiner gewählten Ziele ist bei diesem Produkt hinterlegt.",
+      "goals_unset": "Wähle im Quiz Ziele, dann siehst du hier die Beiträge.",
+      "kid_link": "Basisinformationsblatt beim Anbieter (PDF)",
+      "kid_link_na": "Basisinformationsblatt: Link folgt",
+      "na": "keine Angabe",
+      "add": "In mein Portfolio",
+      "added": "Im Portfolio"
     }
   },
   "portfolio": {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore ETFs, stocks and funds, filter and sort them yourself, then build your portfolio — Portemonnaie." />
-  <title>Explore — Portemonnaie</title>
+  <meta name="description" content="Explorer: ETFs, Aktien und Anleihen mit Kennzahlen aus dem Basisinformationsblatt und Einstufungen des Datenanbieters, gefiltert und sortiert von dir. Portemonnaie." />
+  <title>Explorer — Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
 
   <link rel="stylesheet" href="styles.css?v=28" />
-  <link rel="stylesheet" href="explore.css?v=8" />
+  <link rel="stylesheet" href="explore.css?v=9" />
 </head>
 <body class="flow-body explore-body">
 
@@ -48,32 +48,35 @@
     </div>
   </header>
 
-
   <nav class="pm-progress" id="pmProgress" data-stage="explore" aria-label="Fortschritt"></nav>
 
+  <!-- S9 · Explorer (/explore) -->
   <main class="explore" id="top">
     <div class="explore__grid">
 
-      <!-- LEFT: filters -->
-      <aside class="filters" id="filters" aria-label="Filters">
+      <!-- LEFT: filter panel (bottom sheet on mobile) -->
+      <aside class="filters" id="filters" aria-label="Filter">
         <noscript>This page needs JavaScript enabled.</noscript>
       </aside>
 
-      <!-- MIDDLE: results -->
-      <section class="results" aria-label="Results">
-        <div class="searchbar">
-          <svg class="searchbar__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <input type="search" id="search" autocomplete="off" />
+      <!-- MIDDLE: search · sort · product cards -->
+      <section class="results" aria-label="Produkte">
+        <div class="results__bar">
+          <button type="button" class="btn btn--ghost results__filters" id="filtersToggle">Filter</button>
+          <div class="searchbar">
+            <svg class="searchbar__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="search" id="search" autocomplete="off" />
+          </div>
         </div>
 
         <div class="results__head">
           <h1 class="results__title" id="resultsTitle"></h1>
-          <span class="results__count" id="resultsCount"></span>
+          <span class="results__count" id="resultsCount" aria-live="polite"></span>
           <div class="results__sort">
-            <label class="sr-only" for="sort" id="sortLabel"></label>
+            <label for="sort" id="sortLabel"></label>
             <select id="sort"></select>
           </div>
         </div>
@@ -81,16 +84,18 @@
         <ul class="cards" id="cards"></ul>
       </section>
 
-      <!-- RIGHT: basket + portfolio -->
-      <aside class="sidebar" id="basketCol" aria-label="Your basket">
+      <!-- RIGHT: sticky portfolio panel (sticky bar on mobile) -->
+      <aside class="sidebar" id="basketCol" aria-label="Dein Portfolio">
+        <button type="button" class="sidebar__bar" id="panelToggle">
+          <svg class="donut donut--mini" viewBox="0 0 120 120" aria-hidden="true"><use href="#donut"></use></svg>
+          <span id="panelCount"></span>
+        </button>
         <div class="basket" id="basket">
           <p class="basket__eyebrow" id="basketEyebrow"></p>
           <h2 class="basket__title" id="basketTitle"></h2>
           <p class="basket__sub" id="basketSub"></p>
           <ul class="basket__list" id="basketList"></ul>
         </div>
-
-        <div class="autofill" id="autofill"></div>
 
         <div class="portfolio" id="portfolio">
           <h2 class="portfolio__title" id="portfolioTitle"></h2>
@@ -106,6 +111,13 @@
     </div>
   </main>
 
+  <!-- product detail drawer (PRD S9) -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="pmDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+    <button type="button" class="drawer__close" id="drawerClose">×</button>
+    <div class="drawer__body" id="drawerBody"></div>
+  </aside>
+
   <footer class="pm-disclaimer" id="pmDisclaimer"></footer>
 
   <script src="i18n.js?v=34"></script>
@@ -117,6 +129,6 @@
   <script src="progress.js?v=1"></script>
   <script src="glossary.js?v=1"></script>
   <script src="flow-ui.js?v=1"></script>
-  <script src="explore.js?v=13"></script>
+  <script src="explore.js?v=15"></script>
 </body>
 </html>
