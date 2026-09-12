@@ -268,7 +268,20 @@
       "count_other": "{n} Produkte",
       "next": "Zum Portfolio",
       "open": "Portfolio öffnen",
-      "close": "Portfolio schließen"
+      "close": "Portfolio schließen",
+      "built": "{n} % aufgebaut",
+      "weight_label": "Gewichtung {name}",
+      "weight_minus": "Gewichtung von {name} um 5 % senken",
+      "weight_plus": "Gewichtung von {name} um 5 % erhöhen",
+      "sum": "Summe {n} %",
+      "sum_hint": "Die Summe muss 100 % ergeben, um weiterzugehen.",
+      "mix": "Dein Mix: {etf} % ETFs · {stock} % Aktien · {bond} % Anleihen. Im Spektrum aus Schritt 5 liegt das bei „{label}“.",
+      "mix_label": {
+        "ruhig": "ruhig",
+        "ausgewogen": "ausgewogen",
+        "mutig": "mutig"
+      },
+      "single": "Streuung heißt: nicht alles auf ein Produkt. Das ist ein Prinzip, keine Vorgabe. Und: auch wenn verlockend: nicht übertreiben, für jeden Kauf und Verkauf von Wertpapieren wie Aktien, ETFs oder Anleihen über eine Bank oder einen Online-Broker zahlt man üblich Ordergebühren."
     },
     "region": {
       "world": "Welt",

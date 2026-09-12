@@ -28,6 +28,7 @@
   const track = (name, payload) => { if (window.pmTrack) window.pmTrack.track(name, payload); };
 
   const TYPES = ["etf", "stock", "bond"];
+  const FLAGS = Object.assign({ mixFeedback: true }, window.PM_FLAGS || {}); // PRD 11: mix feedback behind a flag
   const REGIONS = ["world", "europe", "emerging", "austria", "us"];
   const RADAR = ["climate", "social", "governance", "gender", "biodiversity", "transparency"];
   const TYPE_SWATCH = { etf: "var(--sage-deep)", stock: "var(--forest)", bond: "var(--sage)" };
@@ -53,6 +54,13 @@
   function saveIds(list) {
     const weights = D() ? D().evenWeights(list.length) : list.map(() => Math.round(100 / (list.length || 1)));
     S().update({ portfolio: { items: list.map((id, i) => ({ productId: id, weight: weights[i] })) } });
+  }
+  function setWeight(id, weight) {
+    const w = Math.max(0, Math.min(100, Math.round(weight / 5) * 5));
+    const list = items().map((it) => (it.productId === id ? { productId: it.productId, weight: w } : it));
+    S().update({ portfolio: { items: list } });
+    track("weight_change");
+    renderBasket();
   }
   function toggleItem(id) {
     const list = ids();
@@ -269,13 +277,27 @@
     $("#basketEyebrow").textContent = t("explore.basket.eyebrow");
     $("#basketTitle").textContent = list.length ? t("explore.basket.title") : t("explore.basket.empty_title");
     $("#basketSub").textContent = list.length ? t("explore.basket.sub") : t("explore.basket.empty_sub");
-    $("#basketList").innerHTML = list.map((p) =>
-      `<li class="basket-item" data-id="${esc(p.id)}">
-        <span class="basket-item__swatch" style="background:${TYPE_SWATCH[p.type]}"></span>
-        <span class="basket-item__name">${esc(p.name)}</span>
-        <button type="button" class="basket-item__remove" data-remove="${esc(p.id)}" aria-label="${esc(t("common.remove"))}">×</button>
-      </li>`).join("");
+    const weights = Object.fromEntries(items().map((it) => [it.productId, it.weight]));
+    $("#basketList").innerHTML = list.map((p) => {
+      const w = weights[p.id] || 0;
+      return `<li class="basket-item basket-item--weighted" data-id="${esc(p.id)}">
+        <div class="basket-item__row">
+          <span class="basket-item__swatch" style="background:${TYPE_SWATCH[p.type]}"></span>
+          <span class="basket-item__name">${esc(p.name)}</span>
+          <button type="button" class="basket-item__remove" data-remove="${esc(p.id)}" aria-label="${esc(t("common.remove"))}">×</button>
+        </div>
+        <div class="weight">
+          <button type="button" class="weight__step" data-step="-5" data-id="${esc(p.id)}" aria-label="${esc(t("explore.panel.weight_minus", { name: p.name }))}">−</button>
+          <input type="range" class="weight__range" min="0" max="100" step="5" value="${w}" data-id="${esc(p.id)}" aria-label="${esc(t("explore.panel.weight_label", { name: p.name }))}" />
+          <button type="button" class="weight__step" data-step="5" data-id="${esc(p.id)}" aria-label="${esc(t("explore.panel.weight_plus", { name: p.name }))}">+</button>
+          <label class="weight__field"><input type="number" class="weight__num" min="0" max="100" step="5" value="${w}" data-id="${esc(p.id)}" aria-label="${esc(t("explore.panel.weight_label", { name: p.name }))}" /><span>%</span></label>
+        </div>
+      </li>`;
+    }).join("");
     $$("#basketList .basket-item__remove").forEach((b) => b.addEventListener("click", () => toggleItem(b.dataset.remove)));
+    $$("#basketList .weight__step").forEach((b) => b.addEventListener("click", () => setWeight(b.dataset.id, (weights[b.dataset.id] || 0) + parseInt(b.dataset.step, 10))));
+    $$("#basketList .weight__range").forEach((r) => r.addEventListener("change", () => setWeight(r.dataset.id, parseInt(r.value, 10))));
+    $$("#basketList .weight__num").forEach((n) => n.addEventListener("change", () => setWeight(n.dataset.id, parseInt(n.value, 10) || 0)));
     renderPortfolio(list);
     $("#panelCount").textContent = L().tn("explore.panel.count", list.length);
   }
@@ -283,22 +305,35 @@
   function renderPortfolio(list) {
     $("#portfolioTitle").textContent = t("explore.panel.title");
     const n = list.length;
-    $("#portfolioProgress").textContent = L().tn("explore.panel.count", n);
-    const counts = { etf: 0, stock: 0, bond: 0 };
-    list.forEach((p) => { counts[p.type] = (counts[p.type] || 0) + 1; });
-    const total = n || 1;
-    const seg = TYPES.map((ty) => ({ key: ty, label: t("portfolio.type_label." + ty), val: counts[ty], color: TYPE_SWATCH[ty] }));
+    const its = items();
+    const sum = its.reduce((a, it) => a + (it.weight || 0), 0);
+    const complete = D() ? D().weightsComplete(its) : (n > 0 && sum === 100);
+    $("#portfolioProgress").textContent = n ? t("explore.panel.built", { n: L().fmtNumber(Math.min(sum, 100)) }) : L().tn("explore.panel.count", 0);
+    // weight by type (descriptive)
+    const byType = { etf: 0, stock: 0, bond: 0 };
+    its.forEach((it) => { const p = DATA.find((x) => x.id === it.productId); if (p) byType[p.type] = (byType[p.type] || 0) + (it.weight || 0); });
+    const seg = TYPES.map((ty) => ({ key: ty, label: t("portfolio.type_label." + ty), val: byType[ty], color: TYPE_SWATCH[ty] }));
     const R = 48, C = 60, circ = 2 * Math.PI * R;
     let acc = 0;
     const arcs = seg.filter((g) => g.val > 0).map((g) => {
-      const frac = g.val / total, len = frac * circ, rot = -90 + acc * 360; acc += frac;
+      const frac = Math.min(g.val, 100) / 100, len = frac * circ, rot = -90 + acc * 360; acc += frac;
       return `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:${g.color}" stroke-width="12" stroke-dasharray="${len.toFixed(1)} ${(circ - len).toFixed(1)}" transform="rotate(${rot.toFixed(2)} ${C} ${C})"/>`;
     }).join("");
-    $("#donut").innerHTML = `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:var(--line)" stroke-width="12"/>${arcs}<text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${L().fmtNumber(n)}</text>`;
-    $("#portfolioLegend").innerHTML = seg.map((g) => `<li class="legend-row"><span class="legend-row__dot" style="background:${g.color}"></span><span class="legend-row__name">${g.label}</span><span class="legend-row__val">${L().fmtPercent(n ? Math.round((g.val / total) * 100) : 0, 0)}</span></li>`).join("");
+    $("#donut").innerHTML = `<circle cx="${C}" cy="${C}" r="${R}" fill="none" style="stroke:var(--line)" stroke-width="12"/>${arcs}<text x="${C}" y="${C + 6}" text-anchor="middle" class="donut__label">${L().fmtPercent(Math.min(sum, 100), 0)}</text>`;
+    $("#portfolioLegend").innerHTML = seg.map((g) => `<li class="legend-row"><span class="legend-row__dot" style="background:${g.color}"></span><span class="legend-row__name">${g.label}</span><span class="legend-row__val">${L().fmtPercent(g.val, 0)}</span></li>`).join("");
+    // sum line + descriptive mix feedback (never a judgement, PRD 2.4)
+    const sumEl = $("#portfolioSum");
+    sumEl.textContent = n ? t("explore.panel.sum", { n: L().fmtNumber(sum) }) + (complete ? "" : " · " + t("explore.panel.sum_hint")) : "";
+    sumEl.classList.toggle("is-complete", complete);
+    const fb = $("#portfolioFeedback");
+    if (n === 1) fb.textContent = t("explore.panel.single");
+    else if (n > 1 && complete && FLAGS.mixFeedback && D()) {
+      const label = D().mixLabel(byType.stock);
+      fb.textContent = t("explore.panel.mix", { etf: L().fmtNumber(byType.etf), stock: L().fmtNumber(byType.stock), bond: L().fmtNumber(byType.bond), label: t("explore.panel.mix_label." + label) });
+    } else fb.textContent = "";
     const btn = $("#checkoutBtn");
     btn.textContent = t("explore.panel.next");
-    btn.disabled = n === 0;
+    btn.disabled = !complete;   // PRD S9: active at sum = 100 % and ≥ 1 product
   }
 
   /* ── drag & drop (+ button is the alternative) ──────────── */

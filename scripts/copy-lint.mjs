@@ -36,7 +36,8 @@ export const KEY_EXEMPT = [
   { key: /^quiz\.traps\.card\.teilzeit\.body$/, rule: "deficit-word", match: "fehlt", why: "PRD 8.2 verbatim, conflict 3" },
   { key: /^quiz\.portfolio\.spectrum$/, rule: "sentence-length", match: null, why: "PRD S5 spectrum text verbatim (30 words), O24" },
   { key: /^quiz\.impact\.body$/, rule: "sentence-length", match: null, why: "PRD S6 body verbatim (24 words), O24" },
-  { key: /^quiz\.values\.help$/, rule: "sentence-length", match: null, why: "PRD S7 help text verbatim (16 words), O24" }
+  { key: /^quiz\.values\.help$/, rule: "sentence-length", match: null, why: "PRD S7 help text verbatim (16 words), O24" },
+  { key: /^explore\.panel\.single$/, rule: "sentence-length", match: null, why: "PRD S9 single-product hint verbatim (24 words), O24" }
 ];
 const GLOSSARY_KEYS = /^glossary(\.|$)/;
 

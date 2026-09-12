@@ -328,6 +328,21 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 14 · S9 Explorer, portfolio panel (12.09.2026)
+
+Done
+- "Dein Portfolio" panel in `explore.js`: add by drag and drop or "+" (also from the drawer); on add the weights are redistributed evenly in 5 % steps (`derive.evenWeights`); per product a slider (step 5), − / + buttons (44 px targets, the drag-and-drop alternative) and a number field, every change rounded to 5 % and saved to `pm_session.portfolio.items` at once (`weight_change` event); donut and legend by weight; "{n} % aufgebaut", "Summe {n} %" with the hint until the sum is 100 %; CTA "Zum Portfolio" active only at sum = 100 % and ≥ 1 product (`derive.weightsComplete`).
+- Descriptive mix feedback (PRD S9 text, `derive.mixLabel` with the 7.6 thresholds as constants) behind the feature flag `window.PM_FLAGS.mixFeedback` (default on, PRD 11); single-product hint verbatim. Mobile sticky bar shows the count and opens the panel.
+- Strings `explore.panel.*` (PRD S9 verbatim; the single-product hint is exempt from the 15-word rule, O24). `explore.css` weight rules. Cache explore.js v17, explore.css v10.
+- Fix: the patch tooling turned `$$(` into `$(` in four list handlers (String.replace treats `$$` as `$`); corrected. The same root cause explains the task 06 defect found in task 07.
+
+Verification
+- Browser: 1 product → weight 100, "Summe 100 %", single-product hint, CTA enabled; 3 products → 35 / 35 / 30, "Dein Mix: 30 % ETFs · 70 % Aktien · 0 % Anleihen. Im Spektrum aus Schritt 5 liegt das bei „mutig“." (descriptive), CTA enabled; − on one item → 95 %, hint shown, CTA disabled, feedback hidden; number field 37 → rounded to 35, sum 100 %, CTA enabled; donut label 100 %; 2 `weight_change` events; 6 step buttons, 3 sliders, 3 number fields; mobile bar "3 Produkte".
+- compliance-checker on the mix feedback copy and weight logic: PASS, no findings (descriptive only and behind the flag; weights user-driven in 5 % steps with even default; CTA gated on 100 %; no forbidden words). Copy lint 0 findings, tests 29 pass.
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

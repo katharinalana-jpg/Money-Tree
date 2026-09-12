@@ -406,3 +406,17 @@
   .explore { padding-bottom: 5rem; }
   @media (prefers-reduced-motion: reduce) { .filters { transition: none; } }
 }
+
+/* ── Task 14 · "Dein Portfolio" panel: weights in 5 % steps, sum, mix feedback ── */
+.basket-item--weighted { flex-direction: column; align-items: stretch; gap: .45rem; }
+.basket-item__row { display: flex; align-items: center; gap: .6rem; }
+.weight { display: grid; grid-template-columns: 32px minmax(0, 1fr) 32px auto; align-items: center; gap: .35rem; }
+.weight__step { width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--bg); color: var(--forest); font-size: 1rem; line-height: 1; cursor: pointer; }
+.weight__step:hover { background: var(--sage-soft); }
+.weight__range { width: 100%; accent-color: var(--forest); min-height: 32px; }
+.weight__field { display: inline-flex; align-items: center; gap: .2rem; font-size: .82rem; color: var(--ink-mute); }
+.weight__num { width: 3.6rem; padding: .3rem .4rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg); font: inherit; font-size: .85rem; color: var(--ink); text-align: right; min-height: 32px; }
+.portfolio__sum { font-size: .82rem; color: var(--ink-mute); margin: .2rem 0 .6rem; }
+.portfolio__sum.is-complete { color: var(--forest); font-weight: 600; }
+.portfolio__feedback { font-size: .84rem; line-height: 1.45; color: var(--ink); background: var(--cream); border-radius: var(--radius-sm); padding: .6rem .75rem; margin: 0 0 .8rem; }
+.portfolio__feedback:empty { display: none; }

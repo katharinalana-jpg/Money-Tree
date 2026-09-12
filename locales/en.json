@@ -268,7 +268,20 @@
       "count_other": "",
       "next": "",
       "open": "",
-      "close": ""
+      "close": "",
+      "built": "",
+      "weight_label": "",
+      "weight_minus": "",
+      "weight_plus": "",
+      "sum": "",
+      "sum_hint": "",
+      "mix": "",
+      "mix_label": {
+        "ruhig": "",
+        "ausgewogen": "",
+        "mutig": ""
+      },
+      "single": ""
     },
     "region": {
       "world": "",
