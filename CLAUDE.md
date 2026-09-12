@@ -114,6 +114,8 @@ money-tree/
 ├── session.js                ← pm_session factory + singleton (PRD 5.4 / 7.1) + S0 wiring; testable via require
 ├── track.js                  ← track() with PRD 9 event whitelist, hashed session id, no-op transport
 ├── progress.js               ← ProgressBar (PRD 5.1) for <nav id="pmProgress" data-stage>
+├── glossary.js               ← GlossaryTerm (PRD 5.2): auto marker + popover; core exported for tests
+├── flow-ui.js                ← InfoNote (3 variants) + footer Disclaimer (PRD 5.3)
 ├── quiz.html / quiz.js / quiz.css            ← Quiz stage: S2 to S7 as internal steps (interim placeholder screens)
 ├── summary.html                              ← S8 (empty until task 11)
 ├── explore.html / explore.js / explore.css   ← S9 Explorer catalog + portfolio panel (interim)

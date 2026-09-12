@@ -169,5 +169,15 @@
   "progress": {
     "label": "Fortschritt",
     "step_of": "Schritt {n} von {total}"
+  },
+  "glossary": {
+    "why": "Warum wichtig?:",
+    "example": "Beispiel:",
+    "close": "Schließen"
+  },
+  "note": {
+    "know": "Gut zu wissen",
+    "example": "Beispiel, keine Empfehlung",
+    "stance": "Du entscheidest. Wir begleiten."
   }
 }

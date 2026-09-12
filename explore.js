@@ -121,7 +121,7 @@
     $$("#cards .addbtn").forEach((b) =>
       b.addEventListener("click", (e) => { e.stopPropagation(); toggleItem(b.dataset.add); })
     );
-    $("#cards [data-open]").forEach((a) =>
+    $$("#cards [data-open]").forEach((a) =>
       a.addEventListener("click", () => track("product_open", { product_id: a.dataset.open }))
     );
     wireDragSources();
@@ -204,7 +204,6 @@
     const btn = $("#checkoutBtn");
     btn.textContent = t("explore.panel.next");
     btn.disabled = n === 0;
-    $("#portfolioDisclaimer").textContent = t("common.disclaimer");
   }
 
   /* ── drag & drop (button alternative: the + on each card) ─ */
@@ -236,7 +235,6 @@
   function renderChrome() {
     $("#search").placeholder = t("explore.search_placeholder");
     $("#sortLabel").textContent = t("explore.sort.label");
-    $("#resultsDisclaimer").textContent = t("common.disclaimer");
     const sort = $("#sort");
     sort.innerHTML = [["name", t("explore.sort.name")], ["cost", t("explore.sort.cost")]]
       .map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
@@ -259,7 +257,10 @@
   }
 
   /* ── full re-render on language switch ──────────────────── */
-  function renderAll() { renderChrome(); renderFilters(); renderCards(); renderBasket(); }
+  function renderAll() {
+    renderChrome(); renderFilters(); renderCards(); renderBasket();
+    if (window.pmGlossary) { window.pmGlossary.reset(); window.pmGlossary.mark(document.querySelector("main")); }
+  }
   document.addEventListener("pm:localeready", () => { if (DATA.length) renderAll(); });
 
   /* ── boot ───────────────────────────────────────────────── */
@@ -274,7 +275,8 @@
 
   Promise.all([
     fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-    window.pmLocale.ready
+    window.pmLocale.ready,
+    window.pmGlossary ? window.pmGlossary.init() : null
   ])
     .then(([doc]) => {
       DATA = doc.products || [];

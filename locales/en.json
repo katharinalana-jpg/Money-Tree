@@ -169,5 +169,15 @@
   "progress": {
     "label": "",
     "step_of": ""
+  },
+  "glossary": {
+    "why": "",
+    "example": "",
+    "close": ""
+  },
+  "note": {
+    "know": "",
+    "example": "",
+    "stance": ""
   }
 }

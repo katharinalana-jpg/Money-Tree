@@ -1,0 +1,38 @@
+{
+  "meta": { "note": "3-entry test fixture for the GlossaryTerm component (task 07). Not the real glossary." },
+  "terms": [
+    {
+      "id": "etf",
+      "term_de": "ETF",
+      "term_en": "ETF",
+      "aliases_de": ["ETFs", "Indexfonds"],
+      "definition_de": "Ein ETF bündelt viele Aktien oder Anleihen in einem Produkt, das an der Börse gehandelt wird.",
+      "why_de": "Mit einem Kauf bist du breit gestreut, statt an einem einzelnen Unternehmen zu hängen.",
+      "example_de": "Ein Welt-ETF enthält über 1.500 Unternehmen.",
+      "definition_en": "", "why_en": "", "example_en": "",
+      "relatedIds": ["streuung"]
+    },
+    {
+      "id": "ter",
+      "term_de": "TER",
+      "term_en": "TER (ongoing charges)",
+      "aliases_de": ["Gesamtkostenquote", "laufende Kosten"],
+      "definition_de": "Die TER zeigt, wie viel Prozent deiner Anlage pro Jahr als Kosten abgehen.",
+      "why_de": "Kosten wirken jedes Jahr – 0,2 % statt 1,5 % machen über 20 Jahre tausende Euro aus.",
+      "example_de": "Bei 1.000 € und 0,2 % TER zahlst du 2 € im Jahr.",
+      "definition_en": "", "why_en": "", "example_en": "",
+      "relatedIds": ["etf"]
+    },
+    {
+      "id": "streuung",
+      "term_de": "Streuung",
+      "term_en": "Diversification",
+      "aliases_de": ["Diversifikation", "breit gestreut"],
+      "definition_de": "Streuung heißt, dein Geld auf viele Unternehmen, Branchen und Länder zu verteilen.",
+      "why_de": "Fällt ein Unternehmen aus, trägt es nicht dein ganzes Portfolio mit sich.",
+      "example_de": null,
+      "definition_en": "", "why_en": "", "example_en": null,
+      "relatedIds": ["etf"]
+    }
+  ]
+}

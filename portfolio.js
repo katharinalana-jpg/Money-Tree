@@ -87,7 +87,6 @@
     $("#pfEyebrow").textContent = t("portfolio.eyebrow");
     $("#pfTitle").innerHTML = t("portfolio.title");
     $("#pfSub").textContent = t("portfolio.sub");
-    $("#pfDisclaimer").textContent = t("common.disclaimer");
 
     if (!ITEMS.length) { renderEmpty(); return; }
 
@@ -95,6 +94,7 @@
     $("#noteSoft").textContent = t("portfolio.note_soft");
     renderComposition();
     renderDonut();
+    if (window.pmGlossary) { window.pmGlossary.reset(); window.pmGlossary.mark(document.querySelector("main")); }
   }
 
   document.addEventListener("pm:localeready", () => { if (DATA.length) renderAll(); });
@@ -107,7 +107,8 @@
 
   Promise.all([
     fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => ({ products: [] })),
-    window.pmLocale.ready
+    window.pmLocale.ready,
+    window.pmGlossary ? window.pmGlossary.init() : null
   ]).then(([doc]) => {
     DATA = doc.products || [];
     const s = S().current();

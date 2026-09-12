@@ -122,9 +122,7 @@
       </div>
       ${holdings}
 
-      ${relatedCards()}
-
-      <p class="product__disclaimer">${t("common.disclaimer")}</p>`;
+      ${relatedCards()}`;
   }
 
   function renderError(title, sub) {
@@ -142,7 +140,8 @@
   if (!window.pmLocale) return;
   Promise.all([
     fetch("data/products.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-    window.pmLocale.ready
+    window.pmLocale.ready,
+    window.pmGlossary ? window.pmGlossary.init() : null
   ])
     .then(([doc]) => {
       DATA = doc.products || [];
@@ -150,6 +149,7 @@
       if (!SEC) { renderError(t("product.not_found"), t("product.not_found_sub")); return; }
       document.title = `${SEC.name} — Portemonnaie`;
       render();
+      if (window.pmGlossary) { window.pmGlossary.reset(); window.pmGlossary.mark(document.querySelector("main")); }
     })
     .catch(() => renderError(t("product.not_found"), t("product.load_error")));
 })();

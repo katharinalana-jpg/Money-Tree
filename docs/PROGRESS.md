@@ -217,6 +217,22 @@ Verification
 Copy typo fixes
 - None.
 
+## Task 07 · Glossary popover, InfoNote, disclaimer (12.09.2026)
+
+Done
+- `glossary.js` (PRD 5.2): pure core (`createIndex`, `segment`) exported for node; browser `pmGlossary.init({ url })`, `mark(root)`, `reset()`. Auto marker on text nodes (first occurrence per screen, aliases, longest match first, umlaut-safe boundaries, case-insensitive), manual `<span data-term>` markers win; term rendered as `<button class="pm-term" aria-describedby aria-expanded>` with a hidden per-term description for screen readers; one shared popover (`role="dialog"`, cream, 1 px Sage Soft border, no shadow, no icon, no scroll) with term · definition · "Warum wichtig?:" · optional "Beispiel:"; hover 150 ms, focus, tap toggle, Enter, Esc and tap outside close; missing entry stays plain text and logs a dev warning; `glossary_open {term_id, screen}`.
+- `flow-ui.js` (PRD 5.3): `pmInfoNote.html(variant, body)` with the three fixed labels from the locale (`note.know`, `note.example`, `note.stance`), tilt only for "Gut zu wissen", `check()` warns above two cream cards; `pmDisclaimer` fills `<footer id="pmDisclaimer">` with the PRD 2.4 text, 12 px, sticky at the bottom (visible without scrolling). Footer on quiz, summary, explore, portfolio, product; the per-page disclaimer paragraphs are gone.
+- `styles.css`: `.pm-term`, `.pm-popover`, `.pm-note*`, `.pm-disclaimer` (tokens only, no shadows). Pages call the glossary marker after every render. Fixture `scripts/fixtures/glossary.3.json` (validates against `glossary.schema.json`); `scripts/glossary.test.mjs` (5 tests).
+- Fix found in the browser run: a lost `$` in `explore.js` (`$$("#cards [data-open]")`) had broken the card list after task 06; corrected, `explore.js?v=13`.
+
+Verification
+- `node --test scripts/*.test.mjs`: 29 tests, 29 pass (marker: first occurrence, aliases, boundaries, missing entry, 20-word limit; fixture schema-valid).
+- Browser (Playwright, local server, glossary loaded from the 3-entry fixture on explore.html): term marked once ("ETFs" → etf), `aria-describedby` target exists with "ETF: Ein ETF bündelt …", focus opens the popover (`aria-expanded="true"`), Esc closes and returns focus, tap toggles, a manual marker for an unknown id stays plain and warns. Disclaimer footer at 12 px on every flow page.
+- Browser regression of tasks 05/06: Explorer lists 22 products sorted name A–Z, add writes `portfolio.items` with weight 100, events `screen_view`, `product_add`; Portfolio page shows composition by weight and the ProgressBar with the active stage disabled and earlier stages clickable; Quiz shows "Schritt 3 von 6" / 50 % fill, an answer persists `situation.horizon` and moves to the 17 SDG tiles at `#values`, "Schritt 6 von 6".
+
+Copy typo fixes
+- None.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

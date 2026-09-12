@@ -19,6 +19,7 @@
   const S = () => window.pmSession;
   const t = (key, params) => L().t(key, params);
   const track = (name, payload) => { if (window.pmTrack) window.pmTrack.track(name, payload); };
+  const glossary = () => { if (window.pmGlossary) { window.pmGlossary.reset(); window.pmGlossary.mark(stage); } };
   const isDe = () => L().lang() === "de";
 
   /* ---- SDG options (data/sdgs.json, PRD 7.4) ------------------- */
@@ -77,9 +78,10 @@
     const screen = SCREENS[state.i];
     setRoute(screen.route);
     if (window.pmProgress && S()) window.pmProgress.setSub(S().quizStepIndex(screen.route), S().QUIZ_STEPS.length);
-    if (screen.type === "result") return renderResult(screen);
-    if (screen.type === "mirror") return renderMirror(screen);
-    return renderQuestion(screen);
+    if (screen.type === "result") renderResult(screen);
+    else if (screen.type === "mirror") renderMirror(screen);
+    else renderQuestion(screen);
+    glossary(); // first occurrence per screen (PRD 5.2)
   }
 
   function optionList(screen) {
@@ -167,7 +169,6 @@
     cta.href = "summary.html";
     cta.addEventListener("click", () => { if (S() && S().current()) S().setScreen("/summary"); });
     card.appendChild(cta);
-    card.appendChild(el("p", "quiz-disclaimer", t("common.disclaimer")));
     stage.innerHTML = "";
     stage.appendChild(card);
   }
@@ -234,7 +235,8 @@
       .catch(() => ({ sdgs: [] }))
       .then((doc) => { SDGS = doc.sdgs || []; });
 
-    Promise.all([sdgs, window.pmLocale.ready]).then(render);
+    const gl = window.pmGlossary ? window.pmGlossary.init() : Promise.resolve(0);
+    Promise.all([sdgs, gl, window.pmLocale.ready]).then(render);
     document.addEventListener("pm:localeready", () => { if (SDGS.length) render(); });
   }
 
