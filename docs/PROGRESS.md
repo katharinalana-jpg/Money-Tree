@@ -414,6 +414,10 @@ Launch blockers
 Copy typo fixes
 - None.
 
+## Fix · Clean quiz routes on Vercel (15.09.2026)
+
+Found on the Vercel deploy: after the quiz the summary answered 404. Cause: quiz.js sets the PRD path per sub step (`/quiz/phase` …) with `history.replaceState`, so every relative URL on the page resolved under `/quiz/` (`summary.html` → `/quiz/summary.html`, and on a reload also styles, scripts and `data/*.json`). Fix: `<base href="/">` in `quiz.html` (the page has no fragment links). Verified on the local server with the same rewrites as `vercel.json`: loading `/quiz/values` directly returns every asset with 200, the data fetch works and the final step resolves to `/summary.html`. 34 node tests pass.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.
