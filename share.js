@@ -143,7 +143,7 @@
 
   async function open() {
     const sheet = $("#shareSheet");
-    sheet.hidden = false; document.body.classList.add("has-drawer");
+    sheet.hidden = false; $("#shareBackdrop").hidden = false; document.body.classList.add("has-drawer");
     $("#shareTitle").textContent = t("share.sheet_title");
     $("#shareText").value = t("share.text", { link: shareLink() });
     $("#shareTextLabel").textContent = t("share.text_label");
@@ -162,7 +162,7 @@
     $("#shareFeed").setAttribute("aria-pressed", String(format === "feed"));
     $("#shareStory").setAttribute("aria-pressed", String(format === "story"));
   }
-  function close() { $("#shareSheet").hidden = true; document.body.classList.remove("has-drawer"); $("#shareBtn").focus(); }
+  function close() { $("#shareSheet").hidden = true; $("#shareBackdrop").hidden = true; document.body.classList.remove("has-drawer"); $("#shareBtn").focus(); }
   function toast(msg) { const el = $("#shareToast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(() => { el.hidden = true; }, 3500); }
 
   function save() {

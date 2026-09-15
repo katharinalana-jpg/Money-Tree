@@ -79,7 +79,7 @@
     if (Sx && Sx.current()) Sx.setScreen(route);
     // PRD path per sub step (conflict 16): pushState on clean URLs, hash on plain files
     try {
-      if (/\.html$/.test(window.location.pathname)) window.history.replaceState(null, "", "#" + route.split("/").pop());
+      if (/\.html$/.test(window.location.pathname)) window.history.replaceState(null, "", window.location.pathname + window.location.search + "#" + route.split("/").pop()); // absolute: <base href="/"> would send a bare hash to the root
       else window.history.replaceState(null, "", route);
     } catch (e) { /* ignore */ }
     track("screen_view", { screen: route });

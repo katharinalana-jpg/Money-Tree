@@ -74,7 +74,9 @@
   let terms = new Map();   // id → entry
   let index = null;
   let seen = new Set();    // ids marked on this screen
-  let pop = null, openId = null, hoverTimer = null, anchor = null;
+  let pop = null, openId = null, hoverTimer = null, leaveTimer = null, anchor = null, viaHover = false;
+  const LEAVE_DELAY = 200;
+  function leave() { clearTimeout(leaveTimer); if (viaHover) leaveTimer = setTimeout(close, LEAVE_DELAY); }
   const L = () => window.pmLocale;
   const t = (key) => (L() && L().has(key)) ? L().t(key) : key;
   const track = (name, payload) => { if (window.pmTrack) window.pmTrack.track(name, payload); };
@@ -139,10 +141,10 @@
     b.setAttribute("aria-describedby", "pm-gloss-" + id);
     b.setAttribute("aria-expanded", "false");
     b.textContent = text;
-    b.addEventListener("mouseenter", () => { clearTimeout(hoverTimer); hoverTimer = setTimeout(() => open(b), HOVER_DELAY); });
-    b.addEventListener("mouseleave", () => { clearTimeout(hoverTimer); });
-    b.addEventListener("focus", () => open(b));
-    b.addEventListener("click", (e) => { e.preventDefault(); if (openId === id && anchor === b) close(); else open(b); });
+    b.addEventListener("mouseenter", () => { clearTimeout(hoverTimer); clearTimeout(leaveTimer); hoverTimer = setTimeout(() => { if (openId === id && anchor === b) return; open(b); viaHover = true; }, HOVER_DELAY); });
+    b.addEventListener("mouseleave", () => { clearTimeout(hoverTimer); leave(); });
+    b.addEventListener("focus", () => { if (b.matches(":focus-visible")) open(b); }); // keyboard focus only; a mouse click is handled below
+    b.addEventListener("click", (e) => { e.preventDefault(); clearTimeout(hoverTimer); clearTimeout(leaveTimer); if (openId === id && anchor === b && !viaHover) close(); else { open(b); viaHover = false; } });
     b.addEventListener("keydown", (e) => { if (e.key === "Escape") { close(); b.focus(); } });
     return b;
   }
@@ -166,7 +168,8 @@
     pop.setAttribute("role", "dialog");
     pop.setAttribute("aria-modal", "false");
     pop.hidden = true;
-    pop.addEventListener("mouseenter", () => clearTimeout(hoverTimer));
+    pop.addEventListener("mouseenter", () => { clearTimeout(hoverTimer); clearTimeout(leaveTimer); });
+    pop.addEventListener("mouseleave", leave);
     document.body.appendChild(pop);
     document.addEventListener("click", (e) => { if (pop.hidden) return; if (!pop.contains(e.target) && !(anchor && anchor.contains(e.target))) close(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !pop.hidden) { close(); if (anchor) anchor.focus(); } });
@@ -198,7 +201,7 @@
     if (!pop || pop.hidden) return;
     pop.hidden = true;
     if (anchor) anchor.setAttribute("aria-expanded", "false");
-    openId = null;
+    openId = null; viaHover = false;
   }
 
   function place(btn) {

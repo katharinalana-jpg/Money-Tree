@@ -418,6 +418,16 @@ Copy typo fixes
 
 Found on the Vercel deploy: after the quiz the summary answered 404. Cause: quiz.js sets the PRD path per sub step (`/quiz/phase` …) with `history.replaceState`, so every relative URL on the page resolved under `/quiz/` (`summary.html` → `/quiz/summary.html`, and on a reload also styles, scripts and `data/*.json`). Fix: `<base href="/">` in `quiz.html` (the page has no fragment links). Verified on the local server with the same rewrites as `vercel.json`: loading `/quiz/values` directly returns every asset with 200, the data fetch works and the final step resolves to `/summary.html`. 34 node tests pass.
 
+## Fix · Share sheet close and glossary hover (15.09.2026)
+
+Reported on the Vercel preview: the X on the S8 share sheet ("Deine Werte-Karte") did nothing and glossary popovers stayed open after the pointer left. Causes and fixes:
+- `.share { display: flex }` overrode the `hidden` attribute (no `[hidden]` rule existed), so the sheet stayed visible after `close()`. Global `[hidden] { display: none !important }` added to `styles.css`.
+- The sticky `.nav` (z-index 100) lay above the share sheet and the Explorer drawer (71) and swallowed clicks on their X buttons. Backdrop now 110, drawer and sheet 111.
+- The share backdrop was never unhidden; `open()/close()` now toggle it, so a click outside the sheet closes it too.
+- Glossary: hover opened the popover but only Esc or a click outside closed it. Now a popover opened by hover closes 200 ms after the pointer leaves term and popover; a click keeps it open until a second click, Esc or a click outside; keyboard focus opens it (`:focus-visible`), mouse focus no longer opens and instantly re-closes it.
+- Follow-up to the `<base href="/">` fix: on plain `.html` paths the quiz hash update is now absolute, otherwise the base resolved `#traps` to the site root.
+Verified in the browser (summary, explore, quiz on `/quiz.html` and `/quiz/phase`): sheet X, Esc and backdrop close; drawer X closes; popover hover, leave, click toggle, click outside, keyboard focus all behave as above. 34 node tests pass. Cache bumps: styles v29, explore.css v13, summary.css v4, share.js v3, glossary.js v2, quiz.js v14.
+
 ### Open issues (appended by task)
 
 - O1 · Resolved 10.09.2026: `PRD.md` moved from repo root to `docs/PRD.md`.

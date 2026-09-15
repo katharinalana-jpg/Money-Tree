@@ -127,6 +127,8 @@ em.serif,
 
 /* -- Reset ------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* the hidden attribute must win over display rules such as .share { display: flex } */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--ff);
