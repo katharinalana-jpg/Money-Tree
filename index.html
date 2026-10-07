@@ -45,9 +45,70 @@
     </header>
 
     <main>
-      <!-- Schritt 6: Hero-Inhalt (Formular, Zum Archiv) -->
+      <!-- HERO (PDF Seite 1) -->
+      <section class="hero container" aria-labelledby="newsletter-heading">
+        <h2 id="newsletter-heading" class="sr-only" data-i18n="nav.newsletter">Newsletter</h2>
+        <form class="hero__form" id="newsletter" data-signup novalidate>
+          <label class="sr-only" for="heroName" data-i18n="form.name_ph">Vorname</label>
+          <input class="field" id="heroName" type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Vorname" data-i18n-ph="form.name_ph" />
+          <label class="sr-only" for="heroEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="heroEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <fieldset class="form__lang t-label">
+            <legend data-i18n="form.lang_label">Updates bitte auf</legend>
+            <label><input type="radio" name="language" value="en" /><span>EN</span></label>
+            <label><input type="radio" name="language" value="de" /><span>DE</span></label>
+            <label><input type="radio" name="language" value="fr" /><span>FR</span></label>
+          </fieldset>
+          <label class="check t-small">
+            <input type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
+          </label>
+          <button class="btn" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
+          <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
+          <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
+        </form>
+        <a class="hero__archive t-cta arrow-link" href="archive.html"><span data-i18n="hero.archive">Zum Archiv</span> <svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+      </section>
     </main>
   </div>
+
+  <!-- A NEW ERA OF INVESTING (PDF Seite 2) -->
+  <section class="era section theme-gruen">
+    <div class="container era__inner">
+      <h2 class="era__title">A new era of investing.</h2>
+      <p class="era__eyebrow" data-i18n="era.eyebrow">Eine neue Definition von Wachstum</p>
+      <div class="era__text t-body" data-i18n-html="era.text">
+        <p>Wir sind die zweite Generation, die ein Bankkonto besitzen darf. Die Finanzwelt hat uns nicht mitbedacht. Wir ändern das.</p>
+        <p>Wir wollen Produkte, die unseren Werten entsprechen. Wir wollen, dass unser Geld arbeitet. Für uns und wofür wir stehen.</p>
+      </div>
+      <a class="era__more arrow-link" href="about.html"><span data-i18n="era.more">Mehr erfahren</span> <svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+    </div>
+    <img class="era__figure" src="img/neue-aera-maedchen.webp" alt="" width="875" height="1000" />
+  </section>
+
+  <!-- KACHELN (PDF Seite 3) -->
+  <section class="tiles container container--wide">
+    <div class="tiles__grid">
+      <article class="tile">
+        <a class="tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-your-money-moves.webp" alt="" width="900" height="603" /></a>
+        <h2 class="tile__title">Your Money Moves</h2>
+        <div class="tile__rule"></div>
+        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span> <svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+      </article>
+      <article class="tile">
+        <a class="tile__media tile__media--overflow" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-kollaborationen.webp" alt="" width="945" height="606" /></a>
+        <h2 class="tile__title" data-i18n="tile.collab_title">Kollaborationen</h2>
+        <div class="tile__rule"></div>
+        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.collab_link">Gemeinsam nach unseren Regeln gestalten</span> <svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+      </article>
+      <article class="tile">
+        <a class="tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-boutique.webp" alt="" width="900" height="603" /></a>
+        <h2 class="tile__title" data-i18n="tile.boutique_title">Boutique</h2>
+        <div class="tile__rule"></div>
+        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.boutique_link">Alle Produkte</span> <svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+      </article>
+    </div>
+  </section>
 
   <!-- FOOTER (PDF Seite 3) -->
   <footer class="site-footer container container--wide">

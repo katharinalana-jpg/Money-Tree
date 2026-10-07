@@ -193,7 +193,7 @@ ul { padding: 0; list-style: none; }
 /* Headline: die Linie läuft durch die Unterlängen (g, y, p). Die Grundlinie
    sitzt --title-shift unter der Linie; die Linie selbst bleibt bei ~170 px. */
 .site-header__title {
-  --title-shift: 10px;
+  --title-shift: 3px;                       /* PDF Seite 1: Grundlinie knapp unter der Linie */
   display: flex; align-items: baseline;
   margin: 0; padding-top: calc(2.6875rem + var(--title-shift));
   font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 400;
@@ -276,4 +276,56 @@ ul { padding: 0; list-style: none; }
   .footer-form .btn { width: 100%; }
   .site-footer__bottom { grid-template-columns: 1fr; }
   .site-footer__legal { justify-self: start; }
+}
+
+/* ---------- 8. Startseite: Hero (PDF Seite 1) ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) min(36.5625rem, 100%) 6rem; padding-top: 6rem; padding-bottom: 6rem; }   /* Spalte 585 px, rechts 120 px */
+.hero__form { grid-column: 2; display: grid; gap: 0; scroll-margin-top: 2rem; }
+.hero__form .field { padding: 0.125rem 0 0.375rem; }
+.hero__form .field + .field { margin-top: 0.75rem; }
+.form__lang { display: flex; align-items: baseline; gap: 2.25rem; margin: 1rem 0 0; padding: 0; border: 0; line-height: 1.2; }
+.form__lang legend { float: left; padding: 0; margin-right: 0; }
+.form__lang label { cursor: pointer; }
+.form__lang input { position: absolute; opacity: 0; width: 0; height: 0; }
+.form__lang span { display: inline-block; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+.form__lang input:checked + span { border-bottom-color: var(--line); }
+.form__lang input:focus-visible + span { outline: 2px solid var(--fg); outline-offset: 2px; }
+.form__lang label:hover span { opacity: 0.7; }
+.hero__form .check { margin-top: 0.5rem; }
+.hero__form .btn { margin-top: 1.75rem; width: 20.625rem; justify-self: start; }   /* 330 px */
+.hero__form .form__success, .hero__form .form__error { margin-top: 1rem; }
+.hero__archive { grid-column: 2; margin-top: 3.875rem; justify-self: start; margin-left: 4.5rem; }   /* Mitte unter dem Button */
+.hero__archive { color: var(--fg); }
+
+/* ---------- 9. Startseite: A new era of investing (PDF Seite 2, flacher) ---------- */
+.era { position: relative; overflow: hidden; padding: 6rem 0 5.5rem; }
+.era__inner { padding-left: 10.625rem; }                /* Text bei x = 170 px */
+.era__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }
+.era__eyebrow { margin-top: 3.5rem; font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
+.era__text { margin-top: 5.25rem; max-width: 42.25rem; }   /* 676 px */
+.era__text p + p { margin-top: 0; }
+.era__more { display: inline-flex; margin-top: 4.75rem; font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.era__figure { position: absolute; right: 0; bottom: 0; height: 72%; width: auto; max-width: 40%; object-fit: contain; object-position: right bottom; }
+
+/* ---------- 10. Startseite: Kacheln (PDF Seite 3) ---------- */
+.tiles { padding-top: 1.875rem; }
+.tiles__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
+.tile__media { display: block; position: relative; aspect-ratio: 1769 / 1187; }
+.tile__media img { width: 100%; height: 100%; object-fit: cover; }
+.tile__media--overflow img { position: absolute; left: -2.886%; top: -0.084%; width: 105.093%; height: auto; max-width: none; object-fit: unset; }
+.tile__title { margin-top: 0.875rem; font-family: var(--font-display); font-size: var(--fs-h4); text-transform: uppercase; line-height: 1.15; font-weight: 400; }
+.tile__rule { margin-top: 2.5rem; border-top: var(--border); }
+.tile__link { display: block; margin-top: 0.625rem; font-size: var(--fs-body); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15; }
+.tile__link svg { display: inline-block; width: 1em; height: 0.7em; opacity: var(--icon-opacity); vertical-align: -0.02em; margin-left: 0.2em; }
+.tile__link:hover { opacity: 0.6; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 3rem; padding-bottom: 4rem; }
+  .hero__form, .hero__archive { grid-column: 1; }
+  .hero__archive { margin-left: 0; }
+  .hero__form .btn { width: 100%; }
+  .era { padding: 4rem 0 14rem; }
+  .era__inner { padding-left: 0; }
+  .era__figure { height: 40%; max-width: 60%; }
+  .tiles__grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
