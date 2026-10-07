@@ -178,7 +178,7 @@ ul { padding: 0; list-style: none; }
 .site-header { color: var(--fg); }
 .site-header__top {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3);
-  padding: 1.25rem 0 0.875rem;          /* Linie bei ~62 px */
+  padding: 1.5rem 0 0.875rem;           /* Linie bei 67 px (PDF) */
   border-bottom: var(--border);
 }
 .site-header__logo { font-family: var(--font-logo); font-size: var(--fs-logo); line-height: 1; letter-spacing: -0.005em; }
@@ -190,12 +190,12 @@ ul { padding: 0; list-style: none; }
 }
 .lang-switch .is-active, .lang-switch a:hover, .lang-switch button:hover { opacity: 1; }
 
-/* Headline: die Linie läuft durch die Unterlängen (g, y, p). Die Grundlinie
-   sitzt --title-shift unter der Linie; die Linie selbst bleibt bei ~170 px. */
+/* Headline: die Linie läuft durch die Unterlängen (g, y, p), nicht durch die
+   übrigen Buchstaben. Grundlinie = Linie + --title-shift (negativ = darüber). */
 .site-header__title {
-  --title-shift: 3px;                       /* PDF Seite 1: Grundlinie knapp unter der Linie */
+  --title-shift: -11px;                     /* PDF Seite 1: Grundlinie 11 px über der Linie, Linie schneidet die Unterlängen */
   display: flex; align-items: baseline;
-  margin: 0; padding-top: calc(2.6875rem + var(--title-shift));
+  margin: 0; padding-top: calc(2.34375rem + var(--title-shift));   /* Versalien-Oberkante 27 px unter der Logo-Linie */
   font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 400;
   line-height: 1; letter-spacing: 0;
   font-variation-settings: "opsz" 36;       /* wie im Canva-Export (Newsreader 36pt) */
@@ -211,7 +211,7 @@ ul { padding: 0; list-style: none; }
   position: relative; top: calc(1px - var(--title-shift));
 }
 
-.site-nav { padding-top: 0.25rem; }              /* Menü-Oberkante bei ~203 px */
+.site-nav { padding-top: 1rem; }                 /* Menü-Oberkante bei ~203 px */
 .site-nav ul { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
 .site-nav a {
   font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em;
@@ -232,7 +232,7 @@ ul { padding: 0; list-style: none; }
 }
 
 /* ---------- 7. Footer (PDF Seite 3; Variante mit Tänzerinnen: Seite 5) ---------- */
-.site-footer { color: var(--fg); padding-top: 1.5rem; }
+.site-footer { color: var(--fg); padding-top: 6rem; }
 .site-footer__grid {
   display: grid;
   grid-template-columns: minmax(0, 410px) minmax(0, 1fr) minmax(0, 418px);   /* Spaltenbreiten aus dem PDF */
@@ -262,7 +262,7 @@ ul { padding: 0; list-style: none; }
 .site-footer__claim { font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1.05; }
 
 .site-footer__bottom {
-  margin-top: 2.5rem; border-top: var(--border); padding: 1.125rem 0 0.25rem;
+  margin-top: 3.5rem; border-top: var(--border); padding: 1.125rem 0 0.25rem;
   display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 2rem; align-items: baseline;
 }
 .site-footer__copy { font-size: var(--fs-nav); }
@@ -298,7 +298,7 @@ ul { padding: 0; list-style: none; }
 .hero__archive { color: var(--fg); }
 
 /* ---------- 9. Startseite: A new era of investing (PDF Seite 2, flacher) ---------- */
-.era { position: relative; overflow: hidden; padding: 6rem 0 5.5rem; }
+.era { position: relative; overflow: hidden; padding: 7rem 0 6.5rem; }
 .era__inner { padding-left: 10.625rem; }                /* Text bei x = 170 px */
 .era__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }
 .era__eyebrow { margin-top: 3.5rem; font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -308,14 +308,14 @@ ul { padding: 0; list-style: none; }
 .era__figure { position: absolute; right: 0; bottom: 0; height: 72%; width: auto; max-width: 40%; object-fit: contain; object-position: right bottom; }
 
 /* ---------- 10. Startseite: Kacheln (PDF Seite 3) ---------- */
-.tiles { padding-top: 1.875rem; }
+.tiles { padding-top: 8.5rem; }                 /* viel Weißraum nach dem grünen Abschnitt */
 .tiles__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
 .tile__media { display: block; position: relative; aspect-ratio: 1769 / 1187; }
 .tile__media img { width: 100%; height: 100%; object-fit: cover; }
 .tile__media--overflow img { position: absolute; left: -2.886%; top: -0.084%; width: 105.093%; height: auto; max-width: none; object-fit: unset; }
-.tile__title { margin-top: 0.875rem; font-family: var(--font-display); font-size: var(--fs-h4); text-transform: uppercase; line-height: 1.15; font-weight: 400; }
-.tile__rule { margin-top: 2.5rem; border-top: var(--border); }
-.tile__link { display: block; margin-top: 0.625rem; font-size: var(--fs-body); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15; }
+.tile__title { margin-top: 1.5rem; font-family: var(--font-display); font-size: var(--fs-h4); text-transform: uppercase; line-height: 1.15; font-weight: 400; }
+.tile__rule { margin-top: 2.75rem; border-top: var(--border); }
+.tile__link { display: block; margin-top: 1rem; font-size: var(--fs-body); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15; }
 .tile__link svg { display: inline-block; width: 1em; height: 0.7em; opacity: var(--icon-opacity); vertical-align: -0.02em; margin-left: 0.2em; }
 .tile__link:hover { opacity: 0.6; }
 
