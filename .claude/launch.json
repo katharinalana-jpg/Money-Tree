@@ -6,6 +6,16 @@
       "runtimeExecutable": "ruby",
       "runtimeArgs": ["-e", "require 'webrick';s=WEBrick::HTTPServer.new(Port:8080,DocumentRoot:'/Users/ks/Documents/FemTech/Money-Tree');trap('INT'){s.shutdown};s.start"],
       "port": 8080
+    },
+    {
+      "name": "landing-py",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8081", "--bind", "127.0.0.1", "--directory", "/Users/ks/Documents/FemTech/Money-Tree"],
+      "port": 8081
+    },
+    {
+      "name": "landing-attach",
+      "url": "http://localhost:8082"
     }
   ]
 }

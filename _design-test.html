@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portemonnaie – Design-Test (wird gelöscht)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=DM+Serif+Display&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=100" />
+  <style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .swatch { border: 1px solid var(--color-text); padding: 1rem; min-height: 140px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .swatch code { display: block; font-size: 13px; opacity: .8; }
+    .block { padding: 3rem var(--page-pad); }
+    .row { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 2rem; align-items: baseline; border-top: 1px solid var(--color-text); padding: 1rem 0; }
+    .row .meta { font-size: 13px; opacity: .7; font-family: var(--font-body); }
+    .demo { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="block">
+      <p class="t-label-sm">Schritt 3 · Testseite · Farben aus DESIGN.md</p>
+      <div class="grid" style="margin-top:1.5rem">
+        <div class="swatch" style="background:var(--color-creme)"><strong>Creme</strong><code>--color-creme #F6F5EE</code><code>Seitenhintergrund</code></div>
+        <div class="swatch" style="background:var(--color-sand)"><strong>Dunkel-Creme / Hell</strong><code>--color-sand / --color-text-light #D8D5C6</code><code>Platzhalter, Schrift auf dunkel</code></div>
+        <div class="swatch" style="background:var(--color-button)"><strong>Button-Creme</strong><code>--color-button #EEECDE</code><code>Füllung Newsletter-Button</code></div>
+        <div class="swatch" style="background:var(--color-gelb)"><strong>Gelb</strong><code>--color-gelb #FAD247</code><code>Kachel Kollaborationen</code></div>
+        <div class="swatch theme-gruen" style="background:var(--color-gruen);color:var(--color-text-light)"><strong>Grün</strong><code>--color-gruen #285A4E</code><code>A new era of investing</code></div>
+        <div class="swatch theme-rot" style="background:var(--color-rot);color:var(--color-text-light)"><strong>Rot</strong><code>--color-rot #691700</code><code>Über uns</code></div>
+        <div class="swatch theme-blau" style="background:var(--color-blau);color:var(--color-text-light)"><strong>Blau</strong><code>--color-blau #23408E</code><code>reserviert, nicht im Einsatz</code></div>
+        <div class="swatch" style="background:var(--color-text);color:var(--color-creme)"><strong>Schwarz</strong><code>--color-text #000000</code><code>Text, Linien, Rahmen</code></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="t-label-sm">Schriften und Größen (gemessen im PDF bei 1440 px)</p>
+      <div style="margin-top:1.5rem">
+        <div class="row"><span class="meta">Logo · DM Serif Display · 24 px</span><span class="t-logo">Portemonnaie</span></div>
+        <div class="row"><span class="meta">Hero-Headline · Newsreader · 88 px</span><span class="t-hero">Start investing in what you support.</span></div>
+        <div class="row"><span class="meta">H1 · Newsreader · 56 px</span><span class="t-h1">Coming soon</span></div>
+        <div class="row"><span class="meta">H2 · Newsreader · 48 px</span><span class="t-h2">A new era of investing.</span></div>
+        <div class="row"><span class="meta">H3 · Newsreader · 42 px</span><span class="t-h3">Registrier dich jetzt</span></div>
+        <div class="row"><span class="meta">H4 / Kachel-Titel · Newsreader · 36 px</span><span class="t-h4 t-caps">Your Money Moves</span></div>
+        <div class="row"><span class="meta">CTA · Newsreader · 24 px, Versalien</span><span class="t-cta arrow-link">Zum Archiv <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M0 8h21M15 1l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+        <div class="row"><span class="meta">Navigation · Newsreader · 14 px, Versalien</span><span class="t-nav">Newsletter &nbsp;&nbsp;&nbsp; Archiv &nbsp;&nbsp;&nbsp; Über uns &nbsp;&nbsp;&nbsp; Tools &nbsp;&nbsp;&nbsp; Boutique &nbsp;&nbsp;&nbsp; Kollaborationen &nbsp;&nbsp;&nbsp; Kontakt</span></div>
+        <div class="row"><span class="meta">Fließtext · DM Sans · 18 px / 1.6</span><span class="t-body">Wir sind die zweite Generation, die ein Bankkonto besitzen darf. Die Finanzwelt hat uns nicht mitbedacht. Wir ändern das.</span></div>
+        <div class="row"><span class="meta">Label · DM Sans Bold · 18 px, Versalien</span><span class="t-label">Updates bitte auf &nbsp; EN &nbsp; DE &nbsp; FR</span></div>
+        <div class="row"><span class="meta">Kleine Versalien · DM Sans · 14 px</span><span class="t-label-sm">Eine neue Definition von Wachstum</span></div>
+        <div class="row"><span class="meta">Klein · DM Sans · 13 px</span><span class="t-small">Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</span></div>
+        <div class="row"><span class="meta">Mini · DM Sans · 10 px, Versalien</span><span class="t-xs">Impressum &nbsp;&nbsp; Datenschutzerklärung</span></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="t-label-sm">Bausteine</p>
+      <div class="demo" style="margin-top:1.5rem">
+        <button class="btn" type="button">Newsletter abonnieren</button>
+        <button class="btn btn--filled btn--caps" type="button">Newsletter abonnieren</button>
+        <label class="check t-small"><input type="checkbox" checked /> <span>Ich möchte Updates von Portemonnaie erhalten und akzeptiere die Datenschutzerklärung.</span></label>
+      </div>
+      <div style="max-width:600px;margin-top:2.5rem;display:grid;gap:1.5rem">
+        <input class="field" type="text" placeholder="Vorname" />
+        <input class="field" type="email" placeholder="E-Mail-Adresse" />
+      </div>
+    </section>
+
+    <section class="block section theme-gruen" style="padding:3rem">
+      <p class="t-label-sm">Dunkler Abschnitt (Grün): Schrift und Linien in Hell</p>
+      <h2 class="t-h2" style="margin-top:1rem">A new era of investing.</h2>
+      <hr class="rule" style="margin:1.5rem 0" />
+      <div class="demo"><button class="btn" type="button">Mehr erfahren</button><span class="t-cta arrow-link">Mehr erfahren <svg viewBox="0 0 24 16" aria-hidden="true"><path d="M0 8h21M15 1l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
+    </section>
+
+    <section class="block section theme-rot" style="padding:3rem;margin-top:2rem">
+      <p class="t-label-sm">Dunkler Abschnitt (Rot): Über uns</p>
+      <h2 class="t-h2" style="margin-top:1rem">Bei Portemonnaie kämpfen wir dafür, den Gender Wealth Gap zu schließen.</h2>
+      <p class="t-body" style="margin-top:1.5rem;max-width:60ch">Unsere Großmütter brauchten eine Unterschrift, um ein eigenes Konto zu eröffnen. Wir sind die zweite Generation, die ihr Geld selbst verwalten darf.</p>
+    </section>
+
+    <section class="block">
+      <p class="t-label-sm">Optimierte Bilder (img/*.webp)</p>
+      <div class="grid" style="margin-top:1.5rem;grid-template-columns:repeat(4,1fr)">
+        <img src="img/kachel-your-money-moves.webp" alt="" />
+        <img src="img/kachel-kollaborationen.webp" alt="" />
+        <img src="img/kachel-boutique.webp" alt="" />
+        <img src="img/hero-wolken.webp" alt="" />
+        <img src="img/neue-aera-maedchen.webp" alt="" style="background:var(--color-gruen)" />
+        <img src="img/ueber-uns-frau-mit-ball.webp" alt="" style="background:var(--color-rot)" />
+        <img src="img/footer-taenzerinnen.webp" alt="" />
+        <img src="img/papier.webp" alt="" />
+      </div>
+    </section>
+  </main>
+</body>
+</html>
