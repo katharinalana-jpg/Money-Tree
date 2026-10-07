@@ -58,13 +58,13 @@
       "era.more": "Learn more",
       "tile.money_link": "Let your values work",
       "tile.collab_title": "Collaborations",
-      "tile.collab_link": "Shaping finance together, by our rules",
+      "tile.collab_link": "Shaping finance together,<br>by our rules",
       "tile.boutique_title": "Boutique",
       "tile.boutique_link": "All products",
       "footer.imprint": "Imprint",
       "footer.privacy": "Privacy policy",
       "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Private beta. Your email is used only for Portemonnaie updates. You can unsubscribe at any time."
+      "footer.beta": "Your email is used only for Portemonnaie updates. You can unsubscribe at any time."
     },
 
     /* ---------------- Deutsch (Texte aus dem Canva-Entwurf) ---------------- */
@@ -103,13 +103,13 @@
       "era.more": "Mehr erfahren",
       "tile.money_link": "Lass deine Werte wirken",
       "tile.collab_title": "Kollaborationen",
-      "tile.collab_link": "Gemeinsam nach unseren Regeln gestalten",
+      "tile.collab_link": "Gemeinsam nach unseren<br>Regeln gestalten",
       "tile.boutique_title": "Boutique",
       "tile.boutique_link": "Alle Produkte",
       "footer.imprint": "Impressum",
       "footer.privacy": "Datenschutzerklärung",
       "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden."
+      "footer.beta": "Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden."
     },
 
     /* ---------------- Français ---------------- */
@@ -148,13 +148,13 @@
       "era.more": "En savoir plus",
       "tile.money_link": "Fais agir tes valeurs",
       "tile.collab_title": "Collaborations",
-      "tile.collab_link": "Façonner la finance ensemble, selon nos règles",
+      "tile.collab_link": "Façonner la finance ensemble,<br>selon nos règles",
       "tile.boutique_title": "Boutique",
       "tile.boutique_link": "Tous les produits",
       "footer.imprint": "Mentions légales",
       "footer.privacy": "Politique de confidentialité",
       "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Bêta privée. Ton e-mail sert uniquement aux actualités de Portemonnaie. Tu peux te désabonner à tout moment."
+      "footer.beta": "Ton e-mail sert uniquement aux actualités de Portemonnaie. Tu peux te désabonner à tout moment."
     }
   };
 
