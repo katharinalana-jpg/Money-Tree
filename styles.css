@@ -61,9 +61,9 @@
 }
 
 /* Dunkle Abschnitte: helle Schrift und Linien */
-.theme-gruen { --bg: var(--color-gruen); --fg: var(--color-text-light); }
-.theme-rot   { --bg: var(--color-rot);   --fg: var(--color-text-light); }
-.theme-blau  { --bg: var(--color-blau);  --fg: var(--color-text-light); }
+.theme-gruen { --bg: var(--color-gruen); --fg: var(--color-text-light); --line: var(--color-text-light); --border: 1px solid var(--color-text-light); }
+.theme-rot   { --bg: var(--color-rot);   --fg: var(--color-text-light); --line: var(--color-text-light); --border: 1px solid var(--color-text-light); }
+.theme-blau  { --bg: var(--color-blau);  --fg: var(--color-text-light); --line: var(--color-text-light); --border: 1px solid var(--color-text-light); }
 .theme-gelb  { --bg: var(--color-gelb);  --fg: var(--color-text); }
 .theme-sand  { --bg: var(--color-sand);  --fg: var(--color-text); }
 
@@ -302,7 +302,7 @@ ul { padding: 0; list-style: none; }
 .era__inner { padding-left: 10.625rem; }                /* Text bei x = 170 px */
 .era__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }
 .era__eyebrow { margin-top: 3.5rem; font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
-.era__text { margin-top: 5.25rem; max-width: 42.25rem; }   /* 676 px */
+.era__text { margin-top: 5.25rem; max-width: 42.25rem; text-align: justify; hyphens: auto; }   /* 676 px */
 .era__text p + p { margin-top: 0; }
 .era__more { display: inline-flex; margin-top: 4.75rem; font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .era__figure { position: absolute; right: 0; bottom: 0; height: 72%; width: auto; max-width: 40%; object-fit: contain; object-position: right bottom; }
@@ -332,25 +332,26 @@ ul { padding: 0; list-style: none; }
 
 /* ---------- 11. Über uns (PDF Seite 8, darunter Seite 7; eine durchgehende Figur) ---------- */
 .about { position: relative; overflow: hidden; }
-.about__intro { padding-top: 3.875rem; padding-bottom: 5.3125rem; }           /* Titel bei 290 px, Seitenende 810 px */
+.about__intro { padding-top: 3.875rem; padding-bottom: 0; }                   /* Titel bei 290 px */
 .about__intro-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99, 794 px breit */
 .about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; }
-.about__intro .about__text { margin-top: 3.5625rem; }
+.about__intro .about__text { margin-top: 1.75rem; }
+.about__text { text-align: justify; hyphens: auto; }
 .about__text p + p { margin-top: 0; }
 
-.about__what { position: relative; padding-top: 4.6875rem; padding-bottom: 4.5rem; }
+.about__what { padding-top: 4.5rem; padding-bottom: 4.5rem; }
 .about__what-inner { padding-left: 3.625rem; max-width: calc(3.625rem + 49.625rem); }       /* Text ab x = 82 */
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; }
-.about__heading + .about__text { margin-top: 2.1875rem; }
-.about__text + .about__heading { margin-top: 4.3125rem; }
+.about__heading + .about__text { margin-top: 1.75rem; }
+.about__text + .about__heading { margin-top: 4.5rem; }
 .about__claim {
-  position: absolute; left: calc(50% + 15.3125rem); top: 18.3125rem;          /* x = 965, y = 293 */
+  position: absolute; left: calc(50% + 15.3125rem); top: 67rem;               /* x = 965, ca. 110 px unter den Füßen */
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
   white-space: nowrap;
 }
 .about__figure {
   position: absolute; z-index: 1; pointer-events: none;
-  top: 21.6875rem; left: calc(50% + 5.6875rem); height: 57.375rem; width: auto;   /* Figur 519 px hoch, Ball ab y 520 */
+  top: 16.6875rem; left: calc(50% + 5.6875rem); height: 57.375rem; width: auto;   /* Figur 519 px hoch, Ball ab y 440, Füße bei ~958 */
 }
 
 /* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
