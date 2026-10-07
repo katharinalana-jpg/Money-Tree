@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
-  <title data-i18n-title="meta.title">Portemonnaie</title>
+  <title data-i18n-title="about.meta_title">Über uns – Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
 </head>
 <body class="theme-rot">
 
+  <div class="about">
   <!-- KOPFBEREICH, helle Variante auf Rot (PDF Seite 7) -->
   <header class="site-header container">
     <div class="site-header__top">
@@ -43,42 +44,39 @@
     </nav>
   </header>
 
-  <main class="container" style="min-height:60vh">
-    <!-- Schritt 10: Über uns (PDF Seiten 7 + 8) -->
-  </main>
-
-  <!-- FOOTER (PDF Seite 3) -->
-  <footer class="site-footer container container--wide">
-    <div class="site-footer__grid">
-      <nav aria-label="Footer">
-        <ul class="footer-menu">
-          <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive.html" data-i18n="nav.archive">Archiv</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
-          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
-        </ul>
-      </nav>
-      <div class="site-footer__middle"></div>
-      <div class="site-footer__signup">
-        <div class="social">
-          <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
-          <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
-        </div>
-        <form class="footer-form" data-signup novalidate>
-          <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
-          <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
-          <label class="check t-small">
-            <input type="checkbox" name="consent" required />
-            <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
-          </label>
-          <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
-          <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
-          <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
-        </form>
+  <main class="container about__intro">
+    <div class="about__intro-inner">
+      <h1 class="about__title" data-i18n="about.title">Bei Portemonnaie kämpfen wir dafür, den Gender Wealth Gap zu schließen.</h1>
+      <div class="about__text t-body" data-i18n-html="about.intro">
+        <p>Unsere Großmütter brauchten eine Unterschrift, um ein eigenes Konto zu eröffnen. Wir sind die zweite Generation, die ihr Geld selbst verwalten darf. Wir lassen es nicht liegen.</p>
+        <p>Denn Geld, das liegt, arbeitet trotzdem. Nur nicht für uns und nicht, wofür wir stehen. Am Konto, im Fonds, in der Vorsorge finanziert es mit, was man nicht kaufen würde.</p>
+        <p>Wer sein Geld nicht selbst verwaltet, lässt andere entscheiden.</p>
+        <p>Wir sind überzeugt, dass Geld etwas verändern kann. Dass es die Wirtschaft von morgen baut, mit jeder Entscheidung, die wir heute treffen. Eine gerechtere Wirtschaft entsteht nur, wenn wir uns beteiligen: nicht als passive Zuschauerinnen, sondern als Investorinnen. Wir fordern Produkte, die zu unseren Werten passen. Wir investieren nach unseren Regeln.</p>
       </div>
     </div>
+  </main>
+
+  <!-- WAS PORTEMONNAIE TUT (PDF Seite 7) -->
+  <section class="container about__what">
+    <div class="about__what-inner">
+      <h2 class="about__heading" data-i18n="about.what_title">Was Portemonnaie tut</h2>
+      <div class="about__text t-body" data-i18n-html="about.what">
+        <p>Portemonnaie ist eine unabhängige Plattform, die zeigt, wohin dein Geld fließt und wofür es arbeitet. Sie zeigt auch, wie du es selbst arbeiten lässt: nach deinen Werten, Schritt für Schritt, ohne Fachjargon und ohne jemanden, der dir etwas verkaufen will, ohne Finance Bros. Wir empfehlen nichts. Wir machen sichtbar, damit du entscheidest.</p>
+      </div>
+      <h2 class="about__heading">A new era of investing.</h2>
+      <div class="about__text t-body" data-i18n-html="about.era">
+        <p>Finanzielle Unabhängigkeit ist die höchste Form von Self Care – der größte Akt der Emanzipation.</p>
+        <p>Mach dein Geld zu deiner Stimme: für die Unternehmen, die du in der Welt sehen willst.</p>
+        <p>Wir sind überzeugt, dass Wachstum über vier Dimensionen gemessen werden muss. Jedes Unternehmen braucht finanzielles Kapital, ökologisches Kapital, soziales Kapital und Netzwerkkapital. Jahrzehntelang galt nur das Wachstum des finanziellen Kapitals als Erfolg. Investieren wir in Unternehmen, die den Erfolg von Umwelt und Gesellschaft als ihren eigenen verstehen.</p>
+      </div>
+    </div>
+    <p class="about__claim" data-i18n-html="about.claim">Money is power.<br>Use yours.</p>
+  </section>
+
+  <img class="about__figure" src="img/ueber-uns-frau-mit-ball.webp" alt="" width="1575" height="2000" />
+
+  <!-- FOOTER, nur untere Zeile (PDF Seite 7) -->
+  <footer class="site-footer site-footer--bar container container--wide">
     <div class="site-footer__bottom">
       <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
       <div class="site-footer__legal">
@@ -88,6 +86,7 @@
       <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
     </div>
   </footer>
+  </div>
 
   <script src="i18n.js?v=100"></script>
   <script src="script.js?v=100"></script>

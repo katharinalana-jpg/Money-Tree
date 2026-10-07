@@ -329,3 +329,39 @@ ul { padding: 0; list-style: none; }
   .era__figure { height: 40%; max-width: 60%; }
   .tiles__grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
+
+/* ---------- 11. Über uns (PDF Seite 8, darunter Seite 7; eine durchgehende Figur) ---------- */
+.about { position: relative; overflow: hidden; }
+.about__intro { padding-top: 3.875rem; padding-bottom: 5.3125rem; }           /* Titel bei 290 px, Seitenende 810 px */
+.about__intro-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99, 794 px breit */
+.about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; }
+.about__intro .about__text { margin-top: 3.5625rem; }
+.about__text p + p { margin-top: 0; }
+
+.about__what { position: relative; padding-top: 4.6875rem; padding-bottom: 4.5rem; }
+.about__what-inner { padding-left: 3.625rem; max-width: calc(3.625rem + 49.625rem); }       /* Text ab x = 82 */
+.about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; }
+.about__heading + .about__text { margin-top: 2.1875rem; }
+.about__text + .about__heading { margin-top: 4.3125rem; }
+.about__claim {
+  position: absolute; left: calc(50% + 15.3125rem); top: 18.3125rem;          /* x = 965, y = 293 */
+  font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
+  white-space: nowrap;
+}
+.about__figure {
+  position: absolute; z-index: 1; pointer-events: none;
+  top: 21.6875rem; left: calc(50% + 5.6875rem); height: 57.375rem; width: auto;   /* Figur 519 px hoch, Ball ab y 520 */
+}
+
+/* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
+.site-footer--bar { padding-top: 0; }
+.site-footer--bar .site-footer__bottom { margin-top: 0; }
+
+@media (max-width: 1100px) {
+  .about__claim { position: static; margin-top: 3rem; white-space: normal; }
+  .about__figure { height: 36rem; left: auto; right: -6rem; top: 24rem; opacity: 0.6; }
+}
+@media (max-width: 900px) {
+  .about__intro-inner, .about__what-inner { padding-left: 0; max-width: none; }
+  .about__figure { display: none; }
+}
