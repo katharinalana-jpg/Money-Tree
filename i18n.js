@@ -1,452 +1,172 @@
 /* =============================================================
-   Portemonnaie. Lightweight EN/DE internationalisation.
-   No dependencies. Runs at end of <body>.
+   Portemonnaie – Internationalisierung EN / DE / FR
+   Vanilla JS, keine Abhängigkeiten. Läuft am Ende von <body>.
 
-   Rule: brand slogans / display headlines stay English.
-   Explanatory copy and UI controls are translated.
+   Regel: Markenslogans und Display-Headlines bleiben Englisch
+   ("Start investing in what you support.", "A new era of investing.").
+   Erklärende Texte, Navigation und Bedienelemente werden übersetzt.
 
-   Markup hooks:
-     data-i18n="key"        -> element.textContent
-     data-i18n-html="key"   -> element.innerHTML (use for inline markup)
-     data-i18n-ph="key"     -> placeholder attribute
-     data-i18n-aria="key"   -> aria-label attribute
+   Markup:
+     data-i18n="key"        -> textContent
+     data-i18n-html="key"   -> innerHTML (für Inline-Markup)
+     data-i18n-ph="key"     -> placeholder
+     data-i18n-aria="key"   -> aria-label
+     data-i18n-title="key"  -> title / document.title
+     [data-lang="de"]       -> Sprachumschalter (Button oder Link)
    ============================================================= */
 
 (function () {
   "use strict";
 
   const STORAGE_KEY = "pm_lang";
+  const LANGS = ["en", "de", "fr"];
 
   const I18N = {
+    /* ---------------- English ---------------- */
     en: {
-      /* nav + footer (shared) */
-      "nav.intro": "Intro",
-      "nav.library": "Library",
-      "nav.platform": "Platform",
-      "nav.mission": "Our Mission",
-      "nav.signup": "Sign Up",
+      "meta.title": "Portemonnaie",
+      "meta.description": "Portemonnaie. Values-aligned investing for women. Start investing in what you support.",
+
+      "nav.newsletter": "Newsletter",
+      "nav.archive": "Archive",
+      "nav.about": "About us",
+      "nav.tools": "Tools",
+      "nav.boutique": "Boutique",
+      "nav.collabs": "Collaborations",
+      "nav.contact": "Contact",
+      "nav.press": "Press",
+      "nav.lang_aria": "Language",
       "nav.menu_aria": "Open menu",
+      "nav.home_aria": "Portemonnaie, home",
+
       "footer.imprint": "Imprint",
-      "footer.privacy": "Privacy",
-
-      /* hero */
-      "hero.eyebrow": "Pre-Launch Early Access",
-      "hero.sticky": '<strong>For women</strong><em>who build</em><em>their future.</em>',
-      "hero.sub": "Let your money work for you and your values.",
-
-      /* calculator (cash vs investing) */
-      "calc.eyebrow": "What could your money become?",
-      "calc.h1": 'See what your money could <span class="brush"><em class="serif">become</em></span>.',
-      "calc.sub": "Cash feels safe, but over the years it can quietly lose value. See what the same money could become if you invested it instead — and how your real life shapes the journey.",
-      "calc.age": "Your age today",
-      "calc.salary": "Monthly gross salary",
-      "calc.saving": "What you set aside each month",
-      "calc.where": "Where is your money today?",
-      "calc.where.savings": "Savings account",
-      "calc.where.invested": "Invested",
-      "calc.where.hint": "Sitting in cash, this is the money most exposed to losing value over time.",
-      "calc.start": "How much you have now",
-      "calc.leave.legend": "Parental leave",
-      "calc.leave.q": "Planning to work part-time?",
-      "calc.leave.duration": "I will work part-time for",
-      "calc.leave.start": "Starting in",
-      "calc.leave.hint": "During part-time work, we assume you earn about half, so you set aside half as much. You can see it on the chart from that point.",
-      "calc.more": "Fine-tune",
-      "calc.horizon": "The age you want to retire",
-      "calc.sc.cons": "Conservative",
-      "calc.sc.base": "Base",
-      "calc.sc.strong": "Strong",
-      "calc.invest": "If you invest it",
-      "calc.cash": "If you keep it in cash",
-      "calc.diff": "Potential difference",
-      "calc.diff.sub": "more, in today's money",
-      "calc.contributed": "you put in",
-      "calc.invest.short": "Invested",
-      "calc.cash.short": "Cash",
-      "calc.cta": "Put your money to work",
-      "calc.disclaimer": "A simplified projection shown in today's money, for learning only. Long-term returns are assumptions, not guarantees, and this ignores fees and taxes. This is not investment advice.",
-      "calc.source": 'The roughly 6% a year that investing has historically added over cash reflects long-run EU data. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Source: European Commission (2025)</a>.',
-      "hero.scroll": "Discover how it works",
-      "hero.scroll_aria": "Scroll to learn more",
-
-      /* forms (shared) */
-      "form.email_label": "Email address",
-      "form.name_label": "First name",
-      "form.name_ph": "First name",
-      "form.lang_label": "Send me updates in",
-      "form.consent": 'I agree to receive updates from Portemonnaie and accept the <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.',
-      "form.cta_early": "Get Early Access",
-      "form.success_hero": "Check your inbox. Click the confirmation link to finish signing up.",
-
-      /* flow */
-      "flow.eyebrow": "The Product",
-      "flow.h2": 'Start investing according to your <span class="brush"><em class="serif">values</em></span> in only five steps.',
-      "flow.lede": "We help you to build your portfolio step by step.",
-      "flow.cta": "Join the Access List",
-      "step1.title": "Take the quiz",
-      "step1.desc": "Answer a few questions about your investing style, your goals, and the causes you care about.",
-      "quiz.q1": "What is your risk tolerance?",
-      "quiz.q2": "Which causes matter to you?",
-      "quiz.q3": "What is your investment horizon?",
-      "quiz.q4": "How much can you invest monthly?",
-      "step2.title": "Find your archetype",
-      "step2.desc": "Discover your investor type and get a clear portfolio direction that matches your goals and values.",
-      "pie.etf": "60% ETFs",
-      "pie.stocks": "30% Stocks",
-      "pie.bonds": "10% Bonds",
-      "step3.title": "Explore",
-      "step3.desc": "Browse ETFs, stocks and bonds ranked by a sustainability score and a gender score.",
-      "search.ph": "Search ETFs, Stocks...",
-      "step4.title": "Fill your basket",
-      "step4.desc": "Drag and drop to build your portfolio. Investing will feel like online shopping.",
-      "basket.stocks": "Stocks",
-      "basket.esg": "ESG",
-      "basket.etf": "ETF",
-      "basket.bonds": "Green Bonds",
-      "basket.drop": "Drop here",
-      "step5.title": "Execute",
-      "step5.desc": "Open your first depot with a trusted Wealth Manager or the Broker of your choice.",
-      "exec.wealth": "Wealth Manager",
-      "exec.or": "or",
-      "exec.broker": "Broker of Your Choice",
-
-      /* platform */
-      "platform.eyebrow": "Phase 2. The ecosystem.",
-      "platform.h2": 'All in <span class="brush"><em class="serif">One</em></span> Platform',
-      "platform.lede": "Beyond the Robo Advisor, Portemonnaie grows into a full ecosystem where learning about Finances, Investing and Community live in one place.",
-      "pill1": "Gender Lens and Sustainability Robo Advisor",
-      "pill2": "Financial Literacy Academy",
-      "pill3": "Community Forum",
-      "pill4": "Investment Barometer",
-      "pill5": "Shop",
-
-      /* signup (shared) */
-      "signup.eyebrow": "Pre register",
-      "signup.h2": 'Register <em class="serif">Now</em>',
-      "signup.lede": 'Get notified when we <span class="pencil">go live</span>.',
-      "signup.cta": "Reserve my place",
-      "signup.micro": "Private beta. Your email is only used for Portemonnaie updates. Unsubscribe anytime.",
-      "success.almost_title": "Almost there.",
-      "success.almost_body": "We just sent you a confirmation email. Click the link inside to finalize your spot on the early access list.",
-      "success.welcome_title": "Welcome to Portemonnaie.",
-      "success.welcome_body": "You are officially on the early access list. We will be in touch soon with your first product letter.",
-
-      /* mission */
-      "problem.eyebrow": "Why we exist",
-      "problem.c1.title": "Close the gender wealth gap",
-      "problem.c2.title": "Close the gender pension gap",
-      "problem.c3.title": "Close the gender confidence gap in finance",
-      "problem.h2": 'At Portemonnaie, we are <em class="serif underline-marigold">fighting</em> to:',
-      "problem.closing": 'With our values. With our convictions. With <span class="underline-marigold">what we decide</span>. – For us and a better future.',
-      "capitals.eyebrow": "A new definition of growth",
-      "capitals.body": 'At Portemonnaie, we believe that growth must be measured across four dimensions. Every company relies on <span class="capital-word" data-color="gold">financial capital</span>, <span class="capital-word" data-color="green">environmental capital</span>, <span class="capital-word" data-color="rose">social capital</span>, and <span class="capital-word" data-color="lavender">network capital</span>. For decades, only the growth of financial capital has counted as success. We believe that must change.',
-
-      /* collabs */
-      "collabs.eyebrow": "Get involved",
-
-      "library.eyebrow": "Library. Coming soon.",
-      "library.lede": "Guides and articles on investing with your values. In English, German and French.",
-      "library.cta": "Reserve my place",
-      "tab.news_btn": "We are building in the open",
-      "tab.partner_btn": "Partner with Portemonnaie",
-      "news.h3": "We are building in the open.",
-      "news.p": "Follow our journey from prototype to launch. Early supporters receive monthly product letters and invitations to private demos.",
-      "partner.h3": "Partner with Portemonnaie.",
-      "partner.p": "We collaborate with wealth managers, sustainability researchers, creators, and community builders who share our values.",
-      "partner.cta": "Reach out",
-
-      /* confirmed */
-      "confirmed.eyebrow": "You are in",
-      "confirmed.body": "Your email is confirmed. We will be in touch with your first product letter as we get closer to launch.",
-      "confirmed.back": "Back to home",
-
-      /* privacy */
-      "privacy.back": "← Back",
-      "privacy.title": 'Privacy <em class="serif">Policy</em>',
-      "privacy.info.h": "Information obligation statement",
-      "privacy.info.p1": "In the following privacy policy, we inform you about the most important aspects of data processing within our website. We collect and process personal data only on the basis of the statutory provisions (General Data Protection Regulation, Telecommunications Act 2003).",
-      "privacy.info.p2": "As soon as you access or visit our website as a user, your IP address as well as the beginning and end of the session are recorded. This is technically necessary and therefore constitutes a legitimate interest within the meaning of Art. 6(1)(f) GDPR.",
-      "privacy.contact.h": "Contacting us",
-      "privacy.contact.p": "If you contact us either via the contact form on our website or by email, the data you provide will be stored by us for six months for the purpose of processing your request or in case of follow-up questions. We do not share your data without your consent.",
-      "privacy.logs.h": "Server log files",
-      "privacy.logs.p1": 'This website and the associated provider automatically collect information in the course of website use in the form of so-called "server log files". This concerns in particular:',
-      "privacy.logs.li1": "IP address or hostname",
-      "privacy.logs.li2": "Browser used",
-      "privacy.logs.li3": "Time spent on the website, as well as date and time",
-      "privacy.logs.li4": "Pages of the website accessed",
-      "privacy.logs.li5": "Language settings and operating system",
-      "privacy.logs.li6": '"Leaving page" (the URL from which the user left the website)',
-      "privacy.logs.li7": "ISP (Internet Service Provider)",
-      "privacy.logs.p2": "This collected information is not processed in a personally identifiable manner or linked to personal data.",
-      "privacy.logs.p3": "The website operator reserves the right to evaluate or review this data in the event that unlawful activity becomes known.",
-      "privacy.news.h": "Newsletter",
-      "privacy.news.p": "You have the option of subscribing to our newsletter via our website. For this we need your email address and your declaration that you agree to receive the newsletter.",
-      "privacy.rights.h": "Your rights as a data subject",
-      "privacy.rights.p1": "In principle, you have the following rights with regard to the data we store about you:",
-      "privacy.rights.li1": "Information",
-      "privacy.rights.li2": "Deletion of the data",
-      "privacy.rights.li3": "Rectification of the data",
-      "privacy.rights.li4": "Portability of the data",
-      "privacy.rights.li5": "Revocation and objection to data processing",
-      "privacy.rights.li6": "Restriction of processing",
-      "privacy.rights.p2": "If you suspect that violations of data protection law have occurred during the processing of your data, you can lodge a complaint with us (office@portemonnaie.finance) or with the data protection authority.",
-      "privacy.contact2.h": "Contact",
-      "privacy.contact2.body": 'Website operator: Portemonnaie<br>Email: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
-
-      /* impressum (German is the canonical legal version) */
-      "imp.back": "← Back",
-      "imp.subtitle": "Disclosure under §5 ECG and §25 MedienG",
-      "imp.h_provider": "Service provider",
-      "imp.h_contact": "Contact",
-      "imp.h_jurisdiction": "Place of jurisdiction",
-      "imp.jurisdiction_p": "The place of jurisdiction for all legal disputes is the competent court in Vienna.",
-      "imp.h_liability": "Disclaimer",
-      "imp.liability_p": "The contents of our website were created with the greatest care. However, we cannot guarantee the accuracy, completeness or timeliness of the content. As a service provider, we are responsible for our own content on this website in accordance with general law.",
-      "imp.h_links": "Liability for links",
-      "imp.links_p": "Our offering contains links to external third-party websites whose content we have no influence over. We therefore cannot accept any liability for this external content. The respective provider or operator of the linked pages is always responsible for their content.",
-      "imp.h_copyright": "Copyright",
-      "imp.copyright_p": "The content and works created by the site operators on these pages are subject to Austrian copyright law. Reproduction, editing, distribution and any kind of use outside the limits of copyright require the written consent of the respective author or creator."
+      "footer.privacy": "Privacy policy",
+      "footer.copyright": "© Portemonnaie 2026",
+      "footer.beta": "Private beta. Your email is used only for Portemonnaie updates. You can unsubscribe at any time."
     },
 
+    /* ---------------- Deutsch (Texte aus dem Canva-Entwurf) ---------------- */
     de: {
-      /* nav + footer (shared) */
-      "nav.intro": "Intro",
-      "nav.library": "Bibliothek",
-      "nav.platform": "Plattform",
-      "nav.mission": "Unsere Mission",
-      "nav.signup": "Anmelden",
+      "meta.title": "Portemonnaie",
+      "meta.description": "Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support.",
+
+      "nav.newsletter": "Newsletter",
+      "nav.archive": "Archiv",
+      "nav.about": "Über uns",
+      "nav.tools": "Tools",
+      "nav.boutique": "Boutique",
+      "nav.collabs": "Kollaborationen",
+      "nav.contact": "Kontakt",
+      "nav.press": "Presse",
+      "nav.lang_aria": "Sprache",
       "nav.menu_aria": "Menü öffnen",
+      "nav.home_aria": "Portemonnaie, Startseite",
+
       "footer.imprint": "Impressum",
-      "footer.privacy": "Datenschutz",
+      "footer.privacy": "Datenschutzerklärung",
+      "footer.copyright": "© Portemonnaie 2026",
+      "footer.beta": "Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden."
+    },
 
-      /* hero */
-      "hero.eyebrow": "Pre-Launch Early Access",
-      "hero.sticky": '<strong>Für Frauen,</strong><em>die ihre Zukunft</em><em>gestalten.</em>',
-      "hero.sub": "Lass dein Geld für dich und deine Werte arbeiten.",
+    /* ---------------- Français ---------------- */
+    fr: {
+      "meta.title": "Portemonnaie",
+      "meta.description": "Portemonnaie. Investir selon ses valeurs, pour les femmes. Start investing in what you support.",
 
-      /* calculator (cash vs investing) */
-      "calc.eyebrow": "Was kann aus deinem Geld werden?",
-      "calc.h1": 'Sieh, was aus deinem Geld <span class="brush"><em class="serif">werden</em></span> kann.',
-      "calc.sub": "Bargeld fühlt sich sicher an, verliert über die Jahre aber leise an Wert. Sieh, was aus demselben Geld werden könnte, wenn du es investierst – und wie dein echtes Leben den Weg prägt.",
-      "calc.age": "Dein Alter heute",
-      "calc.salary": "Monatliches Bruttogehalt",
-      "calc.saving": "Was du monatlich zurücklegst",
-      "calc.where": "Wo ist dein Geld heute?",
-      "calc.where.savings": "Sparkonto",
-      "calc.where.invested": "Investiert",
-      "calc.where.hint": "Auf dem Sparkonto ist dieses Geld am stärksten dem Wertverlust über die Zeit ausgesetzt.",
-      "calc.start": "Wie viel du jetzt hast",
-      "calc.leave.legend": "Elternzeit",
-      "calc.leave.q": "Planst du, Teilzeit zu arbeiten?",
-      "calc.leave.duration": "Ich arbeite Teilzeit für",
-      "calc.leave.start": "Beginnt in",
-      "calc.leave.hint": "Während der Teilzeit nehmen wir an, dass du etwa die Hälfte verdienst – und daher nur halb so viel zurücklegst. Auf dem Chart ist es ab diesem Punkt sichtbar.",
-      "calc.more": "Feinjustieren",
-      "calc.horizon": "Dein gewünschtes Rentenalter",
-      "calc.sc.cons": "Vorsichtig",
-      "calc.sc.base": "Basis",
-      "calc.sc.strong": "Stark",
-      "calc.invest": "Wenn du es investierst",
-      "calc.cash": "Wenn du es in bar hältst",
-      "calc.diff": "Möglicher Unterschied",
-      "calc.diff.sub": "mehr, in heutigem Geld",
-      "calc.contributed": "eingezahlt",
-      "calc.invest.short": "Investiert",
-      "calc.cash.short": "Bargeld",
-      "calc.cta": "Bring dein Geld zum Arbeiten",
-      "calc.disclaimer": "Eine vereinfachte Hochrechnung in heutigem Geld, nur zu Bildungszwecken. Langfristige Renditen sind Annahmen, keine Garantien, und Gebühren sowie Steuern sind nicht berücksichtigt. Dies ist keine Anlageberatung.",
-      "calc.source": 'Die rund 6 % pro Jahr, die Investieren gegenüber Bargeld historisch gebracht hat, beruhen auf langfristigen EU-Daten. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Quelle: Europäische Kommission (2025)</a>.',
-      "hero.scroll": "So funktioniert's",
-      "hero.scroll_aria": "Scrollen für mehr",
+      "nav.newsletter": "Newsletter",
+      "nav.archive": "Archives",
+      "nav.about": "À propos",
+      "nav.tools": "Outils",
+      "nav.boutique": "Boutique",
+      "nav.collabs": "Collaborations",
+      "nav.contact": "Contact",
+      "nav.press": "Presse",
+      "nav.lang_aria": "Langue",
+      "nav.menu_aria": "Ouvrir le menu",
+      "nav.home_aria": "Portemonnaie, accueil",
 
-      /* forms (shared) */
-      "form.email_label": "E-Mail-Adresse",
-      "form.name_label": "Vorname",
-      "form.name_ph": "Vorname",
-      "form.lang_label": "Updates bitte auf",
-      "form.consent": 'Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="/privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
-      "form.cta_early": "Get Early Access",
-      "form.success_hero": "Sieh in deinem Postfach nach. Klick auf den Bestätigungslink, um die Anmeldung abzuschließen.",
-
-      /* flow */
-      "flow.eyebrow": "Das Produkt",
-      "flow.h2": 'Investiere nach deinen <span class="brush"><em class="serif">Werten</em></span><br>– in nur fünf Schritten.',
-      "flow.lede": "Wir helfen dir, dein Portfolio Schritt für Schritt aufzubauen.",
-      "flow.cta": "Get Early Access",
-      "step1.title": "Mach das Quiz",
-      "step1.desc": "Beantworte ein paar Fragen zu deinem Anlagestil, deinen Zielen und den Themen, die dir am Herzen liegen.",
-      "quiz.q1": "Wie hoch ist deine Risikobereitschaft?",
-      "quiz.q2": "Welche Themen sind dir wichtig?",
-      "quiz.q3": "Wie lang ist dein Anlagehorizont?",
-      "quiz.q4": "Wie viel kannst du monatlich investieren?",
-      "step2.title": "Finde deinen Archetyp",
-      "step2.desc": "Entdecke deinen Anlegertyp und erhalte eine klare Portfolio-Richtung, die zu deinen Zielen und Werten passt.",
-      "pie.etf": "60 % ETFs",
-      "pie.stocks": "30 % Aktien",
-      "pie.bonds": "10 % Anleihen",
-      "step3.title": "Entdecken",
-      "step3.desc": "Durchstöbere ETFs, Aktien und Anleihen, sortiert nach Nachhaltigkeits- und Gender-Score.",
-      "search.ph": "ETFs, Aktien suchen …",
-      "step4.title": "Füll deinen Warenkorb",
-      "step4.desc": "Per Drag-and-drop baust du dein Portfolio. Investieren fühlt sich an wie Online-Shopping.",
-      "basket.stocks": "Aktien",
-      "basket.esg": "ESG",
-      "basket.etf": "ETF",
-      "basket.bonds": "Grüne Anleihen",
-      "basket.drop": "Hier ablegen",
-      "step5.title": "Umsetzen",
-      "step5.desc": "Eröffne dein erstes Depot bei einem vertrauenswürdigen Vermögensverwalter oder dem Broker deiner Wahl.",
-      "exec.wealth": "Wealth Manager",
-      "exec.or": "oder",
-      "exec.broker": "Broker deiner Wahl",
-
-      /* platform */
-      "platform.eyebrow": "Phase 2. Das Ökosystem.",
-      "platform.h2": 'Alles auf <span class="brush"><em class="serif">einer</em></span> Plattform',
-      "platform.lede": "Über den Robo-Advisor hinaus wächst Portemonnaie zu einem ganzen Ökosystem, in dem Finanzwissen, Investieren und Community an einem Ort zusammenkommen.",
-      "pill1": "Robo-Advisor mit Gender- und Nachhaltigkeitsfokus",
-      "pill2": "Academy für Finanzwissen",
-      "pill3": "Community-Forum",
-      "pill4": "Investment-Barometer",
-      "pill5": "Shop",
-
-      /* signup (shared) */
-      "signup.eyebrow": "Vorab registrieren",
-      "signup.h2": 'Registrier dich <em class="serif">jetzt</em>',
-      "signup.lede": 'Erhalte eine Nachricht, sobald wir <span class="pencil">live gehen</span>.',
-      "signup.cta": "Get Early Access",
-      "signup.micro": "Private Beta. Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.",
-      "success.almost_title": "Fast geschafft.",
-      "success.almost_body": "Wir haben dir gerade eine Bestätigungs-E-Mail geschickt. Klick auf den Link darin, um deinen Platz auf der Early-Access-Liste zu sichern.",
-      "success.welcome_title": "Willkommen bei Portemonnaie.",
-      "success.welcome_body": "Du stehst offiziell auf der Early-Access-Liste. Wir melden uns bald mit deinem ersten Produkt-Newsletter.",
-
-      /* mission */
-      "problem.eyebrow": "Warum es uns gibt",
-      "problem.c1.title": "Den Gender Wealth Gap zu schließen",
-      "problem.c2.title": "Den Gender Pension Gap zu schließen",
-      "problem.c3.title": "Den Gender Confidence Gap in Finanzfragen zu schließen",
-      "problem.h2": 'Bei Portemonnaie <em class="serif underline-marigold">kämpfen</em> wir dafür:',
-      "problem.closing": 'Mit unseren Werten. Mit unseren Überzeugungen. Mit dem, <span class="underline-marigold">was wir entscheiden</span>. – Für uns und eine bessere Zukunft.',
-      "capitals.eyebrow": "Eine neue Definition von Wachstum",
-      "capitals.body": 'Bei Portemonnaie glauben wir, dass Wachstum über vier Dimensionen gemessen werden muss. Jedes Unternehmen bedarf <span class="capital-word" data-color="gold">finanzielles Kapital</span>, <span class="capital-word" data-color="green">ökologisches Kapital</span>, <span class="capital-word" data-color="rose">soziales Kapital</span> und <span class="capital-word" data-color="lavender">Netzwerkkapital</span>. Jahrzehntelang galt nur das Wachstum des finanziellen Kapitals als Erfolg. Wir glauben, das muss sich ändern.',
-
-      /* collabs */
-      "collabs.eyebrow": "Mach mit",
-
-      "library.eyebrow": "Bibliothek. Bald verfügbar.",
-      "library.lede": "Leitfäden und Artikel über Investieren nach deinen Werten. Auf Englisch, Deutsch und Französisch.",
-      "library.cta": "Platz reservieren",
-      "tab.news_btn": "Wir bauen transparent",
-      "tab.partner_btn": "Werde Partner von Portemonnaie",
-      "news.h3": "Wir bauen transparent.",
-      "news.p": "Begleite unseren Weg vom Prototyp bis zum Launch. Frühe Unterstützerinnen erhalten monatliche Produkt-Newsletter und Einladungen zu privaten Demos.",
-      "partner.h3": "Werde Partner von Portemonnaie.",
-      "partner.p": "Wir arbeiten mit Vermögensverwaltern, Nachhaltigkeitsforscherinnen, Creators und Community-Builderinnen zusammen, die unsere Werte teilen.",
-      "partner.cta": "Kontakt aufnehmen",
-
-      /* confirmed */
-      "confirmed.eyebrow": "Du bist dabei",
-      "confirmed.body": "Deine E-Mail ist bestätigt. Wir melden uns mit deinem ersten Produkt-Newsletter, sobald der Launch näher rückt.",
-      "confirmed.back": "Zurück zur Startseite",
-
-      /* privacy */
-      "privacy.back": "← Zurück",
-      "privacy.title": 'Datenschutz<em class="serif">erklärung</em>',
-      "privacy.info.h": "Erklärung zur Informationspflicht",
-      "privacy.info.p1": "In folgender Datenschutzerklärung informieren wir Sie über die wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer Webseite. Wir erheben und verarbeiten personenbezogene Daten nur auf Grundlage der gesetzlichen Bestimmungen (Datenschutzgrundverordnung, Telekommunikationsgesetz 2003).",
-      "privacy.info.p2": "Sobald Sie als Benutzer auf unsere Webseite zugreifen oder diese besuchen, wird Ihre IP-Adresse sowie Beginn und Ende der Sitzung erfasst. Dies ist technisch bedingt und stellt somit ein berechtigtes Interesse iSv Art. 6 Abs. 1 lit. f DSGVO dar.",
-      "privacy.contact.h": "Kontakt mit uns",
-      "privacy.contact.p": "Wenn Sie uns entweder über unser Kontaktformular auf unserer Webseite oder per E-Mail kontaktieren, werden die von Ihnen übermittelten Daten zwecks Bearbeitung Ihrer Anfrage oder für den Fall von Anschlussfragen für sechs Monate bei uns gespeichert. Es erfolgt ohne Ihre Einwilligung keine Weitergabe Ihrer Daten.",
-      "privacy.logs.h": "Server-Log Files",
-      "privacy.logs.p1": "Diese Webseite und der damit verbundene Provider erhebt im Zuge der Webseitennutzung automatisch Informationen im Rahmen sogenannter „Server-Log Files“. Dies betrifft insbesondere:",
-      "privacy.logs.li1": "IP-Adresse oder Hostname",
-      "privacy.logs.li2": "verwendeter Browser",
-      "privacy.logs.li3": "Aufenthaltsdauer auf der Webseite sowie Datum und Uhrzeit",
-      "privacy.logs.li4": "aufgerufene Seiten der Webseite",
-      "privacy.logs.li5": "Spracheinstellungen und Betriebssystem",
-      "privacy.logs.li6": "„Leaving-Page“ (auf welcher URL der Benutzer die Webseite verlassen hat)",
-      "privacy.logs.li7": "ISP (Internet Service Provider)",
-      "privacy.logs.p2": "Diese erhobenen Informationen werden nicht personenbezogen verarbeitet oder mit personenbezogenen Daten in Verbindung gebracht.",
-      "privacy.logs.p3": "Der Webseitenbetreiber behält sich vor, im Falle von Bekanntwerden rechtswidriger Tätigkeiten, diese Daten auszuwerten oder zu überprüfen.",
-      "privacy.news.h": "Newsletter",
-      "privacy.news.p": "Sie haben die Möglichkeit, über unsere Website unseren Newsletter zu abonnieren. Hierfür benötigen wir Ihre E-Mail-Adresse und Ihre Erklärung, dass Sie mit dem Bezug des Newsletters einverstanden sind.",
-      "privacy.rights.h": "Ihre Rechte als Betroffener",
-      "privacy.rights.p1": "Sie haben bezüglich Ihrer bei uns gespeicherten Daten grundsätzlich folgende Rechte:",
-      "privacy.rights.li1": "Auskunft",
-      "privacy.rights.li2": "Löschung der Daten",
-      "privacy.rights.li3": "Berichtigung der Daten",
-      "privacy.rights.li4": "Übertragbarkeit der Daten",
-      "privacy.rights.li5": "Widerruf und Widerspruch gegen die Datenverarbeitung",
-      "privacy.rights.li6": "Einschränkung der Verarbeitung",
-      "privacy.rights.p2": "Wenn Sie vermuten, dass im Zuge der Verarbeitung Ihrer Daten Verstöße gegen das Datenschutzrecht passiert sind, können Sie sich bei uns (office@portemonnaie.finance) oder der Datenschutzbehörde beschweren.",
-      "privacy.contact2.h": "Kontakt",
-      "privacy.contact2.body": 'Webseitenbetreiber: Portemonnaie<br>E-Mail: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>',
-
-      /* impressum (canonical German) */
-      "imp.back": "← Zurück",
-      "imp.subtitle": "Offenlegung nach §5 ECG und §25 MedienG",
-      "imp.h_provider": "Diensteanbieterin",
-      "imp.h_contact": "Kontakt",
-      "imp.h_jurisdiction": "Gerichtsstand",
-      "imp.jurisdiction_p": "Gerichtsstand für alle Rechtsstreitigkeiten ist das sachlich zuständige Gericht in Wien.",
-      "imp.h_liability": "Haftungsausschluss",
-      "imp.liability_p": "Die Inhalte unserer Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf dieser Website nach den allgemeinen Gesetzen verantwortlich.",
-      "imp.h_links": "Haftung für Links",
-      "imp.links_p": "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
-      "imp.h_copyright": "Urheberrecht",
-      "imp.copyright_p": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors beziehungsweise Erstellers."
+      "footer.imprint": "Mentions légales",
+      "footer.privacy": "Politique de confidentialité",
+      "footer.copyright": "© Portemonnaie 2026",
+      "footer.beta": "Bêta privée. Ton e-mail sert uniquement aux actualités de Portemonnaie. Tu peux te désabonner à tout moment."
     }
   };
 
-  function detectLang() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "en" || saved === "de") return saved;
-    const nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-    return nav.indexOf("de") === 0 ? "de" : "en";
+  /* ---------- Hilfsfunktionen ---------- */
+  function t(lang, key) {
+    const dict = I18N[lang] || I18N.en;
+    if (key in dict) return dict[key];
+    if (key in I18N.en) return I18N.en[key];
+    return null;
   }
 
-  function apply(lang) {
-    const dict = I18N[lang] || I18N.en;
+  function detectLanguage() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (LANGS.includes(stored)) return stored;
+    } catch (e) { /* localStorage gesperrt */ }
+    const fromQuery = new URLSearchParams(location.search).get("lang");
+    if (LANGS.includes(fromQuery)) return fromQuery;
+    const nav = (navigator.language || "en").toLowerCase().slice(0, 2);
+    return LANGS.includes(nav) ? nav : "en";
+  }
+
+  function applyLanguage(lang) {
+    if (!LANGS.includes(lang)) lang = "en";
     document.documentElement.lang = lang;
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n")];
-      if (v != null) el.textContent = v;
+      const v = t(lang, el.getAttribute("data-i18n"));
+      if (v !== null) el.textContent = v;
     });
     document.querySelectorAll("[data-i18n-html]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n-html")];
-      if (v != null) el.innerHTML = v;
+      const v = t(lang, el.getAttribute("data-i18n-html"));
+      if (v !== null) el.innerHTML = v;
     });
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n-ph")];
-      if (v != null) el.setAttribute("placeholder", v);
+      const v = t(lang, el.getAttribute("data-i18n-ph"));
+      if (v !== null) el.setAttribute("placeholder", v);
     });
     document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n-aria")];
-      if (v != null) el.setAttribute("aria-label", v);
+      const v = t(lang, el.getAttribute("data-i18n-aria"));
+      if (v !== null) el.setAttribute("aria-label", v);
+    });
+    document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+      const v = t(lang, el.getAttribute("data-i18n-title"));
+      if (v === null) return;
+      if (el.tagName === "TITLE") el.textContent = v; else el.setAttribute("title", v);
+    });
+    const metaDesc = document.querySelector('meta[name="description"][data-i18n-content]');
+    if (metaDesc) {
+      const v = t(lang, metaDesc.getAttribute("data-i18n-content"));
+      if (v !== null) metaDesc.setAttribute("content", v);
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((btn) => {
+      const active = btn.getAttribute("data-lang") === lang;
+      btn.classList.toggle("is-active", active);
+      if (active) btn.setAttribute("aria-current", "true"); else btn.removeAttribute("aria-current");
     });
 
-    document.querySelectorAll(".nav__lang button[data-lang]").forEach((b) => {
-      const active = b.getAttribute("data-lang") === lang;
-      b.classList.toggle("is-active", active);
-      b.setAttribute("aria-pressed", String(active));
-    });
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignorieren */ }
+    document.dispatchEvent(new CustomEvent("pm:langchange", { detail: { lang } }));
   }
 
-  function setLang(lang) {
-    if (lang !== "en" && lang !== "de") return;
-    localStorage.setItem(STORAGE_KEY, lang);
-    apply(lang);
-  }
+  /* ---------- Start ---------- */
+  const current = detectLanguage();
+  applyLanguage(current);
 
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest && e.target.closest(".nav__lang button[data-lang]");
+    const btn = e.target.closest("[data-lang]");
     if (!btn) return;
-    setLang(btn.getAttribute("data-lang"));
+    e.preventDefault();
+    applyLanguage(btn.getAttribute("data-lang"));
   });
 
-  apply(detectLang());
-
-  window.PMI18n = { setLang: setLang, apply: apply };
+  window.PM_I18N = {
+    get lang() { return document.documentElement.lang; },
+    t: (key) => t(document.documentElement.lang, key),
+    set: applyLanguage,
+    langs: LANGS
+  };
 })();

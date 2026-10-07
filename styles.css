@@ -172,3 +172,54 @@ ul { padding: 0; list-style: none; }
 
 /* Social Icons: schwarz mit 70 % Deckkraft (auf dunklem Grund Textfarbe) */
 .icon { width: 1.75rem; height: 1.75rem; fill: currentColor; opacity: var(--icon-opacity); }
+
+/* ---------- 6. Kopfbereich (PDF Seite 1; helle Variante auf Rot: Seite 7) ---------- */
+.site-header { color: var(--fg); }
+.site-header__top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3);
+  padding: 1.25rem 0 0.875rem;          /* Linie bei ~62 px */
+  border-bottom: var(--border);
+}
+.site-header__logo { font-family: var(--font-logo); font-size: var(--fs-logo); line-height: 1; letter-spacing: -0.005em; }
+.lang-switch { display: flex; gap: 1.5rem; }
+.lang-switch a, .lang-switch button {
+  font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em;
+  background: none; border: 0; padding: 0; cursor: pointer; color: var(--fg); opacity: 0.45;
+  transition: opacity .2s ease;
+}
+.lang-switch .is-active, .lang-switch a:hover, .lang-switch button:hover { opacity: 1; }
+
+/* Headline: Grundlinie liegt auf der Trennlinie, Unterlängen hängen darunter */
+.site-header__title {
+  display: flex; align-items: baseline;
+  margin: 0; padding-top: 2.6875rem;        /* Grundlinie bei ~170 px */
+  font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 400;
+  line-height: 1; letter-spacing: 0;
+  font-variation-settings: "opsz" 36;       /* wie im Canva-Export (Newsreader 36pt) */
+  white-space: nowrap;
+}
+.site-header__title > span {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0;
+  text-decoration-skip-ink: none; text-decoration-color: var(--line);
+}
+.site-header__title::after { content: ""; flex: 1 1 0; height: 1px; background: var(--line); min-width: 0.5rem; position: relative; top: 1px; }
+
+.site-nav { padding-top: 0.25rem; }              /* Menü-Oberkante bei ~203 px */
+.site-nav ul { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.site-nav a {
+  font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em;
+  line-height: 1.2; display: inline-block; padding: 0.25rem 0;
+  border-bottom: 1px solid transparent; transition: border-color .2s ease;
+}
+.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"] { border-bottom-color: var(--line); outline: none; }
+
+/* Hero-Hintergrund (Wolken) umschließt Kopfbereich und Hero */
+.hero-wrap {
+  background: var(--color-sand) url("img/hero-wolken.webp") center / cover no-repeat;
+  min-height: 100vh; min-height: 100svh;
+}
+
+@media (max-width: 900px) {
+  .site-header__title { white-space: normal; font-size: clamp(2.25rem, 9vw, 4rem); }
+  .site-nav ul { justify-content: flex-start; gap: 1rem 1.5rem; }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vergleich Entwurf / Vorschau (wird gelöscht)</title>
+  <style>
+    :root { --w: 1440; }
+    body { margin: 0; background: #ddd; font: 13px/1.4 system-ui, sans-serif; color: #222; }
+    .bar { display: flex; gap: 1rem; align-items: center; padding: 8px 12px; background: #fff; border-bottom: 1px solid #bbb; position: sticky; top: 0; z-index: 2; flex-wrap: wrap; }
+    .bar label { display: flex; gap: .4rem; align-items: center; }
+    .bar input[type=range] { width: 160px; }
+    .stage { position: relative; margin: 12px auto; width: min(100%, 1440px); aspect-ratio: 1440 / 810; background: #fff; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+    .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+    .stage .frame { position: absolute; left: 0; top: 0; width: 1440px; height: 810px; border: 0; transform-origin: 0 0; background: transparent; }
+    .side[hidden] { display: none; }
+    .side { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 12px 12px; }
+    .side > div { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.15); aspect-ratio: 1440/810; position: relative; overflow: hidden; }
+    .side img { width: 100%; height: 100%; display: block; }
+    .side .frame { position: absolute; left: 0; top: 0; width: 1440px; height: 810px; border: 0; transform-origin: 0 0; }
+    h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin: 0; padding: 6px 8px; background: #f3f3f3; }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <label>PDF-Seite <select id="page"></select></label>
+    <label>Vorschau-URL <input id="url" size="28" value="index.html" /></label>
+    <label>Deckkraft Entwurf <input id="op" type="range" min="0" max="100" value="50" /> <span id="opv">50 %</span></label>
+    <label>Scroll Vorschau (px) <input id="scroll" type="number" value="0" step="50" style="width:70px" /></label>
+    <label><input id="mode" type="checkbox" /> nebeneinander statt überlagert</label>
+  </div>
+
+  <div class="stage" id="overlay">
+    <iframe class="frame" id="frameA" src="index.html" title="Vorschau"></iframe>
+    <img id="ref" src="_ref/page-01.png" alt="" />
+  </div>
+
+  <div class="side" id="side" hidden>
+    <div><h2>Entwurf (PDF)</h2><img id="ref2" src="_ref/page-01.png" alt="" /></div>
+    <div><h2>Vorschau</h2><iframe class="frame" id="frameB" src="index.html" title="Vorschau"></iframe></div>
+  </div>
+
+  <script>
+    const q = new URLSearchParams(location.search);
+    const sel = document.getElementById('page'), url = document.getElementById('url'), op = document.getElementById('op'),
+          opv = document.getElementById('opv'), ref = document.getElementById('ref'), ref2 = document.getElementById('ref2'),
+          fA = document.getElementById('frameA'), fB = document.getElementById('frameB'), mode = document.getElementById('mode'),
+          overlay = document.getElementById('overlay'), side = document.getElementById('side'), scroll = document.getElementById('scroll');
+    for (let i = 1; i <= 10; i++) { const o = document.createElement('option'); o.value = String(i).padStart(2,'0'); o.textContent = i; sel.appendChild(o); }
+    sel.value = (q.get('page') || '1').padStart(2,'0'); url.value = q.get('url') || 'index.html'; op.value = q.get('op') || 50; mode.checked = q.get('side') === '1';
+    function fit() {
+      document.querySelectorAll('.frame').forEach(f => { const s = f.parentElement.clientWidth / 1440; f.style.transform = `scale(${s})`; f.style.height = (f.parentElement.clientHeight / s) + 'px'; });
+    }
+    function apply() {
+      ref.src = ref2.src = `_ref/page-${sel.value}.png`;
+      ref.style.opacity = op.value / 100; opv.textContent = op.value + ' %';
+      const u = url.value; if (fA.getAttribute('src') !== u) { fA.src = u; fB.src = u; }
+      overlay.hidden = mode.checked; side.hidden = !mode.checked; fit();
+      const y = Number(scroll.value) || 0;
+      [fA, fB].forEach(f => { try { f.contentWindow.scrollTo(0, y); } catch (e) {} });
+      history.replaceState(null, '', `?page=${Number(sel.value)}&url=${encodeURIComponent(u)}&op=${op.value}&side=${mode.checked?1:0}`);
+    }
+    [sel, url, op, mode, scroll].forEach(el => el.addEventListener('input', apply));
+    [fA, fB].forEach(f => f.addEventListener('load', () => { const y = Number(scroll.value) || 0; try { f.contentWindow.scrollTo(0, y); } catch (e) {} }));
+    window.addEventListener('resize', fit); apply();
+  </script>
+</body>
+</html>
