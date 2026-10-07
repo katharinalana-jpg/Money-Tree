@@ -57,11 +57,11 @@
       const u = url.value; if (fA.getAttribute('src') !== u) { fA.src = u; fB.src = u; }
       overlay.hidden = mode.checked; side.hidden = !mode.checked; fit();
       const y = Number(scroll.value) || 0;
-      [fA, fB].forEach(f => { try { f.contentWindow.scrollTo(0, y); } catch (e) {} });
+      [fA, fB].forEach(f => { try { f.contentWindow.scrollTo({ top: y, behavior: 'instant' }); } catch (e) {} });
       history.replaceState(null, '', `?page=${Number(sel.value)}&url=${encodeURIComponent(u)}&op=${op.value}&side=${mode.checked?1:0}`);
     }
     [sel, url, op, mode, scroll].forEach(el => el.addEventListener('input', apply));
-    [fA, fB].forEach(f => f.addEventListener('load', () => { const y = Number(scroll.value) || 0; try { f.contentWindow.scrollTo(0, y); } catch (e) {} }));
+    [fA, fB].forEach(f => f.addEventListener('load', () => { const y = Number(scroll.value) || 0; const go = () => { try { f.contentWindow.scrollTo({ top: y, behavior: 'instant' }); } catch (e) {} }; go(); setTimeout(go, 300); setTimeout(go, 1200); }));
     window.addEventListener('resize', fit); apply();
   </script>
 </body>

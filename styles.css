@@ -130,6 +130,7 @@ ul { padding: 0; list-style: none; }
   font-family: var(--font-display);
   font-size: var(--fs-button);
   line-height: 1.2;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color .2s ease, color .2s ease;
 }
@@ -189,20 +190,26 @@ ul { padding: 0; list-style: none; }
 }
 .lang-switch .is-active, .lang-switch a:hover, .lang-switch button:hover { opacity: 1; }
 
-/* Headline: Grundlinie liegt auf der Trennlinie, Unterlängen hängen darunter */
+/* Headline: die Linie läuft durch die Unterlängen (g, y, p). Die Grundlinie
+   sitzt --title-shift unter der Linie; die Linie selbst bleibt bei ~170 px. */
 .site-header__title {
+  --title-shift: 10px;
   display: flex; align-items: baseline;
-  margin: 0; padding-top: 2.6875rem;        /* Grundlinie bei ~170 px */
+  margin: 0; padding-top: calc(2.6875rem + var(--title-shift));
   font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 400;
   line-height: 1; letter-spacing: 0;
   font-variation-settings: "opsz" 36;       /* wie im Canva-Export (Newsreader 36pt) */
   white-space: nowrap;
 }
 .site-header__title > span {
-  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0;
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: calc(-1 * var(--title-shift));
   text-decoration-skip-ink: none; text-decoration-color: var(--line);
 }
-.site-header__title::after { content: ""; flex: 1 1 0; height: 1px; background: var(--line); min-width: 0.5rem; position: relative; top: 1px; }
+.site-header__title::after {
+  content: ""; flex: 1 1 0; height: 1px; background: var(--line); min-width: 0.5rem;
+  position: relative; top: calc(1px - var(--title-shift));
+}
 
 .site-nav { padding-top: 0.25rem; }              /* Menü-Oberkante bei ~203 px */
 .site-nav ul { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
@@ -222,4 +229,51 @@ ul { padding: 0; list-style: none; }
 @media (max-width: 900px) {
   .site-header__title { white-space: normal; font-size: clamp(2.25rem, 9vw, 4rem); }
   .site-nav ul { justify-content: flex-start; gap: 1rem 1.5rem; }
+}
+
+/* ---------- 7. Footer (PDF Seite 3; Variante mit Tänzerinnen: Seite 5) ---------- */
+.site-footer { color: var(--fg); padding-top: 1.5rem; }
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 410px) minmax(0, 1fr) minmax(0, 418px);   /* Spaltenbreiten aus dem PDF */
+  gap: 0 var(--space-4);
+  align-items: start;
+}
+.footer-menu li { border-bottom: var(--border); }
+.footer-menu a {
+  display: block; padding: 0.6875rem 0 0.5rem;        /* Zeilenabstand 37,5 px */
+  font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2;
+}
+.footer-menu a:hover { opacity: 0.6; }
+
+.site-footer__signup { padding-top: 0.5rem; }
+.social { display: flex; justify-content: flex-end; gap: 1.25rem; margin-bottom: 1rem; }
+.social a { color: var(--fg); display: inline-flex; }
+.social a:hover .icon { opacity: 1; }
+
+.footer-form .field { font-size: var(--fs-h4); }
+.footer-form .check { margin-top: 1.125rem; }
+.footer-form .btn { margin-top: 1.125rem; min-width: 20.625rem; padding-inline: 2rem; }   /* 330 px */
+.footer-form .form__success { margin-top: 1rem; }
+
+/* Mittlere Spalte, optional (Seite 5: Tänzerinnen und Claim; Seite 10: Überschrift) */
+.site-footer__middle { align-self: center; text-align: center; }
+.site-footer__middle img { margin: 0 auto 1rem; max-width: 260px; }
+.site-footer__claim { font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1.05; }
+
+.site-footer__bottom {
+  margin-top: 2.5rem; border-top: var(--border); padding: 1.125rem 0 0.25rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 2rem; align-items: baseline;
+}
+.site-footer__copy { font-size: var(--fs-nav); }
+.site-footer__legal { display: flex; gap: 1.25rem; justify-self: end; }
+.site-footer__legal a { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; text-decoration: underline; text-underline-offset: 2px; }
+.site-footer__beta { grid-column: 1 / -1; font-size: var(--fs-small); }
+
+@media (max-width: 900px) {
+  .site-footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .social { justify-content: flex-start; }
+  .footer-form .btn { width: 100%; }
+  .site-footer__bottom { grid-template-columns: 1fr; }
+  .site-footer__legal { justify-self: start; }
 }
