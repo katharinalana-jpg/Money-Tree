@@ -343,11 +343,11 @@ ul { padding: 0; list-style: none; }
 .about__intro .about__text p + p { margin-top: 1.875rem; }       /* Leerzeile zwischen den Absätzen */
 .about__text strong { font-weight: 700; }
 
-.about__what { padding-top: 4.6875rem; padding-bottom: 4.5rem; }   /* "Was Portemonnaie tut" bei 81 px der Folie 2 */
+.about__what { padding-top: 4.6875rem; padding-bottom: 7.5rem; }   /* "Was Portemonnaie tut" bei 81 px der Folie 2; 120 px bis zur Fußzeile */
 .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* gleiche Linie wie der Einstieg: x = 99 */
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
 .about__heading + .about__text { margin-top: 2.1875rem; }        /* Text bei 157 px */
-.about__text + .about__heading { margin-top: 4.3125rem; }        /* "A new era" bei 346 px */
+.about__text + .about__heading { margin-top: 6.5rem; }           /* 104 px Abstand zwischen den Blöcken */
 .about__what .about__text p + p { margin-top: 0; }
 .about__claim {
   position: absolute; left: calc(50% + 15.3125rem); top: 68.9375rem;    /* x = 965, y = 810 + 293 */
