@@ -356,9 +356,9 @@ ul { padding: 0; list-style: none; }
   width: 33.4375rem; height: auto;                                  /* 535 px breit, 720 px hoch */
   left: calc(50% + var(--fx)); top: var(--fy);
 }
-.about__figure--1 { --fx: 6.25rem;    --fy: 32.3125rem; }           /* Ball ab x 950, y 644 */
-.about__figure--2 { --fx: 16.5625rem; --fy: 22.3125rem; }           /* +165 px, -160 px */
-.about__figure--3 { --fx: 26.875rem;  --fy: 12.3125rem; }           /* +165 px, -160 px */
+.about__figure--1 { --fx: 2.25rem;    --fy: 32.3125rem; }           /* Ball ab x 886, y 644; Gruppe mittig zwischen Text und Rand */
+.about__figure--2 { --fx: 12.5625rem; --fy: 22.3125rem; }           /* +165 px, -160 px */
+.about__figure--3 { --fx: 22.875rem;  --fy: 12.3125rem; }           /* +165 px, -160 px */
 .theme-hellblau .site-footer { color: var(--color-text-soft); }
 
 /* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
