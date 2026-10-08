@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
+  <title data-i18n-title="soon.meta_title">Coming soon – Portemonnaie</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=DM+Serif+Display&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=101" />
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <header class="site-header container">
+    <div class="site-header__top">
+      <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+      <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
+        <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
+        <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+        <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
+      </nav>
+    </div>
+    <p class="site-header__title"><span>Start investing in what you support.</span></p>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+        <li><a href="archive.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.collabs">Kollaborationen</a></li>
+        <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- COMING SOON (PDF Seite 10) -->
+  <main class="container soon">
+    <h1 class="soon__title">Coming soon</h1>
+    <div class="soon__text" data-i18n-html="soon.text">
+      <p>Hier entsteht gerade etwas. Wir bauen Portemonnaie Schritt für Schritt und nehmen uns die Zeit, es richtig zu machen.</p>
+      <p>Erhalte eine Nachricht, sobald wir live gehen.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER (PDF Seite 3) -->
+  <footer class="site-footer container container--wide">
+    <div class="site-footer__grid">
+      <nav aria-label="Footer">
+        <ul class="footer-menu">
+          <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+          <li><a href="archive.html" data-i18n="nav.archive">Archiv</a></li>
+          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
+          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__middle">
+        <p class="site-footer__cta" data-i18n="soon.register">Registrier dich jetzt</p>
+      </div>
+      <div class="site-footer__signup">
+        <div class="social">
+          <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
+          <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
+        </div>
+        <form class="footer-form" data-signup novalidate>
+          <label class="sr-only" for="soonEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="soonEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <label class="check t-small">
+            <input type="checkbox" name="consent" required />
+            <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
+          </label>
+          <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
+          <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
+          <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
+        </form>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
+      <div class="site-footer__legal">
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
+      </div>
+      <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js?v=101"></script>
+  <script src="script.js?v=101"></script>
+</body>
+</html>
