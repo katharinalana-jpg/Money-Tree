@@ -15,6 +15,8 @@
   --color-gelb: #FAD247;
   --color-rot: #691700;
   --color-blau: #23408E;       /* reserviert, derzeit nicht im Einsatz */
+  --color-hellblau: #BCD5E3;   /* Über uns: Seitenhintergrund */
+  --color-text-soft: #333333;  /* Über uns: Fließtext und Titel auf Hellblau */
   --color-button: #EEECDE;
 
   /* Kontextfarben: werden pro Abschnitt überschrieben */
@@ -65,6 +67,7 @@
 .theme-rot   { --bg: var(--color-rot);   --fg: var(--color-text-light); --line: var(--color-text-light); --border: 1px solid var(--color-text-light); }
 .theme-blau  { --bg: var(--color-blau);  --fg: var(--color-text-light); --line: var(--color-text-light); --border: 1px solid var(--color-text-light); }
 .theme-gelb  { --bg: var(--color-gelb);  --fg: var(--color-text); }
+.theme-hellblau { --bg: var(--color-hellblau); --fg: var(--color-text); }
 .theme-sand  { --bg: var(--color-sand);  --fg: var(--color-text); }
 
 /* ---------- 2. Reset ---------- */
@@ -330,29 +333,37 @@ ul { padding: 0; list-style: none; }
   .tiles__grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 
-/* ---------- 11. Über uns (PDF Seite 8, darunter Seite 7; eine durchgehende Figur) ---------- */
+/* ---------- 11. Über uns (Entwurf Über_Uns_.pdf, 2 Folien à 810 px, Hellblau) ---------- */
 .about { position: relative; overflow: hidden; }
-.about__intro { padding-top: 3.875rem; padding-bottom: 0; }                   /* Titel bei 290 px */
+.about__intro { padding-top: 3.875rem; min-height: calc(50.625rem - 14.25rem); }   /* Titel bei 290 px; Folie 1 endet bei 810 px */
 .about__intro-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99, 794 px breit */
-.about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; }
-.about__intro .about__text { margin-top: 1.75rem; }
-.about__text { text-align: justify; hyphens: auto; }
-.about__text p + p { margin-top: 0; }
+.about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; color: var(--color-text-soft); }
+.about__text { font-size: 1.1667rem; line-height: 1.6072; text-align: justify; hyphens: auto; color: var(--color-text-soft); }   /* 18,67 px / 30 px wie im PDF */
+.about__intro .about__text { margin-top: 3.5625rem; }            /* Text bei 461 px */
+.about__intro .about__text p + p { margin-top: 1.875rem; }       /* Leerzeile zwischen den Absätzen */
+.about__text strong { font-weight: 700; }
 
-.about__what { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.about__what { padding-top: 4.6875rem; padding-bottom: 4.5rem; }   /* "Was Portemonnaie tut" bei 81 px der Folie 2 */
 .about__what-inner { padding-left: 3.625rem; max-width: calc(3.625rem + 49.625rem); }       /* Text ab x = 82 */
-.about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; }
-.about__heading + .about__text { margin-top: 1.75rem; }
-.about__text + .about__heading { margin-top: 4.5rem; }
+.about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
+.about__heading + .about__text { margin-top: 2.1875rem; }        /* Text bei 157 px */
+.about__text + .about__heading { margin-top: 4.3125rem; }        /* "A new era" bei 346 px */
+.about__what .about__text p + p { margin-top: 0; }
 .about__claim {
-  position: absolute; left: calc(50% + 15.3125rem); top: 67rem;               /* x = 965, ca. 110 px unter den Füßen */
+  position: absolute; left: calc(50% + 15.3125rem); top: 68.9375rem;    /* x = 965, y = 810 + 293 */
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
-  white-space: nowrap;
+  white-space: nowrap; color: var(--color-text-soft);
 }
+/* Drei Figuren, gleichmäßig diagonal aufsteigend (Schritt 170 px nach rechts, 132 px nach oben) */
 .about__figure {
-  position: absolute; z-index: 1; pointer-events: none;
-  top: 16.6875rem; left: calc(50% + 5.6875rem); height: 57.375rem; width: auto;   /* Figur 519 px hoch, Ball ab y 440, Füße bei ~958 */
+  position: absolute; z-index: 1; pointer-events: none; opacity: 0.6;   /* Deckkraft wie im Entwurf */
+  width: 33.4375rem; height: auto;                                  /* 535 px breit, 720 px hoch */
+  left: calc(50% + var(--fx)); top: var(--fy);
 }
+.about__figure--1 { --fx: 3.4375rem;  --fy: 28.5625rem; }           /* Ball ab x 905, y 584 */
+.about__figure--2 { --fx: 14.0625rem; --fy: 20.3125rem; }           /* +170 px, -132 px */
+.about__figure--3 { --fx: 24.6875rem; --fy: 12.0625rem; }           /* +170 px, -132 px */
+.theme-hellblau .site-footer { color: var(--color-text-soft); }
 
 /* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
 .site-footer--bar { padding-top: 0; }
@@ -360,7 +371,7 @@ ul { padding: 0; list-style: none; }
 
 @media (max-width: 1100px) {
   .about__claim { position: static; margin-top: 3rem; white-space: normal; }
-  .about__figure { height: 36rem; left: auto; right: -6rem; top: 24rem; opacity: 0.6; }
+  .about__figure { display: none; }
 }
 @media (max-width: 900px) {
   .about__intro-inner, .about__what-inner { padding-left: 0; max-width: none; }

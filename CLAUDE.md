@@ -15,19 +15,25 @@ Pre-launch. Pre-registration landing page only. Solo founder. Vanilla HTML/CSS/J
 Phase 2 brings React/Next.js with a tech co-founder.
 
 ## Brand & Design
-| Token | Value |
-|---|---|
-| Background | `#EBEBEB` |
-| Card bg | `#F5F5F5` |
-| Primary text | `#1A1A1A` |
-| Secondary text | `#4A4A4A` |
-| Muted text | `#7A7A7A` |
-| Font | Inter (Google Fonts) |
-| Button radius | `999px` (pill) |
-| Card radius | `20px` |
+Verbindlich ist `DESIGN.md` im Ordner `/Users/ks/Desktop/Portemonnaie Website_NEU/` (Redesign nach Canva-Entwurf, Okt 2026). Werte im Code als CSS-Variablen in `styles.css`, keine Hex-Codes in Komponenten.
 
-Style: minimalist, monochrome, editorial, clean. Botanical line art accents.
-No emojis. No heavy color palettes. Professional look only.
+| Token | Value | Use |
+|---|---|---|
+| `--color-creme` | `#F6F5EE` | Page background |
+| `--color-text` | `#000000` | Text, rules, button borders on light ground |
+| `--color-text-light` | `#D8D5C6` | Text on dark ground (green, red, blue) |
+| `--color-sand` | `#D8D5C6` | Placeholder tiles |
+| `--color-gruen` | `#285A4E` | "A new era of investing" section |
+| `--color-gelb` | `#FAD247` | Collaborations tile, accent |
+| `--color-rot` | `#691700` | Reserve |
+| `--color-blau` | `#23408E` | Reserve, not in use yet |
+| `--color-hellblau` | `#BCD5E3` | About page background |
+| `--color-text-soft` | `#333333` | Text on light blue |
+| `--color-button` | `#EEECDE` | Filled newsletter button |
+| Fonts | DM Serif Display (logo), Newsreader (display, nav, buttons), DM Sans (body) | Google Fonts |
+| Button radius | `999px` (pill), 1 px border | |
+
+Style: editorial, calm, collage imagery from the Canva draft used 1:1. No emojis.
 
 ## Four Capitals Framework
 Core investment philosophy — every company is evaluated across:

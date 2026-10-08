@@ -168,6 +168,22 @@ Avoid:
 
 # COLOR SYSTEM
 
+> **Update Oktober 2026 (Website-Redesign):** Für die Website gilt die Palette aus `DESIGN.md`
+> (`/Users/ks/Desktop/Portemonnaie Website_NEU/DESIGN.md`). Die Farben unten sind der alte Stand.
+>
+> | Token | Hex | Verwendung |
+> |---|---|---|
+> | `--color-creme` | `#F6F5EE` | Seitenhintergrund |
+> | `--color-text` | `#000000` | Text, Linien |
+> | `--color-text-light` | `#D8D5C6` | Schrift auf Grün, Rot, Blau |
+> | `--color-gruen` | `#285A4E` | A new era of investing |
+> | `--color-gelb` | `#FAD247` | Kollaborationen, Akzent |
+> | `--color-rot` | `#691700` | Reserve |
+> | `--color-blau` | `#23408E` | Reserve |
+> | `--color-hellblau` | `#BCD5E3` | Über uns, Hintergrund |
+> | `--color-text-soft` | `#333333` | Text auf Hellblau |
+> | `--color-button` | `#EEECDE` | Gefüllter Newsletter-Button |
+
 ## Primary Colors
 
 Forest:
