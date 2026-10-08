@@ -419,3 +419,11 @@ body.paper { background: var(--color-creme) url("img/papier.webp") center top / 
   .site-footer--dancers .site-footer__middle { padding-left: 0; }
   .site-footer__dancers { position: static; width: 100%; max-width: 24rem; margin: 2rem auto 0; }
 }
+
+/* ---------- 15. Mehrsprachige Inhaltsblöcke (Newsletter-Ausgaben, Archiv-Kacheln) ---------- */
+[data-lang-content] { display: none; }
+html[lang="de"] [data-lang-content="de"], html[lang="en"] [data-lang-content="en"], html[lang="fr"] [data-lang-content="fr"] { display: block; }
+html[lang="de"] span[data-lang-content="de"], html[lang="en"] span[data-lang-content="en"], html[lang="fr"] span[data-lang-content="fr"] { display: inline; }
+
+/* Coming soon für das Archiv: Magazin-Hinweis */
+.soon__note { margin: 1.75rem auto 0; max-width: 46rem; font-size: var(--fs-body); line-height: 1.5; }

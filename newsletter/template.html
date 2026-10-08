@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portemonnaie Newsletter: Sieh, was aus deinem Geld werden kann." />
-  <title>Sieh, was aus deinem Geld werden kann. – Portemonnaie</title>
+  <title data-lang-title-de="Sieh, was aus deinem Geld werden kann. – Portemonnaie" data-lang-title-en="See what your money can become. – Portemonnaie" data-lang-title-fr="Vois ce que ton argent peut devenir. – Portemonnaie">Sieh, was aus deinem Geld werden kann. – Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     <nav class="site-nav" aria-label="Hauptnavigation">
       <ul>
         <li><a href="../index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-        <li><a href="../archive.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="../archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
         <li><a href="../about.html" data-i18n="nav.about">Über uns</a></li>
         <li><a href="../coming-soon.html" data-i18n="nav.tools">Tools</a></li>
         <li><a href="../coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
@@ -45,19 +45,43 @@
   <!-- NEWSLETTER-AUSGABE (PDF Seite 6) – Vorlage. Pro Ausgabe: Titel, Datum, Bild, Text ersetzen. -->
   <main class="container issue-page">
     <article class="issue-article">
-      <header class="issue-article__head">
+      <!-- Pro Sprache ein Kopf- und ein Textblock. Sichtbar ist der Block der gewählten Sprache (EN/DE/FR). -->
+      <header class="issue-article__head" data-lang-content="de">
         <h1 class="issue-article__title">Sieh, was aus deinem Geld werden kann.</h1>
-        <p class="issue-article__byline">Von Portemonnaie <span class="issue-article__date">· <time datetime="2026-10-08">8. Oktober 2026</time></span></p>
+        <p class="issue-article__byline">Von Portemonnaie · <time datetime="2026-10-12">12. Oktober 2026</time></p>
       </header>
+      <header class="issue-article__head" data-lang-content="en">
+        <h1 class="issue-article__title">See what your money can become.</h1>
+        <p class="issue-article__byline">By Portemonnaie · <time datetime="2026-10-12">12 October 2026</time></p>
+      </header>
+      <header class="issue-article__head" data-lang-content="fr">
+        <h1 class="issue-article__title">Vois ce que ton argent peut devenir.</h1>
+        <p class="issue-article__byline">Par Portemonnaie · <time datetime="2026-10-12">12 octobre 2026</time></p>
+      </header>
+
       <figure class="issue-article__figure">
         <img src="../img/kachel-your-money-moves.webp" alt="" width="900" height="603" />
       </figure>
-      <div class="issue-article__body">
-        <p>[…] Hier steht der erste Absatz der Ausgabe. Der Text kommt jede Woche von dir, ich setze ihn hier ein. Absätze werden im Blocksatz gesetzt, Zwischenüberschriften in Versalien.</p>
-        <p>[…] Zweiter Absatz als Beispiel für die Laufweite und den Zeilenabstand der Vorlage.</p>
+
+      <div class="issue-article__body" data-lang-content="de">
+        <p>[…] Hier steht der erste Absatz der deutschen Ausgabe. Absätze im Blocksatz, Zwischenüberschriften in Versalien.</p>
+        <p>[…] Zweiter Absatz als Beispiel für Laufweite und Zeilenabstand.</p>
         <h2 class="issue-article__heading">Bring dein Geld zum Arbeiten</h2>
         <p>[…] Absatz nach der Zwischenüberschrift.</p>
       </div>
+      <div class="issue-article__body" data-lang-content="en">
+        <p>[…] First paragraph of the English edition. Justified paragraphs, subheadings in capitals.</p>
+        <p>[…] Second paragraph as an example of measure and line spacing.</p>
+        <h2 class="issue-article__heading">Put your money to work</h2>
+        <p>[…] Paragraph after the subheading.</p>
+      </div>
+      <div class="issue-article__body" data-lang-content="fr">
+        <p>[…] Premier paragraphe de l'édition française. Paragraphes justifiés, intertitres en capitales.</p>
+        <p>[…] Deuxième paragraphe, exemple de justification et d'interligne.</p>
+        <h2 class="issue-article__heading">Fais travailler ton argent</h2>
+        <p>[…] Paragraphe après l'intertitre.</p>
+      </div>
+
       <p class="issue-article__back"><a class="arrow-link t-cta" href="../archive.html"><span data-i18n="archive.back">Zum Archiv</span>&nbsp;<svg aria-hidden="true"><use href="../img/icons.svg#icon-arrow"/></svg></a></p>
     </article>
   </main>
@@ -68,7 +92,7 @@
       <nav aria-label="Footer">
         <ul class="footer-menu">
           <li><a href="../index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="../archive.html" data-i18n="nav.archive">Archiv</a></li>
+          <li><a href="../archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
           <li><a href="../about.html" data-i18n="nav.about">Über uns</a></li>
           <li><a href="../coming-soon.html" data-i18n="nav.press">Presse</a></li>
           <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>

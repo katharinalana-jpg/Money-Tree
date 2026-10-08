@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
-  <title data-i18n-title="archive.meta_title">Archiv – Portemonnaie</title>
-  <meta name="robots" content="noindex" />   <!-- bis zur ersten Ausgabe nicht verlinkt -->
+  <title data-i18n-title="soon_archive.meta_title">Archiv – Coming soon – Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +32,7 @@
     <nav class="site-nav" aria-label="Hauptnavigation">
       <ul>
         <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-        <li><a href="archive.html" aria-current="page" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="archive-soon.html" aria-current="page" data-i18n="nav.archive">Archiv</a></li>
         <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
         <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
         <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
@@ -43,45 +42,25 @@
     </nav>
   </header>
 
-  <!-- ARCHIV (PDF Seite 4) -->
-  <main class="archive">
-    <h1 class="archive__title container" data-i18n="archive.title">Archiv</h1>
-    <div class="container container--wide">
-      <ul class="archive__grid">
-        <li class="issue">
-          <a class="issue__media" href="newsletter/template.html" tabindex="-1" aria-hidden="true"></a>
-          <p class="issue__label"><span data-lang-content="de">Newsletter / Werte</span><span data-lang-content="en">Newsletter / Values</span><span data-lang-content="fr">Newsletter / Valeurs</span></p>
-          <h2 class="issue__title"><a href="newsletter/template.html"><span data-lang-content="de">Start investing in what you support.</span><span data-lang-content="en">Start investing in what you support.</span><span data-lang-content="fr">Start investing in what you support.</span></a></h2>
-        </li>
-        <li class="issue">
-          <a class="issue__media" href="newsletter/template.html" tabindex="-1" aria-hidden="true"></a>
-          <p class="issue__label"><span data-lang-content="de">Newsletter / Wachstum</span><span data-lang-content="en">Newsletter / Growth</span><span data-lang-content="fr">Newsletter / Croissance</span></p>
-          <h2 class="issue__title"><a href="newsletter/template.html"><span data-lang-content="de">A new era of investing.</span><span data-lang-content="en">A new era of investing.</span><span data-lang-content="fr">A new era of investing.</span></a></h2>
-        </li>
-        <li class="issue">
-          <a class="issue__media" href="newsletter/template.html" tabindex="-1" aria-hidden="true"></a>
-          <p class="issue__label"><span data-lang-content="de">Newsletter / Gender</span><span data-lang-content="en">Newsletter / Gender</span><span data-lang-content="fr">Newsletter / Genre</span></p>
-          <h2 class="issue__title"><a href="newsletter/template.html"><span data-lang-content="de">Bring dein Geld zum Arbeiten</span><span data-lang-content="en">Put your money to work</span><span data-lang-content="fr">Fais travailler ton argent</span></a></h2>
-        </li>
-      </ul>
-    </div>
+  <!-- ARCHIV, bis zur ersten Ausgabe: Coming soon mit Magazin-Hinweis -->
+  <main class="container soon">
+    <h1 class="soon__title" data-i18n="soon_archive.title">Coming soon.</h1>
+    <p class="soon__note" data-i18n="soon_archive.note">Hier arbeiten wir an unserem Portemonnaie-Magazin. Jede Woche pünktlich Sonntag, 11 Uhr: erhalte heiße Infos zum Thema nachhaltig investieren, Step-by-Step-Guides und Interviews zum Nachlesen.</p>
   </main>
 
-  <!-- FOOTER, Variante mit Tänzerinnen (PDF Seite 5) -->
-  <footer class="site-footer site-footer--dancers container container--wide">
+  <!-- FOOTER (PDF Seite 3) -->
+  <footer class="site-footer container container--wide">
     <div class="site-footer__grid">
       <nav aria-label="Footer">
         <ul class="footer-menu">
           <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+          <li><a href="archive-soon.html" aria-current="page" data-i18n="nav.archive">Archiv</a></li>
           <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
           <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
           <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
       </nav>
-      <div class="site-footer__middle">
-        <p class="site-footer__claim">Money is power.<br>Use yours.</p>
-      </div>
+      <div class="site-footer__middle"></div>
       <div class="site-footer__signup">
         <div class="social">
           <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
@@ -89,8 +68,8 @@
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
         </div>
         <form class="footer-form" data-signup novalidate>
-          <label class="sr-only" for="archiveEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
-          <input class="field" id="archiveEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <label class="sr-only" for="archiveSoonEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="archiveSoonEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
           <label class="check t-small">
             <input type="checkbox" name="consent" required />
             <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
@@ -101,7 +80,6 @@
         </form>
       </div>
     </div>
-    <img class="site-footer__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
     <div class="site-footer__bottom">
       <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
       <div class="site-footer__legal">

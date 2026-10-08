@@ -73,6 +73,9 @@
       "archive.meta_title": "Archive – Portemonnaie",
       "archive.title": "Archive",
       "archive.back": "To the archive",
+      "soon_archive.meta_title": "Archive – Coming soon – Portemonnaie",
+      "soon_archive.title": "Coming soon.",
+      "soon_archive.note": "This is where we are working on our Portemonnaie magazine. Every week, Sunday at 11 am sharp: get the latest on sustainable investing, step-by-step guides and interviews to read at your own pace.",
       "footer.imprint": "Imprint",
       "footer.privacy": "Privacy policy",
       "footer.copyright": "© Portemonnaie 2026",
@@ -130,6 +133,9 @@
       "archive.meta_title": "Archiv – Portemonnaie",
       "archive.title": "Archiv",
       "archive.back": "Zum Archiv",
+      "soon_archive.meta_title": "Archiv – Coming soon – Portemonnaie",
+      "soon_archive.title": "Coming soon.",
+      "soon_archive.note": "Hier arbeiten wir an unserem Portemonnaie-Magazin. Jede Woche pünktlich Sonntag, 11 Uhr: erhalte heiße Infos zum Thema nachhaltig investieren, Step-by-Step-Guides und Interviews zum Nachlesen.",
       "footer.imprint": "Impressum",
       "footer.privacy": "Datenschutzerklärung",
       "footer.copyright": "© Portemonnaie 2026",
@@ -187,6 +193,9 @@
       "archive.meta_title": "Archives – Portemonnaie",
       "archive.title": "Archives",
       "archive.back": "Vers les archives",
+      "soon_archive.meta_title": "Archives – Bientôt – Portemonnaie",
+      "soon_archive.title": "Coming soon.",
+      "soon_archive.note": "Ici, nous travaillons à notre magazine Portemonnaie. Chaque semaine, le dimanche à 11 h précises : des infos brûlantes sur l'investissement durable, des guides pas à pas et des interviews à relire.",
       "footer.imprint": "Mentions légales",
       "footer.privacy": "Politique de confidentialité",
       "footer.copyright": "© Portemonnaie 2026",
@@ -203,12 +212,12 @@
   }
 
   function detectLanguage() {
+    const fromQuery = new URLSearchParams(location.search).get("lang");   /* ?lang=fr hat Vorrang (Links aus Newsletter/Socials) */
+    if (LANGS.includes(fromQuery)) return fromQuery;
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (LANGS.includes(stored)) return stored;
     } catch (e) { /* localStorage gesperrt */ }
-    const fromQuery = new URLSearchParams(location.search).get("lang");
-    if (LANGS.includes(fromQuery)) return fromQuery;
     const nav = (navigator.language || "en").toLowerCase().slice(0, 2);
     return LANGS.includes(nav) ? nav : "en";
   }
@@ -232,6 +241,10 @@
     document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
       const v = t(lang, el.getAttribute("data-i18n-aria"));
       if (v !== null) el.setAttribute("aria-label", v);
+    });
+    document.querySelectorAll("title[data-lang-title-de]").forEach((el) => {
+      const v = el.getAttribute("data-lang-title-" + lang) || el.getAttribute("data-lang-title-de");
+      if (v) el.textContent = v;
     });
     document.querySelectorAll("[data-i18n-title]").forEach((el) => {
       const v = t(lang, el.getAttribute("data-i18n-title"));
