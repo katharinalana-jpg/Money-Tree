@@ -354,15 +354,15 @@ ul { padding: 0; list-style: none; }
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
   white-space: nowrap; color: var(--color-text-soft);
 }
-/* Drei Figuren, gleichmäßig diagonal aufsteigend (Schritt 170 px nach rechts, 132 px nach oben) */
+/* Drei Figuren, gleichmäßig diagonal aufsteigend (Schritt 185 px nach rechts, 160 px nach oben) */
 .about__figure {
   position: absolute; z-index: 1; pointer-events: none; opacity: 0.6;   /* Deckkraft wie im Entwurf */
   width: 33.4375rem; height: auto;                                  /* 535 px breit, 720 px hoch */
   left: calc(50% + var(--fx)); top: var(--fy);
 }
 .about__figure--1 { --fx: 3.4375rem;  --fy: 28.5625rem; }           /* Ball ab x 905, y 584 */
-.about__figure--2 { --fx: 14.0625rem; --fy: 20.3125rem; }           /* +170 px, -132 px */
-.about__figure--3 { --fx: 24.6875rem; --fy: 12.0625rem; }           /* +170 px, -132 px */
+.about__figure--2 { --fx: 15rem;      --fy: 18.5625rem; }           /* +185 px, -160 px */
+.about__figure--3 { --fx: 26.5625rem; --fy: 8.5625rem; }            /* +185 px, -160 px */
 .theme-hellblau .site-footer { color: var(--color-text-soft); }
 
 /* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
