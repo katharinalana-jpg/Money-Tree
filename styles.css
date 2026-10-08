@@ -343,26 +343,26 @@ ul { padding: 0; list-style: none; }
 .about__intro .about__text p + p { margin-top: 1.875rem; }       /* Leerzeile zwischen den Absätzen */
 .about__text strong { font-weight: 700; }
 
-.about__what { padding-top: 4.6875rem; padding-bottom: 7.5rem; }   /* "Was Portemonnaie tut" bei 81 px der Folie 2; 120 px bis zur Fußzeile */
+.about__what { padding-top: 8.4375rem; padding-bottom: 7.5rem; }   /* 185 px nach dem Einstieg, 120 px bis zur Fußzeile */
 .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* gleiche Linie wie der Einstieg: x = 99 */
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
 .about__heading + .about__text { margin-top: 2.1875rem; }        /* Text bei 157 px */
 .about__text + .about__heading { margin-top: 6.5rem; }           /* 104 px Abstand zwischen den Blöcken */
 .about__what .about__text p + p { margin-top: 0; }
 .about__claim {
-  position: absolute; left: calc(50% + 15.3125rem); top: 68.9375rem;    /* x = 965, y = 810 + 293 */
+  position: absolute; left: calc(50% + 15.3125rem); top: 74.375rem;     /* x = 965, ca. 110 px unter den Füßen der ersten Figur */
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
   white-space: nowrap; color: var(--color-text-soft);
 }
-/* Drei Figuren, gleichmäßig diagonal aufsteigend (Schritt 185 px nach rechts, 160 px nach oben) */
+/* Drei Figuren, gleichmäßig diagonal aufsteigend (Schritt 165 px nach rechts, 160 px nach oben) */
 .about__figure {
   position: absolute; z-index: 1; pointer-events: none; opacity: 0.6;   /* Deckkraft wie im Entwurf */
   width: 33.4375rem; height: auto;                                  /* 535 px breit, 720 px hoch */
   left: calc(50% + var(--fx)); top: var(--fy);
 }
-.about__figure--1 { --fx: 3.4375rem;  --fy: 28.5625rem; }           /* Ball ab x 905, y 584 */
-.about__figure--2 { --fx: 15rem;      --fy: 18.5625rem; }           /* +185 px, -160 px */
-.about__figure--3 { --fx: 26.5625rem; --fy: 8.5625rem; }            /* +185 px, -160 px */
+.about__figure--1 { --fx: 6.25rem;    --fy: 32.3125rem; }           /* Ball ab x 950, y 644 */
+.about__figure--2 { --fx: 16.5625rem; --fy: 22.3125rem; }           /* +165 px, -160 px */
+.about__figure--3 { --fx: 26.875rem;  --fy: 12.3125rem; }           /* +165 px, -160 px */
 .theme-hellblau .site-footer { color: var(--color-text-soft); }
 
 /* Footer-Variante: nur die untere Zeile (PDF Seite 7) */
