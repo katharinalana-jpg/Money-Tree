@@ -335,7 +335,7 @@ ul { padding: 0; list-style: none; }
 
 /* ---------- 11. Über uns (Entwurf Über_Uns_.pdf, 2 Folien à 810 px, Hellblau) ---------- */
 .about { position: relative; overflow: hidden; }
-.about__intro { padding-top: 3.875rem; min-height: calc(50.625rem - 14.25rem); }   /* Titel bei 290 px; Folie 1 endet bei 810 px */
+.about__intro { padding-top: 3.875rem; }                                              /* Titel bei 290 px */
 .about__intro-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99, 794 px breit */
 .about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; color: var(--color-text-soft); }
 .about__text { font-size: 1.1667rem; line-height: 1.6072; text-align: justify; hyphens: auto; color: var(--color-text-soft); }   /* 18,67 px / 30 px wie im PDF */
@@ -343,7 +343,7 @@ ul { padding: 0; list-style: none; }
 .about__intro .about__text p + p { margin-top: 1.875rem; }       /* Leerzeile zwischen den Absätzen */
 .about__text strong { font-weight: 700; }
 
-.about__what { padding-top: 8.4375rem; padding-bottom: 7.5rem; }   /* 185 px nach dem Einstieg, 120 px bis zur Fußzeile */
+.about__what { padding-top: 6.5rem; padding-bottom: 7.5rem; }      /* 104 px nach dem Einstieg (wie zwischen den Blöcken), 120 px bis zur Fußzeile */
 .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* gleiche Linie wie der Einstieg: x = 99 */
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
 .about__heading + .about__text { margin-top: 2.1875rem; }        /* Text bei 157 px */
