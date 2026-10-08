@@ -178,11 +178,10 @@ ul { padding: 0; list-style: none; }
 .icon { width: 1.75rem; height: 1.75rem; fill: currentColor; opacity: var(--icon-opacity); }
 
 /* ---------- 6. Kopfbereich (PDF Seite 1; helle Variante auf Rot: Seite 7) ---------- */
-.site-header { color: var(--fg); }
+.site-header { color: var(--fg); display: grid; grid-template-columns: minmax(0, max-content); }   /* Breite = Breite der Headline */
 .site-header__top {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3);
-  padding: 1.5rem 0 0.875rem;           /* Linie bei 67 px (PDF) */
-  border-bottom: var(--border);
+  padding: 1.5rem 0 0.9375rem;          /* keine Linie unter dem Logo; Sprachwahl endet am Punkt der Headline */
 }
 .site-header__logo { font-family: var(--font-logo); font-size: var(--fs-logo); line-height: 1; letter-spacing: -0.005em; }
 .lang-switch { display: flex; gap: 1.5rem; }
@@ -205,13 +204,9 @@ ul { padding: 0; list-style: none; }
   white-space: nowrap;
 }
 .site-header__title > span {
-  text-decoration: underline; text-decoration-thickness: 1px;
+  text-decoration: underline; text-decoration-thickness: 2px;    /* Linie endet mit dem Punkt der Headline */
   text-underline-offset: calc(-1 * var(--title-shift));
   text-decoration-skip-ink: none; text-decoration-color: var(--line);
-}
-.site-header__title::after {
-  content: ""; flex: 1 1 0; height: 1px; background: var(--line); min-width: 0.5rem;
-  position: relative; top: calc(1px - var(--title-shift));
 }
 
 .site-nav { padding-top: 1rem; }                 /* Menü-Oberkante bei ~203 px */
