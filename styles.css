@@ -242,6 +242,7 @@ ul { padding: 0; list-style: none; }
   gap: 0 var(--space-4);
   align-items: start;
 }
+.footer-menu { margin-top: 4.5rem; }                 /* erste Zeile auf einer Linie mit dem E-Mail-Feld */
 .footer-menu li { border-bottom: var(--border); }
 .footer-menu a {
   display: block; padding: 0.6875rem 0 0.5rem;        /* Zeilenabstand 37,5 px */
@@ -384,5 +385,3 @@ ul { padding: 0; list-style: none; }
 .soon__title { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.15; font-weight: 400; }
 .soon__text { margin: 1.75rem auto 0; max-width: 50.125rem; line-height: 1.5; }     /* 802 px */
 .soon__text p + p { margin-top: 0; }
-.site-footer__cta { font-family: var(--font-display); font-size: var(--fs-h3); line-height: 1.15; font-weight: 400; text-align: left; padding-top: 2.75rem; }   /* "Registrier dich jetzt" bei 524 px */
-.site-footer__middle:has(.site-footer__cta) { align-self: start; padding-left: 1.5rem; }
