@@ -75,7 +75,7 @@
       "archive.back": "To the archive",
       "soon_archive.meta_title": "Archive – Coming soon – Portemonnaie",
       "soon_archive.title": "Coming soon.",
-      "soon_archive.note": "This is where we are working on our Portemonnaie magazine. Every week, Sunday at 11 am sharp: get the latest on sustainable investing, step-by-step guides and interviews to read at your own pace.",
+      "soon_archive.note": "This is where we are working on our Portemonnaie magazine. Every Sunday at 10 pm: get the latest on values based investing and smart step-by-step guides.",
       "footer.imprint": "Imprint",
       "footer.privacy": "Privacy policy",
       "footer.copyright": "© Portemonnaie 2026",
