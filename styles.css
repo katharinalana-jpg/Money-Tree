@@ -429,20 +429,22 @@ html[lang="de"] span[data-lang-content="de"], html[lang="en"] span[data-lang-con
 .soon__note { margin: 1.75rem auto 0; max-width: 46rem; font-size: var(--fs-body); line-height: 1.5; }
 
 /* ---------- 16. Kollaborationen (Entwurf 02_Port_Website, 2 Folien untereinander) ---------- */
-.collab-intro { padding-top: 2.75rem; text-align: center; color: var(--color-text-soft); }
-.collab-intro__figure { width: 31rem; height: auto; margin: 0 auto; }            /* 497 px breit wie im Entwurf */
-.collab-intro__title { margin-top: 2.75rem; font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }   /* 48 px */
+.collab-intro { padding-top: 0; text-align: center; color: var(--color-text-soft); }
+.collab-intro__figure { width: 31rem; height: auto; margin: -1.25rem auto 0; position: relative; }   /* 497 px breit, ragt wie im Entwurf leicht in die Navigation */
+.collab-intro__title { margin-top: 2.25rem; font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }   /* 48 px */
 .collab-intro__text { margin: 2rem auto 0; max-width: 54.75rem; font-size: 1.1875rem; line-height: 1.6; }   /* 19 px, 876 px breit */
 
-.collab-types { padding-top: 8.5rem; padding-bottom: 7.5rem; color: var(--color-text-soft); text-align: center; }
+.collab-types { padding-top: 6.5rem; padding-bottom: 7rem; color: var(--color-text-soft); text-align: center; }
 .collab-types__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
 .collab-type__title { font-family: var(--font-display); font-size: 1.5625rem; line-height: 1.2; font-weight: 400; }   /* 25 px */
 .collab-type__text { margin: 1.25rem auto 0; max-width: 26rem; font-size: 1.1667rem; line-height: 1.6; }   /* 18,7 px / 30 px, 416 px breit */
-.collab-closing { margin: 7rem auto 0; max-width: 54.5rem; font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25; }   /* 24 px, 872 px breit */
+.collab-closing { margin: 5.5rem auto 0; max-width: 54.75rem; font-size: 1.1875rem; line-height: 1.6; }   /* wie der Einstiegstext: DM Sans 19 px */
+.collab-contact { margin-top: 2.75rem; }
 
 @media (max-width: 900px) {
   .collab-intro__figure { width: 100%; }
   .collab-types { padding-top: 5rem; padding-bottom: 4rem; }
   .collab-types__grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .collab-closing { margin-top: 4rem; }
+  .collab-intro__figure { margin-top: 0.5rem; }
 }
