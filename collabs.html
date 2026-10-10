@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portemonnaie. News and collaborations." />
-  <title>Portemonnaie. Collabs.</title>
+  <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
+  <title data-i18n-title="collab.meta_title">Kollaborationen – Portemonnaie</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css?v=24" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=DM+Serif+Display&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=101" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -20,91 +19,70 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="nav" id="nav">
-    <a class="nav__brand" href="index.html#top">
-      <img src="img/logo_tree.png" alt="" class="nav__logo" />
-      Portemonnaie
-    </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
-      <a href="library.html" data-i18n="nav.library">Library</a>
-      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
-      <div class="nav__lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="de">DE</button>
-      </div>
-    </nav>
-    <button class="nav__toggle" aria-label="Open menu" data-i18n-aria="nav.menu_aria" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav__mobile" id="mobileMenu" hidden>
-      <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
-      <a href="library.html" data-i18n="nav.library">Library</a>
-      <a class="nav__cta" href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
-      <div class="nav__lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="de">DE</button>
-      </div>
+  <header class="site-header container">
+    <div class="site-header__top">
+      <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+      <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
+        <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
+        <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+        <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
+      </nav>
     </div>
+    <p class="site-header__title"><span>Start investing in what you support.</span></p>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+        <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+        <li><a href="collabs.html" aria-current="page" data-i18n="nav.collabs">Kollaborationen</a></li>
+        <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="top">
-
-    <!-- TABS -->
-    <section class="section collabs-page" style="padding-top: calc(var(--nav-h) + 5rem);">
-      <div class="container">
-        <header class="section__header reveal">
-          <p class="eyebrow" data-i18n="collabs.eyebrow">Get involved</p>
-          <h2 class="h-section">Join us on the journey.</h2>
-        </header>
-
-        <div class="collabs-tabs">
-          <div class="collabs-tabs__nav">
-            <button class="collabs-tabs__btn is-active" data-tab="news" data-i18n="tab.news_btn">We are building in the open</button>
-            <button class="collabs-tabs__btn" data-tab="partner" data-i18n="tab.partner_btn">Partner with Portemonnaie</button>
-          </div>
-
-          <div class="collabs-tabs__panel is-active" id="tab-news">
-            <div class="collabs-tabs__content reveal">
-              <h3 data-i18n="news.h3">We are building in the open.</h3>
-              <p data-i18n="news.p">Follow our journey from prototype to launch. Early supporters
-                 receive monthly product letters and invitations to private demos.</p>
-              <a class="btn btn--ghost" href="index.html#signup" data-i18n="flow.cta">Join the Access List</a>
-            </div>
-          </div>
-
-          <div class="collabs-tabs__panel" id="tab-partner">
-            <div class="collabs-tabs__content reveal">
-              <h3 data-i18n="partner.h3">Partner with Portemonnaie.</h3>
-              <p data-i18n="partner.p">We collaborate with wealth managers, sustainability researchers,
-                 creators, and community builders who share our values.</p>
-              <a class="btn btn--ghost" href="mailto:hello@portemonnaie.finance" data-i18n="partner.cta">Reach out</a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- KOLLABORATIONEN, Teil 1 (Entwurf 02_Port_Website, Folie 1) -->
+  <main>
+    <section class="collab-intro container">
+      <img class="collab-intro__figure" src="img/kollaborationen-gruppe.webp" alt="" width="1000" height="500" />
+      <h1 class="collab-intro__title" data-i18n="collab.title">Kollaborationen</h1>
+      <p class="collab-intro__text" data-i18n="collab.intro">Portemonnaie befindet sich im Aufbau. Als Denk- und Tu-Atelier suchen wir Partnerschaften, die Portemonnaie von Anfang an mittragen.</p>
     </section>
 
+    <!-- Teil 2 (Folie 2): drei Partnerschaftsarten und Schlusssatz -->
+    <section class="collab-types container container--wide">
+      <ul class="collab-types__grid">
+        <li class="collab-type">
+          <h2 class="collab-type__title" data-i18n="collab.media_title">Medienpartnerschaften</h2>
+          <p class="collab-type__text" data-i18n="collab.media_text">Magazine, Newsletter, Podcasts und Netzwerke, die Inhalte und Tools auf Deutsch, Englisch und Französisch weitertragen und mit uns Kampagnen gestalten.</p>
+        </li>
+        <li class="collab-type">
+          <h2 class="collab-type__title" data-i18n="collab.founding_title">Gründungspartnerschaften</h2>
+          <p class="collab-type__text" data-i18n="collab.founding_text">Unternehmen und Stiftungen, die die Startphase als Sponsor begleiten, den Aufbau mitgestalten und damit sichtbar Teil des Anfangs werden.</p>
+        </li>
+        <li class="collab-type">
+          <h2 class="collab-type__title" data-i18n="collab.inst_title">Institutionelle Partnerschaften</h2>
+          <p class="collab-type__text" data-i18n="collab.inst_text">Verbände, Hochschulen und Organisationen für Seminare, Round Tables und gemeinsame Forschungsfragen. Konzept und Durchführung liegen bei uns.</p>
+        </li>
+      </ul>
+      <p class="collab-closing" data-i18n="collab.closing">Gemeinsam untersuchen wir, was wir heute brauchen, um die Finanzwelt von morgen zu gestalten und ökonomische Gleichstellung von Männern und Frauen zu erreichen.</p>
+    </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__brand">Portemonnaie</span>
-      <span class="footer__copy">&copy; <span id="year"></span> Portemonnaie. Built with care for the women who come next.</span>
-      <nav class="footer__links">
-        <a href="index.html#intro" data-i18n="nav.intro">Intro</a>
-        <a href="library.html" data-i18n="nav.library">Library</a>
-        <a href="index.html#mission" data-i18n="nav.mission">Our Mission</a>
-        <a href="index.html#signup" data-i18n="nav.signup">Sign Up</a>
-        <a href="impressum.html" data-i18n="footer.imprint">Imprint</a>
-        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
-      </nav>
+  <!-- FOOTER, nur untere Zeile (Entwurf) -->
+  <footer class="site-footer site-footer--bar container container--wide">
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
+      <div class="site-footer__legal">
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
+      </div>
+      <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
     </div>
   </footer>
 
-  <script src="i18n.js?v=32"></script>
-  <script src="script.js?v=8"></script>
+  <script src="i18n.js?v=101"></script>
+  <script src="script.js?v=101"></script>
 </body>
 </html>
