@@ -115,7 +115,8 @@
     if (!("IntersectionObserver" in window)) { marks.forEach((m) => m.classList.add("is-on")); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
-        if (!en.isIntersecting) return;
+        const passed = en.boundingClientRect.bottom < 0;   /* bereits vorbeigescrollt: sofort fett */
+        if (!en.isIntersecting && !passed) return;
         en.target.classList.add("is-on");
         io.unobserve(en.target);
       });
