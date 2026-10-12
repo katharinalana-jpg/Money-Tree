@@ -301,7 +301,7 @@ ul { padding: 0; list-style: none; }
 .hero__archive { grid-column: 2; grid-row: 2; margin-top: 3.875rem; justify-self: start; margin-left: 4.5rem; color: var(--fg); }
 
 /* ---------- 9. Startseite: A new era of investing (PDF Seite 2, flacher) ---------- */
-.era { position: relative; overflow: hidden; padding: 7rem 0 6.5rem; margin-top: 8.5rem; }   /* 136 px Creme zwischen Hero und Grün, wie vor den Kacheln */
+.era { position: relative; overflow: hidden; padding: 7rem 0 6.5rem; margin-top: 0; }   /* schließt direkt an das Hero-Bild an */
 .era__inner { padding-left: 10.625rem; }                /* Text bei x = 170 px */
 .era__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; }
 .era__eyebrow { margin-top: 3.5rem; font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
