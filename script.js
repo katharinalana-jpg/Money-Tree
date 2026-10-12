@@ -107,4 +107,21 @@
   }
 
   $$("[data-signup]").forEach(handleSignup);
+
+  /* Über uns: Hervorhebungen erscheinen beim Scrollen (einmalig, sobald sie im Blick sind) */
+  function watchHighlights() {
+    const marks = $$(".about__text strong");
+    if (!marks.length) return;
+    if (!("IntersectionObserver" in window)) { marks.forEach((m) => m.classList.add("is-on")); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-on");
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: "0px 0px -18% 0px", threshold: 0.6 });
+    marks.forEach((m) => io.observe(m));
+  }
+  watchHighlights();
+  document.addEventListener("pm:langchange", () => setTimeout(watchHighlights, 0));
 })();
