@@ -18,7 +18,8 @@
 <body>
 
   <div class="hero-wrap">
-    <!-- KOPFBEREICH Startseite (Entwurf Start-Hero.pdf): Navigation neben dem Logo, keine Linien -->
+    <img class="hero-wrap__beach" src="img/hero-strand.webp" alt="" width="2304" height="597" />
+    <!-- KOPFBEREICH (Entwurf 04_Port_Website, Folie 1): Logo | Menü links daneben | Sprachwahl, dünne Linie darunter -->
     <header class="site-header site-header--home container">
       <div class="site-header__top">
         <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
@@ -42,7 +43,7 @@
     </header>
 
     <main>
-      <!-- HERO (Entwurf Start-Hero.pdf): Headline zweizeilig links, Formular rechts -->
+      <!-- HERO (Folie 1): Headline zweizeilig links bei x 109 / y 161, Formular rechts -->
       <section class="hero container" aria-labelledby="newsletter-heading">
         <h1 class="hero__title">Start investing in what<br>you support.</h1>
         <h2 id="newsletter-heading" class="sr-only" data-i18n="nav.newsletter">Newsletter</h2>
@@ -84,64 +85,53 @@
     <img class="era__figure" src="img/neue-aera-maedchen.webp" alt="" width="875" height="1000" />
   </section>
 
-  <!-- KACHELN: eine große, zwei kleine; Untertexte wie im Entwurf -->
-  <section class="v2-tiles container container--wide">
-    <article class="v2-tile v2-tile--big">
-      <a class="v2-tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-your-money-moves.webp" alt="" width="1800" height="1206" /></a>
-      <div class="v2-tile__body">
-        <h2 class="v2-tile__title">Your Money Moves</h2>
-        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </div>
+  <!-- KACHELN (Folie 3 + 4): Rot links groß, Gelb und Blau rechts; Blau läuft bis zum Seitenrand -->
+  <section class="tiles3 container container--wide">
+    <article class="tile3 tile3--money">
+      <a class="tile3__media theme-rot" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img class="tile3__figure tile3__figure--dancer" src="img/kachel-taenzerin.webp" alt="" width="437" height="597" /></a>
+      <h2 class="tile3__title tile3__title--big">Your Money Moves</h2>
+      <div class="tile3__rule tile3__rule--rot"></div>
+      <a class="tile3__link tile3__link--big" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
     </article>
-    <article class="v2-tile">
-      <a class="v2-tile__media v2-tile__media--overflow" href="collabs.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-kollaborationen.webp" alt="" width="945" height="606" /></a>
-      <div class="v2-tile__body">
-        <h2 class="v2-tile__title" data-i18n="tile.collab_title">Kollaborationen</h2>
-        <a class="tile__link" href="collabs.html"><span data-i18n-html="tile.collab_link">Gemeinsam nach unseren<br>Regeln gestalten</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </div>
+    <article class="tile3 tile3--collab">
+      <a class="tile3__media theme-gelb tile3__media--overflow" href="collabs.html" tabindex="-1" aria-hidden="true"><img class="tile3__figure tile3__figure--group" src="img/kollaborationen-gruppe.webp" alt="" width="1000" height="500" /></a>
+      <h2 class="tile3__title" data-i18n="tile.collab_title">Kollaborationen</h2>
+      <div class="tile3__rule"></div>
+      <a class="tile3__link" href="collabs.html"><span data-i18n-html="tile.collab_link">Gemeinsam nach unseren<br>Regeln gestalten</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
     </article>
-    <article class="v2-tile">
-      <a class="v2-tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-boutique-blau.webp" alt="" width="900" height="603" /></a>
-      <div class="v2-tile__body">
-        <h2 class="v2-tile__title" data-i18n="tile.boutique_title">Boutique</h2>
-        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.boutique_link">Alle Produkte</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </div>
+    <article class="tile3 tile3--boutique">
+      <a class="tile3__media theme-blau tile3__media--bleed" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img class="tile3__figure tile3__figure--hand" src="img/kachel-martini-hand.webp" alt="" width="700" height="724" /></a>
+      <h2 class="tile3__title tile3__title--sentence" data-i18n="tile.boutique_title">Boutique</h2>
+      <div class="tile3__rule tile3__rule--blau"></div>
+      <a class="tile3__link" href="coming-soon.html"><span data-i18n="tile.boutique_link">Alle Produkte</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
     </article>
   </section>
 
-  <!-- FOOTER: E-Mail + Button | Menü + Icons; darunter Claim links, Tänzerinnen rechts -->
-  <footer class="v2-footer container container--wide">
-    <div class="v2-footer__top">
-      <form class="v2-footer__form" data-signup novalidate>
-        <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
-        <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
-        <label class="check t-small v2-footer__consent"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
-        <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
-        <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
-        <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
-      </form>
-      <div class="v2-footer__right">
-        <nav aria-label="Footer"><ul class="v2-footer__menu">
-          <li><a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
-          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
-        </ul></nav>
-        <div class="social v2-footer__social">
+  <!-- FOOTER (Folie 4): Claim links, Tänzerinnen darunter; rechts Icons, E-Mail, Zustimmung, Button; Impressum links neben Copyright -->
+  <footer class="footer4 container container--wide">
+    <div class="footer4__grid">
+      <div class="footer4__left">
+        <p class="footer4__claim">Money is power.<br>Use yours.</p>
+        <img class="footer4__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
+      </div>
+      <div class="footer4__right">
+        <div class="social footer4__social">
           <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
           <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
         </div>
+        <form class="footer4__form" data-signup novalidate>
+          <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
+          <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
+          <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
+          <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
+        </form>
       </div>
     </div>
-    <div class="v2-footer__dance">
-      <p class="v2-footer__claim">Money is power.<br>Use yours.</p>
-      <img class="v2-footer__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
-    </div>
-    <div class="v2-footer__bottom">
+    <div class="site-footer__bottom site-footer__bottom--left">
       <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
-      <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
       <div class="site-footer__legal"><a href="impressum.html" data-i18n="footer.imprint">Impressum</a><a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a></div>
     </div>
   </footer>

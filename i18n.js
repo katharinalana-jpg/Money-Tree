@@ -58,7 +58,7 @@
       "era.more": "Learn more",
       "tile.money_link": "Let your values work",
       "tile.collab_title": "Collaborations",
-      "tile.collab_link": "Shaping finance together,<br>by our rules",
+      "tile.collab_link": "Shaping things together,<br>on our terms",
       "tile.boutique_title": "Boutique",
       "tile.boutique_link": "All products",
       "about.meta_title": "About us – Portemonnaie",
