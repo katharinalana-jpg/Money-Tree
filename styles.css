@@ -339,7 +339,7 @@ ul { padding: 0; list-style: none; }
 .about__intro .about__text { margin-top: 3rem; }
 .about__text p + p { margin-top: 1.5rem; }
 .about__pull { margin-top: 2.5rem !important; margin-bottom: 2.5rem; text-align: left; }   /* Zitat: DM Sans, fett, unterstrichen, Fließtextgröße */
-.about__pull strong { font-weight: 700; }
+.about__text .about__pull strong { font-weight: 700; }
 /* Hervorhebungen: normale Schrift; beim Scrollen zieht sich ein gerader Strich darunter von links nach rechts */
 .about__text strong {
   font-weight: 400;
