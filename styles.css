@@ -181,9 +181,9 @@ ul { padding: 0; list-style: none; }
 .site-header { color: var(--fg); display: grid; grid-template-columns: minmax(0, max-content); }   /* Breite = Breite der Headline */
 .site-header__top {
   display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 2.5rem;
-  padding: 1.5rem 0 0.1875rem;           /* Logo | Menü links daneben | Sprachwahl; Linie bei 59 px */
-  border-bottom: 1px solid color-mix(in srgb, var(--line) 35%, transparent);
+  padding: 1.5rem 0 0.1875rem;           /* Logo | Menü links daneben | Sprachwahl */
 }
+.site-header--home .site-header__top { border-bottom: 1px solid color-mix(in srgb, var(--line) 35%, transparent); }   /* dünne Linie nur auf der Startseite */
 .site-header__logo { font-family: var(--font-logo); font-size: var(--fs-logo); line-height: 1; letter-spacing: -0.005em; }
 .lang-switch { display: flex; gap: 1.5rem; }
 .lang-switch a, .lang-switch button {
@@ -331,8 +331,7 @@ ul { padding: 0; list-style: none; }
 .tile3--money .tile3__rule { margin-top: 5.0625rem; }
 .tile3--collab .tile3__title { margin-top: 1.375rem; }
 .tile3--boutique .tile3__rule { margin-top: 1.875rem; }
-.tile3__rule--rot { border-color: var(--color-rot); }
-.tile3__rule--blau { border-color: var(--color-rot); }   /* laut Vorgabe rot wie bei Your Money Moves */
+.tile3__rule--rot, .tile3__rule--blau { border-color: var(--line); }   /* Linien in der Farbe der Überschrift (schwarz) */
 .tile3--boutique .tile3__rule { width: calc(100% - 2.25rem); }
 .tile3--collab .tile3__rule { width: calc(100% - 2.25rem); }
 .tile3__link { display: block; margin-top: 0.75rem; font-size: var(--fs-body); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15; }
