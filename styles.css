@@ -478,3 +478,55 @@ html[lang="de"] span[data-lang-content="de"], html[lang="en"] span[data-lang-con
 .legal__stand { margin-top: 3rem; font-size: var(--fs-small); }
 .confirmed__back { margin-top: 2.5rem; }
 html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }   /* Rechtstexte: FR zeigt vorerst EN */
+
+/* ---------- 18. ENTWURF Startseite (index-entwurf.html): Abstand zu Les Glorieuses ---------- */
+.btn--primary { background: var(--color-blau); border-color: var(--color-blau); color: var(--color-text-light); }
+.btn--primary:hover, .btn--primary:focus-visible { background: var(--color-text); border-color: var(--color-text); color: var(--color-creme); }
+.v2-textlink { font-family: var(--font-display); font-size: 1.0625rem; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+.v2-textlink:hover { text-decoration-thickness: 2px; }
+
+.v2-hero { background: var(--color-sand) url("img/hero-wolken.webp") center / cover no-repeat; min-height: 100svh; }
+.v2-header { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 2.5rem; padding: 1.5rem 0; }
+.v2-nav ul { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+.v2-nav a { font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0; border-bottom: 1px solid transparent; }
+.v2-nav a:hover { border-bottom-color: var(--line); }
+.v2-hero__inner { padding-top: 5.5rem; padding-bottom: 6rem; max-width: var(--page-max); }
+.v2-hero__title { font-family: var(--font-display); font-size: clamp(2.75rem, 5.2vw, 4.75rem); line-height: 1.02; font-weight: 400; font-variation-settings: "opsz" 36; }
+.v2-hero__sub { margin-top: 1.75rem; max-width: 34rem; font-size: var(--fs-body); line-height: var(--lh-body); }
+.v2-form { margin-top: 2.5rem; max-width: 40rem; }
+.v2-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.v2-form__row--meta { grid-template-columns: auto 1fr; align-items: start; gap: 2rem; margin-top: 1.25rem; }
+.v2-form__row--meta .form__lang { margin: 0; }
+.v2-form__row--meta .check { margin: 0; }
+.v2-form__row--actions { grid-template-columns: auto auto; justify-content: start; align-items: center; gap: 2rem; margin-top: 1.5rem; }
+.v2-form .field { font-size: 1.5rem; }
+
+.v2-tiles { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 2.5rem 3rem; padding-top: 8.5rem; padding-bottom: 7rem; }
+.v2-tile--big { grid-row: 1 / 3; }
+.v2-tile__media { display: block; overflow: hidden; background: var(--color-sand); }
+.v2-tile--big .v2-tile__media { aspect-ratio: 16 / 10; }
+.v2-tile:not(.v2-tile--big) .v2-tile__media { aspect-ratio: 16 / 9; }
+.v2-tile__media img { width: 100%; height: 100%; object-fit: cover; }
+.v2-tile__media--gruen { background: var(--color-gruen); display: grid; place-items: end center; padding: 0 1rem; }
+.v2-tile__media--gruen img { width: 92%; height: auto; object-fit: contain; }
+.v2-tile__body { padding-top: 1rem; display: grid; gap: 0.5rem; justify-items: start; }
+.v2-tile__title { font-family: var(--font-display); font-size: 1.75rem; line-height: 1.15; font-weight: 400; }
+.v2-tile--big .v2-tile__title { font-size: var(--fs-h3); }
+.v2-tile__text { max-width: 32rem; font-size: var(--fs-body); line-height: var(--lh-body); }
+
+.v2-footer { padding-top: 5rem; }
+.v2-footer__top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.v2-footer__claim { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.05; }
+.v2-footer__form { margin-top: 2rem; max-width: 26rem; display: grid; gap: 1rem; justify-items: start; }
+.v2-footer__right { position: relative; min-height: 22rem; }
+.v2-footer__menu { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; }
+.v2-footer__menu a { font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
+.v2-footer__social { justify-content: flex-start; margin-top: 1.5rem; }
+.v2-footer__dancers { position: absolute; right: 0; bottom: -1rem; width: 22rem; }
+.v2-footer__bottom { margin-top: 3rem; border-top: var(--border); padding: 1rem 0 1.25rem; display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: baseline; }
+.v2-footer__bottom .site-footer__beta { grid-column: auto; }
+@media (max-width: 900px) {
+  .v2-header { grid-template-columns: 1fr auto; } .v2-nav { grid-column: 1 / -1; } .v2-nav ul { justify-content: flex-start; gap: 1rem; }
+  .v2-form__row, .v2-form__row--meta, .v2-form__row--actions, .v2-tiles, .v2-footer__top, .v2-footer__bottom { grid-template-columns: 1fr; }
+  .v2-tile--big { grid-row: auto; } .v2-footer__dancers { position: static; width: 16rem; margin-top: 1rem; }
+}
