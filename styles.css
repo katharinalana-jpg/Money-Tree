@@ -39,7 +39,7 @@
   --fs-logo: 1.5rem;                           /* 24 px */
   --fs-cta: 1.5rem;                            /* 24 px ZUM ARCHIV */
   --fs-button: 1.3125rem;                      /* 21 px */
-  --fs-body: 1.125rem;                         /* 18 px */
+  --fs-body: 1.0625rem;                        /* 17 px: Fließtext auf allen Seiten */
   --fs-nav: 0.875rem;                          /* 14 px */
   --fs-small: 0.8125rem;                       /* 13 px */
   --fs-xs: 0.625rem;                           /* 10 px */
@@ -335,7 +335,7 @@ ul { padding: 0; list-style: none; }
 .about__intro { position: relative; padding-top: 6.5rem; }                 /* Luft unter dem Kopfbereich */
 .about__intro-inner, .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99 */
 .about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; color: var(--color-text-soft); }
-.about__text { max-width: 42rem; font-size: var(--fs-body); line-height: 1.7; color: var(--color-text-soft); }   /* 18 px wie "A new era", 672 px breit, Flattersatz */
+.about__text { max-width: 42rem; font-size: var(--fs-body); line-height: 1.65; color: var(--color-text-soft); }   /* wie "A new era", 672 px breit, Flattersatz */
 .about__intro .about__text { margin-top: 3rem; }
 .about__text p + p { margin-top: 1.5rem; }
 .about__pull {

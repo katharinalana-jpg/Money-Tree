@@ -113,6 +113,11 @@
     const marks = $$(".about__text strong");
     if (!marks.length) return;
     if (!("IntersectionObserver" in window)) { marks.forEach((m) => m.classList.add("is-on")); return; }
+    /* Beim Laden bleibt alles normal; erst der erste Scroll startet die Beobachtung */
+    if (!window.scrollY) {
+      window.addEventListener("scroll", () => watchHighlights(), { once: true, passive: true });
+      return;
+    }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         const passed = en.boundingClientRect.bottom < 0;   /* bereits vorbeigescrollt: sofort fett */
