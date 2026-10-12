@@ -311,7 +311,7 @@ ul { padding: 0; list-style: none; }
 .era__figure { position: absolute; right: 1.5rem; bottom: 0; width: 27.75rem; height: auto; }   /* x 972, Unterkante am Abschnittsende (Folie 2) */
 
 /* ---------- 10. Startseite: Kacheln (Entwurf 04, Folie 3 + 4) ---------- */
-.tiles3 { display: grid; grid-template-columns: 40.625rem minmax(0, 1fr); column-gap: 3rem; padding-top: 3.25rem; padding-bottom: 7rem; align-items: start; }   /* links 650 px ab x 83 */
+.tiles3 { display: grid; grid-template-columns: 40.625rem minmax(0, 1fr); column-gap: 3rem; padding-top: 3.25rem; padding-bottom: 5.625rem; align-items: start; }   /* Claim des Footers bei y 404 der Folie 4 */   /* links 650 px ab x 83 */
 .tiles3 { padding-left: 5.1875rem; padding-right: 0; }
 .tile3--money { grid-column: 1; grid-row: 1 / 3; padding-top: 0.6875rem; }        /* Rot bei y 63 */
 .tile3--collab { grid-column: 2; grid-row: 1; }
@@ -330,6 +330,7 @@ ul { padding: 0; list-style: none; }
 .tile3__rule { margin-top: 2.75rem; border-top: 1px solid var(--line); }
 .tile3--money .tile3__rule { margin-top: 5.0625rem; }
 .tile3--collab .tile3__title { margin-top: 1.375rem; }
+.tile3--boutique .tile3__rule { margin-top: 1.875rem; }
 .tile3__rule--rot { border-color: var(--color-rot); }
 .tile3__rule--blau { border-color: var(--color-blau); }
 .tile3--boutique .tile3__rule { width: calc(100% + 2.25rem); }
