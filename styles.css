@@ -338,13 +338,11 @@ ul { padding: 0; list-style: none; }
 .about__text { max-width: 42rem; font-size: 1rem; line-height: 1.65; color: var(--color-text-soft); }   /* 16 px, 672 px breit, Flattersatz */
 .about__intro .about__text { margin-top: 3rem; }
 .about__text p + p { margin-top: 1.5rem; }
-.about__pull {
-  font-family: var(--font-display); font-weight: 700; font-size: 1.375rem; line-height: 1.35;    /* 22 px, Serif fett */
-  margin-top: 2.5rem !important; margin-bottom: 2.5rem; color: var(--color-text);
-}
-/* Hervorhebungen: fett wie im Entwurf; beim Scrollen zieht sich zusätzlich ein gerader Strich darunter von links nach rechts */
+.about__pull { margin-top: 2.5rem !important; margin-bottom: 2.5rem; text-align: left; }   /* Zitat: DM Sans, fett, unterstrichen, Fließtextgröße */
+.about__pull strong { font-weight: 700; }
+/* Hervorhebungen: normale Schrift; beim Scrollen zieht sich ein gerader Strich darunter von links nach rechts */
 .about__text strong {
-  font-weight: 700;
+  font-weight: 400;
   background-image: linear-gradient(var(--color-text-soft), var(--color-text-soft));
   background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1.5px;
   padding-bottom: 0.1em;
