@@ -419,16 +419,23 @@ ul { padding: 0; list-style: none; }
 
 
 /* ---------- 12. Coming soon (PDF Seite 10) ---------- */
-.soon { padding-top: 2.625rem; padding-bottom: 2rem; text-align: center; }          /* Titel bei 270 px */
-.soon + .site-footer { padding-top: 0.25rem; }
-/* Coming soon (Tools etc.): links statt Menü die Frau mit Fernglas, Unterkante auf der Fußzeilen-Linie (Entwurf "Coming Soon.pdf") */
+.soon { padding-top: 6.125rem; padding-bottom: 2rem; text-align: center; }          /* Titel bei 270 px (Kopf ohne Menüzeile) */
+.soon__title { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.15; font-weight: 400; }
+.soon__text { margin: 1.9375rem auto 0; max-width: 50.125rem; font-size: var(--fs-body); line-height: var(--lh-body); }     /* Text bei 366 px */
+.soon__text p + p { margin-top: 0; }
+.soon + .site-footer { padding-top: 0; }
+.soon--archive { padding-top: 8.5rem; padding-bottom: 0; }                              /* Titel bei 307 px */
+.soon--archive .soon__inner { width: 29.0625rem; margin-left: 26.625rem; }          /* Textspalte x 450 bis 915 wie im Entwurf */
+.soon__title--archive { font-size: var(--fs-h3); line-height: 1.1; margin-inline: -4rem; }   /* 42 px, zweizeilig */
+.soon--archive .soon__note { margin-top: 3.2rem; text-align: left; max-width: none; }   /* Text bei 450 px */
+/* Coming soon (alle Varianten): links die Frau mit Fernglas, Fuß auf der Fußzeilen-Linie; Mitte "Registrier dich jetzt" */
 .site-footer--soon { position: relative; }
 .site-footer--soon .site-footer__grid { min-height: 14rem; }
-.soon__figure { position: absolute; left: 6.25rem; bottom: 4.4375rem; height: 26rem; width: auto; pointer-events: none; }   /* x 100, 417 px hoch, Fuß auf der Linie */
-@media (max-width: 900px) { .soon__figure { position: static; height: 16rem; margin: 0 auto; display: block; } .site-footer--soon .site-footer__grid { min-height: 0; } }
-.soon__title { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.15; font-weight: 400; }
-.soon__text { margin: 1.75rem auto 0; max-width: 50.125rem; font-size: var(--fs-body); line-height: var(--lh-body); }     /* 802 px */
-.soon__text p + p { margin-top: 0; }
+.site-footer--soon .site-footer__bottom { min-height: 3.875rem; }
+.soon__figure { position: absolute; left: 6.25rem; bottom: 3.875rem; height: 26rem; width: auto; pointer-events: none; }   /* x 100, 416 px hoch */
+.site-footer__cta { font-family: var(--font-display); font-size: var(--fs-h3); line-height: 1.15; font-weight: 400; text-align: left; padding-top: 8.25rem; }   /* "Registrier dich jetzt" bei 524 px */
+.site-footer--soon .site-footer__middle { align-self: start; padding-left: 1.5rem; }
+@media (max-width: 900px) { .soon__figure { position: static; height: 16rem; margin: 0 auto; display: block; } .site-footer--soon .site-footer__grid { min-height: 0; } .soon--archive .soon__inner { width: auto; margin-left: 0; } .site-footer__cta { padding-top: 0; } }
 
 /* ---------- 13. Archiv (PDF Seite 4) ---------- */
 .archive { padding-top: 3.875rem; padding-bottom: 2.5rem; }

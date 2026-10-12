@@ -47,7 +47,7 @@
           fA = document.getElementById('frameA'), fB = document.getElementById('frameB'), mode = document.getElementById('mode'),
           overlay = document.getElementById('overlay'), side = document.getElementById('side'), scroll = document.getElementById('scroll');
     for (let i = 1; i <= 10; i++) { const o = document.createElement('option'); o.value = String(i).padStart(2,'0'); o.textContent = i; sel.appendChild(o); }
-    [['start-hero','Start-Hero (alt)'],['archiv-neu','Archiv (neu)'],['neu-1','Entwurf 04 Folie 1'],['neu-2','Entwurf 04 Folie 2'],['neu-3','Entwurf 04 Folie 3'],['neu-4','Entwurf 04 Folie 4']].forEach(([v,t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel.appendChild(o); });
+    [['start-hero','Start-Hero (alt)'],['archiv-neu','Archiv (neu)'],['neu-1','Entwurf 04 Folie 1'],['neu-2','Entwurf 04 Folie 2'],['neu-3','Entwurf 04 Folie 3'],['neu-4','Entwurf 04 Folie 4'],['soon-neu','Coming soon (neu)'],['soon-archiv-neu','Coming soon Archiv (neu)']].forEach(([v,t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel.appendChild(o); });
     sel.value = /^\d+$/.test(q.get('page')||'1') ? (q.get('page') || '1').padStart(2,'0') : q.get('page'); url.value = q.get('url') || 'index.html'; op.value = q.get('op') || 50; mode.checked = q.get('side') === '1';
     function fit() {
       document.querySelectorAll('.frame').forEach(f => { const s = f.parentElement.clientWidth / 1440; f.style.transform = `scale(${s})`; f.style.height = (f.parentElement.clientHeight / s) + 'px'; });
