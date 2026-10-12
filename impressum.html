@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portemonnaie Impressum — Offenlegung nach §5 ECG und §25 MedienG." />
-  <title>Impressum — Portemonnaie</title>
+  <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
+  <title data-i18n-title="legal.imprint_title">Impressum – Portemonnaie</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
-
-  <link rel="stylesheet" href="styles.css?v=24" />
+  <link rel="stylesheet" href="fonts/fonts.css?v=1" />
+  <link rel="stylesheet" href="styles.css?v=102" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -21,57 +17,115 @@
 </head>
 <body>
 
-  <main class="container legal" style="max-width: 760px; margin: 0 auto; padding: 6rem 1.5rem 4rem;">
-    <p class="eyebrow"><a href="index.html" style="color: inherit;" data-i18n="imp.back">← Back</a></p>
-    <h1 class="h-section"><em class="serif">Impressum</em></h1>
-    <p style="color: var(--ink-soft); margin-bottom: 2.5rem;" data-i18n="imp.subtitle">Offenlegung nach §5 ECG und §25 MedienG</p>
+  <header class="site-header container">
+    <div class="site-header__top">
+      <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+      <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
+        <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
+        <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+        <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
+      </nav>
+    </div>
+    <p class="site-header__title"><span>Start investing in what you support.</span></p>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+        <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+        <li><a href="collabs.html" data-i18n="nav.collabs">Kollaborationen</a></li>
+        <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <h2 data-i18n="imp.h_provider">Diensteanbieterin</h2>
-    <p>
-      Katharina Schiretz<br>
-      Zirkusgasse 27/15<br>
-      1020 Wien<br>
-      Österreich
-    </p>
+  <main class="container legal">
+    <article class="legal__inner" data-lang-content="de">
+      <h1 class="legal__title">Impressum</h1>
+      <p class="legal__lead">Offenlegung nach § 5 E-Commerce-Gesetz (ECG), § 25 Mediengesetz (MedienG) und § 14 Unternehmensgesetzbuch (UGB).</p>
 
-    <h2 data-i18n="imp.h_contact">Kontakt</h2>
-    <p>
-      E-Mail: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a><br>
-    </p>
+      <h2>Medieninhaberin und Diensteanbieterin</h2>
+      <p>Katharina Schiretz<br>Zirkusgasse 27/15<br>1020 Wien<br>Österreich</p>
+      <p>E-Mail: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a></p>
+      <p class="legal__todo">[Unternehmensform, z. B. Einzelunternehmerin]<br>[Gewerbeberechtigung / Unternehmensgegenstand laut Gewerbeschein]<br>[UID-Nummer, falls vorhanden]<br>[Firmenbuchnummer und Firmenbuchgericht, falls eingetragen]<br>[Mitgliedschaft: Wirtschaftskammer Wien, Fachgruppe …]<br>[Aufsichts- bzw. Gewerbebehörde: Magistratisches Bezirksamt für den 2. Bezirk]<br>Anwendbare Rechtsvorschriften: Gewerbeordnung 1994, abrufbar unter <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener">www.ris.bka.gv.at</a></p>
 
-    <h2 data-i18n="imp.h_jurisdiction">Gerichtsstand</h2>
-    <p data-i18n="imp.jurisdiction_p">
-      Gerichtsstand für alle Rechtsstreitigkeiten ist das sachlich zuständige
-      Gericht in Wien.
-    </p>
+      <h2>Unternehmensgegenstand</h2>
+      <p>Betrieb der Website portemonnaie.finance, Herausgabe eines wöchentlichen Newsletters und Magazins zu werteorientiertem Investieren, Finanzbildung und ökonomischer Gleichstellung, Entwicklung von Bildungsangeboten und Werkzeugen zur finanziellen Selbstbestimmung.</p>
 
-    <h2 data-i18n="imp.h_liability">Haftungsausschluss</h2>
-    <p data-i18n="imp.liability_p">
-      Die Inhalte unserer Website wurden mit größter Sorgfalt erstellt. Für die
-      Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch
-      keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte
-      auf dieser Website nach den allgemeinen Gesetzen verantwortlich.
-    </p>
+      <h2>Grundlegende Richtung (Blattlinie)</h2>
+      <p>Portemonnaie ist ein unabhängiges, werbefreies Medium zur Finanzbildung. Es richtet sich an Frauen und alle, die ihr Geld nach ihren Werten anlegen wollen. Ziel ist die Verringerung des Gender Wealth Gap und des Gender Pension Gap durch verständliche Information, Einordnung und Werkzeuge. Portemonnaie ist parteipolitisch unabhängig und von keinem Finanzinstitut beauftragt oder finanziert.</p>
 
-    <h2 data-i18n="imp.h_links">Haftung für Links</h2>
-    <p data-i18n="imp.links_p">
-      Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren
-      Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
-      Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
-      Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
-      verantwortlich.
-    </p>
+      <h2>Keine Anlageberatung</h2>
+      <p>Alle Inhalte auf portemonnaie.finance und im Newsletter dienen ausschließlich der allgemeinen Information und Bildung. Sie stellen keine Anlageberatung, keine Anlageempfehlung, keine Finanzanalyse und kein Angebot zum Kauf oder Verkauf von Finanzinstrumenten dar. Portemonnaie erbringt keine Wertpapierdienstleistungen im Sinne des Wertpapieraufsichtsgesetzes 2018 (WAG 2018) und ist nicht von der Finanzmarktaufsicht (FMA) konzessioniert. Anlageentscheidungen triffst du eigenverantwortlich. Die Entwicklung von Finanzinstrumenten in der Vergangenheit lässt keine Rückschlüsse auf die Zukunft zu. Lass dich bei Bedarf von einer befugten Beraterin oder einem befugten Berater beraten.</p>
 
-    <h2 data-i18n="imp.h_copyright">Urheberrecht</h2>
-    <p data-i18n="imp.copyright_p">
-      Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
-      Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung,
-      Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen
-      des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen
-      Autors beziehungsweise Erstellers.
-    </p>
+      <h2>Haftung für Inhalte</h2>
+      <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird keine Gewähr übernommen. Als Diensteanbieterin bin ich nach § 5 ECG für eigene Inhalte verantwortlich. Nach §§ 13 bis 17 ECG bin ich nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung von Informationen nach den allgemeinen Gesetzen bleiben davon unberührt; eine Haftung ist erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bekannt werdende Rechtsverletzungen werden umgehend entfernt.</p>
+
+      <h2>Haftung für Links</h2>
+      <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss besteht. Für diese fremden Inhalte wird keine Gewähr übernommen; verantwortlich ist die jeweilige Anbieterin oder der jeweilige Betreiber. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden betroffene Links umgehend entfernt. Hinweise bitte an <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>.</p>
+
+      <h2>Urheberrecht und Bildnachweis</h2>
+      <p>Alle Texte, Gestaltungen, Grafiken und Fotos auf dieser Website sind urheberrechtlich geschützt. Jede Vervielfältigung, Bearbeitung, Verbreitung und Verwertung außerhalb der Grenzen des Urheberrechtsgesetzes bedarf der vorherigen schriftlichen Zustimmung der Medieninhaberin. Downloads und Kopien sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+      <p class="legal__todo">[Bildnachweis: Herkunft der Collagen und historischen Fotografien, z. B. „Archivfotografien, gemeinfrei“ oder Lizenzangabe]</p>
+
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>Portemonnaie ist weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des Alternative-Streitbeilegung-Gesetzes (AStG) teilzunehmen. Bei Beschwerden wende dich bitte direkt an <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>.</p>
+
+      <h2>Anwendbares Recht und Gerichtsstand</h2>
+      <p>Es gilt österreichisches Recht unter Ausschluss der Verweisungsnormen des internationalen Privatrechts. Für Streitigkeiten mit Unternehmerinnen und Unternehmern ist das sachlich zuständige Gericht in Wien zuständig. Gegenüber Verbraucherinnen und Verbrauchern gelten die gesetzlichen Gerichtsstände.</p>
+
+      <p class="legal__stand">Stand: Oktober 2026</p>
+    </article>
+    <article class="legal__inner" data-lang-content="en" data-lang-fallback>
+      <h1 class="legal__title">Legal notice</h1>
+      <p class="legal__lead">Disclosure pursuant to Section 5 of the Austrian E-Commerce Act (ECG), Section 25 of the Austrian Media Act (MedienG) and Section 14 of the Austrian Commercial Code (UGB).</p>
+
+      <h2>Media owner and service provider</h2>
+      <p>Katharina Schiretz<br>Zirkusgasse 27/15<br>1020 Vienna<br>Austria</p>
+      <p>Email: <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a></p>
+      <p class="legal__todo">[Legal form, e.g. sole proprietor]<br>[Trade licence / business purpose as registered]<br>[VAT ID, if any]<br>[Company register number and court, if registered]<br>[Membership: Vienna Chamber of Commerce, professional group …]<br>[Supervisory / trade authority: Magistratisches Bezirksamt für den 2. Bezirk]<br>Applicable regulations: Austrian Trade Act (Gewerbeordnung 1994), available at <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener">www.ris.bka.gv.at</a></p>
+
+      <h2>Business purpose</h2>
+      <p>Operation of the website portemonnaie.finance, publication of a weekly newsletter and magazine on values-based investing, financial literacy and economic equality, and development of educational offers and tools for financial self-determination.</p>
+
+      <h2>Editorial line</h2>
+      <p>Portemonnaie is an independent, ad-free medium for financial literacy. It is aimed at women and anyone who wants to invest their money according to their values. Its aim is to reduce the gender wealth gap and the gender pension gap through clear information, context and tools. Portemonnaie is politically independent and is neither commissioned nor financed by any financial institution.</p>
+
+      <h2>No investment advice</h2>
+      <p>All content on portemonnaie.finance and in the newsletter is for general information and educational purposes only. It does not constitute investment advice, an investment recommendation, financial analysis or an offer to buy or sell financial instruments. Portemonnaie does not provide investment services within the meaning of the Austrian Securities Supervision Act 2018 (WAG 2018) and is not licensed by the Austrian Financial Market Authority (FMA). Investment decisions are your own responsibility. Past performance of financial instruments is no indication of future results. Where needed, seek advice from a licensed adviser.</p>
+
+      <h2>Liability for content</h2>
+      <p>The content of this website has been prepared with the greatest care. No guarantee is given for its accuracy, completeness or currency. As service provider I am responsible for my own content under Section 5 ECG. Under Sections 13 to 17 ECG I am not obliged to monitor transmitted or stored third-party information or to investigate circumstances indicating illegal activity. Obligations to remove or block information under general law remain unaffected; liability is possible only from the moment a specific infringement becomes known. Infringements that become known will be removed without delay.</p>
+
+      <h2>Liability for links</h2>
+      <p>This website contains links to external third-party websites over whose content I have no influence. No guarantee is given for this third-party content; the respective provider or operator is responsible. No infringements were apparent at the time of linking. Affected links will be removed without delay once an infringement becomes known. Please send notices to <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a>.</p>
+
+      <h2>Copyright and image credits</h2>
+      <p>All texts, designs, graphics and photographs on this website are protected by copyright. Any reproduction, editing, distribution or use beyond the limits of copyright law requires the prior written consent of the media owner. Downloads and copies are permitted for private, non-commercial use only.</p>
+      <p class="legal__todo">[Image credits: origin of the collages and historical photographs, e.g. “archive photographs, public domain” or licence details]</p>
+
+      <h2>Consumer dispute resolution</h2>
+      <p>Portemonnaie is neither obliged nor willing to take part in dispute resolution proceedings before a consumer arbitration board within the meaning of the Austrian Alternative Dispute Resolution Act (AStG). For complaints, please contact <a href="mailto:office@portemonnaie.finance">office@portemonnaie.finance</a> directly.</p>
+
+      <h2>Applicable law and jurisdiction</h2>
+      <p>Austrian law applies, excluding its conflict-of-law rules. For disputes with businesses, the competent court in Vienna has jurisdiction. For consumers, the statutory places of jurisdiction apply.</p>
+
+      <p class="legal__stand">Last updated: October 2026</p>
+    </article>
   </main>
+  <footer class="site-footer site-footer--bar container container--wide">
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
+      <div class="site-footer__legal">
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
+      </div>
+      <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
+    </div>
+  </footer>
 
-  <script src="i18n.js?v=32"></script>
+  <script src="i18n.js?v=103"></script>
+  <script src="script.js?v=103"></script>
 </body>
 </html>

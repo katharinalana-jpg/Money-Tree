@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Your Portemonnaie subscription is confirmed." />
-  <title>Confirmed — Portemonnaie</title>
+  <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
+  <title data-i18n-title="confirmed.meta_title">Bestätigt – Portemonnaie</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="brand/logos/MAIN_logomark_wallet_color.png">
-
-  <link rel="stylesheet" href="styles.css?v=24" />
+  <link rel="stylesheet" href="fonts/fonts.css?v=1" />
+  <link rel="stylesheet" href="styles.css?v=102" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -21,16 +17,48 @@
 </head>
 <body>
 
-  <main class="container" style="max-width: 640px; margin: 0 auto; padding: 8rem 1.5rem 4rem; text-align: center;">
-    <p class="eyebrow" data-i18n="confirmed.eyebrow">You are in</p>
-    <h1 class="h-section">Welcome to <em class="serif">Portemonnaie</em>.</h1>
-    <p style="color: var(--ink-soft); font-size: 1.05rem; line-height: 1.7; margin: 1.5rem auto 2.5rem; max-width: 480px;" data-i18n="confirmed.body">
-      Your email is confirmed. We will be in touch with your first product
-      letter as we get closer to launch.
-    </p>
-    <a href="/" class="btn btn--primary" data-i18n="confirmed.back">Back to home</a>
-  </main>
+  <header class="site-header container">
+    <div class="site-header__top">
+      <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+      <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
+        <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
+        <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+        <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
+      </nav>
+    </div>
+    <p class="site-header__title"><span>Start investing in what you support.</span></p>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+        <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
+        <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+        <li><a href="collabs.html" data-i18n="nav.collabs">Kollaborationen</a></li>
+        <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <script src="i18n.js?v=32"></script>
+  <main class="container soon">
+    <h1 class="soon__title" data-i18n="confirmed.title">Danke, du bist dabei.</h1>
+    <div class="soon__text" data-i18n-html="confirmed.text">
+      <p>Deine E-Mail-Adresse ist bestätigt. Der Portemonnaie-Newsletter kommt ab jetzt jeden Sonntag um 10 Uhr.</p>
+    </div>
+    <p class="confirmed__back"><a class="btn" href="index.html" data-i18n="confirmed.back">Zur Startseite</a></p>
+  </main>
+  <footer class="site-footer site-footer--bar container container--wide">
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
+      <div class="site-footer__legal">
+        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
+      </div>
+      <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js?v=103"></script>
+  <script src="script.js?v=103"></script>
 </body>
 </html>

@@ -463,3 +463,18 @@ html[lang="de"] span[data-lang-content="de"], html[lang="en"] span[data-lang-con
   .collab-closing { margin-top: 4rem; }
   .collab-intro__figure { margin-top: 0.5rem; }
 }
+
+/* ---------- 17. Rechtliches (Impressum, Datenschutz) und Bestätigungsseite ---------- */
+.legal { padding-top: 4rem; padding-bottom: 7rem; color: var(--color-text-soft); }
+.legal__inner { max-width: 44rem; margin-inline: auto; }
+.legal__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; font-weight: 400; color: var(--color-text); }
+.legal__lead { margin-top: 1.5rem; font-size: 1rem; line-height: 1.65; }
+.legal h2 { margin-top: 3rem; font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; font-weight: 400; color: var(--color-text); }
+.legal h2 + p { margin-top: 0.875rem; }
+.legal p { font-size: 1rem; line-height: 1.65; }
+.legal p + p { margin-top: 0.875rem; }
+.legal a { text-decoration: underline; text-underline-offset: 2px; }
+.legal__todo { padding: 0.75rem 1rem; border: 1px dashed var(--line); font-size: 0.9375rem; }   /* offene Angaben, vor dem Launch ersetzen */
+.legal__stand { margin-top: 3rem; font-size: var(--fs-small); }
+.confirmed__back { margin-top: 2.5rem; }
+html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }   /* Rechtstexte: FR zeigt vorerst EN */
