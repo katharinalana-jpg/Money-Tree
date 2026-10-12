@@ -18,33 +18,33 @@
 <body>
 
   <div class="hero-wrap">
-    <!-- KOPFBEREICH (auf allen Seiten gleich) -->
-    <header class="site-header container">
+    <!-- KOPFBEREICH Startseite (Entwurf Start-Hero.pdf): Navigation neben dem Logo, keine Linien -->
+    <header class="site-header site-header--home container">
       <div class="site-header__top">
         <a class="site-header__logo" href="index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+            <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+            <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+            <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
+            <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+            <li><a href="collabs.html" data-i18n="nav.collabs">Kollaborationen</a></li>
+            <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+          </ul>
+        </nav>
         <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
           <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
           <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
           <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
         </nav>
       </div>
-      <h1 class="site-header__title"><span>Start investing in what you support.</span></h1>
-      <nav class="site-nav" aria-label="Hauptnavigation">
-        <ul>
-          <li><a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.tools">Tools</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
-          <li><a href="collabs.html" data-i18n="nav.collabs">Kollaborationen</a></li>
-          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
-        </ul>
-      </nav>
     </header>
 
     <main>
-      <!-- HERO (PDF Seite 1) -->
+      <!-- HERO (Entwurf Start-Hero.pdf): Headline zweizeilig links, Formular rechts -->
       <section class="hero container" aria-labelledby="newsletter-heading">
+        <h1 class="hero__title">Start investing in what<br>you support.</h1>
         <h2 id="newsletter-heading" class="sr-only" data-i18n="nav.newsletter">Newsletter</h2>
         <form class="hero__form" id="newsletter" data-signup novalidate>
           <label class="sr-only" for="heroName" data-i18n="form.name_ph">Vorname</label>
@@ -84,69 +84,68 @@
     <img class="era__figure" src="img/neue-aera-maedchen.webp" alt="" width="875" height="1000" />
   </section>
 
-  <!-- KACHELN (PDF Seite 3) -->
-  <section class="tiles container container--wide">
-    <div class="tiles__grid">
-      <article class="tile">
-        <a class="tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-boutique.webp" alt="" width="900" height="603" /></a>
-        <h2 class="tile__title" data-i18n="tile.boutique_title">Boutique</h2>
-        <div class="tile__rule"></div>
-        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.boutique_link">Alle Produkte</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </article>
-      <article class="tile">
-        <a class="tile__media tile__media--overflow" href="collabs.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-kollaborationen.webp" alt="" width="945" height="606" /></a>
-        <h2 class="tile__title" data-i18n="tile.collab_title">Kollaborationen</h2>
-        <div class="tile__rule"></div>
-        <a class="tile__link" href="collabs.html"><span data-i18n-html="tile.collab_link">Gemeinsam nach unseren<br>Regeln gestalten</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </article>
-      <article class="tile">
-        <a class="tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-your-money-moves.webp" alt="" width="900" height="603" /></a>
-        <h2 class="tile__title">Your Money Moves</h2>
-        <div class="tile__rule"></div>
-        <a class="tile__link" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
-      </article>
-    </div>
+  <!-- KACHELN: eine große, zwei kleine; keine Linien; Gelb bleibt, Blau statt Rot -->
+  <section class="v2-tiles container container--wide">
+    <article class="v2-tile v2-tile--big">
+      <a class="v2-tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-your-money-moves.webp" alt="" width="900" height="603" /></a>
+      <div class="v2-tile__body">
+        <h2 class="v2-tile__title">Your Money Moves</h2>
+        <p class="v2-tile__text" data-i18n="v2.money_text">Werkzeuge, mit denen du siehst, wohin dein Geld fließt und wofür es arbeitet.</p>
+        <a class="v2-textlink" href="coming-soon.html" data-i18n="v2.money_link">Deine Werte, dein Geld</a>
+      </div>
+    </article>
+    <article class="v2-tile">
+      <a class="v2-tile__media v2-tile__media--overflow" href="collabs.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-kollaborationen.webp" alt="" width="945" height="606" /></a>
+      <div class="v2-tile__body">
+        <h2 class="v2-tile__title" data-i18n="tile.collab_title">Kollaborationen</h2>
+        <a class="v2-textlink" href="collabs.html" data-i18n="v2.collab_link">Partnerin werden</a>
+      </div>
+    </article>
+    <article class="v2-tile">
+      <a class="v2-tile__media" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img src="img/kachel-boutique-blau.webp" alt="" width="900" height="603" /></a>
+      <div class="v2-tile__body">
+        <h2 class="v2-tile__title" data-i18n="tile.boutique_title">Boutique</h2>
+        <a class="v2-textlink" href="coming-soon.html" data-i18n="v2.boutique_link">Zur Boutique</a>
+      </div>
+    </article>
   </section>
 
-  <!-- FOOTER (PDF Seite 3) -->
-  <footer class="site-footer container container--wide">
-    <div class="site-footer__grid">
-      <nav aria-label="Footer">
-        <ul class="footer-menu">
-          <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
-          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
-        </ul>
-      </nav>
-      <div class="site-footer__middle"></div>
-      <div class="site-footer__signup">
-        <div class="social">
-          <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
-          <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
-        </div>
-        <form class="footer-form" data-signup novalidate>
+  <!-- FOOTER: zwei Spalten; links Formular, rechts Menü, Icons, Tänzerinnen mit Claim daneben -->
+  <footer class="v2-footer container container--wide">
+    <div class="v2-footer__top">
+      <div class="v2-footer__signup">
+        <form class="v2-footer__form" data-signup novalidate>
           <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
           <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
-          <label class="check t-small">
-            <input type="checkbox" name="consent" required />
-            <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
-          </label>
+          <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
           <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
           <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
           <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
         </form>
       </div>
-    </div>
-    <div class="site-footer__bottom">
-      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
-      <div class="site-footer__legal">
-        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
-        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
+      <div class="v2-footer__right">
+        <nav aria-label="Footer"><ul class="v2-footer__menu">
+          <li><a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
+          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
+          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
+          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
+          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+        </ul></nav>
+        <div class="social v2-footer__social">
+          <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
+          <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
+        </div>
+        <div class="v2-footer__dance">
+          <img class="v2-footer__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
+          <p class="v2-footer__claim">Money is power.<br>Use yours.</p>
+        </div>
       </div>
+    </div>
+    <div class="v2-footer__bottom">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
       <p class="site-footer__beta" data-i18n="footer.beta">Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden.</p>
+      <div class="site-footer__legal"><a href="impressum.html" data-i18n="footer.imprint">Impressum</a><a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a></div>
     </div>
   </footer>
 
