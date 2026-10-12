@@ -330,29 +330,29 @@ ul { padding: 0; list-style: none; }
 }
 
 /* ---------- 11. Über uns (Entwurf 02_Port_Website_2026-10-08-3: Creme, Tänzerinnen, Hervorhebungen) ---------- */
-.theme-about { --bg: var(--color-creme); --fg: var(--color-text); }
+.theme-about { --bg: var(--color-hellblau); --fg: var(--color-text); }      /* Über uns: Hellblau */
 .about { position: relative; overflow: hidden; }
 .about__intro { position: relative; padding-top: 6.5rem; }                 /* Luft unter dem Kopfbereich */
 .about__intro-inner, .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99 */
 .about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; color: var(--color-text-soft); }
-.about__text { max-width: 42rem; font-size: var(--fs-body); line-height: 1.65; color: var(--color-text-soft); }   /* wie "A new era", 672 px breit, Flattersatz */
+.about__text { max-width: 42rem; font-size: 1rem; line-height: 1.65; color: var(--color-text-soft); }   /* 16 px, 672 px breit, Flattersatz */
 .about__intro .about__text { margin-top: 3rem; }
 .about__text p + p { margin-top: 1.5rem; }
 .about__pull {
   font-family: var(--font-display); font-weight: 700; font-size: 1.375rem; line-height: 1.35;    /* 22 px, Serif fett */
   margin-top: 2.5rem !important; margin-bottom: 2.5rem; color: var(--color-text);
 }
-/* Hervorhebungen: Text bleibt statisch; beim Scrollen zieht sich ein Bleistiftstrich darunter von links nach rechts */
+/* Hervorhebungen: fett wie im Entwurf; beim Scrollen zieht sich zusätzlich ein gerader Strich darunter von links nach rechts */
 .about__text strong {
-  font-weight: 400;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='8' viewBox='0 0 160 8'%3E%3Cpath d='M1 5.2 C 18 3.4, 34 6.6, 52 5 S 88 3.2, 106 5.4 S 142 6.4, 159 4.6' fill='none' stroke='%23333333' stroke-width='1.5' stroke-linecap='round' opacity='0.85'/%3E%3C/svg%3E");
-  background-repeat: repeat-x; background-position: 0 100%; background-size: 0% 0.45em;
-  padding-bottom: 0.12em;
+  font-weight: 700;
+  background-image: linear-gradient(var(--color-text-soft), var(--color-text-soft));
+  background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1.5px;
+  padding-bottom: 0.1em;
   box-decoration-break: clone; -webkit-box-decoration-break: clone;
   transition: background-size 1s cubic-bezier(.25,.6,.3,1);
 }
-.about__text strong.is-on { background-size: 100% 0.45em; }
-@media (prefers-reduced-motion: reduce) { .about__text strong { background-size: 100% 0.45em; transition: none; } }
+.about__text strong.is-on { background-size: 100% 1.5px; }
+@media (prefers-reduced-motion: reduce) { .about__text strong { background-size: 100% 1.5px; transition: none; } }
 
 .about__what { position: relative; padding-top: 8rem; padding-bottom: 8rem; }   /* 128 px Luft zwischen den Blöcken, 128 px bis zur Fußzeile */
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
