@@ -433,7 +433,7 @@ ul { padding: 0; list-style: none; }
 .site-footer--soon .site-footer__grid { min-height: 14rem; }
 .site-footer--soon .site-footer__bottom { min-height: 3.875rem; }
 .soon__figure { position: absolute; left: 6.25rem; bottom: 3.875rem; height: 26rem; width: auto; pointer-events: none; }   /* x 100, 416 px hoch */
-.site-footer__cta { font-family: var(--font-display); font-size: var(--fs-h3); line-height: 1.15; font-weight: 400; text-align: left; padding-top: 8.25rem; }   /* "Registrier dich jetzt" bei 524 px */
+.site-footer__cta { font-family: var(--font-display); font-size: var(--fs-h3); line-height: 1.15; font-weight: 400; text-align: left; padding-top: 2.8125rem; }   /* "Registrier dich jetzt" bei 524 px */
 .site-footer--soon .site-footer__middle { align-self: start; padding-left: 1.5rem; }
 @media (max-width: 900px) { .soon__figure { position: static; height: 16rem; margin: 0 auto; display: block; } .site-footer--soon .site-footer__grid { min-height: 0; } .soon--archive .soon__inner { width: auto; margin-left: 0; } .site-footer__cta { padding-top: 0; } }
 
