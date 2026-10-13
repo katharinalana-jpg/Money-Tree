@@ -1,0 +1,1 @@
+{% if contact.LANGUAGE == "DE" %}Bitte bestätige deine E-Mail-Adresse{% endif %}{% if contact.LANGUAGE == "FR" %}Merci de confirmer ton adresse e-mail{% endif %}{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}Please confirm your email address{% endif %}
