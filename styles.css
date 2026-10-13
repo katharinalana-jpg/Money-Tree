@@ -565,7 +565,8 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .site-nav { grid-area: nav; }
   .site-nav ul { padding-left: 0; gap: 0.25rem 1.125rem; }
   .site-nav a { font-size: 0.75rem; padding: 0.125rem 0; }
-  .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; }
+  .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; justify-content: center; text-align: center; }   /* Unterseiten: Headline mittig */
+  .theme-about .site-header__title { justify-content: flex-start; text-align: left; }                                                          /* Über uns: links wie der Text */
 
   /* Startseite: Hero */
   .hero-wrap { min-height: 0; }
@@ -575,7 +576,8 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero__title br { display: none; }
   .hero__form { margin-top: 2.75rem; }
   .form__lang { flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-  .hero__form .btn { width: 100%; }
+  .hero__form .form__lang { font-size: var(--fs-small); margin-top: 1.25rem; }
+  .hero__form .btn { width: auto; justify-self: start; min-height: 2.75rem; padding: 0.5rem 2rem; font-size: 1rem; margin-top: 1.5rem; }
   .hero__archive { margin-left: 0; margin-top: 2.5rem; }
 
   /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
@@ -625,7 +627,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
 
   /* Über uns: Tänzerinnen unter dem Text, rechts, kleiner */
   .about__intro { padding-top: 2.75rem; padding-bottom: 0; }
-  .about__dancers { position: static; width: 78%; max-width: 22rem; margin: 2.5rem 0 0 auto; }
+  .about__dancers { position: static; width: 100%; max-width: 28rem; margin: 2.5rem auto 0; }   /* mittig, volle Breite */
   .about__intro .about__text { margin-top: 2rem; }
   .about__what { padding-top: 3.5rem; padding-bottom: 4rem; }
   .about__text + .about__heading { margin-top: 4rem; }
