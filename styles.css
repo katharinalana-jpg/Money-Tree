@@ -532,3 +532,111 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero-wrap__beach { width: auto; height: 40%; left: 50%; transform: translateX(-50%); }
   .site-nav ul { padding-left: 0; }
 }
+
+/* ---------- 18. Tablet und Handy (Schritt 14) ----------
+   Desktop ab 1200 px bleibt unverändert. Darunter: feste Spalten werden fließend (Tablet),
+   unter 900 px ein einspaltiges Layout mit 16 px Seitenrand. Überschreibt die Notlösungen oben. */
+
+/* Tablet: 900 bis 1200 px */
+@media (max-width: 1200px) {
+  .site-nav ul { padding-left: 3rem; gap: 1rem 1.25rem; }
+  .hero { grid-template-columns: minmax(0, 1fr) min(32rem, 100%) 2rem; }
+  .hero__title { padding-left: 2rem; }
+  .era__inner { padding-left: 4rem; }
+  .era__figure { width: 24rem; }
+  .tiles3 { grid-template-columns: minmax(0, 55%) minmax(0, 1fr); column-gap: 2rem; padding-left: var(--page-pad-wide); }
+  .footer4__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); }
+  .footer4__dancers { left: auto; right: 0; width: 62%; }
+  .footer4__form .btn { min-width: 0; width: 100%; }
+}
+
+/* Handy: bis 900 px */
+@media (max-width: 900px) {
+  :root { --page-pad: 1rem; --page-pad-wide: 1rem; }
+
+  /* Kopf: Logo links, Sprachwahl rechts, Menü darunter in einer Zeile (bricht bei Bedarf um) */
+  .site-header, .site-header--home { grid-template-columns: 1fr; }
+  .site-header__top {
+    grid-template-columns: 1fr auto; grid-template-areas: "logo lang" "nav nav";
+    gap: 0.875rem 1.5rem; padding: 1.125rem 0 0.5rem; align-items: baseline;
+  }
+  .site-header__logo { grid-area: logo; }
+  .lang-switch { grid-area: lang; gap: 1rem; }
+  .site-nav { grid-area: nav; }
+  .site-nav ul { padding-left: 0; gap: 0.25rem 1.125rem; }
+  .site-nav a { font-size: 0.75rem; padding: 0.125rem 0; }
+  .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; }
+
+  /* Startseite: Hero */
+  .hero-wrap { min-height: 0; }
+  .hero { grid-template-columns: 1fr; padding-top: 2.75rem; padding-bottom: 3.5rem; }
+  .hero__title { grid-row: 1; } .hero__form { grid-row: 2; } .hero__archive { grid-row: 3; }
+  .hero__title { padding-left: 0; white-space: normal; font-size: clamp(2.5rem, 11.5vw, 3.75rem); line-height: 1.02; }
+  .hero__title br { display: none; }
+  .hero__form { margin-top: 2.75rem; }
+  .form__lang { flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+  .hero__form .btn { width: 100%; }
+  .hero__archive { margin-left: 0; margin-top: 2.5rem; }
+
+  /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
+  .era { padding: 3.5rem 0 0; }
+  .era__inner { padding-left: var(--page-pad); padding-right: var(--page-pad); }
+  .era__eyebrow { margin-top: 2rem; }
+  .era__text { margin-top: 2rem; text-align: left; }
+  .era__text p + p { margin-top: 1rem; }
+  .era__more { margin-top: 2.5rem; }
+  .era__figure { position: static; display: block; width: 56%; max-width: 16rem; height: auto; margin: 2rem 0 0 auto; }
+
+  /* Kacheln */
+  .tiles3 { grid-template-columns: 1fr; padding: 2.5rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }
+  .tile3--money .tile3__rule { margin-top: 2rem; }
+  .tile3__rule { margin-top: 1.75rem; }
+
+  /* Footer der Startseite */
+  .footer4 { padding-top: 0; }
+  .footer4__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer4__left { min-height: 0; }
+  .footer4__claim { padding-left: 0; }
+  .footer4__dancers { position: static; width: 72%; max-width: 20rem; margin: 1.5rem 0 0 auto; }
+  .footer4__right { padding-top: 0; }
+  .footer4__social { justify-content: flex-start; margin-bottom: 1.5rem; }
+  .footer4__form { justify-items: stretch; }
+  .footer4__form .btn, .footer-form .btn { min-width: 0; width: 100%; padding-inline: 1rem; font-size: 1.0625rem; }
+  .footer4 .site-footer__bottom { margin-top: 2.5rem; }
+
+  /* Fußzeile (alle Seiten): Copyright und Rechtslinks untereinander, je eine Zeile */
+  .site-footer__bottom, .site-footer__bottom--left { grid-template-columns: 1fr; gap: 0.75rem; padding-bottom: 1rem; }
+  .site-footer__copy { white-space: nowrap; }
+  .site-footer__legal { justify-self: start; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+
+  /* Footer der Unterseiten */
+  .site-footer { padding-top: 3rem; }
+  .site-footer__grid { gap: 2rem; }
+  .site-footer__signup { padding-top: 0; }
+  .site-footer--soon .site-footer__grid { gap: 1.5rem; }
+  .soon__figure { height: 13rem; margin: 0.5rem auto 0; }
+  .site-footer__cta { text-align: center; margin-bottom: 1.5rem; }
+  .site-footer--soon .site-footer__middle { padding-left: 0; }
+
+  /* Coming soon */
+  .soon, .soon--archive { padding-top: 3rem; }
+  .soon__title--archive { margin-inline: 0; }
+  .soon--archive .soon__note { text-align: center; }
+
+  /* Über uns: Tänzerinnen unter dem Text, rechts, kleiner */
+  .about__intro { padding-top: 2.75rem; padding-bottom: 0; }
+  .about__dancers { position: static; width: 78%; max-width: 22rem; margin: 2.5rem 0 0 auto; }
+  .about__intro .about__text { margin-top: 2rem; }
+  .about__what { padding-top: 3.5rem; padding-bottom: 4rem; }
+  .about__text + .about__heading { margin-top: 4rem; }
+  .about__claim { margin-top: 3rem; font-size: var(--fs-h3); }
+
+  /* Kollaborationen, Archiv, Newsletter, Rechtliches */
+  .collab-intro__figure { width: 100%; margin-top: 0.5rem; }
+  .collab-types { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .collab-closing { margin-top: 3rem; }
+  .archive { padding-top: 2.5rem; }
+  .archive__grid { margin-top: 2.5rem; }
+  .issue-page { padding-top: 3rem; padding-bottom: 3.5rem; }
+  .legal { padding-top: 2.5rem; padding-bottom: 4rem; }
+}
