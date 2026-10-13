@@ -208,7 +208,7 @@
       "social.bluesky": "Portemonnaie sur Bluesky",
       "social.substack": "Portemonnaie sur Substack",
       "social.linkedin": "Portemonnaie sur LinkedIn",
-      "hero.archive": "Vers les archives",
+      "hero.archive": "Bibliothèque",
       "era.eyebrow": "Redéfinir la croissance",
       "era.text": "<p>Nous sommes la deuxième génération de femmes à pouvoir ouvrir un compte bancaire sans le consentement de leur mari. Le monde de la finance n’a pas pensé à nous. Nous allons changer ça.</p><p>Nous voulons des solutions qui correspondent à nos valeurs. On veut que notre argent travaille. Pour nous, et pour ce qu'on défend.</p>",
       "era.more": "En savoir plus",
