@@ -36,7 +36,6 @@
       "nav.contact": "Contact",
       "nav.press": "Press",
       "nav.lang_aria": "Language",
-      "nav.menu_aria": "Open menu",
       "nav.home_aria": "Portemonnaie, home",
 
       "form.name_ph": "First name",
@@ -96,8 +95,7 @@
       "confirmed.back": "Back to the start page",
       "footer.imprint": "Imprint",
       "footer.privacy": "Privacy policy",
-      "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Your email is used only for Portemonnaie updates. You can unsubscribe at any time."
+      "footer.copyright": "© Portemonnaie 2026"
     },
 
     /* ---------------- Deutsch (Texte aus dem Canva-Entwurf) ---------------- */
@@ -114,7 +112,6 @@
       "nav.contact": "Kontakt",
       "nav.press": "Presse",
       "nav.lang_aria": "Sprache",
-      "nav.menu_aria": "Menü öffnen",
       "nav.home_aria": "Portemonnaie, Startseite",
 
       "form.name_ph": "Vorname",
@@ -174,8 +171,7 @@
       "confirmed.back": "Zur Startseite",
       "footer.imprint": "Impressum",
       "footer.privacy": "Datenschutzerklärung",
-      "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Deine E-Mail wird nur für Portemonnaie-Updates verwendet. Du kannst dich jederzeit abmelden."
+      "footer.copyright": "© Portemonnaie 2026"
     },
 
     /* ---------------- Français ---------------- */
@@ -192,7 +188,6 @@
       "nav.contact": "Contact",
       "nav.press": "Presse",
       "nav.lang_aria": "Langue",
-      "nav.menu_aria": "Ouvrir le menu",
       "nav.home_aria": "Portemonnaie, accueil",
 
       "form.name_ph": "Prénom",
@@ -252,8 +247,7 @@
       "confirmed.back": "Retour à l'accueil",
       "footer.imprint": "Mentions légales",
       "footer.privacy": "Politique de confidentialité",
-      "footer.copyright": "© Portemonnaie 2026",
-      "footer.beta": "Ton e-mail sert uniquement aux actualités de Portemonnaie. Tu peux te désabonner à tout moment."
+      "footer.copyright": "© Portemonnaie 2026"
     }
   };
 

@@ -11,3 +11,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .claude/settings.local.json
+
+# macOS
+.DS_Store
