@@ -108,26 +108,4 @@
 
   $$("[data-signup]").forEach(handleSignup);
 
-  /* Über uns: Hervorhebungen erscheinen beim Scrollen (einmalig, sobald sie im Blick sind) */
-  function watchHighlights() {
-    const marks = $$(".about__text strong");
-    if (!marks.length) return;
-    if (!("IntersectionObserver" in window)) { marks.forEach((m) => m.classList.add("is-on")); return; }
-    /* Beim Laden bleibt alles normal; erst der erste Scroll startet die Beobachtung */
-    if (!window.scrollY) {
-      window.addEventListener("scroll", () => watchHighlights(), { once: true, passive: true });
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        const passed = en.boundingClientRect.bottom < 0;   /* bereits vorbeigescrollt: sofort fett */
-        if (!en.isIntersecting && !passed) return;
-        en.target.classList.add("is-on");
-        io.unobserve(en.target);
-      });
-    }, { rootMargin: "0px 0px -18% 0px", threshold: 0.6 });
-    marks.forEach((m) => io.observe(m));
-  }
-  watchHighlights();
-  document.addEventListener("pm:langchange", () => setTimeout(watchHighlights, 0));
 })();
