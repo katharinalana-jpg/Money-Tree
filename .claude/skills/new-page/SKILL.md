@@ -21,7 +21,7 @@ a vanilla HTML/CSS/JS site (Phase 1) — **no npm, no framework**.
 
 2. **`<head>` essentials** (copy verbatim, then adjust title/description):
    - Google Fonts preconnect + the Inter / Instrument Serif / Caveat link
-   - `<link rel="icon" ... MAIN_logomark_wallet_color.png>`
+   - the three icon links (`/favicon.ico?v=2`, `/img/favicon-32.png?v=2`, `/img/apple-touch-icon.png?v=2`, the black P monogram)
    - `styles.css?v=N` (shared) + any page-specific stylesheet
    - Unique `<title>` and `<meta name="description">`
 

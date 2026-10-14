@@ -70,7 +70,7 @@ money-tree/
 ├── script.js
 ├── api/
 │   └── subscribe.js  ← Vercel serverless function — adds email to Brevo list
-└── img/              ← logo.png, logo_tree.png, leaf-single.png
+└── img/              ← webp images, icons.svg, favicons (black P monogram), logo-portemonnaie-schwarz.(png|svg), monogramm-p-creme.(png|svg)
 ```
 
 ## Hosting & Infrastructure
