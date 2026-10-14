@@ -285,7 +285,7 @@ ul { padding: 0; list-style: none; }
 /* ---------- 8. Startseite: Hero (Entwurf 04, Folie 1) ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) min(36.5625rem, 100%) 6rem; padding-top: 6.375rem; padding-bottom: 6rem; align-items: start; }   /* Spalte 585 px, rechts 120 px */
 .hero__title { grid-column: 1; grid-row: 1; padding-left: 5.3125rem; white-space: nowrap; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; font-weight: 400; font-variation-settings: "opsz" 36; }   /* 72 px bei x = 109 (Unterseiten: 88 px einzeilig) */
-.hero__form { grid-column: 2; grid-row: 1; margin-top: 10.5rem; display: grid; gap: 0; scroll-margin-top: 2rem; }   /* Vorname bei 329 px */
+.hero__form { grid-column: 2; grid-row: 1; margin-top: 14rem; display: grid; gap: 0; scroll-margin-top: 2rem; }   /* Vorname bei 385 px, Block endet knapp über der Düne */
 .hero__form .field { padding: 0.125rem 0 0.375rem; font-size: 1.5rem; }   /* 24 px statt 36 px */
 .hero__form .form__lang { font-size: var(--fs-small); }                     /* 13 px */
 .hero__form .field + .field { margin-top: 0.75rem; }
@@ -310,7 +310,7 @@ ul { padding: 0; list-style: none; }
 .era__text { margin-top: 5.25rem; max-width: 42.25rem; text-align: justify; hyphens: auto; }   /* 676 px */
 .era__text p + p { margin-top: 0; }
 .era__more { display: inline-flex; margin-top: 4.75rem; font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
-.era__figure { position: absolute; right: 1.5rem; bottom: 0; height: 70%; max-height: 40rem; width: auto; }   /* Unterkante am Abschnittsende, Höhe folgt dem Abschnitt */
+.era__figure { position: absolute; right: 1.5rem; bottom: 0; height: 62%; max-height: 36rem; width: auto; }   /* Unterkante am Abschnittsende, Höhe folgt dem Abschnitt */
 
 /* ---------- 10. Startseite: Kacheln (Entwurf 04, Folie 3 + 4) ---------- */
 .tiles3 { display: grid; grid-template-columns: 40.625rem minmax(0, 1fr); column-gap: 6rem; padding-top: 8rem; padding-bottom: 5.625rem; align-items: start; }   /* Claim des Footers bei y 404 der Folie 4; Rot 650 px ab x 36 */
@@ -370,6 +370,7 @@ ul { padding: 0; list-style: none; }
 .about__intro-inner, .about__what-inner { padding-left: 4.6875rem; max-width: calc(4.6875rem + 49.625rem); }   /* Text ab x = 99 */
 .about__title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.18; font-weight: 400; color: var(--color-text-soft); }
 .about__text { max-width: 42rem; font-size: var(--fs-body); line-height: 1.65; color: var(--color-text-soft); }   /* 17 px, 672 px breit, Flattersatz */
+.about__intro .about__text { max-width: 46rem; }                                      /* Einstieg: 736 px */
 .about__intro .about__text { margin-top: 3rem; }
 .about__text p + p { margin-top: 1.5rem; }
 .about__pull { margin-top: 3rem !important; margin-bottom: 3rem; text-align: left; font-family: var(--font-display); font-size: 1.75rem; line-height: 1.3; white-space: nowrap; max-width: none; }   /* Zitat: Newsreader 28 px, einzeilig, darf über die Spalte hinausragen */
@@ -381,16 +382,16 @@ ul { padding: 0; list-style: none; }
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
 .about__heading + .about__text { margin-top: 1.75rem; }
 .about__text + .about__heading { margin-top: 8rem; }
-.about__what-inner > .about__text:last-child { max-width: 46rem; }   /* "A new era": 736 px, reicht bis etwas über die Seitenmitte */
+.about__what-inner > .about__text:last-child { max-width: 50rem; }   /* "A new era": 800 px */
 .about__claim {
-  position: absolute; left: calc(50% + 15.3125rem); top: 18.3125rem;          /* x = 965, y = 293 der zweiten Folie */
+  position: absolute; left: calc(50% + 15.3125rem); top: 19.5rem;             /* x = 965, y = 312: unter den Füßen der Tänzerinnen */
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
   white-space: nowrap; color: var(--color-text-soft);
 }
 /* Tänzerinnen-Reihe: unten rechts, läuft über den Abschnittswechsel (Entwurf: Oberkante 40 px über Textende, Beine 170 px in die Folie 2) */
 .about__dancers {
   position: absolute; z-index: 0; pointer-events: none;
-  width: 48rem; height: auto; right: 0; bottom: -15.25rem;        /* 768 px breit, beginnt rechts der Textspalte */
+  width: 42rem; height: auto; right: 0; bottom: -18rem;           /* 672 px breit, Oberkante unter dem Einstiegstext */
 }
 .about__intro-inner { position: relative; z-index: 1; }
 .theme-about .site-footer { color: var(--color-text-soft); }
@@ -401,8 +402,9 @@ ul { padding: 0; list-style: none; }
 }
 @media (max-width: 900px) {
   .about__intro-inner, .about__what-inner { padding-left: 0; max-width: none; }
-  .about__title { font-size: 1.625rem; }                                            /* 26 px statt 34 px */
-  .about__pull { white-space: normal; font-size: 1.125rem; text-wrap: balance; margin-top: 2rem !important; margin-bottom: 2rem; }   /* 18 px, zwei gleich lange Zeilen */
+  .about__title { font-size: 1.625rem; text-align: center; }                        /* 26 px statt 34 px, mittig */
+  .about__text { text-align: justify; hyphens: auto; line-height: 1.85; }           /* Blocksatz, weiterer Zeilenabstand */
+  .about__pull { white-space: normal; font-size: 1.5rem; text-align: center; text-wrap: balance; margin-top: 2.5rem !important; margin-bottom: 2.5rem; }   /* 24 px, mittig, gleich lange Zeilen */
   .about__intro { padding-bottom: 7rem; }
   .about__dancers { bottom: -6rem; width: 18rem; }
 }
@@ -566,11 +568,11 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   /* Startseite: Hero */
   .hero-wrap { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }   /* erster Screen komplett */
   .hero-wrap > main { flex: 1; display: flex; flex-direction: column; }
-  .hero { flex: 1; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; padding-top: 2.75rem; padding-bottom: 3.5rem; }
-  .hero__title { grid-row: 1; } .hero__form { grid-row: 2; } .hero__archive { grid-row: 3; align-self: start; }   /* Zum Archiv bleibt nahe am Button: in der Ecke wäre es auf dem dunklen Strand unlesbar */
+  .hero { flex: 1; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; padding-top: 2.75rem; padding-bottom: calc(25.9vw + 0.875rem); }   /* unten: Strandhöhe (597/2304 der Breite) plus 14 px */
+  .hero__title { grid-row: 1; } .hero__form { grid-row: 2; } .hero__archive { grid-row: 3; align-self: end; }   /* Zum Archiv unten, knapp über dem Strand */
   .hero__title { padding-left: 0; white-space: normal; font-size: clamp(1.875rem, 9vw, 2.75rem); line-height: 1.05; }   /* 34 px */
   .hero__title br { display: none; }
-  .hero__form { margin-top: 2.5rem; }
+  .hero__form { margin-top: 5rem; }                                               /* 80 px unter der Headline */
   .hero__form .field { font-size: 1.25rem; }                                        /* 20 px */
   .form__lang { flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .hero__form .form__lang { font-size: 0.75rem; margin-top: 1.25rem; }             /* 12 px */
@@ -578,14 +580,14 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero__archive { margin-left: 0; margin-top: 2.5rem; }
 
   /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
-  .era { padding: 3.5rem 0 0; display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }   /* Handy: voller Screen, Text oben, Mädchen unten rechts */
+  .era { padding: 4rem 0 0; display: flex; flex-direction: column; min-height: 120vh; min-height: 120svh; }   /* Handy: 1,2 Screens hoch, Text oben, Mädchen unten rechts */
   .era__inner { flex: 1 0 auto; }
   .era__inner { padding-left: var(--page-pad); padding-right: var(--page-pad); }
   .era__eyebrow { margin-top: 2rem; }
   .era__text { margin-top: 2rem; text-align: left; }
   .era__text p + p { margin-top: 1rem; }
   .era__more { margin-top: 2.5rem; }
-  .era__figure { position: static; display: block; width: 62%; max-width: 18rem; max-height: none; height: auto; margin: 2rem 0 0 auto; }
+  .era__figure { position: static; display: block; width: 80%; max-width: 22rem; max-height: none; height: auto; margin: 2rem 0 0 auto; }
 
   /* Kacheln */
   .tiles3 { grid-template-columns: 1fr; padding: 6rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }   /* 96 px Luft nach dem Grün */
@@ -626,7 +628,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .soon--archive .soon__note { text-align: center; }
 
   /* Über uns: Tänzerinnen unter dem Text, rechts, kleiner */
-  .about__intro { padding-top: 2.75rem; padding-bottom: 0; }
+  .about__intro { padding-top: 5.5rem; padding-bottom: 0; }                        /* 88 px statt 44 px unter der Kopfzeile */
   .about__dancers { position: static; width: 100%; max-width: 28rem; margin: 2.5rem auto 0; }   /* mittig, volle Breite */
   .about__intro .about__text { margin-top: 2rem; }
   .about__what { padding-top: 3.5rem; padding-bottom: 4rem; }
