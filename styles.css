@@ -401,7 +401,8 @@ ul { padding: 0; list-style: none; }
 }
 @media (max-width: 900px) {
   .about__intro-inner, .about__what-inner { padding-left: 0; max-width: none; }
-  .about__pull { white-space: normal; font-size: 1.5rem; }
+  .about__title { font-size: 1.625rem; }                                            /* 26 px statt 34 px */
+  .about__pull { white-space: normal; font-size: 1.125rem; text-wrap: balance; margin-top: 2rem !important; margin-bottom: 2rem; }   /* 18 px, zwei gleich lange Zeilen */
   .about__intro { padding-bottom: 7rem; }
   .about__dancers { bottom: -6rem; width: 18rem; }
 }
@@ -561,7 +562,6 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .site-nav li:last-child { display: none; }                                         /* Kontakt steht oben neben der Sprachwahl */
   .site-nav a { font-size: 0.75rem; padding: 0.125rem 0; }
   .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; justify-content: center; text-align: center; }   /* Unterseiten: Headline mittig */
-  .theme-about .site-header__title { justify-content: flex-start; text-align: left; }                                                          /* Über uns: links wie der Text */
 
   /* Startseite: Hero */
   .hero-wrap { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }   /* erster Screen komplett */
@@ -631,7 +631,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .about__intro .about__text { margin-top: 2rem; }
   .about__what { padding-top: 3.5rem; padding-bottom: 4rem; }
   .about__text + .about__heading { margin-top: 4rem; }
-  .about__claim { margin-top: 3rem; font-size: var(--fs-h3); }
+  .about__claim { margin-top: 3rem; font-size: var(--fs-h3); text-align: right; }   /* Handy: rechtsbündig */
 
   /* Kollaborationen, Archiv, Newsletter, Rechtliches */
   .collab-intro__figure { width: 100%; margin-top: 0.5rem; }
