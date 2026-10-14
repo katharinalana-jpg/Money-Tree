@@ -573,7 +573,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero__archive { margin-left: 0; margin-top: 2.5rem; }
 
   /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
-  .era { padding: 3.5rem 0 0; }
+  .era { padding: 3.5rem 0 0; display: block; min-height: 0; }   /* Handy: kein Flex, keine Bildschirmhöhe; Mädchen unter dem Text */
   .era__inner { padding-left: var(--page-pad); padding-right: var(--page-pad); }
   .era__eyebrow { margin-top: 2rem; }
   .era__text { margin-top: 2rem; text-align: left; }
