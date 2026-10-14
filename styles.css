@@ -380,6 +380,7 @@ ul { padding: 0; list-style: none; }
 .about__heading { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1.15; font-weight: 400; color: var(--color-text-soft); }
 .about__heading + .about__text { margin-top: 1.75rem; }
 .about__text + .about__heading { margin-top: 8rem; }
+.about__what-inner > .about__text:last-child { max-width: 46rem; }   /* "A new era": 736 px, reicht bis etwas über die Seitenmitte */
 .about__claim {
   position: absolute; left: calc(50% + 15.3125rem); top: 18.3125rem;          /* x = 965, y = 293 der zweiten Folie */
   font-family: var(--font-display); font-size: var(--fs-h2); text-transform: uppercase; line-height: 1; font-weight: 400;
