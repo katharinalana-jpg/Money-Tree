@@ -186,6 +186,7 @@ ul { padding: 0; list-style: none; }
 .site-header--home .site-header__top { border-bottom: 1px solid color-mix(in srgb, var(--line) 35%, transparent); }   /* dünne Linie nur auf der Startseite */
 .site-header__logo { font-family: var(--font-logo); font-size: var(--fs-logo); line-height: 1; letter-spacing: -0.005em; }
 .lang-switch { display: flex; gap: 1.5rem; }
+.site-header__contact { display: none; }                 /* nur am Handy: Kontakt in der obersten Zeile */
 .lang-switch a, .lang-switch button {
   font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em;
   background: none; border: 0; padding: 0; cursor: pointer; color: var(--fg); opacity: 0.45;
@@ -549,49 +550,56 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   /* Kopf: Logo links, Sprachwahl rechts, Menü darunter in einer Zeile (bricht bei Bedarf um) */
   .site-header, .site-header--home { grid-template-columns: 1fr; }
   .site-header__top {
-    grid-template-columns: 1fr auto; grid-template-areas: "logo lang" "nav nav";
-    gap: 0.875rem 1.5rem; padding: 1.125rem 0 0.5rem; align-items: baseline;
+    grid-template-columns: 1fr auto auto; grid-template-areas: "logo contact lang" "nav nav nav";
+    gap: 0.875rem 1.25rem; padding: 1.125rem 0 0.5rem; align-items: baseline;
   }
   .site-header__logo { grid-area: logo; }
+  .site-header__contact { grid-area: contact; display: inline-block; font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
   .lang-switch { grid-area: lang; gap: 1rem; }
   .site-nav { grid-area: nav; }
-  .site-nav ul { padding-left: 0; gap: 0.25rem 1.125rem; }
+  .site-nav ul { padding-left: 0; gap: 0.25rem 1.125rem; justify-content: center; }   /* zwei zentrierte Zeilen */
+  .site-nav li:last-child { display: none; }                                         /* Kontakt steht oben neben der Sprachwahl */
   .site-nav a { font-size: 0.75rem; padding: 0.125rem 0; }
   .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; justify-content: center; text-align: center; }   /* Unterseiten: Headline mittig */
   .theme-about .site-header__title { justify-content: flex-start; text-align: left; }                                                          /* Über uns: links wie der Text */
 
   /* Startseite: Hero */
-  .hero-wrap { min-height: 0; }
-  .hero { grid-template-columns: 1fr; padding-top: 2.75rem; padding-bottom: 3.5rem; }
-  .hero__title { grid-row: 1; } .hero__form { grid-row: 2; } .hero__archive { grid-row: 3; }
-  .hero__title { padding-left: 0; white-space: normal; font-size: clamp(2.5rem, 11.5vw, 3.75rem); line-height: 1.02; }
+  .hero-wrap { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }   /* erster Screen komplett */
+  .hero-wrap > main { flex: 1; display: flex; flex-direction: column; }
+  .hero { flex: 1; grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; padding-top: 2.75rem; padding-bottom: 3.5rem; }
+  .hero__title { grid-row: 1; } .hero__form { grid-row: 2; } .hero__archive { grid-row: 3; align-self: start; }   /* Zum Archiv bleibt nahe am Button: in der Ecke wäre es auf dem dunklen Strand unlesbar */
+  .hero__title { padding-left: 0; white-space: normal; font-size: clamp(1.875rem, 9vw, 2.75rem); line-height: 1.05; }   /* 34 px */
   .hero__title br { display: none; }
-  .hero__form { margin-top: 2.75rem; }
+  .hero__form { margin-top: 2.5rem; }
+  .hero__form .field { font-size: 1.25rem; }                                        /* 20 px */
   .form__lang { flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-  .hero__form .form__lang { font-size: var(--fs-small); margin-top: 1.25rem; }
+  .hero__form .form__lang { font-size: 0.75rem; margin-top: 1.25rem; }             /* 12 px */
   .hero__form .btn { width: auto; justify-self: start; min-height: 2.75rem; padding: 0.5rem 2rem; font-size: 1rem; margin-top: 1.5rem; }
   .hero__archive { margin-left: 0; margin-top: 2.5rem; }
 
   /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
-  .era { padding: 3.5rem 0 0; display: block; min-height: 0; }   /* Handy: kein Flex, keine Bildschirmhöhe; Mädchen unter dem Text */
+  .era { padding: 3.5rem 0 0; display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }   /* Handy: voller Screen, Text oben, Mädchen unten rechts */
+  .era__inner { flex: 1 0 auto; }
   .era__inner { padding-left: var(--page-pad); padding-right: var(--page-pad); }
   .era__eyebrow { margin-top: 2rem; }
   .era__text { margin-top: 2rem; text-align: left; }
   .era__text p + p { margin-top: 1rem; }
   .era__more { margin-top: 2.5rem; }
-  .era__figure { position: static; display: block; width: 56%; max-width: 16rem; height: auto; margin: 2rem 0 0 auto; }
+  .era__figure { position: static; display: block; width: 62%; max-width: 18rem; max-height: none; height: auto; margin: 2rem 0 0 auto; }
 
   /* Kacheln */
-  .tiles3 { grid-template-columns: 1fr; padding: 2.5rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }
+  .tiles3 { grid-template-columns: 1fr; padding: 6rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }   /* 96 px Luft nach dem Grün */
+  .tile3--money .tile3__media { aspect-ratio: 622 / 283; overflow: visible; }                      /* Rot so hoch wie Gelb und Blau */
+  .tile3__figure--dancer { top: auto; bottom: 0; width: 32%; }                                     /* Tänzerin steht auf der Unterkante, Kopf mit Luft in der Kachel */
   .tile3--money .tile3__rule { margin-top: 2rem; }
   .tile3__rule { margin-top: 1.75rem; }
 
   /* Footer der Startseite */
   .footer4 { padding-top: 0; }
   .footer4__grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .footer4__left { min-height: 0; }
-  .footer4__claim { padding-left: 0; }
-  .footer4__dancers { position: static; width: 72%; max-width: 20rem; margin: 1.5rem 0 0 auto; }
+  .footer4__left { min-height: 0; display: flex; flex-direction: column; align-items: flex-end; }
+  .footer4__claim { padding-left: 0; text-align: right; }
+  .footer4__dancers { position: static; order: -1; width: 100%; max-width: 24rem; margin: 0 0 -2.5rem; }   /* volle Breite; das Bild hat unten Transparenz, deshalb negativer Abstand zum Claim */   /* Tänzerinnen zuerst, Claim darunter, beides rechts */
   .footer4__right { padding-top: 0; }
   .footer4__social { justify-content: flex-start; margin-bottom: 1.5rem; }
   .footer4__form { justify-items: stretch; }
