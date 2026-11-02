@@ -10,7 +10,7 @@
   <title data-i18n-title="meta.title">Portemonnaie</title>
 
   <link rel="stylesheet" href="fonts/fonts.css?v=1" />
-  <link rel="stylesheet" href="styles.css?v=120" />
+  <link rel="stylesheet" href="styles.css?v=121" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -56,12 +56,6 @@
           <input class="field" id="heroName" type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Vorname" data-i18n-ph="form.name_ph" />
           <label class="sr-only" for="heroEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
           <input class="field" id="heroEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
-          <fieldset class="form__lang t-label">
-            <legend data-i18n="form.lang_label">Updates bitte auf</legend>
-            <label><input type="radio" name="language" value="en" /><span>EN</span></label>
-            <label><input type="radio" name="language" value="de" /><span>DE</span></label>
-            <label><input type="radio" name="language" value="fr" /><span>FR</span></label>
-          </fieldset>
           <label class="check t-small">
             <input type="checkbox" name="consent" required />
             <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
@@ -93,9 +87,9 @@
   <section class="tiles3 container container--wide">
     <article class="tile3 tile3--money">
       <a class="tile3__media theme-rot" href="coming-soon.html" tabindex="-1" aria-hidden="true"><img class="tile3__figure tile3__figure--dancer" src="img/kachel-taenzerin.webp" alt="" width="437" height="597" /></a>
-      <h2 class="tile3__title tile3__title--big">Your Money Moves</h2>
+      <h2 class="tile3__title">Your money moves</h2>
       <div class="tile3__rule tile3__rule--rot"></div>
-      <a class="tile3__link tile3__link--big" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
+      <a class="tile3__link" href="coming-soon.html"><span data-i18n="tile.money_link">Lass deine Werte wirken</span>&nbsp;<svg aria-hidden="true"><use href="img/icons.svg#icon-arrow"/></svg></a>
     </article>
     <article class="tile3 tile3--collab">
       <a class="tile3__media theme-gelb tile3__media--overflow" href="collabs.html" tabindex="-1" aria-hidden="true"><img class="tile3__figure tile3__figure--group" src="img/kollaborationen-gruppe.webp" alt="" width="1000" height="500" /></a>
@@ -128,7 +122,7 @@
           <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
           <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
           <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
-          <button class="btn btn--filled btn--caps" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
+          <button class="btn" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
           <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
           <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
         </form>
@@ -140,7 +134,7 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=120"></script>
-  <script src="script.js?v=120"></script>
+  <script src="i18n.js?v=121"></script>
+  <script src="script.js?v=121"></script>
 </body>
 </html>

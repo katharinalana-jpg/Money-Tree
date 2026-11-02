@@ -108,4 +108,23 @@
 
   $$("[data-signup]").forEach(handleSignup);
 
+  /* Textfelder: der Unterstrich ist nur so lang wie der Platzhalter und wächst mit der Eingabe mit
+     (max. Spaltenbreite über CSS max-width). Neu messen nach Schriftladen und Sprachwechsel. */
+  const measureCtx = document.createElement("canvas").getContext("2d");
+  function fitField(el) {
+    const cs = getComputedStyle(el);
+    measureCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const w = Math.max(measureCtx.measureText(el.placeholder || "").width, measureCtx.measureText(el.value || "").width);
+    el.style.width = `${Math.ceil(w) + 6}px`;
+  }
+  function fitFields() {
+    $$(".field").forEach((el) => {
+      fitField(el);
+      if (!el.dataset.fit) { el.dataset.fit = "1"; el.addEventListener("input", () => fitField(el)); }
+    });
+  }
+  fitFields();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFields);
+  document.addEventListener("pm:langchange", () => setTimeout(fitFields, 0));
+
 })();

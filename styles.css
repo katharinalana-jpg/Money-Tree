@@ -137,10 +137,7 @@ ul { padding: 0; list-style: none; }
   cursor: pointer;
   transition: background-color .2s ease, color .2s ease;
 }
-.btn--filled { background: var(--color-button); color: var(--color-text); border-color: var(--color-text); }
-.btn--caps { text-transform: uppercase; letter-spacing: 0.02em; }
 .btn:hover, .btn:focus-visible { background: var(--fg); color: var(--bg); outline: none; }
-.btn--filled:hover, .btn--filled:focus-visible { background: var(--color-text); color: var(--color-creme); }
 
 /* Unterstrichenes Textfeld, Display-Schrift */
 .field {
@@ -156,6 +153,7 @@ ul { padding: 0; list-style: none; }
   border-radius: 0;
   outline: none;
 }
+.field { max-width: 100%; }                                                      /* Breite setzt fitFields() in script.js auf Platzhalter bzw. Eingabe */
 .field::placeholder { color: var(--fg); opacity: 1; }
 .field:focus { border-bottom-width: 2px; }
 
@@ -256,7 +254,7 @@ ul { padding: 0; list-style: none; }
 
 .footer-form .field { font-size: var(--fs-h4); }
 .footer-form .check { margin-top: 1.125rem; }
-.footer-form .btn { margin-top: 1.125rem; min-width: 20.625rem; padding-inline: 2rem; }   /* 330 px */
+.footer-form .btn { margin-top: 1.75rem; }
 .footer-form .form__success { margin-top: 1rem; }
 
 /* Mittlere Spalte, optional (Seite 5: Tänzerinnen und Claim; Seite 10: Überschrift) */
@@ -287,18 +285,10 @@ ul { padding: 0; list-style: none; }
 .hero__title { grid-column: 1; grid-row: 1; padding-left: 5.3125rem; white-space: nowrap; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; font-weight: 400; font-variation-settings: "opsz" 36; }   /* 72 px bei x = 109 (Unterseiten: 88 px einzeilig) */
 .hero__form { grid-column: 2; grid-row: 1; margin-top: 14rem; display: grid; gap: 0; scroll-margin-top: 2rem; }   /* Vorname bei 385 px, Block endet knapp über der Düne */
 .hero__form .field { padding: 0.125rem 0 0.375rem; font-size: 1.5rem; }   /* 24 px statt 36 px */
-.hero__form .form__lang { font-size: var(--fs-small); }                     /* 13 px */
 .hero__form .field + .field { margin-top: 0.75rem; }
-.form__lang { display: flex; align-items: baseline; gap: 2.25rem; margin: 1rem 0 0; padding: 0; border: 0; line-height: 1.2; }
-.form__lang legend { float: left; padding: 0; margin-right: 0; }
-.form__lang label { cursor: pointer; }
-.form__lang input { position: absolute; opacity: 0; width: 0; height: 0; }
-.form__lang span { display: inline-block; opacity: 0.5; transition: opacity .2s ease; }
-.form__lang input:checked + span { opacity: 1; }
-.form__lang input:focus-visible + span { outline: 2px solid var(--fg); outline-offset: 2px; }
-.form__lang label:hover span { opacity: 0.8; }
-.hero__form .check { margin-top: 0.5rem; }
-.hero__form .btn { margin-top: 1.75rem; width: 17.5rem; min-height: 2.875rem; padding-block: 0.5rem; font-size: 1.0625rem; justify-self: start; }   /* 280 x 46 px, 17 px */
+.hero__form .check { margin-top: 2.5rem; }                                       /* 40 px unter dem E-Mail-Feld (Sprachzeile entfällt) */
+.hero__form .btn { margin-top: 2.25rem; }
+.hero__form .btn, .footer4__form .btn, .footer-form .btn { width: 17.5rem; min-height: 2.875rem; padding: 0.5rem 2rem; font-size: 1.0625rem; justify-self: start; }   /* ein Formular-Button überall: 280 x 46 px, 17 px, Rahmen */
 .hero__form .form__success, .hero__form .form__error { margin-top: 1rem; }
 .hero__archive { grid-column: 2; grid-row: 2; margin-top: 3.875rem; justify-self: start; margin-left: 4.5rem; color: var(--fg); }
 
@@ -313,29 +303,19 @@ ul { padding: 0; list-style: none; }
 .era__figure { position: absolute; right: 1.5rem; bottom: 0; height: 62%; max-height: 36rem; width: auto; }   /* Unterkante am Abschnittsende, Höhe folgt dem Abschnitt */
 
 /* ---------- 10. Startseite: Kacheln (Entwurf 04, Folie 3 + 4) ---------- */
-.tiles3 { display: grid; grid-template-columns: 40.625rem minmax(0, 1fr); column-gap: 6rem; padding-top: 8rem; padding-bottom: 5.625rem; align-items: start; }   /* Claim des Footers bei y 404 der Folie 4; Rot 650 px ab x 36 */
+.tiles3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 3rem; padding-top: 10rem; padding-bottom: 5.625rem; align-items: start; }   /* drei Cards nebeneinander (Vorlage 2026-11-02), 160 px Luft nach dem Grün */
 .tiles3 { padding-inline: var(--page-pad-wide); }                 /* 36 px links wie rechts */
-.tile3--money { grid-column: 1; grid-row: 1 / 3; align-self: center; }         /* Versuch: roter Block mittig zur rechten Spalte */
-.tile3--collab { grid-column: 2; grid-row: 1; }
-.tile3--boutique { grid-column: 2; grid-row: 2; padding-top: 5rem; }   /* Blau bei y 562, x 806 */
-.tile3__media { display: block; position: relative; background: var(--bg); overflow: hidden; }
-.tile3--money .tile3__media { aspect-ratio: 622 / 283; overflow: visible; }     /* Versuch: Rot so hoch wie Gelb und Blau */
-.tile3--collab .tile3__media { aspect-ratio: 622 / 283; overflow: visible; }   /* Gelb 622 x 283, endet 36 px vor dem rechten Rand */
-.tile3--boutique .tile3__media { aspect-ratio: 622 / 283; }               /* Blau: gleiche Größe und Position wie Gelb */
+.tile3--money { grid-column: 1; } .tile3--collab { grid-column: 2; } .tile3--boutique { grid-column: 3; }
+.tile3__media { display: block; position: relative; background: var(--bg); overflow: hidden; aspect-ratio: 3 / 2; }   /* Format 3:2 nach Vorlage */
+.tile3--collab .tile3__media { overflow: visible; }                              /* Gruppe darf links leicht hinausragen */
 .tile3__figure { position: absolute; max-width: none; }
-.tile3__figure--dancer { left: 34%; bottom: 0; height: 100%; width: auto; }   /* Tänzerin komplett in der Kachel, Füße auf der Unterkante */
-.tile3__figure--group { left: -2.9%; top: -9.9%; width: 105.3%; height: auto; }
-.tile3__figure--hand { left: 26%; bottom: 0; top: auto; height: 84%; width: auto; }   /* Hand schließt unten mit der Kachel ab */
-.tile3__title { margin-top: 1rem; font-family: var(--font-display); font-size: 1.875rem; text-transform: uppercase; line-height: 1.15; font-weight: 400; }   /* 30 px */
-.tile3__title--big { font-size: 1.875rem; }                                    /* 30 px, wie Kollaborationen und Boutique */
-.tile3__title--sentence { text-transform: none; }
-.tile3__rule { margin-top: 2.75rem; border-top: 1px solid var(--line); }
-.tile3--money .tile3__rule { margin-top: 2.75rem; }                            /* gleicher Abstand wie bei Gelb */
-.tile3--collab .tile3__title { margin-top: 1.375rem; }
-.tile3--boutique .tile3__rule { margin-top: 1.875rem; }
-.tile3__rule--rot, .tile3__rule--blau { border-color: var(--line); }   /* Linien in der Farbe der Überschrift (schwarz) */
-.tile3__link { display: block; margin-top: 0.75rem; font-size: var(--fs-body); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15; }
-.tile3__link--big { font-size: var(--fs-body); }                               /* 17 px, wie die anderen Kachel-Links */
+.tile3__figure--dancer { left: 50%; transform: translateX(-50%); bottom: 0; height: 100%; width: auto; }   /* Tänzerin mittig, volle Höhe */
+.tile3__figure--group { left: -2.9%; bottom: 8%; width: 105.3%; height: auto; }                        /* Gruppe volle Breite, unten */
+.tile3__figure--hand { left: 26%; bottom: 0; top: auto; height: 84%; width: auto; }                     /* Hand schließt unten mit der Card ab */
+.tile3__title { margin-top: 3.5rem; font-family: var(--font-display); font-size: 1.875rem; line-height: 1.15; font-weight: 400; }   /* 30 px, 56 px unter dem Bild, Groß-/Kleinschreibung */
+.tile3__rule { margin-top: 0.375rem; border-top: 1px solid var(--line); }           /* Linie direkt unter dem Titel */
+.tile3__rule--rot, .tile3__rule--blau { border-color: var(--line); }                /* Linien schwarz */
+.tile3__link { display: block; margin-top: 0.75rem; font-size: var(--fs-body); letter-spacing: 0.01em; line-height: 1.15; }   /* Groß-/Kleinschreibung */
 .tile3__link svg { display: inline-block; width: 1em; height: 0.7em; opacity: var(--icon-opacity); vertical-align: -0.02em; margin-left: 0.2em; }
 .tile3__link:hover { opacity: 0.6; }
 
@@ -348,7 +328,6 @@ ul { padding: 0; list-style: none; }
 .footer4__right { padding-top: 1.1875rem; }
 .footer4__social { justify-content: flex-end; margin-bottom: 2.375rem; }
 .footer4__form { display: grid; gap: 0.6875rem; justify-items: start; }
-.footer4__form .btn { min-width: 20.625rem; padding-inline: 2rem; }
 .site-footer__bottom--left { grid-template-columns: auto auto 1fr; gap: 0.5rem 2.5rem; }
 .site-footer__bottom--left .site-footer__legal { justify-self: start; }
 .footer4 .site-footer__bottom { margin-top: 2.5rem; }
@@ -521,7 +500,6 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .tiles3 { grid-template-columns: 1fr; padding-left: var(--page-pad); padding-right: var(--page-pad); row-gap: 2.5rem; }
   .tile3--money, .tile3--collab, .tile3--boutique { grid-column: 1; grid-row: auto; padding: 0; }
   .tile3--collab .tile3__media, .tile3--boutique .tile3__media, .tile3--boutique .tile3__rule, .tile3--collab .tile3__rule { width: 100%; }
-  .tile3__title--big { font-size: var(--fs-h3); } .tile3__link--big { font-size: var(--fs-body); }
   .footer4__grid { grid-template-columns: 1fr; } .footer4__left { min-height: 0; }
   .footer4__dancers { position: static; width: 100%; max-width: 24rem; margin-top: 1rem; }
   .footer4__social { justify-content: flex-start; }
@@ -540,7 +518,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero__title { padding-left: 2rem; }
   .era__inner { padding-left: 4rem; }
   .era__figure { width: 24rem; }
-  .tiles3 { grid-template-columns: minmax(0, 55%) minmax(0, 1fr); column-gap: 2rem; padding-left: var(--page-pad-wide); }
+  .tiles3 { column-gap: 2rem; }
   .footer4__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); }
   .footer4__dancers { left: auto; right: 0; width: 62%; }
   .footer4__form .btn { min-width: 0; width: 100%; }
@@ -554,15 +532,15 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .site-header, .site-header--home { grid-template-columns: 1fr; }
   .site-header__top {
     grid-template-columns: 1fr auto auto; grid-template-areas: "logo contact lang" "nav nav nav";
-    gap: 0.875rem 1.25rem; padding: 1.125rem 0 0.5rem; align-items: baseline;
+    gap: 1.75rem 1.25rem; padding: 1.125rem 0 0.5rem; align-items: baseline;      /* 28 px zwischen Kopfzeile und Menü */
   }
   .site-header__logo { grid-area: logo; }
   .site-header__contact { grid-area: contact; display: inline-block; font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
   .lang-switch { grid-area: lang; gap: 1rem; }
   .site-nav { grid-area: nav; }
-  .site-nav ul { padding-left: 0; gap: 0.25rem 1.125rem; justify-content: center; }   /* zwei zentrierte Zeilen */
+  .site-nav ul { padding-left: 0; gap: 0.5rem 1.125rem; justify-content: center; }   /* zentrierte Zeilen, 8 px Zeilenabstand */
   .site-nav li:last-child { display: none; }                                         /* Kontakt steht oben neben der Sprachwahl */
-  .site-nav a { font-size: 0.75rem; padding: 0.125rem 0; }
+  .site-nav a { font-size: 0.875rem; padding: 0.125rem 0; }                       /* 14 px wie am Desktop */
   .site-header__title { --title-shift: -5px; padding-top: 1.75rem; font-size: clamp(2rem, 9.6vw, 3.25rem); line-height: 1.05; justify-content: center; text-align: center; }   /* Unterseiten: Headline mittig */
 
   /* Startseite: Hero */
@@ -574,9 +552,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .hero__title br { display: none; }
   .hero__form { margin-top: 5rem; }                                               /* 80 px unter der Headline */
   .hero__form .field { font-size: 1.25rem; }                                        /* 20 px */
-  .form__lang { flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-  .hero__form .form__lang { font-size: 0.75rem; margin-top: 1.25rem; }             /* 12 px */
-  .hero__form .btn { width: auto; justify-self: start; min-height: 2.75rem; padding: 0.5rem 2rem; font-size: 1rem; margin-top: 1.5rem; }
+  .hero__form .btn { margin-top: 1.5rem; }
   .hero__archive { margin-left: 0; margin-top: 2.5rem; }
 
   /* Grüner Abschnitt: Text mit Seitenrand, Mädchen darunter rechts auf der Unterkante */
@@ -591,10 +567,6 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
 
   /* Kacheln */
   .tiles3 { grid-template-columns: 1fr; padding: 6rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }   /* 96 px Luft nach dem Grün */
-  .tile3--money .tile3__media { aspect-ratio: 622 / 283; overflow: visible; }                      /* Rot so hoch wie Gelb und Blau */
-  .tile3__figure--dancer { top: auto; bottom: 0; width: 32%; height: auto; }                       /* Tänzerin steht auf der Unterkante, Kopf mit Luft in der Kachel */
-  .tile3--money .tile3__rule { margin-top: 2rem; }
-  .tile3__rule { margin-top: 1.75rem; }
 
   /* Footer der Startseite */
   .footer4 { padding-top: 0; }
@@ -605,7 +577,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .footer4__right { padding-top: 0; }
   .footer4__social { justify-content: flex-start; margin-bottom: 1.5rem; }
   .footer4__form { justify-items: stretch; }
-  .footer4__form .btn, .footer-form .btn { min-width: 0; width: 100%; padding-inline: 1rem; font-size: 1.0625rem; }
+  .hero__form .btn, .footer4__form .btn, .footer-form .btn { width: 100%; }        /* Handy: volle Breite */
   .footer4 .site-footer__bottom { margin-top: 2.5rem; }
 
   /* Fußzeile (alle Seiten): Copyright und Rechtslinks untereinander, je eine Zeile */
