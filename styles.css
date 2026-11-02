@@ -303,7 +303,7 @@ ul { padding: 0; list-style: none; }
 .era__figure { position: absolute; right: 1.5rem; bottom: 0; height: 62%; max-height: 36rem; width: auto; }   /* Unterkante am Abschnittsende, Höhe folgt dem Abschnitt */
 
 /* ---------- 10. Startseite: Kacheln (Entwurf 04, Folie 3 + 4) ---------- */
-.tiles3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 3rem; padding-top: 10rem; padding-bottom: 5.625rem; align-items: start; }   /* drei Cards nebeneinander (Vorlage 2026-11-02), 160 px Luft nach dem Grün */
+.tiles3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 3rem; padding-top: 10rem; padding-bottom: 9.125rem; max-width: 120rem; align-items: start; }   /* drei Cards nebeneinander (Vorlage 2026-11-02), 160 px Luft nach dem Grün und vor dem Footer; Reihe wächst bis 1920 px */
 .tiles3 { padding-inline: var(--page-pad-wide); }                 /* 36 px links wie rechts */
 .tile3--money { grid-column: 1; } .tile3--collab { grid-column: 2; } .tile3--boutique { grid-column: 3; }
 .tile3__media { display: block; position: relative; background: var(--bg); overflow: hidden; aspect-ratio: 3 / 2; }   /* Format 3:2 nach Vorlage */
@@ -566,7 +566,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .era__figure { position: static; display: block; width: 80%; max-width: 22rem; max-height: none; height: auto; margin: 2rem 0 0 auto; }
 
   /* Kacheln */
-  .tiles3 { grid-template-columns: 1fr; padding: 6rem var(--page-pad) 3.5rem; row-gap: 2.5rem; }   /* 96 px Luft nach dem Grün */
+  .tiles3 { grid-template-columns: 1fr; padding: 6rem var(--page-pad) 10rem; row-gap: 2.5rem; }   /* 96 px Luft nach dem Grün, 160 px vor dem Footer */
 
   /* Footer der Startseite */
   .footer4 { padding-top: 0; }
