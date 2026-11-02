@@ -5,6 +5,9 @@
 
 Tagline: "Invest in what you believe in."
 
+## Arbeitsregeln — VERBINDLICH
+Die 19 Arbeitsregeln der Auftraggeberin (Stand 2026-11-02) stehen in `/Users/ks/Library/CloudStorage/GoogleDrive-office@portemonnaie.finance/Meine Ablage/Portemonnaie_Finance/04_CMO_Portemonnaie/04A_Portemonnaie_CMO_Design_Corporate Identity/01_Portemonnaie Website_15.10.2026/CLAUDE.md`. Zu Beginn jeder Sitzung lesen; sie gelten für alle Änderungen an der Website. Kern: erst messen, dann bauen; nichts ungefragt bauen; jede Runde mit Versionsnummer 1.JJMMTTnn, danach bauen, prüfen, committen, berichten; kein Push, Merge oder Deploy ohne explizites Go.
+
 ## Regulatory Boundary — CRITICAL
 Financial literacy platform, NOT a licensed investment advisor.
 - Never output personalized buy/sell recommendations for specific securities
@@ -15,7 +18,7 @@ Pre-launch. Pre-registration landing page only. Solo founder. Vanilla HTML/CSS/J
 Phase 2 brings React/Next.js with a tech co-founder.
 
 ## Brand & Design
-Verbindlich ist `DESIGN.md` im Ordner `/Users/ks/Desktop/Portemonnaie Website_NEU/` (Redesign nach Canva-Entwurf, Okt 2026). Werte im Code als CSS-Variablen in `styles.css`, keine Hex-Codes in Komponenten.
+Verbindlich ist `DESIGN.md` im Ordner `/Users/ks/Library/CloudStorage/GoogleDrive-office@portemonnaie.finance/Meine Ablage/Portemonnaie_Finance/04_CMO_Portemonnaie/04A_Portemonnaie_CMO_Design_Corporate Identity/01_Portemonnaie Website_15.10.2026/` (Redesign nach Canva-Entwurf, Okt 2026). Werte im Code als CSS-Variablen in `styles.css`, keine Hex-Codes in Komponenten.
 
 | Token | Value | Use |
 |---|---|---|
