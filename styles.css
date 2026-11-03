@@ -413,7 +413,7 @@ ul { padding: 0; list-style: none; }
 @media (max-width: 900px) { .soon__figure { position: static; height: 16rem; margin: 0 auto; display: block; } .site-footer--soon .site-footer__grid { min-height: 0; } .soon--archive .soon__inner { width: auto; margin-left: 0; } .site-footer__cta { padding-top: 0; } }
 
 /* ---------- 13. Archiv (PDF Seite 4) ---------- */
-.archive { padding-top: 3.875rem; padding-bottom: 2.5rem; }
+.archive { padding-top: 3.875rem; padding-bottom: 9.125rem; }   /* mit 14 px Footer-Padding 160 px Luft vor dem Footer, wie auf der Startseite */
 .archive__title { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.15; font-weight: 400; text-align: center; }   /* 56 px, bei 290 px */
 .archive__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; margin-top: 4.5625rem; }   /* Kacheln bei 428 px */
 .issue__media { display: block; aspect-ratio: 424 / 224; background: var(--color-sand); overflow: hidden; }
@@ -442,7 +442,7 @@ body.paper { background: var(--color-creme) url("img/papier.webp") center top / 
 .issue-article__body { margin-top: 2.5rem; text-align: left; hyphens: manual; }   /* linksbündig wie im Word-Dokument */
 .issue-article__body p + p { margin-top: 0.5rem; }
 .issue-article__body .issue-article__gap { margin-top: 1.75rem; }   /* Leerzeile im Word-Dokument */
-.issue-article__heading { margin: 1.75rem 0 0.5rem; font-family: var(--font-body); font-size: var(--fs-body); font-weight: 700; line-height: var(--lh-body); text-align: left; }   /* fett, Grundschrift, wie im Word-Dokument */
+.issue-article__heading { margin: 2.5rem 0 0.75rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; line-height: 1.25; text-align: left; }   /* 24 px, Titelschrift, nicht fett */
 .issue-article__back { margin-top: 3.5rem; text-align: center; }
 
 @media (max-width: 900px) {
@@ -614,7 +614,7 @@ html[lang="fr"] [data-lang-content="en"][data-lang-fallback] { display: block; }
   .collab-intro__figure { width: 100%; margin-top: 0.5rem; }
   .collab-types { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   .collab-closing { margin-top: 3rem; }
-  .archive { padding-top: 2.5rem; }
+  .archive { padding-top: 2.5rem; padding-bottom: 10rem; }   /* 160 px vor dem Footer, der am Handy kein eigenes Padding hat */
   .archive__grid { margin-top: 2.5rem; }
   .issue-page { padding-top: 3rem; padding-bottom: 3.5rem; }
   .legal { padding-top: 2.5rem; padding-bottom: 4rem; }
