@@ -8,7 +8,6 @@
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png?v=2" />
   <meta name="description" content="Portemonnaie. Werteorientiertes Investieren für Frauen. Start investing in what you support." data-i18n-content="meta.description" />
   <title data-i18n-title="archive.meta_title">Archiv – Portemonnaie</title>
-  <meta name="robots" content="noindex" />   <!-- bis zur ersten Ausgabe nicht verlinkt -->
 
   <link rel="stylesheet" href="fonts/fonts.css?v=1" />
   <link rel="stylesheet" href="styles.css?v=124" />
@@ -69,47 +68,32 @@
     </div>
   </main>
 
-  <!-- FOOTER, Variante mit Tänzerinnen (PDF Seite 5) -->
-  <footer class="site-footer site-footer--dancers container container--wide">
-    <div class="site-footer__grid">
-      <nav aria-label="Footer">
-        <ul class="footer-menu">
-          <li><a href="index.html#newsletter" data-i18n="nav.newsletter">Newsletter</a></li>
-          <li><a href="archive-soon.html" data-i18n="nav.archive">Archiv</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Über uns</a></li>
-          <li><a href="coming-soon.html" data-i18n="nav.press">Presse</a></li>
-          <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
-        </ul>
-      </nav>
-      <div class="site-footer__middle">
-        <p class="site-footer__claim">Money is power.<br>Use yours.</p>
+  <!-- FOOTER wie auf der Startseite (footer4, seit 3. November 2026) -->
+  <footer class="footer4 container container--wide">
+    <div class="footer4__grid">
+      <div class="footer4__left">
+        <p class="footer4__claim">Money is power.<br>Use yours.</p>
+        <img class="footer4__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
       </div>
-      <div class="site-footer__signup">
-        <div class="social">
+      <div class="footer4__right">
+        <div class="social footer4__social">
           <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="img/icons.svg#icon-bluesky"/></svg></a>
           <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="img/icons.svg#icon-substack"/></svg></a>
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
         </div>
-        <form class="footer-form" data-signup novalidate>
-          <label class="sr-only" for="archiveEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
-          <input class="field" id="archiveEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
-          <label class="check t-small">
-            <input type="checkbox" name="consent" required />
-            <span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span>
-          </label>
+        <form class="footer4__form" data-signup novalidate>
+          <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
           <button class="btn" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
           <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
           <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
         </form>
       </div>
     </div>
-    <img class="site-footer__dancers" src="img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
     <div class="site-footer__bottom site-footer__bottom--left">
       <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
-      <div class="site-footer__legal">
-        <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
-        <a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a>
-      </div>
+      <div class="site-footer__legal"><a href="impressum.html" data-i18n="footer.imprint">Impressum</a><a href="privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a></div>
     </div>
   </footer>
 
