@@ -1,14 +1,15 @@
 # Übergabeprotokoll: Wöchentliche Newsletter-Ausgaben im Archiv
 
-Version 1.26110201, Stand 2. November 2026. Für die nächste Session, in der jede Woche eine neue Ausgabe auf die Website kommt.
+Version 1.26110309, Stand 3. November 2026. Für jede Session, in der eine neue Ausgabe auf die Website kommt. Ersetzt die Fassung 1.26110201 vom 2. November 2026 (Stand vor dem Launch der ersten Ausgabe).
 
 Reihenfolge zum Einlesen:
 1. `CLAUDE.md` im Drive-Ordner `01_Portemonnaie Website_15.10.2026` (harte Arbeitsregeln, gelten immer).
 2. Dieses Protokoll.
-3. `newsletter/template.html` und `archive.html` im Projekt.
-4. Memory: `arbeitsregeln-ks`, `newsletter-weekly-workflow`, `redesign-canva-project`, `preview-server-workaround`.
+3. `AENDERUNGEN Website.md` im selben Drive-Ordner (jede Runde mit Version, Datum, Änderung, Commit).
+4. `newsletter/template.html`, `newsletter/build_issue.py`, `archive.html` und die Live-Ausgabe `newsletter/2026-11-02-was-tut-mein-geld.html` im Projekt.
+5. Memory: `arbeitsregeln-ks`, `newsletter-weekly-workflow`, `aenderungen-website-log`, `branch-from-main-only`, `preview-server-workaround`.
 
-## 1. Arbeitsregeln (gelten immer, Wortlaut der Auftraggeberin vom 2. November 2026)
+## 1. Arbeitsregeln (gelten immer, Wortlaut der Auftraggeberin vom 2. November 2026, Regel 20 vom 3. November 2026)
 
 GRUNDSATZ
 1. Erst messen, dann bauen. Keine geratenen Zahlen. Bei „geht nicht" zuerst die eigene Rechnung prüfen.
@@ -30,52 +31,61 @@ PLATTFORMEN
 13. Jede Mac-Neuerung aufs iPad mitdenken, aber vorher fragen.
 
 SPRACHE UND STIL
-14. Mit der Auftraggeberin Deutsch, Code-Kommentare Deutsch. Alles, was Nutzer sehen (App, Website, TestFlight): immer Englisch.
+14. Mit der Auftraggeberin Deutsch, Code-Kommentare Deutsch. Alles, was Nutzer sehen (App, Website, TestFlight): immer Englisch. Website-Texte liegen zusätzlich in DE und FR vor und werden 1:1 von der Auftraggeberin geliefert.
 15. Keine Gedankenstriche (em dashes). Sätze umstellen.
 16. Keine Tageszeiten oder Dauern („seit Wochen", „heute Abend"), nur datierte Fakten.
 17. Kurz und konkret antworten. Bei Entscheidungen eine Empfehlung geben, nicht alle Optionen aufzählen.
 
 GEDÄCHTNIS
-18. Eine Projektdatei (CLAUDE.md) mit den harten Regeln liegt im Ordner `01_Portemonnaie Website_15.10.2026`. Wichtige Befunde und Entscheidungen hält Claude in seinem Memory fest, mit Datum.
+18. Die Projektdatei `CLAUDE.md` mit den harten Regeln liegt im Drive-Ordner `01_Portemonnaie Website_15.10.2026`. Wichtige Befunde und Entscheidungen hält Claude in seinem Memory fest, mit Datum.
 19. Wenn Claude einen Fehler gemacht hat: als Regel ins Memory, damit er nicht wieder passiert.
+20. Jede Runde wird in `AENDERUNGEN Website.md` im Drive-Ordner eingetragen: Runde, Version, Datum, Session/Thema, was geändert, Commit, Stand. Neueste Runde oben, Eintrag vor dem Bericht.
 
-Ergänzung für die Website (aus den Sessions seit 7. Oktober 2026, weiterhin gültig): Vorschau zeigen, auf OK warten, dann pushen. Push auf `main` ist live. Ein „OK zum Push" nach dem Launch bedeutet: Branch pushen und `main` nachziehen. Texte 1:1 übernehmen, Bilder 1:1 (nur verkleinern, WebP). Keine Emojis. Farben und Schriften nur über die CSS-Variablen in `styles.css`. Hinweis zu Regel 14: Die Website ist dreisprachig DE/EN/FR, alle drei Fassungen werden 1:1 von der Auftraggeberin geliefert.
+Ergänzung für die Website (weiterhin gültig): Vorschau zeigen, auf OK warten, dann pushen. Push auf `main` ist live. „OK zum Push" bedeutet: Branch pushen und `main` per Fast-Forward nachziehen. Texte 1:1 übernehmen, Bilder 1:1 (nur verkleinern, WebP). Keine Emojis. Farben und Schriften nur über die CSS-Variablen in `styles.css`. Arbeitsbranches immer von `main` abzweigen, nie von einem anderen Branch (Korrektur vom 3. November 2026). Die Website ist fertig: keine kosmetischen Änderungen ohne ausdrücklichen Auftrag.
 
-## 2. Wo wir stehen (Stand 2. November 2026)
+## 2. Wo wir stehen (Stand 3. November 2026)
 
-- Projekt `/Users/ks/Documents/FemTech/Money-Tree`, live auf portemonnaie.finance über Vercel.
-- `main` = `67eeb59` (14. Oktober 2026) = `cosmetics-desktop` plus ein lokaler Commit mit diesem Protokoll. `redesign-canva` ist veraltet. Cache-Version in allen HTML-Dateien: `?v=120`.
-- Die erste Newsletter-Ausgabe ist fertig geschrieben (liegt bei der Auftraggeberin), noch nicht auf der Website.
-- `archive.html` existiert fertig im Design, ist unverlinkt und `noindex`. Die drei Kacheln darin sind Platzhalter und zeigen auf `newsletter/template.html`. Alle „Archiv"-Links der Website und „Zum Archiv" auf der Startseite zeigen auf `archive-soon.html`.
-- Erscheinungstermin der Ausgaben: Sonntag, 10:00 Uhr (Angabe auf archive-soon.html in drei Sprachen).
-- Quellen außerhalb des Repos: Drive-Ordner `/Users/ks/Library/CloudStorage/GoogleDrive-office@portemonnaie.finance/Meine Ablage/Portemonnaie_Finance/04_CMO_Portemonnaie/04A_Portemonnaie_CMO_Design_Corporate Identity/01_Portemonnaie Website_15.10.2026/` mit `DESIGN.md`, `PROMPT_Website-Neuaufbau.md`, `BILDER_UEBERSICHT.md`, Bildordnern und den Übergaben.
+- Projekt `/Users/ks/Documents/FemTech/Money-Tree`, live auf portemonnaie.finance über Vercel. `main` = `4a6828f`, Vercel Production-Deploy 7519545314 erfolgreich (3. November 2026, 13:07 UTC). Cache-Version in allen HTML-Dateien: `?v=124`.
+- Arbeitsbranch `content` existiert lokal und auf GitHub, steht auf `main`.
+- **Ausgabe 01 ist live:** `newsletter/2026-11-02-was-tut-mein-geld.html` (DE/EN/FR, Datum 2. November 2026), Bild `img/newsletter/2026-11-02-was-tut-mein-geld.webp` (1700 × 957).
+- **Archiv ist freigeschaltet:** `archive.html` ist überall verlinkt (Menü, Footer, „Zum Archiv" auf der Startseite) und indexierbar. `archive-soon.html` bleibt bestehen, hat `noindex`, ihre Navigation zeigt auf `archive.html`.
+- Archiv-Kacheln: Kachel 1 = Ausgabe 01 mit Bild und Link. Kacheln 2 und 3 sind Platzhalter ohne Bild und ohne Link: „Up Next: Was ist Impact Investing" (Rubrik „Newsletter / Impact") und „Up Next: 4 finanzielle Fallen für Frauen" (Rubrik „Newsletter / Inklusion"), je Sprache übersetzt, Präfix „Up Next: " in allen Sprachen.
+- Footer im Archiv = Footer der Startseite (`footer4`: Claim, Tänzerinnen, Social, Formular). Footer der Ausgabenseiten = schlichter Footer mit Menü (bleibt so, Entscheidung 3. November 2026).
+- Quellen außerhalb des Repos: Drive-Ordner `/Users/ks/Library/CloudStorage/GoogleDrive-office@portemonnaie.finance/Meine Ablage/Portemonnaie_Finance/04_CMO_Portemonnaie/04A_Portemonnaie_CMO_Design_Corporate Identity/01_Portemonnaie Website_15.10.2026/` (`CLAUDE.md`, `AENDERUNGEN Website.md`, `DESIGN.md`, `PROMPT_Website-Neuaufbau.md`, `BILDER_UEBERSICHT.md`, Übergaben, Bildordner). Die Ausgaben liegen in `…/04B_Portemonnaie_CMO_Content/01_Newsletter/01_Newsleter Editions/01_FINAL/` als Docx.
 
-## 3. Was die Auftraggeberin pro Ausgabe liefert
+## 3. Gestaltung der Ausgabenseite (Entscheidungen der Auftraggeberin vom 3. November 2026)
 
-Als Text in der Nachricht oder als Datei (docx, pdf, md) je Sprache:
-1. Erscheinungsdatum.
-2. Rubrikzeile für die Kachel in drei Sprachen (z. B. „Newsletter / Werte", „Newsletter / Values", „Newsletter / Valeurs").
-3. Titel in drei Sprachen.
-4. Fließtext in drei Sprachen, Zwischenüberschriften markiert.
-5. Headerbild im Original (Querformat, Breite ab 1700 px). Dasselbe Bild wird Kachelbild im Archiv.
-6. Optional ein Kurztitel für den Dateinamen, sonst aus dem deutschen Titel gebildet.
+Alles in `styles.css`, Abschnitt `.issue-article`. Nicht ohne Go ändern.
+- Kein Bild auf der Ausgabenseite. Das Headerbild ist nur Kachelbild im Archiv.
+- Titel 56 px Newsreader, zentriert. Untertitel (`.issue-article__subtitle`) 30 px Newsreader, zentriert.
+- Datumszeile: „Portemonnaie · 2. November 2026" (EN „2 November 2026", FR „2 novembre 2026"), Versalien, ohne „Von".
+- Zwischenüberschriften (`.issue-article__heading`): Newsreader 24 px, nicht fett, keine Versalien, linksbündig.
+- Fließtext linksbündig, keine Silbentrennung, keine Blocksatz. Absätze direkt hintereinander: 8 px Abstand. Wo im Word eine Leerzeile steht: 28 px (`.issue-article__gap`). Nach einer Zwischenüberschrift einheitlich 12 px.
+- Kursiv aus dem Word als `<em>`, Fett als `<strong>`, Hyperlinks als `<a target="_blank" rel="noopener">`.
+- Papierhintergrund `body.paper` mit `img/papier.webp` (2000 × 2800, seit 13. Oktober 2026 im Repo).
 
-Fehlt etwas: fragen, nichts erfinden, nichts übersetzen (Regel 2).
+## 4. Was die Auftraggeberin pro Ausgabe liefert
 
-## 4. Ablauf pro Ausgabe
+1. Die Docx mit Word-Formatvorlagen, so wie Ausgabe 01: **Überschrift 1** = Titel, direkt danach **Überschrift 2** = Untertitel, **Überschrift 3** = Zwischenüberschriften, alles andere = Fließtext. Reihenfolge der Sprachen EN, DE, FR; optional davor eine Markerzeile („EN 02.11.2026") in Überschrift 1. Kursiv, Fett und Hyperlinks im Word werden übernommen. Leerzeilen im Word steuern die Absatzabstände.
+2. Erscheinungsdatum.
+3. Rubrikzeile für die Kachel (z. B. „Newsletter / Impact"), bei Bedarf je Sprache.
+4. Headerbild im Original (Querformat, Breite ab 1700 px) als Dateipfad. Nur für die Kachel.
+5. Optional ein Kurztitel für den Dateinamen, sonst aus dem deutschen Titel gebildet.
+6. Optional die Titel der nächsten „Up Next"-Kacheln.
 
-Jede Ausgabe ist eine Runde mit eigener Versionsnummer (Regel 6). Arbeitsbranch `content`, von `main` abgezweigt.
+Fehlt etwas: fragen, nichts erfinden, nichts übersetzen (Regel 2). Ausnahme: Die Auftraggeberin hat am 3. November 2026 ausdrücklich Übersetzungen der „Up Next"-Kacheltitel beauftragt. Tippfehler im Text bleiben 1:1 und werden im Bericht genannt. Der Generator korrigiert nur Typografie (doppelte Leerzeichen, Apostroph, Halbgeviertstrich).
 
-1. **Bild messen und wandeln.** Maße des Originals mit `sips -g pixelWidth -g pixelHeight` lesen. Dann nach `img/newsletter/JJJJ-MM-TT-kurztitel.webp`:
-   `cwebp -q 82 -resize 1700 0 ORIGINAL -o img/newsletter/JJJJ-MM-TT-kurztitel.webp`. Ergebnismaße wieder messen und in `width`/`height` eintragen.
-2. **Seite anlegen:** `cp newsletter/template.html newsletter/JJJJ-MM-TT-kurztitel.html`. Ersetzen:
-   - `<title data-lang-title-de/en/fr>`: drei Titel plus „ – Portemonnaie".
-   - `<meta name="description">`: ein Satz.
-   - Drei `<header class="issue-article__head" data-lang-content="de|en|fr">`: Titel und Datumszeile mit `<time datetime="JJJJ-MM-TT">`, Datum ausgeschrieben („12. Oktober 2026", „12 October 2026", „12 octobre 2026").
-   - `<figure class="issue-article__figure">`: `src="../img/newsletter/….webp"`, `width`, `height`, kurzer `alt`.
-   - Drei `<div class="issue-article__body" data-lang-content="de|en|fr">`: Absätze als `<p>`, Zwischenüberschriften als `<h2 class="issue-article__heading">`. Typografische Anführungszeichen („…" / “…” / « … »), Halbgeviertstrich mit Leerzeichen, keine doppelten Leerzeichen.
-   - Pfade `../styles.css?v=NNN` und `../fonts/fonts.css?v=1` wie in der Vorlage lassen.
-3. **Kachel im Archiv:** in `archive.html` oben in `<ul class="archive__grid">` einfügen (neueste zuerst):
+## 5. Ablauf pro Ausgabe
+
+Jede Ausgabe ist eine Runde mit eigener Versionsnummer (Regel 6). Arbeitsbranch `content`: vorher `git fetch`, prüfen, dass `content` auf `origin/main` steht, sonst `content` von `main` neu abzweigen.
+
+1. **Bild messen und wandeln.** `sips -g pixelWidth -g pixelHeight ORIGINAL`, dann
+   `cwebp -q 82 -resize 1700 0 ORIGINAL -o img/newsletter/JJJJ-MM-TT-kurztitel.webp`. Ergebnismaße messen, sie kommen in `width`/`height` der Kachel.
+2. **Seite erzeugen:**
+   `python3 -I newsletter/build_issue.py --docx "PFAD/Ausgabe.docx" --date JJJJ-MM-TT --slug kurztitel`
+   schreibt `newsletter/JJJJ-MM-TT-kurztitel.html` aus `newsletter/template.html`. Ausgabe des Skripts lesen: Titel, Zahl der Absätze und Zwischenüberschriften je Sprache müssen zur Docx passen. Danach die Seite mit der Docx vergleichen: alle Zwischenüberschriften, alle Kursiv- und Fett-Stellen, alle Links (`grep -o '<em>[^<]*</em>' …`). Bricht das Skript ab, hat die Docx eine andere Struktur: zuerst die Absätze mit Stil und Runs ausgeben (Skript `read_docx`), nichts raten.
+   Meta-Description: Standard ist „Portemonnaie Newsletter: {deutscher Untertitel}.", sonst `--description`.
+3. **Kachel im Archiv:** in `archive.html` oben in `<ul class="archive__grid">` einfügen, neueste zuerst. Vorlage ist Kachel 1. Wenn die Ausgabe eine bestehende „Up Next"-Kachel einlöst: diese Kachel ersetzen, Titel und Rubrik der echten Ausgabe setzen, Bild und Links (`<a class="issue__media" …>` und `<a>` um den Titel) hinzufügen. Platzhalter-Kacheln bleiben ohne `<a>` (nicht anklickbar), mit `<div class="issue__media" aria-hidden="true"></div>` als leerer Fläche.
    ```html
    <li class="issue">
      <a class="issue__media" href="newsletter/JJJJ-MM-TT-kurztitel.html" tabindex="-1" aria-hidden="true"><img src="img/newsletter/JJJJ-MM-TT-kurztitel.webp" alt="" width="…" height="…" loading="lazy" /></a>
@@ -83,36 +93,37 @@ Jede Ausgabe ist eine Runde mit eigener Versionsnummer (Regel 6). Arbeitsbranch 
      <h2 class="issue__title"><a href="newsletter/JJJJ-MM-TT-kurztitel.html"><span data-lang-content="de">Titel DE</span><span data-lang-content="en">Titel EN</span><span data-lang-content="fr">Titel FR</span></a></h2>
    </li>
    ```
-   Kachel 424 × 224 mit `object-fit: cover`, Querformat wird mittig beschnitten.
-4. **Prüfen (Regel 7, nicht raten):** Server starten (Abschnitt 6). `http://localhost:8082/archive.html` und die neue Seite jeweils mit `?lang=de`, `?lang=en`, `?lang=fr`: sichtbarer Block passt zur Sprache, Tab-Titel, Bild lädt (naturalWidth > 0), Datum, Umbrüche, Breite 375 px ohne horizontalen Überlauf (`document.documentElement.scrollWidth` = 375). Screenshots an die Auftraggeberin.
-5. **Commit** auf `content`, Nachricht z. B. `Newsletter 2026-11-09: Titel (DE/EN/FR), v1.26110901`. Bericht: gebaut, getestet, offen. Auf Go warten.
-6. **Live nach Go:** Branch pushen, `main` fast-forwarden, pushen. Deploy-Status: `gh api "repos/{owner}/{repo}/deployments?environment=Production&per_page=1"` und `/deployments/ID/statuses`. Dann die Live-Seite im App-Browser öffnen (curl wird von Vercel blockiert) und die Ausgabe in drei Sprachen aufrufen.
+   Kachel 424 × 224 mit `object-fit: cover`, Querformat wird mittig beschnitten. Drei Kacheln pro Reihe; am Handy untereinander.
+4. **Prüfen (Regel 7, nicht raten):** Server starten (Abschnitt 7). `http://localhost:8082/archive.html` und die neue Seite jeweils mit `?lang=de`, `?lang=en`, `?lang=fr`: sichtbarer Block passt zur Sprache, Tab-Titel, Kachelbild lädt (naturalWidth > 0), Datum, Zwischenüberschriften, Kursiv, Links, Breite 375 px ohne horizontalen Überlauf (`document.documentElement.scrollWidth` = 375). Screenshots an die Auftraggeberin, Adresse nennen (sie sieht dieselbe Adresse in ihrem Browser).
+5. **Commit** auf `content`, Nachricht z. B. `Newsletter 2026-11-09: Titel (DE/EN/FR), v1.26110901`. Vorher prüfen, dass der Branch `content` ist. Eintrag in `AENDERUNGEN Website.md` (Regel 20). Bericht: gebaut, getestet, offen. Auf Go warten.
+6. **Live nach Go:** `git push origin content`, dann `git checkout main && git merge --ff-only content && git push origin main`, zurück auf `content`. Deploy-Status: `gh api "repos/{owner}/{repo}/deployments?environment=Production&per_page=3" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"'`, dann `gh api "repos/{owner}/{repo}/deployments/ID/statuses" --jq '.[0].state'`. Das Deploy erscheint wenige Sekunden nach dem Push. Dann die Live-Seite im App-Browser öffnen (curl wird von Vercel blockiert) und Archiv und Ausgabe in drei Sprachen aufrufen. Danach in `AENDERUNGEN Website.md` die Spalte „Stand" der Runden auf „main, live seit …" setzen.
 
-## 5. Nur bei der ersten Ausgabe: Archiv freischalten
+Nur bei Änderungen an `styles.css`, `i18n.js` oder `script.js`: `?v=` in allen HTML-Dateien erhöhen (`find . -name '*.html' -exec sed -i '' 's/?v=124/?v=125/g' {} +`). Eine neue Ausgabe allein braucht keinen Bump.
 
-Das ist eine eigene Runde mit eigenem Go (Regel 4), getrennt vom Einstellen der Ausgabe.
-1. Die drei Platzhalter-Kacheln in `archive.html` löschen, die echte Kachel einsetzen.
-2. `<meta name="robots" content="noindex" />` in `archive.html` entfernen.
-3. Links von `archive-soon.html` auf `archive.html` umstellen. Fundstellen (Stand 2. November 2026): `index.html` (Menü und „Zum Archiv" unter dem Formular), `about.html`, `collabs.html`, `coming-soon.html`, `impressum.html`, `privacy.html`, `confirmed.html`, `archive.html` (Footer-Menü), `newsletter/template.html` (zweimal, mit `../`). Kontrolle: `grep -rn 'archive-soon.html' --include='*.html' .` darf danach nur noch `archive-soon.html` selbst treffen.
-4. `archive-soon.html` behalten, mit `noindex` versehen, deren eigene Navigation auf `archive.html` zeigen lassen.
-5. Vor dem Löschen von Dateien warnen (Regel 10). Hier wird nichts gelöscht.
+## 6. Ausgabe 01, Besonderheiten
 
-## 6. Technik
+- Die PS-Zeile wurde am 3. November 2026 nach einer Nachricht der Auftraggeberin manuell ersetzt (Aufzählung ohne „zu der unter anderem … gehören", Satz in allen drei Sprachen kursiv, EN ohne Punkt am Ende). Die Docx im FINAL-Ordner hat noch den alten Wortlaut. Wird Ausgabe 01 je aus der Docx neu erzeugt, die PS-Zeile aus der Live-Seite übernehmen oder die Docx vorher korrigieren lassen.
+- Der englische Untertitel steht in der Docx mit führendem Spiegelstrich („- What a bank …"); der Generator entfernt ihn.
+- Datum 2. November 2026 (ein Montag) wie in der Docx. Der Hinweis „sonntags 10:00" steht nur auf `archive-soon.html`.
+- Bekannte Tippfehler im gelieferten Text, 1:1 belassen: DE „bpsw", „Websiten", „wo anders"; FR „entreprises européenne", „ONGs".
+
+## 7. Technik
 
 - **Vorschau-Server:** Der eingebaute Vorschau-Server der App darf nicht auf „Documents" zugreifen. Per Bash im Hintergrund:
-  `python3 -m http.server 8082 --directory /Users/ks/Documents/FemTech/Money-Tree`
-  oder das `serve.py` aus dem Scratchpad (liefert ohne Cache). Dann im App-Browser `http://localhost:8082/…`. Höchstens vier bis fünf Screenshots pro Aufruf, sonst werden Bilder verworfen. Handy-Ansicht über `resize_window` Preset `mobile`, danach `desktop` zurücksetzen. Die Auftraggeberin sieht die Seite in ihrem Browser unter derselben Adresse.
-- **Sprachen:** `i18n.js` setzt `<html lang>` aus `?lang=`, sonst aus `localStorage` (`pm_lang`), sonst Browser. Blöcke mit `data-lang-content="de|en|fr"` zeigt das CSS nur für die passende Sprache (Abschnitt 15 in `styles.css`). Seitentitel pro Sprache über `data-lang-title-de/en/fr`. Menü, Footer, Formulare aus den Wörterbüchern in `i18n.js` (`data-i18n`).
-- **Cache:** Nur wenn `styles.css`, `i18n.js` oder `script.js` geändert werden, `?v=` in allen HTML-Dateien erhöhen (Skill `bump-cache` oder `find . -name '*.html' -exec sed -i '' 's/?v=120/?v=121/g' {} +`). Neue Ausgaben allein brauchen keinen Bump.
-- **Bild-Pipeline (kritisch, Regel 5):** `cwebp`/`dwebp` installiert, ImageMagick und Pillow nicht. `sips` skaliert und schreibt PNG. Bestehende Bilder in `img/` nie überschreiben oder neu komprimieren; neue Ausgabenbilder nur in `img/newsletter/`. Papierhintergrund der Ausgaben: `body.paper` mit `img/papier.webp`.
-- **Vercel:** Attack Challenge Mode blockt curl; Preview-URLs brauchen Vercel-Login (nur die Auftraggeberin kann sie öffnen). Deploy-Status über `gh api`, nicht raten.
-- **Brevo:** Der Newsletter wird in Brevo versendet (nicht Teil des Repos). Empfehlung: im Brevo-Newsletter einen Link „Im Browser lesen" auf die Ausgabenseite mit `?lang=de|en|fr` passend zur Kontaktsprache setzen. Das ist ein Vorschlag, kein Auftrag.
+  `python3 -m http.server 8082 --bind 127.0.0.1 --directory /Users/ks/Documents/FemTech/Money-Tree`
+  oder ein kleiner Server mit `Cache-Control: no-store` im Scratchpad. Dann `preview_start` mit `landing-attach` und im App-Browser `http://localhost:8082/…`. Höchstens vier bis fünf Screenshots pro Aufruf. Handy-Ansicht über `resize_window` Preset `mobile`, Desktop über `width 1440, height 900`, danach `desktop` zurücksetzen. Scrollen zum Prüfen per `scrollTo({top, behavior: 'instant'})`, die Seite hat `scroll-behavior: smooth`.
+- **Sprachen:** `i18n.js` setzt `<html lang>` aus `?lang=`, sonst aus `localStorage` (`pm_lang`), sonst Browser. Blöcke mit `data-lang-content="de|en|fr"` zeigt das CSS nur für die passende Sprache. Seitentitel pro Sprache über `data-lang-title-de/en/fr`. Menü, Footer, Formulare aus den Wörterbüchern in `i18n.js`. Sichtbarkeit im Test über `getClientRects().length > 0` prüfen, nicht über `display` des Kindelements.
+- **Bild-Pipeline (kritisch, Regel 5):** `cwebp`/`dwebp` installiert, ImageMagick und Pillow nicht. `sips` misst und skaliert. Bestehende Bilder in `img/` nie überschreiben oder neu komprimieren; neue Ausgabenbilder nur in `img/newsletter/`.
+- **Docx lesen:** `textutil -convert txt` zeigt nur den Text. Formatvorlagen, Kursiv, Fett und Links stehen in `word/document.xml` (Runs `w:r` mit `w:rPr/w:b`, `w:i`, Hyperlinks `w:hyperlink` mit `r:id` auf `word/_rels/document.xml.rels`). `newsletter/build_issue.py` liest genau das; Python ohne Zusatzpakete.
+- **Vercel:** Attack Challenge Mode blockt curl; Preview-URLs brauchen Vercel-Login. Deploy-Status über `gh api`, nicht raten.
+- **Brevo:** Der Newsletter wird in Brevo versendet (nicht Teil des Repos). Empfehlung: im Brevo-Newsletter einen Link „Im Browser lesen" auf die Ausgabenseite mit `?lang=de|en|fr` passend zur Kontaktsprache setzen. Vorschlag, kein Auftrag.
 
-## 7. Offene Punkte außerhalb des Newsletters (Stand 2. November 2026)
+## 8. Offene Punkte (Stand 3. November 2026)
 
 - Social-Links (Bluesky, Substack, LinkedIn) sind Platzhalter auf die Plattform-Startseiten.
 - Rechtstexte: FR zeigt EN; juristische Prüfung steht aus.
 - Hero-Foto in Originalauflösung, Wikimedia-Lizenzen prüfen.
 - Zustimmungs-Checkbox im Footer-Formular: Entscheidung offen.
+- Veralteten Branch `redesign-canva` löschen (lokal und GitHub), nur mit Go.
+- `CLAUDE.md` im Repo: Ordnerstruktur ist veraltet (kein `newsletter/`, `fonts/`, `email/`), nur mit Go.
 - Danach: Rechner, Quiz und Explorer im neuen Design neu bauen (alter Code auf `develop` und Tag `landing-v1`).
-- Veralteten Branch `redesign-canva` löschen (lokal und GitHub), `CLAUDE.md` im Repo: Ordnerstruktur aktualisieren und auf die Regeldatei im Drive-Ordner verweisen. Beides nur mit Go.
