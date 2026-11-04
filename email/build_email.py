@@ -17,10 +17,10 @@ SITE = "https://portemonnaie.finance/"
 
 # Bild-URLs aus der Brevo-Mediathek (Bibliothek → Medien). Leer = noch nicht hochgeladen, dann bleibt der lokale Pfad.
 IMAGES_BREVO = {
-    "head-en": "",
-    "head-de": "",
-    "head-fr": "",
-    "footer": "",
+    "head-en": "https://img.mailinblue.com/11224085/images/content_library/original/6aeb7deee31f4bac9aec013c.png",
+    "head-de": "https://img.mailinblue.com/11224085/images/content_library/original/6aeb7dee0cff5b6235787f25.png",
+    "head-fr": "https://img.mailinblue.com/11224085/images/content_library/original/6aeb7dee0cff5b6235787f24.png",
+    "footer": "https://img.mailinblue.com/11224085/images/content_library/original/6aeb7dee0265291013813be3.png",
 }
 
 def img_url(key, local):
