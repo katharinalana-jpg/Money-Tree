@@ -11,11 +11,9 @@
   <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
   <![endif]-->
   <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet" type="text/css" />
   <style type="text/css">
-    /* Markenschriften (selbst gehostet, DESIGN.md). Clients ohne Webfont-Unterstützung zeigen Georgia / Helvetica. */
-    @font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; src: url(https://portemonnaie.finance/fonts/dm-serif-display-2.woff2) format('woff2'); }
-    @font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400; src: url(https://portemonnaie.finance/fonts/newsreader-1.woff2) format('woff2'); }
-    @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400 700; src: url(https://portemonnaie.finance/fonts/dm-sans-1.woff2) format('woff2'); }
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Newsreader:opsz,wght@6..72,400&display=swap');
   </style>
   <!--<![endif]-->
   <style type="text/css">
@@ -27,12 +25,10 @@
     a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
     @media screen and (max-width: 640px) {
       .wrap { width: 100% !important; }
-      .pad { padding-left: 20px !important; padding-right: 20px !important; }
-      .headline { font-size: 36px !important; line-height: 1.1 !important; }
-      .stack { display: block !important; width: 100% !important; }
-      .stack-img { padding-top: 18px !important; }
-      .btn-td { display: block !important; }
-      .btn-a { display: block !important; text-align: center !important; }
+      .pad { padding-left: 24px !important; padding-right: 24px !important; }
+      .pad-foot { padding-left: 8px !important; }
+      .btn-td { display: block !important; width: auto !important; }
+      .btn-a { display: block !important; }
     }
   </style>
 </head>
@@ -43,38 +39,39 @@
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F6F5EE;">
     <tr>
-      <td align="center" style="padding:32px 16px 40px 16px;">
+      <td align="center" style="padding:24px 0 40px 0;">
         <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
         <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
 
-          <!-- KOPF: Logo-Schriftzug, dünne Linie darunter (wie Website-Header) -->
+          <!-- KOPF (Bild aus Canva): Logo in DM Serif Display, zwei Linien, Headline in The Youngest Serif -->
           <tr>
-            <td class="pad" style="padding:0 24px 14px 24px; border-bottom:1px solid #000000;">
-              <a href="https://portemonnaie.finance/" style="font-family:'DM Serif Display', Georgia, 'Times New Roman', serif; font-size:24px; line-height:1.2; color:#000000; text-decoration:none;">Portemonnaie</a>
+            <td style="padding:0;">
+              <a href="https://portemonnaie.finance/" style="text-decoration:none;"><img src="img/head-de.png" width="600" height="120" alt="Portemonnaie. Willkommen im Club" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
             </td>
           </tr>
 
-          <!-- ANREDE + HEADLINE -->
+          <!-- TEXT DE: Anrede -->
           <tr>
-            <td class="pad" style="padding:56px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Hallo{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
+            <td class="pad" style="padding:56px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Hallo{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
           </tr>
+          <!-- TEXT DE: Absatz 1 -->
           <tr>
-            <td class="pad headline" style="padding:10px 24px 0 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:44px; line-height:1.1; font-weight:400; color:#000000;">Fast geschafft.</td>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Danke, dass du dich für den Portemonnaie-Newsletter eingetragen hast. Ab jetzt kommt er jeden Sonntag um 10 Uhr zu dir.</td>
+          </tr>
+          <!-- TEXT DE: Absatz 2 -->
+          <tr>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Bitte bestätige deine E-Mail-Adresse mit einem Klick auf den Button.</td>
           </tr>
 
-          <!-- TEXT -->
+          <!-- BUTTON: Pill nur mit 1 px Rand (wie in der Canva-Vorlage), Text in Newsreader -->
           <tr>
-            <td class="pad" style="padding:24px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Danke, dass du dich für den Portemonnaie-Newsletter eingetragen hast. Bitte bestätige deine E-Mail-Adresse mit einem Klick auf den Button. Danach kommt der Newsletter jeden Sonntag um 10 Uhr zu dir.</td>
-          </tr>
-
-          <!-- BUTTON: Pill, Creme gefüllt, 1 px schwarzer Rand (wie "Newsletter abonnieren" im Footer) -->
-          <tr>
-            <td class="pad" style="padding:36px 24px 0 24px;">
+            <td class="pad" align="center" style="padding:44px 44px 0 44px;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;">
                 <tr>
-                  <td class="btn-td" align="center" style="border:1px solid #000000; border-radius:999px; background-color:#EEECDE; mso-padding-alt:0;">
-                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:28pt;">&nbsp;</i><![endif]-->
-                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=de" style="display:inline-block; padding:15px 40px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:19px; line-height:1.2; letter-spacing:0.02em; text-transform:uppercase; color:#000000; text-decoration:none; border-radius:999px;">E-Mail-Adresse bestätigen</a>
+                  <td class="btn-td" align="center" width="372" style="width:372px; border:1px solid #000000; border-radius:999px; background-color:#F6F5EE; mso-padding-alt:0;">
+                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:30pt;">&nbsp;</i><![endif]-->
+                    <!-- TEXT DE: Button -->
+                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=de" style="display:inline-block; padding:18px 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:21px; line-height:1.2; color:#000000; text-decoration:none; border-radius:999px;">E-Mail-Adresse bestätigen</a>
                     <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%;">&nbsp;</i><![endif]-->
                   </td>
                 </tr>
@@ -82,34 +79,27 @@
             </td>
           </tr>
 
-          <!-- HINWEISE -->
+          <!-- TEXT DE: Hinweis -->
           <tr>
-            <td class="pad" style="padding:32px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Du hast dich nicht angemeldet? Dann ignoriere diese E-Mail einfach. Es passiert nichts weiter.</td>
-          </tr>
-          <tr>
-            <td class="pad" style="padding:12px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Der Button funktioniert nicht? Kopiere diesen Link in deinen Browser:<br /><a href="https://portemonnaie.finance/confirmed.html?lang=de" style="color:#000000; text-decoration:underline; word-break:break-all;">https://portemonnaie.finance/confirmed.html?lang=de</a></td>
+            <td class="pad" style="padding:48px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:14px; line-height:1.5; color:#333333;">Du hast dich nicht angemeldet? Dann ignoriere diese E-Mail einfach. Es passiert nichts weiter.</td>
           </tr>
 
-          <!-- FUSS: Claim links, Tänzerinnen rechts (Startseiten-Footer) -->
+          <!-- FUSS (Bild aus Canva): Claim links, Tänzerinnen rechts -->
           <tr>
-            <td class="pad" style="padding:64px 24px 0 24px; border-bottom:1px solid #000000;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td class="stack" width="50%" valign="bottom" style="padding:0 0 18px 0; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:28px; line-height:1.1; letter-spacing:0.01em; text-transform:uppercase; color:#000000;">Money is power.<br />Use yours.</td>
-                  <td class="stack stack-img" width="50%" align="right" valign="bottom" style="padding:0;">
-                    <img src="https://img.mailinblue.com/11224085/images/content_library/original/6ace17ace58328a282730e11.png" width="260" height="195" alt="" style="width:260px; height:auto; max-width:100%; display:block; margin-left:auto;" />
-                  </td>
-                </tr>
-              </table>
+            <td class="pad-foot" style="padding:28px 0 0 15px;">
+              <img src="img/footer.png" width="585" height="134" alt="Money is power. Use yours." style="width:100%; max-width:585px; height:auto; display:block;" />
             </td>
           </tr>
           <tr>
-            <td class="pad" style="padding:16px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:10px; line-height:1.4; letter-spacing:0.04em; text-transform:uppercase; color:#000000;">
-              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Impressum</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Datenschutzerklärung</a>
+            <td class="pad" style="padding:8px 44px 0 44px;">
+              <div style="height:1px; line-height:1px; font-size:1px; background-color:#000000;">&nbsp;</div>
             </td>
           </tr>
+          <!-- TEXT DE: Fußzeile -->
           <tr>
-            <td class="pad" style="padding:14px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.5; color:#000000;">Du erhältst diese E-Mail, weil du dich auf portemonnaie.finance für den Newsletter eingetragen hast.</td>
+            <td class="pad" style="padding:16px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.4; letter-spacing:0.06em; text-transform:uppercase; color:#000000;">
+              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Impressum</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Datenschutzerklärung</a>
+            </td>
           </tr>
 
         </table>
@@ -124,38 +114,39 @@
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F6F5EE;">
     <tr>
-      <td align="center" style="padding:32px 16px 40px 16px;">
+      <td align="center" style="padding:24px 0 40px 0;">
         <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
         <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
 
-          <!-- KOPF: Logo-Schriftzug, dünne Linie darunter (wie Website-Header) -->
+          <!-- KOPF (Bild aus Canva): Logo in DM Serif Display, zwei Linien, Headline in The Youngest Serif -->
           <tr>
-            <td class="pad" style="padding:0 24px 14px 24px; border-bottom:1px solid #000000;">
-              <a href="https://portemonnaie.finance/" style="font-family:'DM Serif Display', Georgia, 'Times New Roman', serif; font-size:24px; line-height:1.2; color:#000000; text-decoration:none;">Portemonnaie</a>
+            <td style="padding:0;">
+              <a href="https://portemonnaie.finance/" style="text-decoration:none;"><img src="img/head-fr.png" width="600" height="120" alt="Portemonnaie. Bienvenue au club" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
             </td>
           </tr>
 
-          <!-- ANREDE + HEADLINE -->
+          <!-- TEXT FR: Anrede -->
           <tr>
-            <td class="pad" style="padding:56px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Bonjour{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
+            <td class="pad" style="padding:56px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Bonjour{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
           </tr>
+          <!-- TEXT FR: Absatz 1 -->
           <tr>
-            <td class="pad headline" style="padding:10px 24px 0 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:44px; line-height:1.1; font-weight:400; color:#000000;">On y est presque.</td>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Merci pour ton inscription à la newsletter Portemonnaie. Elle arrivera désormais chaque dimanche à 10 h.</td>
+          </tr>
+          <!-- TEXT FR: Absatz 2 -->
+          <tr>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Confirme ton adresse e-mail en cliquant sur le bouton ci-dessous.</td>
           </tr>
 
-          <!-- TEXT -->
+          <!-- BUTTON: Pill nur mit 1 px Rand (wie in der Canva-Vorlage), Text in Newsreader -->
           <tr>
-            <td class="pad" style="padding:24px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Merci pour ton inscription à la newsletter Portemonnaie. Confirme ton adresse e-mail en cliquant sur le bouton ci-dessous. Ensuite, la newsletter arrivera chaque dimanche à 10 h.</td>
-          </tr>
-
-          <!-- BUTTON: Pill, Creme gefüllt, 1 px schwarzer Rand (wie "Newsletter abonnieren" im Footer) -->
-          <tr>
-            <td class="pad" style="padding:36px 24px 0 24px;">
+            <td class="pad" align="center" style="padding:44px 44px 0 44px;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;">
                 <tr>
-                  <td class="btn-td" align="center" style="border:1px solid #000000; border-radius:999px; background-color:#EEECDE; mso-padding-alt:0;">
-                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:28pt;">&nbsp;</i><![endif]-->
-                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=fr" style="display:inline-block; padding:15px 40px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:19px; line-height:1.2; letter-spacing:0.02em; text-transform:uppercase; color:#000000; text-decoration:none; border-radius:999px;">Confirmer mon adresse e-mail</a>
+                  <td class="btn-td" align="center" width="372" style="width:372px; border:1px solid #000000; border-radius:999px; background-color:#F6F5EE; mso-padding-alt:0;">
+                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:30pt;">&nbsp;</i><![endif]-->
+                    <!-- TEXT FR: Button -->
+                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=fr" style="display:inline-block; padding:18px 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:21px; line-height:1.2; color:#000000; text-decoration:none; border-radius:999px;">Confirmer mon adresse e-mail</a>
                     <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%;">&nbsp;</i><![endif]-->
                   </td>
                 </tr>
@@ -163,34 +154,27 @@
             </td>
           </tr>
 
-          <!-- HINWEISE -->
+          <!-- TEXT FR: Hinweis -->
           <tr>
-            <td class="pad" style="padding:32px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Ce n'était pas toi ? Ignore simplement cet e-mail. Il ne se passera rien de plus.</td>
-          </tr>
-          <tr>
-            <td class="pad" style="padding:12px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Le bouton ne fonctionne pas ? Copie ce lien dans ton navigateur :<br /><a href="https://portemonnaie.finance/confirmed.html?lang=fr" style="color:#000000; text-decoration:underline; word-break:break-all;">https://portemonnaie.finance/confirmed.html?lang=fr</a></td>
+            <td class="pad" style="padding:48px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:14px; line-height:1.5; color:#333333;">Ce n'était pas toi ? Ignore simplement cet e-mail. Il ne se passera rien de plus.</td>
           </tr>
 
-          <!-- FUSS: Claim links, Tänzerinnen rechts (Startseiten-Footer) -->
+          <!-- FUSS (Bild aus Canva): Claim links, Tänzerinnen rechts -->
           <tr>
-            <td class="pad" style="padding:64px 24px 0 24px; border-bottom:1px solid #000000;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td class="stack" width="50%" valign="bottom" style="padding:0 0 18px 0; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:28px; line-height:1.1; letter-spacing:0.01em; text-transform:uppercase; color:#000000;">Money is power.<br />Use yours.</td>
-                  <td class="stack stack-img" width="50%" align="right" valign="bottom" style="padding:0;">
-                    <img src="https://img.mailinblue.com/11224085/images/content_library/original/6ace17ace58328a282730e11.png" width="260" height="195" alt="" style="width:260px; height:auto; max-width:100%; display:block; margin-left:auto;" />
-                  </td>
-                </tr>
-              </table>
+            <td class="pad-foot" style="padding:28px 0 0 15px;">
+              <img src="img/footer.png" width="585" height="134" alt="Money is power. Use yours." style="width:100%; max-width:585px; height:auto; display:block;" />
             </td>
           </tr>
           <tr>
-            <td class="pad" style="padding:16px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:10px; line-height:1.4; letter-spacing:0.04em; text-transform:uppercase; color:#000000;">
-              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Mentions légales</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Politique de confidentialité</a>
+            <td class="pad" style="padding:8px 44px 0 44px;">
+              <div style="height:1px; line-height:1px; font-size:1px; background-color:#000000;">&nbsp;</div>
             </td>
           </tr>
+          <!-- TEXT FR: Fußzeile -->
           <tr>
-            <td class="pad" style="padding:14px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.5; color:#000000;">Tu reçois cet e-mail parce que cette adresse a été inscrite à la newsletter sur portemonnaie.finance.</td>
+            <td class="pad" style="padding:16px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.4; letter-spacing:0.06em; text-transform:uppercase; color:#000000;">
+              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Mentions légales</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Politique de confidentialité</a>
+            </td>
           </tr>
 
         </table>
@@ -205,38 +189,39 @@
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F6F5EE;">
     <tr>
-      <td align="center" style="padding:32px 16px 40px 16px;">
+      <td align="center" style="padding:24px 0 40px 0;">
         <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
         <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
 
-          <!-- KOPF: Logo-Schriftzug, dünne Linie darunter (wie Website-Header) -->
+          <!-- KOPF (Bild aus Canva): Logo in DM Serif Display, zwei Linien, Headline in The Youngest Serif -->
           <tr>
-            <td class="pad" style="padding:0 24px 14px 24px; border-bottom:1px solid #000000;">
-              <a href="https://portemonnaie.finance/" style="font-family:'DM Serif Display', Georgia, 'Times New Roman', serif; font-size:24px; line-height:1.2; color:#000000; text-decoration:none;">Portemonnaie</a>
+            <td style="padding:0;">
+              <a href="https://portemonnaie.finance/" style="text-decoration:none;"><img src="img/head-en.png" width="600" height="120" alt="Portemonnaie. Welcome to the club" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
             </td>
           </tr>
 
-          <!-- ANREDE + HEADLINE -->
+          <!-- TEXT EN: Anrede -->
           <tr>
-            <td class="pad" style="padding:56px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Hello{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
+            <td class="pad" style="padding:56px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Hello{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %},</td>
           </tr>
+          <!-- TEXT EN: Absatz 1 -->
           <tr>
-            <td class="pad headline" style="padding:10px 24px 0 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:44px; line-height:1.1; font-weight:400; color:#000000;">Almost there.</td>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Thank you for signing up for the Portemonnaie newsletter. From now on it arrives every Sunday at 10 am.</td>
+          </tr>
+          <!-- TEXT EN: Absatz 2 -->
+          <tr>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:19px; line-height:1.5; color:#000000;">Please confirm your email address by clicking the button below.</td>
           </tr>
 
-          <!-- TEXT -->
+          <!-- BUTTON: Pill nur mit 1 px Rand (wie in der Canva-Vorlage), Text in Newsreader -->
           <tr>
-            <td class="pad" style="padding:24px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:17px; line-height:1.6; color:#000000;">Thank you for signing up for the Portemonnaie newsletter. Please confirm your email address by clicking the button below. From then on, the newsletter arrives every Sunday at 10 am.</td>
-          </tr>
-
-          <!-- BUTTON: Pill, Creme gefüllt, 1 px schwarzer Rand (wie "Newsletter abonnieren" im Footer) -->
-          <tr>
-            <td class="pad" style="padding:36px 24px 0 24px;">
+            <td class="pad" align="center" style="padding:44px 44px 0 44px;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;">
                 <tr>
-                  <td class="btn-td" align="center" style="border:1px solid #000000; border-radius:999px; background-color:#EEECDE; mso-padding-alt:0;">
-                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:28pt;">&nbsp;</i><![endif]-->
-                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=en" style="display:inline-block; padding:15px 40px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:19px; line-height:1.2; letter-spacing:0.02em; text-transform:uppercase; color:#000000; text-decoration:none; border-radius:999px;">Confirm email address</a>
+                  <td class="btn-td" align="center" width="372" style="width:372px; border:1px solid #000000; border-radius:999px; background-color:#F6F5EE; mso-padding-alt:0;">
+                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:30pt;">&nbsp;</i><![endif]-->
+                    <!-- TEXT EN: Button -->
+                    <a class="btn-a" href="https://portemonnaie.finance/confirmed.html?lang=en" style="display:inline-block; padding:18px 24px; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:21px; line-height:1.2; color:#000000; text-decoration:none; border-radius:999px;">Confirm email address</a>
                     <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%;">&nbsp;</i><![endif]-->
                   </td>
                 </tr>
@@ -244,34 +229,27 @@
             </td>
           </tr>
 
-          <!-- HINWEISE -->
+          <!-- TEXT EN: Hinweis -->
           <tr>
-            <td class="pad" style="padding:32px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Didn't sign up? Then simply ignore this email. Nothing else will happen.</td>
-          </tr>
-          <tr>
-            <td class="pad" style="padding:12px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:13px; line-height:1.5; color:#000000;">Button not working? Copy this link into your browser:<br /><a href="https://portemonnaie.finance/confirmed.html?lang=en" style="color:#000000; text-decoration:underline; word-break:break-all;">https://portemonnaie.finance/confirmed.html?lang=en</a></td>
+            <td class="pad" style="padding:48px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:14px; line-height:1.5; color:#333333;">Didn't sign up? Then simply ignore this email. Nothing else will happen.</td>
           </tr>
 
-          <!-- FUSS: Claim links, Tänzerinnen rechts (Startseiten-Footer) -->
+          <!-- FUSS (Bild aus Canva): Claim links, Tänzerinnen rechts -->
           <tr>
-            <td class="pad" style="padding:64px 24px 0 24px; border-bottom:1px solid #000000;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td class="stack" width="50%" valign="bottom" style="padding:0 0 18px 0; font-family:'Newsreader', Georgia, 'Times New Roman', serif; font-size:28px; line-height:1.1; letter-spacing:0.01em; text-transform:uppercase; color:#000000;">Money is power.<br />Use yours.</td>
-                  <td class="stack stack-img" width="50%" align="right" valign="bottom" style="padding:0;">
-                    <img src="https://img.mailinblue.com/11224085/images/content_library/original/6ace17ace58328a282730e11.png" width="260" height="195" alt="" style="width:260px; height:auto; max-width:100%; display:block; margin-left:auto;" />
-                  </td>
-                </tr>
-              </table>
+            <td class="pad-foot" style="padding:28px 0 0 15px;">
+              <img src="img/footer.png" width="585" height="134" alt="Money is power. Use yours." style="width:100%; max-width:585px; height:auto; display:block;" />
             </td>
           </tr>
           <tr>
-            <td class="pad" style="padding:16px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:10px; line-height:1.4; letter-spacing:0.04em; text-transform:uppercase; color:#000000;">
-              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Imprint</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Privacy policy</a>
+            <td class="pad" style="padding:8px 44px 0 44px;">
+              <div style="height:1px; line-height:1px; font-size:1px; background-color:#000000;">&nbsp;</div>
             </td>
           </tr>
+          <!-- TEXT EN: Fußzeile -->
           <tr>
-            <td class="pad" style="padding:14px 24px 0 24px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.5; color:#000000;">You are receiving this email because you signed up for the newsletter on portemonnaie.finance.</td>
+            <td class="pad" style="padding:16px 44px 0 44px; font-family:'DM Sans', Helvetica, Arial, sans-serif; font-size:11px; line-height:1.4; letter-spacing:0.06em; text-transform:uppercase; color:#000000;">
+              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/impressum.html" style="color:#000000; text-decoration:underline;">Imprint</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://portemonnaie.finance/privacy.html" style="color:#000000; text-decoration:underline;">Privacy policy</a>
+            </td>
           </tr>
 
         </table>

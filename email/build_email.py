@@ -1,78 +1,78 @@
 #!/usr/bin/env python3
-"""Builds the Portemonnaie double-opt-in confirmation email.
+"""Baut die Portemonnaie Double-Opt-in-Bestätigungsmail (Runde 1.26110401, Aufbau nach Canva-Vorlage vom 4. November 2026).
 
-Outputs (in the repo folder email/):
-  doi-confirmation.html   one Brevo template, DE/EN/FR via {% if contact.LANGUAGE %} blocks
-  preview-de.html / preview-en.html / preview-fr.html   static previews (local image path)
+Ausgabe (im Ordner email/):
+  doi-confirmation.html           eine Brevo-Vorlage, DE/EN/FR über {% if contact.LANGUAGE %}-Blöcke
+  doi-confirmation.subject.txt    sprachabhängige Betreffzeile für Brevo
+  preview-de.html / -en / -fr     statische Vorschauen (lokale Bildpfade), z. B. http://localhost:8082/email/preview-de.html
+
+Bilder: Kopf (Logo, Linien, Headline in The Youngest Serif) und Fuß (Claim, Tänzerinnen) sind PNGs aus Canva
+(email/img/head-*.png, footer.png, 1200 px breit = 2x). In Brevo liegen sie in der Mediathek; die URLs stehen in IMAGES_BREVO.
+Texte: jeder Satz ist unten in TEXT markiert und lässt sich direkt in Brevo im Code-Editor überschreiben.
 """
-import sys, pathlib
+import pathlib
 
-OUT = pathlib.Path("/Users/ks/Documents/FemTech/Money-Tree/email")
-# Brevo-Mediathek (hochgeladen 13.10.2026): das Tänzerinnen-Bild liegt dort als vollständige URL.
-IMG_DANCERS_BREVO = sys.argv[1] if len(sys.argv) > 1 else "https://img.mailinblue.com/11224085/images/content_library/original/6ace17ace58328a282730e11.png"
-FONT_BASE = "https://portemonnaie.finance/fonts/"
+OUT = pathlib.Path(__file__).resolve().parent
 SITE = "https://portemonnaie.finance/"
 
-# Brevo confirmation link. The Automation on list 5 tracks the click on this
-# link and moves the contact to list 4 (confirmed). ?lang keeps confirmed.html
-# in the reader's language.
+# Bild-URLs aus der Brevo-Mediathek (Bibliothek → Medien). Leer = noch nicht hochgeladen, dann bleibt der lokale Pfad.
+IMAGES_BREVO = {
+    "head-en": "",
+    "head-de": "",
+    "head-fr": "",
+    "footer": "",
+}
+
+def img_url(key, local):
+    return IMAGES_BREVO.get(key) or (f"img/{key}.png" if local else f"img/{key}.png")
+
+# Bestätigungslink. Die Automation (Liste 5) wartet auf einen Klick auf einen beliebigen Link
+# und schiebt den Kontakt dann in Liste 4. ?lang hält confirmed.html in der Sprache der Leserin.
 def confirm_url(lang):
     return f"{SITE}confirmed.html?lang={lang}"
 
+# ---------------------------------------------------------------- TEXTE
 TEXT = {
     "de": dict(
-        lang="de",
         subject="Bitte bestätige deine E-Mail-Adresse",
         preheader="Ein Klick, und du bist dabei.",
+        head_alt="Portemonnaie. Willkommen im Club",
         hello="Hallo",
-        headline="Fast geschafft.",
-        body=("Danke, dass du dich für den Portemonnaie-Newsletter eingetragen hast. "
-              "Bitte bestätige deine E-Mail-Adresse mit einem Klick auf den Button. "
-              "Danach kommt der Newsletter jeden Sonntag um 10 Uhr zu dir."),
+        body1="Danke, dass du dich für den Portemonnaie-Newsletter eingetragen hast. Ab jetzt kommt er jeden Sonntag um 10 Uhr zu dir.",
+        body2="Bitte bestätige deine E-Mail-Adresse mit einem Klick auf den Button.",
         button="E-Mail-Adresse bestätigen",
         note="Du hast dich nicht angemeldet? Dann ignoriere diese E-Mail einfach. Es passiert nichts weiter.",
-        fallback="Der Button funktioniert nicht? Kopiere diesen Link in deinen Browser:",
         imprint="Impressum", privacy="Datenschutzerklärung",
-        why="Du erhältst diese E-Mail, weil du dich auf portemonnaie.finance für den Newsletter eingetragen hast.",
-        alt_dancers="",
     ),
     "en": dict(
-        lang="en",
         subject="Please confirm your email address",
         preheader="One click and you're in.",
+        head_alt="Portemonnaie. Welcome to the club",
         hello="Hello",
-        headline="Almost there.",
-        body=("Thank you for signing up for the Portemonnaie newsletter. "
-              "Please confirm your email address by clicking the button below. "
-              "From then on, the newsletter arrives every Sunday at 10 am."),
+        body1="Thank you for signing up for the Portemonnaie newsletter. From now on it arrives every Sunday at 10 am.",
+        body2="Please confirm your email address by clicking the button below.",
         button="Confirm email address",
         note="Didn't sign up? Then simply ignore this email. Nothing else will happen.",
-        fallback="Button not working? Copy this link into your browser:",
         imprint="Imprint", privacy="Privacy policy",
-        why="You are receiving this email because you signed up for the newsletter on portemonnaie.finance.",
-        alt_dancers="",
     ),
     "fr": dict(
-        lang="fr",
         subject="Merci de confirmer ton adresse e-mail",
         preheader="Un clic, et tu en fais partie.",
+        head_alt="Portemonnaie. Bienvenue au club",
         hello="Bonjour",
-        headline="On y est presque.",
-        body=("Merci pour ton inscription à la newsletter Portemonnaie. "
-              "Confirme ton adresse e-mail en cliquant sur le bouton ci-dessous. "
-              "Ensuite, la newsletter arrivera chaque dimanche à 10 h."),
+        body1="Merci pour ton inscription à la newsletter Portemonnaie. Elle arrivera désormais chaque dimanche à 10 h.",
+        body2="Confirme ton adresse e-mail en cliquant sur le bouton ci-dessous.",
         button="Confirmer mon adresse e-mail",
         note="Ce n'était pas toi ? Ignore simplement cet e-mail. Il ne se passera rien de plus.",
-        fallback="Le bouton ne fonctionne pas ? Copie ce lien dans ton navigateur :",
         imprint="Mentions légales", privacy="Politique de confidentialité",
-        why="Tu reçois cet e-mail parce que cette adresse a été inscrite à la newsletter sur portemonnaie.finance.",
-        alt_dancers="",
     ),
 }
 
-LOGO = "'DM Serif Display', Georgia, 'Times New Roman', serif"
+# Schriften (DESIGN.md): DM Sans für Fließtext, Newsreader für den Button. Webfonts zeigen nur Apple Mail, iOS Mail,
+# Samsung Mail und Thunderbird; Gmail und Outlook nehmen die Ersatzschriften. Headline und Logo sind deshalb Bilder.
 DISPLAY = "'Newsreader', Georgia, 'Times New Roman', serif"
 BODY = "'DM Sans', Helvetica, Arial, sans-serif"
+FONTS_CSS = "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Newsreader:opsz,wght@6..72,400&display=swap"
 
 HEAD = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="__LANG__">
@@ -87,11 +87,9 @@ HEAD = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/
   <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
   <![endif]-->
   <!--[if !mso]><!-->
+  <link href="__FONTS__" rel="stylesheet" type="text/css" />
   <style type="text/css">
-    /* Markenschriften (selbst gehostet, DESIGN.md). Clients ohne Webfont-Unterstützung zeigen Georgia / Helvetica. */
-    @font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; src: url(__FONT__dm-serif-display-2.woff2) format('woff2'); }
-    @font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400; src: url(__FONT__newsreader-1.woff2) format('woff2'); }
-    @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400 700; src: url(__FONT__dm-sans-1.woff2) format('woff2'); }
+    @import url('__FONTS__');
   </style>
   <!--<![endif]-->
   <style type="text/css">
@@ -103,12 +101,10 @@ HEAD = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/
     a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
     @media screen and (max-width: 640px) {
       .wrap { width: 100% !important; }
-      .pad { padding-left: 20px !important; padding-right: 20px !important; }
-      .headline { font-size: 36px !important; line-height: 1.1 !important; }
-      .stack { display: block !important; width: 100% !important; }
-      .stack-img { padding-top: 18px !important; }
-      .btn-td { display: block !important; }
-      .btn-a { display: block !important; text-align: center !important; }
+      .pad { padding-left: 24px !important; padding-right: 24px !important; }
+      .pad-foot { padding-left: 8px !important; }
+      .btn-td { display: block !important; width: auto !important; }
+      .btn-a { display: block !important; }
     }
   </style>
 </head>
@@ -119,48 +115,52 @@ FOOT = """</body>
 </html>
 """
 
-def block(t, img_dancers, confirm):
-    """One language block (everything between <body> and </body>)."""
-    first = t.get("firstname_expr")
-    greeting = f'{t["hello"]}{first},' if first else f'{t["hello"]},'
+def block(t, lang, local, firstname_expr):
+    """Ein Sprachblock (alles zwischen <body> und </body>). Aufbau 1:1 nach der Canva-Vorlage."""
+    greeting = f'{t["hello"]}{firstname_expr},'
+    confirm = confirm_url(lang)
+    head = img_url(f"head-{lang}", local)
+    foot = img_url("footer", local)
+    L = lang.upper()
     return f"""
   <!-- Vorschautext im Posteingang -->
   <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#F6F5EE;">{t["preheader"]}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F6F5EE;">
     <tr>
-      <td align="center" style="padding:32px 16px 40px 16px;">
+      <td align="center" style="padding:24px 0 40px 0;">
         <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
         <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
 
-          <!-- KOPF: Logo-Schriftzug, dünne Linie darunter (wie Website-Header) -->
+          <!-- KOPF (Bild aus Canva): Logo in DM Serif Display, zwei Linien, Headline in The Youngest Serif -->
           <tr>
-            <td class="pad" style="padding:0 24px 14px 24px; border-bottom:1px solid #000000;">
-              <a href="{SITE}" style="font-family:{LOGO}; font-size:24px; line-height:1.2; color:#000000; text-decoration:none;">Portemonnaie</a>
+            <td style="padding:0;">
+              <a href="{SITE}" style="text-decoration:none;"><img src="{head}" width="600" height="120" alt="{t["head_alt"]}" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
             </td>
           </tr>
 
-          <!-- ANREDE + HEADLINE -->
+          <!-- TEXT {L}: Anrede -->
           <tr>
-            <td class="pad" style="padding:56px 24px 0 24px; font-family:{BODY}; font-size:17px; line-height:1.6; color:#000000;">{greeting}</td>
+            <td class="pad" style="padding:56px 44px 0 44px; font-family:{BODY}; font-size:19px; line-height:1.5; color:#000000;">{greeting}</td>
           </tr>
+          <!-- TEXT {L}: Absatz 1 -->
           <tr>
-            <td class="pad headline" style="padding:10px 24px 0 24px; font-family:{DISPLAY}; font-size:44px; line-height:1.1; font-weight:400; color:#000000;">{t["headline"]}</td>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:{BODY}; font-size:19px; line-height:1.5; color:#000000;">{t["body1"]}</td>
+          </tr>
+          <!-- TEXT {L}: Absatz 2 -->
+          <tr>
+            <td class="pad" style="padding:22px 44px 0 44px; font-family:{BODY}; font-size:19px; line-height:1.5; color:#000000;">{t["body2"]}</td>
           </tr>
 
-          <!-- TEXT -->
+          <!-- BUTTON: Pill nur mit 1 px Rand (wie in der Canva-Vorlage), Text in Newsreader -->
           <tr>
-            <td class="pad" style="padding:24px 24px 0 24px; font-family:{BODY}; font-size:17px; line-height:1.6; color:#000000;">{t["body"]}</td>
-          </tr>
-
-          <!-- BUTTON: Pill, Creme gefüllt, 1 px schwarzer Rand (wie "Newsletter abonnieren" im Footer) -->
-          <tr>
-            <td class="pad" style="padding:36px 24px 0 24px;">
+            <td class="pad" align="center" style="padding:44px 44px 0 44px;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;">
                 <tr>
-                  <td class="btn-td" align="center" style="border:1px solid #000000; border-radius:999px; background-color:#EEECDE; mso-padding-alt:0;">
-                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:28pt;">&nbsp;</i><![endif]-->
-                    <a class="btn-a" href="{confirm}" style="display:inline-block; padding:15px 40px; font-family:{DISPLAY}; font-size:19px; line-height:1.2; letter-spacing:0.02em; text-transform:uppercase; color:#000000; text-decoration:none; border-radius:999px;">{t["button"]}</a>
+                  <td class="btn-td" align="center" width="372" style="width:372px; border:1px solid #000000; border-radius:999px; background-color:#F6F5EE; mso-padding-alt:0;">
+                    <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%; mso-text-raise:30pt;">&nbsp;</i><![endif]-->
+                    <!-- TEXT {L}: Button -->
+                    <a class="btn-a" href="{confirm}" style="display:inline-block; padding:18px 24px; font-family:{DISPLAY}; font-size:21px; line-height:1.2; color:#000000; text-decoration:none; border-radius:999px;">{t["button"]}</a>
                     <!--[if mso]><i style="letter-spacing:40px; mso-font-width:-100%;">&nbsp;</i><![endif]-->
                   </td>
                 </tr>
@@ -168,34 +168,27 @@ def block(t, img_dancers, confirm):
             </td>
           </tr>
 
-          <!-- HINWEISE -->
+          <!-- TEXT {L}: Hinweis -->
           <tr>
-            <td class="pad" style="padding:32px 24px 0 24px; font-family:{BODY}; font-size:13px; line-height:1.5; color:#000000;">{t["note"]}</td>
-          </tr>
-          <tr>
-            <td class="pad" style="padding:12px 24px 0 24px; font-family:{BODY}; font-size:13px; line-height:1.5; color:#000000;">{t["fallback"]}<br /><a href="{confirm}" style="color:#000000; text-decoration:underline; word-break:break-all;">{confirm}</a></td>
+            <td class="pad" style="padding:48px 44px 0 44px; font-family:{BODY}; font-size:14px; line-height:1.5; color:#333333;">{t["note"]}</td>
           </tr>
 
-          <!-- FUSS: Claim links, Tänzerinnen rechts (Startseiten-Footer) -->
+          <!-- FUSS (Bild aus Canva): Claim links, Tänzerinnen rechts -->
           <tr>
-            <td class="pad" style="padding:64px 24px 0 24px; border-bottom:1px solid #000000;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td class="stack" width="50%" valign="bottom" style="padding:0 0 18px 0; font-family:{DISPLAY}; font-size:28px; line-height:1.1; letter-spacing:0.01em; text-transform:uppercase; color:#000000;">Money is power.<br />Use yours.</td>
-                  <td class="stack stack-img" width="50%" align="right" valign="bottom" style="padding:0;">
-                    <img src="{img_dancers}" width="260" height="195" alt="" style="width:260px; height:auto; max-width:100%; display:block; margin-left:auto;" />
-                  </td>
-                </tr>
-              </table>
+            <td class="pad-foot" style="padding:28px 0 0 15px;">
+              <img src="{foot}" width="585" height="134" alt="Money is power. Use yours." style="width:100%; max-width:585px; height:auto; display:block;" />
             </td>
           </tr>
           <tr>
-            <td class="pad" style="padding:16px 24px 0 24px; font-family:{BODY}; font-size:10px; line-height:1.4; letter-spacing:0.04em; text-transform:uppercase; color:#000000;">
-              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{SITE}impressum.html" style="color:#000000; text-decoration:underline;">{t["imprint"]}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{SITE}privacy.html" style="color:#000000; text-decoration:underline;">{t["privacy"]}</a>
+            <td class="pad" style="padding:8px 44px 0 44px;">
+              <div style="height:1px; line-height:1px; font-size:1px; background-color:#000000;">&nbsp;</div>
             </td>
           </tr>
+          <!-- TEXT {L}: Fußzeile -->
           <tr>
-            <td class="pad" style="padding:14px 24px 0 24px; font-family:{BODY}; font-size:11px; line-height:1.5; color:#000000;">{t["why"]}</td>
+            <td class="pad" style="padding:16px 44px 0 44px; font-family:{BODY}; font-size:11px; line-height:1.4; letter-spacing:0.06em; text-transform:uppercase; color:#000000;">
+              <span style="white-space:nowrap;">&#169; Portemonnaie 2026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{SITE}impressum.html" style="color:#000000; text-decoration:underline;">{t["imprint"]}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{SITE}privacy.html" style="color:#000000; text-decoration:underline;">{t["privacy"]}</a>
+            </td>
           </tr>
 
         </table>
@@ -205,31 +198,29 @@ def block(t, img_dancers, confirm):
   </table>
 """
 
-def page(lang, title, body_html, font_base):
-    return (HEAD.replace("__LANG__", lang).replace("__TITLE__", title).replace("__FONT__", font_base)
+def page(lang, title, body_html):
+    return (HEAD.replace("__LANG__", lang).replace("__TITLE__", title).replace("__FONTS__", FONTS_CSS)
             + body_html + FOOT)
 
-OUT.mkdir(parents=True, exist_ok=True)
-
-# 1) Static previews, one per language (local paths, example first name)
+# 1) Statische Vorschauen, eine je Sprache (lokale Bildpfade, Beispiel-Vorname)
 for lang, t in TEXT.items():
-    tt = dict(t, firstname_expr=" Katharina")
-    html = page(lang, t["subject"], block(tt, "img/taenzerinnen.png", confirm_url(lang)), "../fonts/")
+    html = page(lang, t["subject"], block(t, lang, True, " Katharina"))
     (OUT / f"preview-{lang}.html").write_text(html, encoding="utf-8")
 
-# 2) Brevo template: three blocks switched by the contact attribute LANGUAGE (EN/DE/FR, set by api/subscribe.js).
-#    EN is the fallback when the attribute is missing or anything else.
+# 2) Brevo-Vorlage: drei Blöcke, geschaltet über das Kontaktattribut LANGUAGE (EN/DE/FR, setzt api/subscribe.js).
+#    EN ist der Rückfall, wenn das Attribut fehlt oder etwas anderes enthält.
 fn = "{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %}"
-parts = []
-parts.append('{% if contact.LANGUAGE == "DE" %}' + block(dict(TEXT["de"], firstname_expr=fn), IMG_DANCERS_BREVO, confirm_url("de")) + '{% endif %}')
-parts.append('{% if contact.LANGUAGE == "FR" %}' + block(dict(TEXT["fr"], firstname_expr=fn), IMG_DANCERS_BREVO, confirm_url("fr")) + '{% endif %}')
-parts.append('{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}' + block(dict(TEXT["en"], firstname_expr=fn), IMG_DANCERS_BREVO, confirm_url("en")) + '{% endif %}')
+parts = [
+    '{% if contact.LANGUAGE == "DE" %}' + block(TEXT["de"], "de", False, fn) + '{% endif %}',
+    '{% if contact.LANGUAGE == "FR" %}' + block(TEXT["fr"], "fr", False, fn) + '{% endif %}',
+    '{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}' + block(TEXT["en"], "en", False, fn) + '{% endif %}',
+]
 subject = ('{% if contact.LANGUAGE == "DE" %}' + TEXT["de"]["subject"] + '{% endif %}'
            '{% if contact.LANGUAGE == "FR" %}' + TEXT["fr"]["subject"] + '{% endif %}'
            '{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}' + TEXT["en"]["subject"] + '{% endif %}')
-brevo = page("en", "Portemonnaie", "\n".join(parts), FONT_BASE)
-(OUT / "doi-confirmation.html").write_text(brevo, encoding="utf-8")
+(OUT / "doi-confirmation.html").write_text(page("en", "Portemonnaie", "\n".join(parts)), encoding="utf-8")
 (OUT / "doi-confirmation.subject.txt").write_text(subject + "\n", encoding="utf-8")
 
-print("written:", sorted(p.name for p in OUT.iterdir()))
-print("subject line for Brevo:\n", subject)
+missing = [k for k, v in IMAGES_BREVO.items() if not v]
+print("geschrieben:", sorted(p.name for p in OUT.iterdir() if p.suffix in (".html", ".txt")))
+print("Brevo-Bild-URLs fehlen noch für:", missing if missing else "keine")
