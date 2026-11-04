@@ -110,12 +110,19 @@
 
   /* Textfelder: der Unterstrich ist nur so lang wie der Platzhalter und wächst mit der Eingabe mit
      (max. Spaltenbreite über CSS max-width). Neu messen nach Schriftladen und Sprachwechsel. */
-  const measureCtx = document.createElement("canvas").getContext("2d");
+  let measureEl = null;   /* unsichtbares Textelement im Schriftbild des Feldes: misst wie der Browser selbst rendert (Runde 1.26110402) */
   function fitField(el) {
+    if (!measureEl) {
+      measureEl = document.createElement("span");
+      measureEl.setAttribute("aria-hidden", "true");
+      measureEl.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:pre;pointer-events:none;";
+      document.body.appendChild(measureEl);
+    }
     const cs = getComputedStyle(el);
-    measureCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-    const w = Math.max(measureCtx.measureText(el.placeholder || "").width, measureCtx.measureText(el.value || "").width);
-    el.style.width = `${Math.ceil(w) + 6}px`;
+    ["fontFamily", "fontSize", "fontWeight", "fontStyle", "fontStretch", "letterSpacing", "fontVariationSettings", "fontOpticalSizing", "textTransform"].forEach((k) => { measureEl.style[k] = cs[k]; });
+    const widthOf = (text) => { measureEl.textContent = text; return measureEl.getBoundingClientRect().width; };
+    const w = Math.max(widthOf(el.placeholder || ""), widthOf(el.value || ""));   /* nie schmaler als der Platzhalter */
+    el.style.width = `${Math.ceil(w) + 8}px`;
   }
   function fitFields() {
     $$(".field").forEach((el) => {
@@ -124,7 +131,10 @@
     });
   }
   fitFields();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFields);
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(fitFields);
+    document.fonts.addEventListener("loadingdone", fitFields);   /* Schriften laden erst bei Gebrauch: danach neu messen */
+  }
   document.addEventListener("pm:langchange", () => setTimeout(fitFields, 0));
 
 })();
