@@ -136,5 +136,7 @@
     document.fonts.addEventListener("loadingdone", fitFields);   /* Schriften laden erst bei Gebrauch: danach neu messen */
   }
   document.addEventListener("pm:langchange", () => setTimeout(fitFields, 0));
+  let fitTimer;   /* Fenstergröße über 900 px hinweg ändert die Feldschrift (20/24 px): neu messen (Runde 1.26110501) */
+  window.addEventListener("resize", () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitFields, 100); });
 
 })();
