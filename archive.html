@@ -10,7 +10,7 @@
   <title data-i18n-title="archive.meta_title">Archiv – Portemonnaie</title>
 
   <link rel="stylesheet" href="fonts/fonts.css?v=1" />
-  <link rel="stylesheet" href="styles.css?v=125" />
+  <link rel="stylesheet" href="styles.css?v=126" />
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -81,6 +81,8 @@
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="img/icons.svg#icon-linkedin"/></svg></a>
         </div>
         <form class="footer4__form" data-signup novalidate>
+          <label class="sr-only" for="footerName" data-i18n="form.name_ph">Vorname</label>
+          <input class="field" id="footerName" type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Vorname" data-i18n-ph="form.name_ph" />
           <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
           <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
           <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="privacy.html">Datenschutzerklärung</a>.</span></label>
@@ -96,7 +98,7 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=125"></script>
-  <script src="script.js?v=125"></script>
+  <script src="i18n.js?v=126"></script>
+  <script src="script.js?v=126"></script>
 </body>
 </html>
