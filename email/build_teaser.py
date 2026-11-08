@@ -8,6 +8,10 @@ Die Mail enthält kein Titelbild. Sie besteht aus Logo-Kopf, Datum, Titel, Unter
 (1:1 aus der Ausgabenseite, also aus der Docx der Auftraggeberin) und einem Button zur Ausgabenseite auf portemonnaie.finance.
 Drei Sprachen in einer Brevo-Vorlage über {% if contact.LANGUAGE %}-Blöcke, wie bei der Bestätigungs-Mail (build_email.py).
 
+Eigener Teaser je Sprache: --teaser-file email/teaser/JJJJ-MM-TT-teaser.txt (Blöcke [de] [en] [fr]) oder --teaser-de/-en/-fr.
+Leerzeile = neuer Absatz; der Teaser ersetzt die Absätze aus der Ausgabe.
+Teaser der Ausgabe 01 stehen in email/teaser/2026-11-02-teaser.txt.
+
 Ausgabe (im Ordner email/teaser/):
   JJJJ-MM-TT-kurztitel.html          Brevo-Vorlage (DE/EN/FR), zum Einfügen im Brevo-Code-Editor
   JJJJ-MM-TT-kurztitel.subject.txt   sprachabhängige Betreffzeile (= Titel der Ausgabe)
@@ -25,9 +29,10 @@ SITE = "https://portemonnaie.finance/"
 
 # Bild-URLs aus der Brevo-Mediathek. Leer = noch nicht hochgeladen, dann bleibt in der Vorlage der lokale Pfad stehen.
 IMAGES_BREVO = {
-    "head-logo": "",
+    "head-logo": "https://img.mailinblue.com/11224085/images/content_library/original/6af0bb25c5534067ec72012f.png",   # Brevo-Mediathek "01_Port_Header_Bluesky_Substack_2026-10-26-7" (3000 x 1000), siehe HEAD_SIZE
     "footer": "https://img.mailinblue.com/11224085/images/content_library/original/6aeb7dee0265291013813be3.png",
 }
+HEAD_SIZE = (600, 200)   # Anzeigemaße des Kopfbilds in der Mail (Breite 600, Seitenverhältnis des Originals)
 
 # Feste Texte der Mail (Vorschläge vom 8. November 2026, von der Auftraggeberin in der Testmail zu prüfen).
 # Alles Inhaltliche (Titel, Untertitel, Absatz) kommt 1:1 aus der Ausgabenseite und wird hier nie verändert.
@@ -128,7 +133,7 @@ def block(lang, t, it, url, firstname_expr):
           <!-- KOPF: Logo und Linie (Zuschnitt aus dem Kopf der Bestätigungs-Mail) -->
           <tr>
             <td style="padding:0;">
-              <a href="{SITE}" style="text-decoration:none;"><img src="{img_url('head-logo')}" width="600" height="58" alt="Portemonnaie" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
+              <a href="{SITE}" style="text-decoration:none;"><img src="{img_url('head-logo')}" width="{HEAD_SIZE[0]}" height="{HEAD_SIZE[1]}" alt="Portemonnaie" style="width:100%; max-width:600px; height:auto; display:block;" /></a>
             </td>
           </tr>
 
@@ -204,15 +209,22 @@ def main():
     ap.add_argument("--issue", required=True, help="Pfad zur fertigen Ausgabenseite, z. B. newsletter/2026-11-02-was-tut-mein-geld.html")
     ap.add_argument("--paragraphs", type=int, default=1, help="Zahl der Absätze aus der Ausgabe (Standard 1)")
     for lang in ("de", "en", "fr"):
-        ap.add_argument(f"--teaser-{lang}", help=f"Eigener Teaser der Auftraggeberin ({lang}), ersetzt die Absätze aus der Ausgabe 1:1")
+        ap.add_argument(f"--teaser-{lang}", help=f"Eigener Teaser ({lang}), ersetzt die Absätze aus der Ausgabe 1:1")
+    ap.add_argument("--teaser-file", help="Textdatei mit Blöcken [de] [en] [fr] (wie email/teaser/2026-11-02-teaser.txt); Zeilen mit # sind Kommentare")
     a = ap.parse_args()
+    if a.teaser_file:
+        raw = "\n".join(l for l in pathlib.Path(a.teaser_file).read_text(encoding="utf-8").splitlines() if not l.startswith("#"))
+        for m in re.finditer(r"\[(de|en|fr)\]\n(.*?)(?=\n\[(?:de|en|fr)\]|\Z)", raw, re.S):
+            if not getattr(a, f"teaser_{m.group(1)}"):
+                setattr(a, f"teaser_{m.group(1)}", m.group(2).strip())
     issue_path = pathlib.Path(a.issue).resolve()
     stem = issue_path.stem
     it = read_issue(issue_path, a.paragraphs)
     for lang in ("de", "en", "fr"):
         own = getattr(a, f"teaser_{lang}")
         if own:
-            it[lang]["paras"] = [html.escape(own, quote=False)]
+            # Eigener Teaser (Leerzeile = neuer Absatz), Text 1:1 wie geliefert
+            it[lang]["paras"] = [html.escape(x.strip(), quote=False) for x in own.split("\n\n") if x.strip()]
     OUT.mkdir(exist_ok=True)
 
     def url(lang):
