@@ -31,8 +31,7 @@ def flag(rpr, tag):
 def clean(t):
     t = re.sub(r'[ \t]{2,}', ' ', t)
     t = t.replace("'", '’')
-    t = re.sub(r' - ', ' – ', t)
-    t = re.sub(r'(\S)– ', r'\1 – ', t)
+    # Sonst nichts: Der Text bleibt 1:1 wie in der Docx (Festlegung der Auftraggeberin, 8. November 2026).
     return html.escape(t, quote=False)
 
 def runs_of(p, rels):

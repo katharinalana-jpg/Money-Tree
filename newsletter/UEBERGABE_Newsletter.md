@@ -1,12 +1,12 @@
 # Übergabeprotokoll: Wöchentliche Newsletter-Ausgaben im Archiv
 
-Version 1.26110309, Stand 3. November 2026. Für jede Session, in der eine neue Ausgabe auf die Website kommt. Ersetzt die Fassung 1.26110201 vom 2. November 2026 (Stand vor dem Launch der ersten Ausgabe).
+Version 1.26110803, Stand 8. November 2026. Für jede Session, in der eine neue Ausgabe auf die Website kommt und als Teaser-Mail über Brevo hinausgeht. Ersetzt die Fassung 1.26110309 vom 3. November 2026.
 
 Reihenfolge zum Einlesen:
 1. `CLAUDE.md` im Drive-Ordner `01_Portemonnaie Website_15.10.2026` (harte Arbeitsregeln, gelten immer).
 2. Dieses Protokoll.
 3. `AENDERUNGEN Website.md` im selben Drive-Ordner (jede Runde mit Version, Datum, Änderung, Commit).
-4. `newsletter/template.html`, `newsletter/build_issue.py`, `archive.html` und die Live-Ausgabe `newsletter/2026-11-02-was-tut-mein-geld.html` im Projekt.
+4. `newsletter/template.html`, `newsletter/build_issue.py`, `email/build_teaser.py`, `archive.html` und die Live-Ausgabe `newsletter/2026-11-02-was-tut-mein-geld.html` im Projekt.
 5. Memory: `arbeitsregeln-ks`, `newsletter-weekly-workflow`, `aenderungen-website-log`, `branch-from-main-only`, `preview-server-workaround`.
 
 ## 1. Arbeitsregeln (gelten immer, Wortlaut der Auftraggeberin vom 2. November 2026, Regel 20 vom 3. November 2026)
@@ -43,13 +43,14 @@ GEDÄCHTNIS
 
 Ergänzung für die Website (weiterhin gültig): Vorschau zeigen, auf OK warten, dann pushen. Push auf `main` ist live. „OK zum Push" bedeutet: Branch pushen und `main` per Fast-Forward nachziehen. Texte 1:1 übernehmen, Bilder 1:1 (nur verkleinern, WebP). Keine Emojis. Farben und Schriften nur über die CSS-Variablen in `styles.css`. Arbeitsbranches immer von `main` abzweigen, nie von einem anderen Branch (Korrektur vom 3. November 2026). Die Website ist fertig: keine kosmetischen Änderungen ohne ausdrücklichen Auftrag.
 
-## 2. Wo wir stehen (Stand 3. November 2026)
+## 2. Wo wir stehen (Stand 8. November 2026)
 
-- Projekt `/Users/ks/Documents/FemTech/Money-Tree`, live auf portemonnaie.finance über Vercel. `main` = `4a6828f`, Vercel Production-Deploy 7519545314 erfolgreich (3. November 2026, 13:07 UTC). Cache-Version in allen HTML-Dateien: `?v=124`.
+- Projekt `/Users/ks/Documents/FemTech/Money-Tree`, live auf portemonnaie.finance über Vercel. `main` = `232d494` (8. November 2026, Runde 1.26110802). Cache-Version in allen HTML-Dateien: `?v=126`.
 - Arbeitsbranch `content` existiert lokal und auf GitHub, steht auf `main`.
 - **Ausgabe 01 ist live:** `newsletter/2026-11-02-was-tut-mein-geld.html` (DE/EN/FR, Datum 2. November 2026), Bild `img/newsletter/2026-11-02-was-tut-mein-geld.webp` (1700 × 957).
 - **Archiv ist freigeschaltet:** `archive.html` ist überall verlinkt (Menü, Footer, „Zum Archiv" auf der Startseite) und indexierbar. `archive-soon.html` bleibt bestehen, hat `noindex`, ihre Navigation zeigt auf `archive.html`.
-- Archiv-Kacheln: Kachel 1 = Ausgabe 01 mit Bild und Link. Kacheln 2 und 3 sind Platzhalter ohne Bild und ohne Link: „Up Next: Was ist Impact Investing" (Rubrik „Newsletter / Impact") und „Up Next: 4 finanzielle Fallen für Frauen" (Rubrik „Newsletter / Inklusion"), je Sprache übersetzt, Präfix „Up Next: " in allen Sprachen.
+- Archiv-Kacheln: Kachel 1 = Ausgabe 01 mit Bild und Link. Kacheln 2 und 3 sind Platzhalter mit Bild, aber ohne Link (seit 8. November 2026): „Up Next: Was ist Impact Investing" / „Up Next: What Is Impact Investing" (Rubrik „Newsletter / Impact", Bild `img/newsletter/was-ist-impact-investing.webp`) und „Up Next: 4 finanzielle Fallen für Frauen" / „Up Next: 4 Financial Pitfalls for Women" (Rubrik „Newsletter / Inklusion", Bild `img/newsletter/4-finanzielle-fallen-fuer-frauen.webp`). Englische Kacheltitel in Title Case. Wenn die Ausgabe erscheint: Bild auf `JJJJ-MM-TT-kurztitel.webp` umbenennen (`git mv`), Kachel verlinken, „Up Next: " entfernen.
+- Teaser-Mail: `email/build_teaser.py` baut pro Ausgabe die Brevo-Vorlage (Abschnitt 5, Schritt 7). Ausgabe 01: Mail am 8. November 2026 eingerichtet.
 - Footer im Archiv = Footer der Startseite (`footer4`: Claim, Tänzerinnen, Social, Formular). Footer der Ausgabenseiten = schlichter Footer mit Menü (bleibt so, Entscheidung 3. November 2026).
 - Quellen außerhalb des Repos: Drive-Ordner `/Users/ks/Library/CloudStorage/GoogleDrive-office@portemonnaie.finance/Meine Ablage/Portemonnaie_Finance/04_CMO_Portemonnaie/04A_Portemonnaie_CMO_Design_Corporate Identity/01_Portemonnaie Website_15.10.2026/` (`CLAUDE.md`, `AENDERUNGEN Website.md`, `DESIGN.md`, `PROMPT_Website-Neuaufbau.md`, `BILDER_UEBERSICHT.md`, Übergaben, Bildordner). Die Ausgaben liegen in `…/04B_Portemonnaie_CMO_Content/01_Newsletter/01_Newsleter Editions/01_FINAL/` als Docx.
 
@@ -73,7 +74,11 @@ Alles in `styles.css`, Abschnitt `.issue-article`. Nicht ohne Go ändern.
 5. Optional ein Kurztitel für den Dateinamen, sonst aus dem deutschen Titel gebildet.
 6. Optional die Titel der nächsten „Up Next"-Kacheln.
 
-Fehlt etwas: fragen, nichts erfinden, nichts übersetzen (Regel 2). Ausnahme: Die Auftraggeberin hat am 3. November 2026 ausdrücklich Übersetzungen der „Up Next"-Kacheltitel beauftragt. Tippfehler im Text bleiben 1:1 und werden im Bericht genannt. Der Generator korrigiert nur Typografie (doppelte Leerzeichen, Apostroph, Halbgeviertstrich).
+7. Für die Teaser-Mail nichts Zusätzliches: Betreff = Titel der Ausgabe, Teaser = Untertitel und erster Absatz der Ausgabe, 1:1. Will sie einen eigenen Teaser, schickt sie ihn in der Nachricht in drei Sprachen; er ersetzt dann den ersten Absatz (`--teaser-de/-en/-fr`).
+
+Fehlt etwas: fragen, nichts erfinden, nichts übersetzen (Regel 2). Ausnahme: Die Auftraggeberin hat am 3. November 2026 ausdrücklich Übersetzungen der „Up Next"-Kacheltitel beauftragt. Tippfehler im Text bleiben 1:1 und werden im Bericht genannt.
+
+**Der Generator verändert den Text nie, er baut ihn nur nach** (Festlegung vom 8. November 2026). Erlaubt sind genau zwei typografische Korrekturen: doppelte Leerzeichen zu einem und gerades Apostroph `'` zu `’`. Sonst nichts, auch keine Gedankenstriche (bis 8. November 2026 wurde „ - " zu „ – " gemacht; in Ausgabe 01 live steht das an drei Stellen so). Änderungen am Text macht ausschließlich die Auftraggeberin in der Docx.
 
 ## 5. Ablauf pro Ausgabe
 
@@ -98,6 +103,12 @@ Jede Ausgabe ist eine Runde mit eigener Versionsnummer (Regel 6). Arbeitsbranch 
 5. **Commit** auf `content`, Nachricht z. B. `Newsletter 2026-11-09: Titel (DE/EN/FR), v1.26110901`. Vorher prüfen, dass der Branch `content` ist. Eintrag in `AENDERUNGEN Website.md` (Regel 20). Bericht: gebaut, getestet, offen. Auf Go warten.
 6. **Live nach Go:** `git push origin content`, dann `git checkout main && git merge --ff-only content && git push origin main`, zurück auf `content`. Deploy-Status: `gh api "repos/{owner}/{repo}/deployments?environment=Production&per_page=3" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"'`, dann `gh api "repos/{owner}/{repo}/deployments/ID/statuses" --jq '.[0].state'`. Das Deploy erscheint wenige Sekunden nach dem Push. Dann die Live-Seite im App-Browser öffnen (curl wird von Vercel blockiert) und Archiv und Ausgabe in drei Sprachen aufrufen. Danach in `AENDERUNGEN Website.md` die Spalte „Stand" der Runden auf „main, live seit …" setzen.
 
+7. **Teaser-Mail in Brevo (nach dem Go-live der Seite, Festlegung vom 8. November 2026):** keine API, kein Schlüssel. Die Auftraggeberin ist im App-Browser bei Brevo angemeldet (Claude tippt nie Zugangsdaten).
+   a. `python3 -I email/build_teaser.py --issue newsletter/JJJJ-MM-TT-kurztitel.html` schreibt `email/teaser/JJJJ-MM-TT-kurztitel.html` (eine Vorlage, DE/EN/FR über `contact.LANGUAGE`), `.subject.txt` und `preview-de/en/fr.html`. Vorschau unter `http://localhost:8082/email/teaser/preview-de.html` prüfen (Bilder laden, Button-Link zeigt auf die Live-Ausgabe mit `?lang=`, 375 px ohne Überlauf).
+   b. In Brevo: Kampagnen → E-Mail → neue Kampagne (oder letzte Teaser-Kampagne duplizieren). Name `Newsletter JJJJ-MM-TT Kurztitel`. Betreff aus `.subject.txt` (Brevo-Sprachlogik), Absender wie die Bestätigungs-Mail. Design: Code-Editor, Inhalt von `email/teaser/JJJJ-MM-TT-kurztitel.html` einfügen. Empfänger: Liste 4 (bestätigte Anmeldungen).
+   c. Testmail an die Auftraggeberin. Sie prüft am iPhone (Regel 12) und klickt selbst „Planen": Sonntag 10:00 Europe/Vienna. Brevo versendet dann automatisch.
+   d. Eintrag in `AENDERUNGEN Website.md` (Kampagnenname, Termin). Vorplanen mehrerer Ausgaben geht genauso, Bedingung: Die Ausgabenseite ist zum Versandtermin live.
+
 Nur bei Änderungen an `styles.css`, `i18n.js` oder `script.js`: `?v=` in allen HTML-Dateien erhöhen (`find . -name '*.html' -exec sed -i '' 's/?v=124/?v=125/g' {} +`). Eine neue Ausgabe allein braucht keinen Bump.
 
 ## 6. Ausgabe 01, Besonderheiten
@@ -116,9 +127,12 @@ Nur bei Änderungen an `styles.css`, `i18n.js` oder `script.js`: `?v=` in allen 
 - **Bild-Pipeline (kritisch, Regel 5):** `cwebp`/`dwebp` installiert, ImageMagick und Pillow nicht. `sips` misst und skaliert. Bestehende Bilder in `img/` nie überschreiben oder neu komprimieren; neue Ausgabenbilder nur in `img/newsletter/`.
 - **Docx lesen:** `textutil -convert txt` zeigt nur den Text. Formatvorlagen, Kursiv, Fett und Links stehen in `word/document.xml` (Runs `w:r` mit `w:rPr/w:b`, `w:i`, Hyperlinks `w:hyperlink` mit `r:id` auf `word/_rels/document.xml.rels`). `newsletter/build_issue.py` liest genau das; Python ohne Zusatzpakete.
 - **Vercel:** Attack Challenge Mode blockt curl; Preview-URLs brauchen Vercel-Login. Deploy-Status über `gh api`, nicht raten.
-- **Brevo:** Der Newsletter wird in Brevo versendet (nicht Teil des Repos). Empfehlung: im Brevo-Newsletter einen Link „Im Browser lesen" auf die Ausgabenseite mit `?lang=de|en|fr` passend zur Kontaktsprache setzen. Vorschlag, kein Auftrag.
+- **Brevo:** Versand als normale Brevo-Kampagne pro Ausgabe, im Voraus planbar, ohne API. Kontakte tragen das Attribut LANGUAGE (EN/DE/FR, setzt `api/subscribe.js`), die Vorlage schaltet drei Blöcke darüber, EN ist der Rückfall. Abmeldelink über den Brevo-Platzhalter `{{ unsubscribe }}`. Bilder liegen in der Brevo-Mediathek (URLs in `IMAGES_BREVO` in `email/build_teaser.py`; Logo-Kopf `email/img/head-logo.png` = obere 116 px des Kopfs der Bestätigungs-Mail). Kein Titelbild in der Mail. Die Bestätigungs-Mail (Double Opt-in) baut `email/build_email.py`, Brevo-Vorlage #5.
 
-## 8. Offene Punkte (Stand 3. November 2026)
+## 8. Offene Punkte (Stand 8. November 2026)
+
+- Datumssperre für vorgeplante Ausgaben (Kachel und Seite erst ab Erscheinungsdatum sichtbar): nur bauen, wenn die Auftraggeberin Ausgaben im Voraus plant und das wünscht.
+- Ausgabe 01 live: an drei Stellen „ – " statt „ - " wie in der Docx (alte Generator-Regel). Angleichen nur mit Go.
 
 - Social-Links (Bluesky, Substack, LinkedIn) sind Platzhalter auf die Plattform-Startseiten.
 - Rechtstexte: FR zeigt EN; juristische Prüfung steht aus.
