@@ -10,7 +10,7 @@ Drei Sprachen in einer Brevo-Vorlage über {% if contact.LANGUAGE %}-Blöcke, wi
 
 Eigener Teaser je Sprache: --teaser-file email/teaser/JJJJ-MM-TT-teaser.txt (Blöcke [de] [en] [fr]) oder --teaser-de/-en/-fr.
 Leerzeile = neuer Absatz; der Teaser ersetzt die Absätze aus der Ausgabe.
-Teaser der Ausgabe 01 stehen in email/teaser/2026-11-02-teaser.txt.
+Der Ordner email/teaser/ ist in .gitignore (Teaser-Texte kommen je Ausgabe neu, erzeugte Mails bleiben lokal).
 
 Ausgabe (im Ordner email/teaser/):
   JJJJ-MM-TT-kurztitel.html          Brevo-Vorlage (DE/EN/FR), zum Einfügen im Brevo-Code-Editor

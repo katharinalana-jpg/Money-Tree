@@ -74,7 +74,7 @@ Alles in `styles.css`, Abschnitt `.issue-article`. Nicht ohne Go ändern.
 5. Optional ein Kurztitel für den Dateinamen, sonst aus dem deutschen Titel gebildet.
 6. Optional die Titel der nächsten „Up Next"-Kacheln.
 
-7. Für die Teaser-Mail: den Teaser in drei Sprachen (je ein kurzer Absatz, Festlegung vom 8. November 2026: die Auftraggeberin schreibt ihn selbst, kein Kopieren des ersten Absatzes). Er kommt 1:1 in `email/teaser/JJJJ-MM-TT-teaser.txt` (Blöcke `[de]`, `[en]`, `[fr]`). Betreff = Titel der Ausgabe, Vorschautext = Untertitel. Die Zeile „Lies mehr auf portemonnaie.finance" ist der Button, nicht Teil des Teasers.
+7. Für die Teaser-Mail: den Teaser in drei Sprachen (je ein kurzer Absatz, Festlegung vom 8. November 2026: die Auftraggeberin schreibt ihn selbst, kein Kopieren des ersten Absatzes). Er kommt 1:1 in `email/teaser/JJJJ-MM-TT-teaser.txt` (Blöcke `[de]`, `[en]`, `[fr]`). Der Ordner `email/teaser/` ist in `.gitignore`: Teaser-Texte und erzeugte Mails bleiben lokal, nur das Skript liegt im Repo (Festlegung vom 8. November 2026). Betreff = Titel der Ausgabe, Vorschautext = Untertitel. Die Zeile „Lies mehr auf portemonnaie.finance" ist der Button, nicht Teil des Teasers.
 
 Fehlt etwas: fragen, nichts erfinden, nichts übersetzen (Regel 2). Ausnahme: Die Auftraggeberin hat am 3. November 2026 ausdrücklich Übersetzungen der „Up Next"-Kacheltitel beauftragt. Tippfehler im Text bleiben 1:1 und werden im Bericht genannt.
 
