@@ -37,7 +37,7 @@ HEAD_SIZE = (600, 200)   # Anzeigemaße des Kopfbilds in der Mail (Breite 600, S
 # Feste Texte der Mail (Vorschläge vom 8. November 2026, von der Auftraggeberin in der Testmail zu prüfen).
 # Alles Inhaltliche (Titel, Untertitel, Absatz) kommt 1:1 aus der Ausgabenseite und wird hier nie verändert.
 TEXT = {
-    "de": dict(hello="Hallo", button="Weiterlesen auf portemonnaie.finance",
+    "de": dict(hello="Hallo", button="Lies mehr auf portemonnaie.finance",
                note="Du erhältst diese E-Mail, weil du den Portemonnaie-Newsletter abonniert hast.",
                unsubscribe="Abmelden", imprint="Impressum", privacy="Datenschutzerklärung"),
     "en": dict(hello="Hello", button="Read more on portemonnaie.finance",
