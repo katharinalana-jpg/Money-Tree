@@ -4,7 +4,7 @@
 Aufruf:
   python3 -I email/build_teaser.py --issue newsletter/JJJJ-MM-TT-kurztitel.html [--paragraphs 1]
 
-Die Mail enthält kein Titelbild. Sie besteht aus Logo-Kopf, Datum, Titel, Untertitel, dem ersten Absatz der Ausgabe
+Das Titelbild der Ausgabe steht unter dem Untertitel (--image URL --image-size BxH, Festlegung vom 8. November 2026). Sie besteht aus Logo-Kopf, Datum, Titel, Untertitel, dem ersten Absatz der Ausgabe
 (1:1 aus der Ausgabenseite, also aus der Docx der Auftraggeberin) und einem Button zur Ausgabenseite auf portemonnaie.finance.
 Drei Sprachen in einer Brevo-Vorlage über {% if contact.LANGUAGE %}-Blöcke, wie bei der Bestätigungs-Mail (build_email.py).
 
@@ -111,7 +111,7 @@ def read_issue(path, paragraphs):
         issue[lang] = dict(title=title, subtitle=subtitle, date=date, paras=[p.strip() for p in paras])
     return issue
 
-def block(lang, t, it, url, firstname_expr):
+def block(lang, t, it, url, firstname_expr, image=None):
     """Ein Sprachblock (alles zwischen <body> und </body>). Aufbau wie die Bestätigungs-Mail."""
     L = lang.upper()
     para_rows = "\n".join(
@@ -153,7 +153,7 @@ def block(lang, t, it, url, firstname_expr):
           <tr>
             <td class="pad" style="padding:12px 44px 0 44px; font-family:{DISPLAY}; font-size:22px; line-height:1.3; color:#000000;">{it["subtitle"]}</td>
           </tr>
-{para_rows}
+{image_row(image)}{para_rows}
 
           <!-- BUTTON: Pill mit 1 px Rand, Text in Newsreader -->
           <tr>
@@ -201,6 +201,21 @@ def block(lang, t, it, url, firstname_expr):
   </table>
 """
 
+def image_row(image):
+    """Titelbild der Ausgabe unter dem Untertitel: (url, breite, hoehe) in Originalpixeln, Anzeige 512 px breit zwischen den Texträndern."""
+    if not image:
+        return ""
+    url, w, h = image
+    disp_w = 512
+    disp_h = round(h * disp_w / w)
+    return f"""          <!-- TITELBILD der Ausgabe (Brevo-Mediathek) -->
+          <tr>
+            <td class="pad" style="padding:28px 44px 0 44px;">
+              <img src="{url}" width="{disp_w}" height="{disp_h}" alt="" style="width:100%; max-width:{disp_w}px; height:auto; display:block;" />
+            </td>
+          </tr>
+"""
+
 def page(lang, title, body_html):
     return HEAD.replace("__LANG__", lang).replace("__TITLE__", title).replace("__FONTS__", FONTS_CSS) + body_html + FOOT
 
@@ -210,6 +225,8 @@ def main():
     ap.add_argument("--paragraphs", type=int, default=1, help="Zahl der Absätze aus der Ausgabe (Standard 1)")
     for lang in ("de", "en", "fr"):
         ap.add_argument(f"--teaser-{lang}", help=f"Eigener Teaser ({lang}), ersetzt die Absätze aus der Ausgabe 1:1")
+    ap.add_argument("--image", help="URL des Titelbilds in der Brevo-Mediathek (kommt unter den Untertitel)")
+    ap.add_argument("--image-size", help="Originalmaße des Titelbilds als BREITExHOEHE, z. B. 2000x1125")
     ap.add_argument("--teaser-file", help="Textdatei mit Blöcken [de] [en] [fr] (wie email/teaser/2026-11-02-teaser.txt); Zeilen mit # sind Kommentare")
     a = ap.parse_args()
     if a.teaser_file:
@@ -226,6 +243,12 @@ def main():
             # Eigener Teaser (Leerzeile = neuer Absatz), Text 1:1 wie geliefert
             it[lang]["paras"] = [html.escape(x.strip(), quote=False) for x in own.split("\n\n") if x.strip()]
     OUT.mkdir(exist_ok=True)
+    image = None
+    if a.image:
+        if not a.image_size:
+            raise SystemExit("--image braucht --image-size BREITExHOEHE (im Browser messen, nicht raten)")
+        w, h = (int(x) for x in a.image_size.lower().split("x"))
+        image = (a.image, w, h)
 
     def url(lang):
         return f"{SITE}newsletter/{issue_path.name}?lang={lang}"
@@ -233,14 +256,14 @@ def main():
     # 1) Statische Vorschauen je Sprache (lokale Bilder, Beispiel-Vorname, Abmeldelink bleibt Platzhalter)
     for lang in ("de", "en", "fr"):
         (OUT / f"preview-{lang}.html").write_text(
-            page(lang, html.unescape(it[lang]["title"]), block(lang, TEXT[lang], it[lang], url(lang), " Katharina")), encoding="utf-8")
+            page(lang, html.unescape(it[lang]["title"]), block(lang, TEXT[lang], it[lang], url(lang), " Katharina", image)), encoding="utf-8")
 
     # 2) Brevo-Vorlage: drei Blöcke über das Kontaktattribut LANGUAGE (EN ist der Rückfall)
     fn = "{% if contact.FIRSTNAME %} {{ contact.FIRSTNAME }}{% endif %}"
     parts = [
-        '{% if contact.LANGUAGE == "DE" %}' + block("de", TEXT["de"], it["de"], url("de"), fn) + '{% endif %}',
-        '{% if contact.LANGUAGE == "FR" %}' + block("fr", TEXT["fr"], it["fr"], url("fr"), fn) + '{% endif %}',
-        '{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}' + block("en", TEXT["en"], it["en"], url("en"), fn) + '{% endif %}',
+        '{% if contact.LANGUAGE == "DE" %}' + block("de", TEXT["de"], it["de"], url("de"), fn, image) + '{% endif %}',
+        '{% if contact.LANGUAGE == "FR" %}' + block("fr", TEXT["fr"], it["fr"], url("fr"), fn, image) + '{% endif %}',
+        '{% if contact.LANGUAGE != "DE" and contact.LANGUAGE != "FR" %}' + block("en", TEXT["en"], it["en"], url("en"), fn, image) + '{% endif %}',
     ]
     (OUT / f"{stem}.html").write_text(page("en", "Portemonnaie", "\n".join(parts)), encoding="utf-8")
     subject = "".join([
