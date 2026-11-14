@@ -73,6 +73,11 @@ money-tree/
 ├── script.js
 ├── api/
 │   └── subscribe.js  ← Vercel serverless function — adds email to Brevo list
+├── tools/            ← Tools pages (nav "Tools"); first: calculator.html
+│   ├── calculator.html / calculator.css / calculator.js (ES module UI)
+│   ├── calc-config.mjs   ← all financial assumptions (real terms, EU-broad, €)
+│   ├── calc-engine.mjs   ← pure projection engine, no DOM
+│   └── calc-engine.test.mjs ← `node tools/calc-engine.test.mjs`
 └── img/              ← webp images, icons.svg, favicons (black P monogram), logo-portemonnaie-schwarz.(png|svg), monogramm-p-creme.(png|svg)
 ```
 

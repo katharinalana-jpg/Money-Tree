@@ -1,0 +1,85 @@
+/* =============================================================
+   Portemonnaie – Rechner (tools/calculator.html), Runde 1.26111401.
+   Baut auf styles.css auf (Tokens, Kopf, Fuß, Button). Nur Seitenstil.
+   Farben ausschließlich über die Variablen aus styles.css:
+   Eingaben auf Creme, Ergebnis auf Grün (wie "A new era of investing"),
+   Kurve: Investiert gelb, Bargeld hell gestrichelt.
+   ============================================================= */
+
+/* ---------- Seite ---------- */
+.calc-page { padding-top: 4.5rem; padding-bottom: 7rem; }
+.calc-page__title { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.15; font-weight: 400; text-align: center; }   /* 56 px wie Archiv */
+.calc-page__sub { margin: 1.5rem auto 0; max-width: 46rem; text-align: center; font-size: var(--fs-body); line-height: var(--lh-body); }
+
+/* ---------- Rechner: Eingaben links, Ergebnis rechts ---------- */
+.calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; margin-top: 4rem; align-items: stretch; }
+.calc__panel { padding: 2.5rem 2.25rem; min-width: 0; }
+.calc__inputs { border: var(--border); display: flex; flex-direction: column; justify-content: center; gap: 2rem; }
+.calc__results { background: var(--bg); color: var(--fg); display: flex; flex-direction: column; }   /* Farben aus .theme-gruen */
+
+/* ---------- Eingabefelder ---------- */
+.calc-field__top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+.calc-field label { font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; font-family: var(--font-display); }
+.calc-field__val { font-family: var(--font-display); font-size: var(--fs-h4); line-height: 1; white-space: nowrap; }
+
+/* Regler: 2 px Spur (Gelb bis zum Wert, Sand danach, gesetzt in calculator.js), runder schwarzer Griff */
+.calc-field input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 2px; margin: 0.75rem 0 0;
+  background: var(--color-sand); outline: none; cursor: pointer;
+}
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: var(--fg); border: 2px solid var(--bg);
+}
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: var(--fg); border: 2px solid var(--bg);
+}
+.calc-field input[type="range"]:focus-visible { outline: 2px solid var(--fg); outline-offset: 6px; }
+
+/* ---------- Ergebnis ---------- */
+.calc-result__label { font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; }
+.calc-result__value { margin-top: 0.5rem; font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1; font-weight: 400; }
+.calc-result__sub { margin-top: 0.5rem; font-size: var(--fs-small); line-height: 1.4; }
+
+/* Kurve */
+.calc-chart { margin-top: 2rem; }
+.calc-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.calc-chart__grid { stroke: var(--line); stroke-opacity: 0.2; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.calc-chart__axis { stroke: var(--line); stroke-opacity: 0.6; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.calc-chart__tick { fill: var(--fg); font-family: var(--font-body); font-size: 9px; }
+.calc-chart__tick--y { text-anchor: end; }
+.calc-chart__tick--xstart { text-anchor: start; }
+.calc-chart__tick--xend { text-anchor: end; }
+.calc-chart__gap { fill: var(--color-gelb); fill-opacity: 0.18; }
+.calc-chart__invest { stroke: var(--color-gelb); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.calc-chart__save { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 5 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+/* Legende mit Endwerten */
+.calc-legend { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 1.5rem; }
+.calc-legend__item { display: flex; flex-direction: column; gap: 0.25rem; }
+.calc-legend__item--save { text-align: right; align-items: flex-end; }
+.calc-legend__item em { font-style: normal; font-family: var(--font-display); font-size: var(--fs-nav); text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; gap: 0.5rem; }
+.calc-legend__item em::before { content: ""; width: 1.25rem; height: 0; border-top: 3px solid var(--color-gelb); flex-shrink: 0; }
+.calc-legend__item--save em::before { border-top: 1.5px dashed var(--fg); }
+.calc-legend__item strong { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; line-height: 1; }
+
+.calc-result__cta { margin-top: auto; align-self: start; margin-top: 2.5rem; }   /* Pill-Button aus styles.css, helle Linie auf Grün */
+
+/* ---------- Hinweis und Quelle unter dem Rechner ---------- */
+.calc-notes { margin: 2.5rem auto 0; max-width: 46rem; text-align: center; }
+.calc-disclaimer { font-size: var(--fs-small); line-height: 1.5; }
+.calc-source { margin-top: 0.75rem; font-size: var(--fs-small); line-height: 1.5; opacity: 0.7; }
+.calc-source a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- Tablet und Handy ---------- */
+@media (max-width: 1200px) { .calc { gap: 2rem; } }
+@media (max-width: 900px) {
+  .calc-page { padding-top: 2.5rem; padding-bottom: 4rem; }
+  .calc { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; margin-top: 2.5rem; }   /* minmax(0, …): Spalte nie breiter als das Fenster */
+  .calc__panel { padding: 1.75rem 1.25rem; }
+  .calc-field__val { font-size: 1.5rem; }
+  .calc-result__cta { width: 100%; }
+}

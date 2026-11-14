@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png?v=2" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png?v=2" />
+  <meta name="description" content="Portemonnaie Rechner: Sieh, was aus deinem Geld werden kann, wenn du es investierst statt sparst." data-i18n-content="calc.meta_description" />
+  <title data-i18n-title="calc.meta_title">Rechner – Portemonnaie</title>
+
+  <link rel="stylesheet" href="../fonts/fonts.css?v=1" />
+  <link rel="stylesheet" href="../styles.css?v=126" />
+  <link rel="stylesheet" href="calculator.css?v=1" />
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <header class="site-header container">
+    <div class="site-header__top">
+      <a class="site-header__logo" href="../index.html" data-i18n-aria="nav.home_aria" aria-label="Portemonnaie, Startseite">Portemonnaie</a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="../archive.html" data-i18n="nav.archive">Archiv</a></li>
+        <li><a href="../about.html" data-i18n="nav.about">Über uns</a></li>
+        <li><a href="calculator.html" aria-current="page" data-i18n="nav.tools">Tools</a></li>
+        <li><a href="../coming-soon.html" data-i18n="nav.boutique">Boutique</a></li>
+        <li><a href="../collabs.html" data-i18n="nav.collabs">Kollaborationen</a></li>
+        <li><a href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+      </nav>
+      <a class="site-header__contact" href="mailto:office@portemonnaie.finance" data-i18n="nav.contact">Kontakt</a>
+      <nav class="lang-switch" data-i18n-aria="nav.lang_aria" aria-label="Sprache">
+        <a href="?lang=en" data-lang="en" hreflang="en">EN</a>
+        <a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+        <a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a>
+      </nav>
+    </div>
+    <p class="site-header__title"><span>Start investing in what you support.</span></p>
+  </header>
+
+  <!-- RECHNER (Runde 1.26111401): vier Regler, Ergebnis und Kurve. Rechenlogik in calc-engine.mjs, Annahmen in calc-config.mjs. -->
+  <main class="container calc-page" id="calculator">
+    <h1 class="calc-page__title">See what your money could become.</h1>
+    <p class="calc-page__sub" data-i18n="calc.sub">Auf dem Sparkonto fühlt sich Geld sicher an, verliert über die Jahre aber leise an Wert. Bewege die Regler und sieh, was aus demselben Geld werden könnte, wenn du es investierst.</p>
+
+    <div class="calc">
+      <!-- EINGABEN -->
+      <form class="calc__panel calc__inputs" id="calcForm" novalidate>
+        <div class="calc-field">
+          <div class="calc-field__top">
+            <label for="inAge" data-i18n="calc.age">Dein Alter heute</label>
+            <output class="calc-field__val" id="outAge" for="inAge">30</output>
+          </div>
+          <input type="range" id="inAge" />
+        </div>
+        <div class="calc-field">
+          <div class="calc-field__top">
+            <label for="inSaving" data-i18n="calc.saving">Was du monatlich zurücklegst</label>
+            <output class="calc-field__val" id="outSaving" for="inSaving">200 €</output>
+          </div>
+          <input type="range" id="inSaving" />
+        </div>
+        <div class="calc-field">
+          <div class="calc-field__top">
+            <label for="inStart" data-i18n="calc.start">Wie viel du jetzt hast</label>
+            <output class="calc-field__val" id="outStart" for="inStart">5.000 €</output>
+          </div>
+          <input type="range" id="inStart" />
+        </div>
+        <div class="calc-field">
+          <div class="calc-field__top">
+            <label for="inHorizon" data-i18n="calc.horizon">Dein gewünschtes Rentenalter</label>
+            <output class="calc-field__val" id="outHorizon" for="inHorizon">67</output>
+          </div>
+          <input type="range" id="inHorizon" />
+        </div>
+      </form>
+
+      <!-- ERGEBNIS -->
+      <div class="calc__panel calc__results theme-gruen">
+        <p class="calc-result__label" data-i18n="calc.diff">Möglicher Unterschied</p>
+        <p class="calc-result__value" id="outGap" aria-live="polite">0 €</p>
+        <p class="calc-result__sub" data-i18n="calc.diff_sub">mehr, in heutigem Geld</p>
+
+        <div class="calc-chart" aria-hidden="true">
+          <svg id="calcChart" viewBox="0 0 360 210">
+            <line class="calc-chart__grid" x1="46" y1="10" x2="352" y2="10" />
+            <line class="calc-chart__grid" x1="46" y1="53.5" x2="352" y2="53.5" />
+            <line class="calc-chart__grid" x1="46" y1="97" x2="352" y2="97" />
+            <line class="calc-chart__grid" x1="46" y1="140.5" x2="352" y2="140.5" />
+            <line class="calc-chart__axis" x1="46" y1="10" x2="46" y2="184" />
+            <line class="calc-chart__axis" x1="46" y1="184" x2="352" y2="184" />
+            <!-- Fläche zwischen Bargeld und Investiert -->
+            <path id="calcGapArea" class="calc-chart__gap" d="" />
+            <path id="calcSave" class="calc-chart__save" d="" fill="none" />
+            <path id="calcInvest" class="calc-chart__invest" d="" fill="none" />
+            <text id="calcYTop" class="calc-chart__tick calc-chart__tick--y" x="42" y="13"></text>
+            <text id="calcY75" class="calc-chart__tick calc-chart__tick--y" x="42" y="56.5"></text>
+            <text id="calcYMid" class="calc-chart__tick calc-chart__tick--y" x="42" y="100"></text>
+            <text id="calcY25" class="calc-chart__tick calc-chart__tick--y" x="42" y="143.5"></text>
+            <text id="calcYBot" class="calc-chart__tick calc-chart__tick--y" x="42" y="187"></text>
+            <text id="calcXStart" class="calc-chart__tick calc-chart__tick--xstart" x="46" y="200"></text>
+            <text id="calcXEnd" class="calc-chart__tick calc-chart__tick--xend" x="352" y="200"></text>
+          </svg>
+        </div>
+
+        <div class="calc-legend">
+          <span class="calc-legend__item calc-legend__item--invest">
+            <em data-i18n="calc.invest_short">Investiert</em>
+            <strong id="outInvest">0 €</strong>
+          </span>
+          <span class="calc-legend__item calc-legend__item--save">
+            <em data-i18n="calc.cash_short">Bargeld</em>
+            <strong id="outCash">0 €</strong>
+          </span>
+        </div>
+
+        <a href="../index.html#newsletter" class="btn calc-result__cta" data-i18n="calc.cta">Bring dein Geld zum Arbeiten</a>
+      </div>
+    </div>
+
+    <div class="calc-notes">
+      <p class="calc-disclaimer" data-i18n="calc.disclaimer">Eine vereinfachte Hochrechnung in heutigem Geld, nur zu Bildungszwecken. Langfristige Renditen sind Annahmen, keine Garantien, und Gebühren sowie Steuern sind nicht berücksichtigt. Dies ist keine Anlageberatung.</p>
+      <p class="calc-source" data-i18n-html="calc.source">Die rund 6 % pro Jahr, die Investieren gegenüber Bargeld historisch gebracht hat, beruhen auf langfristigen EU-Daten. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52025SC6800" target="_blank" rel="noopener">Quelle: Europäische Kommission (2025)</a>.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER wie auf Startseite und Archiv (footer4) -->
+  <footer class="footer4 container container--wide">
+    <div class="footer4__grid">
+      <div class="footer4__left">
+        <p class="footer4__claim">Money is power.<br>Use yours.</p>
+        <img class="footer4__dancers" src="../img/footer-taenzerinnen.webp" alt="" width="1200" height="899" />
+      </div>
+      <div class="footer4__right">
+        <div class="social footer4__social">
+          <a href="https://bsky.app/" target="_blank" rel="noopener" data-i18n-aria="social.bluesky" aria-label="Portemonnaie auf Bluesky"><svg class="icon"><use href="../img/icons.svg#icon-bluesky"/></svg></a>
+          <a href="https://substack.com/" target="_blank" rel="noopener" data-i18n-aria="social.substack" aria-label="Portemonnaie auf Substack"><svg class="icon"><use href="../img/icons.svg#icon-substack"/></svg></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-i18n-aria="social.linkedin" aria-label="Portemonnaie auf LinkedIn"><svg class="icon"><use href="../img/icons.svg#icon-linkedin"/></svg></a>
+        </div>
+        <form class="footer4__form" data-signup novalidate>
+          <label class="sr-only" for="footerName" data-i18n="form.name_ph">Vorname</label>
+          <input class="field" id="footerName" type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Vorname" data-i18n-ph="form.name_ph" />
+          <label class="sr-only" for="footerEmail" data-i18n="form.email_ph">E-Mail-Adresse</label>
+          <input class="field" id="footerEmail" type="email" name="email" required autocomplete="email" placeholder="E-Mail-Adresse" data-i18n-ph="form.email_ph" />
+          <label class="check t-small"><input type="checkbox" name="consent" required /><span data-i18n-html="form.consent">Ich möchte Updates von Portemonnaie erhalten und akzeptiere die <a href="/privacy.html">Datenschutzerklärung</a>.</span></label>
+          <button class="btn" type="submit" data-i18n="form.submit">Newsletter abonnieren</button>
+          <p class="form__success t-small" hidden data-i18n="form.success">Sieh in deinem Postfach nach und klick auf den Bestätigungslink, um die Anmeldung abzuschließen.</p>
+          <p class="form__error t-small" hidden data-i18n="form.error">Das hat nicht geklappt. Bitte versuch es gleich noch einmal.</p>
+        </form>
+      </div>
+    </div>
+    <div class="site-footer__bottom site-footer__bottom--left">
+      <p class="site-footer__copy" data-i18n="footer.copyright">© Portemonnaie 2026</p>
+      <div class="site-footer__legal"><a href="../impressum.html" data-i18n="footer.imprint">Impressum</a><a href="../privacy.html" data-i18n="footer.privacy">Datenschutzerklärung</a></div>
+    </div>
+  </footer>
+
+  <script src="../i18n.js?v=127"></script>
+  <script src="../script.js?v=126"></script>
+  <script type="module" src="calculator.js?v=1"></script>
+</body>
+</html>
